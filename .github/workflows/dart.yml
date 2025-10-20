@@ -3,40 +3,97 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Dart
+name: "Conditional Build & Email"
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [main, dev]
 
 jobs:
-  build:
+  dev-job:
+    if: github.ref == 'refs/heads/dev'
     runs-on: ubuntu-latest
+    name: Dev Branch Push
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout Dev Code
+        uses: actions/checkout@v4
+
+      - name: Log Dev Push
+        run: echo "Pushed to dev branch. No build or release triggered."
+
+  main-job:
+    if: github.ref == 'refs/heads/main'
+    runs-on: macos-latest
+    name: Build  APK (Master Only)
+    permissions:
+      contents: write
 
     steps:
-      - uses: actions/checkout@v4
+      #1 Checkout Repository
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      # Note: This workflow uses the latest stable version of the Dart SDK.
-      # You can specify other versions if desired, see documentation here:
-      # https://github.com/dart-lang/setup-dart/blob/main/README.md
-      # - uses: dart-lang/setup-dart@v1
-      - uses: dart-lang/setup-dart@9a04e6d73cca37bd455e0608d7e5092f881fd603
+      #2 Set Up Java
+      - name: Set Up Java
+        uses: actions/setup-java@v3.12.0
+        with:
+          distribution: 'oracle'
+          java-version: '17'
 
-      - name: Install dependencies
-        run: dart pub get
+      #3 Set Up Flutter
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.29.0'
+          channel: 'stable'
 
-      # Uncomment this step to verify the use of 'dart format' on each commit.
-      # - name: Verify formatting
-      #   run: dart format --output=none --set-exit-if-changed .
+      #4 Install Dependencies
+      - name: Install Dependencies
+        run: flutter pub get
 
-      # Consider passing '--fatal-infos' for slightly stricter analysis.
-      - name: Analyze project source
-        run: dart analyze
+      #5 Build APK
+      - name: Build APK
+        run: flutter build apk --release
 
-      # Your project will need to have tests in test/ and a dependency on
-      # package:test for this step to succeed. Note that Flutter projects will
-      # want to change this to 'flutter test'.
-      - name: Run tests
-        run: dart test
+         #6 Extract Version
+      - name: Extract version from pubspec.yaml
+        id: extract_version
+        run: |
+          version=$(grep '^version: ' pubspec.yaml | cut -d ' ' -f 2 | tr -d '\r')
+          echo "VERSION=$version" >> $GITHUB_ENV
+
+      #7 Create GitHub Release
+      - name: Create GitHub Release
+        uses: ncipollo/release-action@v1.13.0
+        with:
+          artifacts: build/app/outputs/flutter-apk/app-release.apk
+          tag: v${{ env.VERSION }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # #8 Send APK via Gmail
+      # - name: Send APK via Gmail
+      #   uses: dawidd6/action-send-mail@v3
+      #   with:
+      #     server_address: smtp.gmail.com
+      #     server_port: 465
+      #     username: ${{ secrets.EMAIL_USER }}
+      #     password: ${{ secrets.EMAIL_PASSWORD }}
+      #     subject: "New Flutter APK v${{ env.VERSION }}"
+      #     body: |
+      #       Hello,
+
+      #       A new Flutter APK (v${{ env.VERSION }}) has been built and released.
+
+      #       Repository: ${{ github.repository }}
+      #       Branch: ${{ github.ref_name }}
+
+      #       👉 Download APK v${{ env.VERSION }}:
+      #       https://github.com/${{ github.repository }}/releases/download/v${{ env.VERSION }}/app-development-release.apk
+
+      #       Regards,  
+      #       GitHub Actions
+      #     content_type: text/html
+      #     to: guwanchaldurdyyew01@gmail.com, 
+      #     from: GitHub Actions <${{ secrets.EMAIL_USER }}>
