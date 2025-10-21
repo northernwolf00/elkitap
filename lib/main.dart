@@ -1,76 +1,59 @@
+import 'package:elkitap/core/init/app_initialize.dart';
+import 'package:elkitap/core/init/theme_controller.dart';
+import 'package:elkitap/core/init/translation_service.dart';
+import 'package:elkitap/core/theme/custom_dark_theme.dart';
+import 'package:elkitap/core/theme/custom_light_theme.dart';
+import 'package:elkitap/routes/app_pages.dart';
+import 'package:elkitap/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  await ApplicationInitialize.initialize();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-
-      _counter++;
-    });
-  }
+  MyApp({super.key});
+  final storage = GetStorage();
 
   @override
   Widget build(BuildContext context) {
-  
-    return Scaffold(
-      appBar: AppBar(
-      
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        
-        title: Text(widget.title),
-      ),
-      body: Center(
- 
-        child: Column(
-         
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    return ScreenUtilInit(
+      designSize: Size(360, 800),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_, __) {
+        return GetMaterialApp(
+          builder: (context, child) {
+            final themeController = Get.find<ThemeController>();
+            return AnnotatedRegion<SystemUiOverlayStyle>(
+              value: themeController.themeMode == ThemeMode.dark
+                  ? SystemUiOverlayStyle.light
+                  : SystemUiOverlayStyle.dark,
+              child: child!,
+            );
+          },
+          translations: TranslationService(),
+          defaultTransition: Transition.fade,
+          fallbackLocale: const Locale('tr'),
+          debugShowCheckedModeBanner: false,
+          locale: storage.read('langCode') != null
+              ? Locale(storage.read('langCode'))
+              : const Locale('tr'),
+          theme: CustomLightTheme().themeData,
+          darkTheme: CustomDarkTheme().themeData,
+          themeMode: Get.find<ThemeController>().themeMode,
+          // getPages: AppPages.pages,
+          initialRoute: Routes.CONNECTIONCHECKVIEW,
+        );
+      },
     );
   }
 }
