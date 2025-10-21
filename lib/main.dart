@@ -15,6 +15,13 @@ import 'package:get_storage/get_storage.dart';
 Future<void> main() async {
   await ApplicationInitialize.initialize();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+   WidgetsFlutterBinding.ensureInitialized();
+
+  await GetStorage.init();
+  await ApplicationInitialize.initialize();
+
+  Get.put(ThemeController());
+
 
   runApp(MyApp());
 }
@@ -34,9 +41,10 @@ class MyApp extends StatelessWidget {
           builder: (context, child) {
             final themeController = Get.find<ThemeController>();
             return AnnotatedRegion<SystemUiOverlayStyle>(
-              value: themeController.themeMode == ThemeMode.dark
-                  ? SystemUiOverlayStyle.light
-                  : SystemUiOverlayStyle.dark,
+              value:
+                  themeController.themeMode == ThemeMode.dark
+                      ? SystemUiOverlayStyle.light
+                      : SystemUiOverlayStyle.dark,
               child: child!,
             );
           },
@@ -44,14 +52,15 @@ class MyApp extends StatelessWidget {
           defaultTransition: Transition.fade,
           fallbackLocale: const Locale('tr'),
           debugShowCheckedModeBanner: false,
-          locale: storage.read('langCode') != null
-              ? Locale(storage.read('langCode'))
-              : const Locale('tr'),
+          locale:
+              storage.read('langCode') != null
+                  ? Locale(storage.read('langCode'))
+                  : const Locale('tr'),
           theme: CustomLightTheme().themeData,
           darkTheme: CustomDarkTheme().themeData,
           themeMode: Get.find<ThemeController>().themeMode,
-          // getPages: AppPages.pages,
-          initialRoute: Routes.CONNECTIONCHECKVIEW,
+          getPages: AppPages.pages,
+          initialRoute: Routes.BOTTOMNAV,
         );
       },
     );
