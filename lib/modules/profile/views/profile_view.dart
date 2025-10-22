@@ -1,3 +1,4 @@
+import 'package:elkitap/global_widgets/custom_appbar.dart';
 import 'package:elkitap/modules/profile/widgets/profile_card_user.dart';
 import 'package:elkitap/modules/profile/widgets/settings_list.dart';
 import 'package:flutter/material.dart';
@@ -16,16 +17,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: const Icon(Icons.arrow_back),
-        title: const Text(
-          'Profile',
-          style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-        ),
-        elevation: 0,
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black,
-      ),
+      appBar: CustomAppBar(title: '',showBackButton: true, leadingText : 'Back',),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),

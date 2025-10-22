@@ -33,16 +33,33 @@ class ProfileCardUser extends StatelessWidget {
                 children: [
                   Text(
                     "Murat Sapayev",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    style: TextStyle(fontWeight: FontWeight.bold, 
+                    fontFamily: 'New York',
+                    fontSize: 20),
                   ),
                   SizedBox(height: 4),
                   Text(
                     "+993 61626406",
-                    style: TextStyle(color: Colors.black54),
+                    style: TextStyle(color: Colors.black54,
+                    fontSize: 13
+                    ),
                   ),
                 ],
               ),
-              TextButton(onPressed: () {}, child: const Text("Edit account")),
+              Row(
+                children: [
+                  Text(
+                    "Edit account",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 13
+                    ),
+                    ),
+                    SizedBox(width: 3,),
+                    Icon(Icons.arrow_forward_ios,
+                    size: 16,)
+                ],
+              ),
             ],
           ),
           const SizedBox(height: 12),

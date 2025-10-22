@@ -1,3 +1,4 @@
+import 'package:elkitap/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class SubscribedView extends StatelessWidget {
@@ -10,10 +11,23 @@ class SubscribedView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "Subscription ends in $daysLeft days",
-          style: const TextStyle(color: Colors.black54),
+          const SizedBox(height: 25),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(
+              "Subscription ends in $daysLeft days",
+              style: const TextStyle(color: Colors.black54),
+            ),
+            Image.asset('assets/images/subscribed.png',
+            height: 46,
+            width: 46,)
+          ],
         ),
+        
+        const SizedBox(height: 12),
+        Container(height: 1, color: Colors.grey[300]),
         const SizedBox(height: 12),
         Row(
           children: [
@@ -21,27 +35,29 @@ class SubscribedView extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.orangeAccent,
+                  backgroundColor: AppColors.bgItemProColor,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(40),
                   ),
-                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  
                 ),
-                child: const Text("Extend", style: TextStyle(fontSize: 16)),
+                child: const Text("Extend", style: TextStyle(fontSize: 14,
+            color: Colors.white)),
               ),
             ),
             const SizedBox(width: 12),
             Expanded(
-              child: OutlinedButton(
+              child: ElevatedButton(
                 onPressed: () {},
-                style: OutlinedButton.styleFrom(
-                  side: const BorderSide(color: Colors.grey),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.buttonGreyColor,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(40),
                   ),
-                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  
                 ),
-                child: const Text("Promocode", style: TextStyle(fontSize: 16)),
+                child: const Text("Promocode", style: TextStyle(fontSize: 14,
+            color: Colors.black)),
               ),
             ),
           ],

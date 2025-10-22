@@ -21,8 +21,8 @@ class MyLibraryViewScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     colors: [
-                      Color(0x00E5E5EA), // Transparent
-                      Color(0xFFE5E5EA), // Solid color
+                      Color(0x00E5E5EA), 
+                      Color(0xFFE5E5EA), 
                     ],
                   ),
                 ),

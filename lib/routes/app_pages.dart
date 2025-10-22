@@ -1,4 +1,5 @@
 import 'package:elkitap/global_widgets/bottom_nav_bar.dart';
+import 'package:elkitap/modules/profile/views/profile_view.dart';
 import 'package:get/get.dart';
 
 
@@ -8,6 +9,10 @@ abstract class AppPages {
     GetPage(
       name: Routes.BOTTOMNAV,
       page: () => const BottomNavScreen(),
+    ),
+    GetPage(
+      name: Routes.PROFILE, 
+      page: () => const ProfileScreen(),
     ),
   ];
 }
