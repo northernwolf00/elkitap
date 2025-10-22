@@ -1,4 +1,4 @@
-package com.example.elkitap
+package com.googadev.elkitap
 
 import io.flutter.embedding.android.FlutterActivity
 
