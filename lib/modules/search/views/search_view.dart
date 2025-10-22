@@ -3,7 +3,6 @@ import 'package:elkitap/modules/search/widgets/recently_viewed_section.dart';
 import 'package:elkitap/modules/search/widgets/search_header.dart';
 import 'package:flutter/material.dart';
 
-
 class SearchViewScreen extends StatelessWidget {
   const SearchViewScreen({super.key});
 
@@ -18,7 +17,7 @@ class SearchViewScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const [
               SearchHeader(),
-              SizedBox(height: 24),
+              SizedBox(height: 30),
               RecentlyViewedSection(),
               SizedBox(height: 24),
               GenresSection(),

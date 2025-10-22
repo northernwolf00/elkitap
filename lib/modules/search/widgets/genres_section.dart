@@ -30,14 +30,19 @@ class GenresSection extends StatelessWidget {
       children: [
         const Text(
           "Genres",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 20,
+            fontFamily: 'New York',
+            fontWeight: FontWeight.bold,
+          ),
         ),
         const SizedBox(height: 12),
         ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: genres.length,
-          separatorBuilder: (_, __) => const Divider(height: 1),
+          separatorBuilder:
+              (_, __) => Container(height: 1, color: Colors.grey[200]),
           itemBuilder: (context, index) {
             return ListTile(
               contentPadding: EdgeInsets.zero,

@@ -4,8 +4,6 @@ import 'package:elkitap/modules/search/views/search_view.dart';
 import 'package:elkitap/modules/store/views/store_view.dart';
 import 'package:flutter/material.dart';
 
-
-
 class BottomNavScreen extends StatefulWidget {
   const BottomNavScreen({Key? key}) : super(key: key);
 
@@ -22,22 +20,12 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     super.dispose();
   }
 
-  List page = [
-     MyLibraryViewScreen(),
-     StoreViewScreen(),
-     SearchViewScreen(),
-    
-  ];
-
- 
+  List page = [MyLibraryViewScreen(), StoreViewScreen(), SearchViewScreen()];
 
   @override
   void initState() {
     super.initState();
-
   }
-
-  
 
   bool appbar = true;
 
@@ -45,57 +33,46 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Container(
-        height: 68,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(12), topRight: Radius.circular(12)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.blueGrey.withOpacity(0.1),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: const Offset(0, 3),
-            ),
-          ],
-        ),
+        height: 80,
+        decoration: BoxDecoration(color: Colors.white),
         child: Row(
           children: [
             Expanded(
-                child: BottomNavbarButton(
-                    icon: false,
-                    index: 0,
-                    selectedIndex: selectedIndex,
-                    onTapp: () {
-                      onTapp(0);
-                    })),
+              child: BottomNavbarButton(
+                icon: false,
+                index: 0,
+                selectedIndex: selectedIndex,
+                onTapp: () {
+                  onTapp(0);
+                },
+              ),
+            ),
             Expanded(
-                child: BottomNavbarButton(
-                    icon: false,
-                    index: 1,
-                    selectedIndex: selectedIndex,
-                    onTapp: () {
-                      onTapp(1);
-                    })),
+              child: BottomNavbarButton(
+                icon: false,
+                index: 1,
+                selectedIndex: selectedIndex,
+                onTapp: () {
+                  onTapp(1);
+                },
+              ),
+            ),
             Expanded(
-                child: BottomNavbarButton(
-                    icon: false,
-                    index: 2,
-                    selectedIndex: selectedIndex,
-                    onTapp: () {
-                      onTapp(2);
-                    })),
-            
+              child: BottomNavbarButton(
+                icon: false,
+                index: 2,
+                selectedIndex: selectedIndex,
+                onTapp: () {
+                  onTapp(2);
+                },
+              ),
+            ),
           ],
         ),
       ),
       body: IndexedStack(
         // index: selectedIndex,
-        children: [
-          Center(
-            child: page[selectedIndex],
-          ),
-        ],
+        children: [Center(child: page[selectedIndex])],
       ),
     );
   }

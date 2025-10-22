@@ -14,36 +14,14 @@ class CurrentBookSection extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.grey.shade200,
               borderRadius: BorderRadius.circular(8),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  blurRadius: 6,
-                  offset: const Offset(0, 3),
-                ),
-              ],
+
               image: const DecorationImage(
-                image: AssetImage('assets/books/atomic_habits.png'),
+                image: AssetImage('assets/images/b1.png'),
                 fit: BoxFit.cover,
               ),
             ),
           ),
           const SizedBox(height: 8),
-          const Text(
-            "James Clear",
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 8),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-            decoration: BoxDecoration(
-              color: Colors.orange,
-              borderRadius: BorderRadius.circular(4),
-            ),
-            child: const Text(
-              "45%",
-              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-            ),
-          ),
         ],
       ),
     );
