@@ -34,21 +34,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     return Scaffold(
       bottomNavigationBar: Container(
         height: 80,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(12),
-            topRight: Radius.circular(12),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.blueGrey.withOpacity(0.1),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: const Offset(0, 3),
-            ),
-          ],
-        ),
+        decoration: BoxDecoration(color: Colors.white),
         child: Row(
           children: [
             Expanded(

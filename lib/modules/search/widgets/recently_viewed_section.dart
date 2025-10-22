@@ -6,9 +6,11 @@ class RecentlyViewedSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final books = [
-      'assets/books/subtle_art.png',
-      'assets/books/12_rules.png',
-      'assets/books/atomic_habits.png',
+      'assets/images/b1.png',
+      'assets/images/b2.png',
+      'assets/images/b4.png',
+      'assets/images/b3.png',
+      'assets/images/b5.png',
     ];
 
     return Column(
@@ -19,11 +21,15 @@ class RecentlyViewedSection extends StatelessWidget {
           children: const [
             Text(
               "Recently Viewed",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 20,
+                fontFamily: 'New York',
+                fontWeight: FontWeight.bold,
+              ),
             ),
             Text(
               "Clear",
-              style: TextStyle(color: Colors.blue, fontWeight: FontWeight.w500),
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
             ),
           ],
         ),
@@ -39,11 +45,8 @@ class RecentlyViewedSection extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
                 child: Container(
                   width: 110,
-                  color: Colors.grey.shade200,
-                  child: Image.asset(
-                    books[index],
-                    fit: BoxFit.cover,
-                  ),
+
+                  child: Image.asset(books[index], fit: BoxFit.cover),
                 ),
               );
             },
