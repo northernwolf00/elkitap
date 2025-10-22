@@ -3,7 +3,6 @@ import 'package:elkitap/modules/store/widgets/popular_by_genre_section.dart';
 import 'package:elkitap/modules/store/widgets/top_of_week_section.dart';
 import 'package:flutter/material.dart';
 
-
 class StoreViewScreen extends StatelessWidget {
   const StoreViewScreen({super.key});
 
@@ -19,6 +18,22 @@ class StoreViewScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
                 _Header(),
+                Row(
+                  children: const [
+                    Text(
+                      "Books",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(width: 12),
+                    Text(
+                      "Audiobooks",
+                      style: TextStyle(fontSize: 18, color: Colors.grey),
+                    ),
+                  ],
+                ),
                 SizedBox(height: 24),
                 FeaturedBooksSection(),
                 SizedBox(height: 24),
@@ -45,19 +60,6 @@ class _Header extends StatelessWidget {
         const Text(
           "elkitap",
           style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-        ),
-        Row(
-          children: const [
-            Text(
-              "Books",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(width: 12),
-            Text(
-              "Audiobooks",
-              style: TextStyle(fontSize: 18, color: Colors.grey),
-            ),
-          ],
         ),
       ],
     );

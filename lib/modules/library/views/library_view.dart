@@ -4,7 +4,6 @@ import 'package:elkitap/modules/library/widgets/library_header.dart';
 import 'package:elkitap/modules/library/widgets/recently_opened_section.dart';
 import 'package:flutter/material.dart';
 
-
 class MyLibraryViewScreen extends StatelessWidget {
   const MyLibraryViewScreen({super.key});
 
@@ -14,15 +13,37 @@ class MyLibraryViewScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          padding: const EdgeInsets.symmetric(vertical: 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              LibraryHeader(),
-              SizedBox(height: 24),
-              CurrentBookSection(),
-              Divider(height: 32),
-              RecentlyOpenedSection(),
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Color(0x00E5E5EA), // Transparent
+                      Color(0xFFE5E5EA), // Solid color
+                    ],
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      LibraryHeader(),
+                      SizedBox(height: 24),
+                      CurrentBookSection(),
+                      Divider(
+                        height: 32,
+                        color: Colors.grey[300],
+                        thickness: 1.5,
+                      ),
+                      RecentlyOpenedSection(),
+                    ],
+                  ),
+                ),
+              ),
+
               SizedBox(height: 24),
               CollectionsSection(),
             ],

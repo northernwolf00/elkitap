@@ -1,3 +1,4 @@
+import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:flutter/material.dart';
 
 class LibraryHeader extends StatelessWidget {
@@ -11,13 +12,19 @@ class LibraryHeader extends StatelessWidget {
         const Text(
           "My Library",
           style: TextStyle(
-            fontSize: 26,
+            fontFamily: 'New York',
+            fontSize: 34,
             fontWeight: FontWeight.bold,
           ),
         ),
         IconButton(
           onPressed: () {},
-          icon: const Icon(Icons.person_outline, size: 28),
+          icon: CustomIcon(
+            title: 'assets/icons/i1.svg',
+            height: 40,
+            width: 40,
+            color: Colors.black,
+          ),
         ),
       ],
     );
