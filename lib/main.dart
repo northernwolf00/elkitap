@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
           darkTheme: CustomDarkTheme().themeData,
           themeMode: Get.find<ThemeController>().themeMode,
           getPages: AppPages.pages,
-          initialRoute: Routes.BOTTOMNAV,
+          initialRoute: Routes.SPLASH,
         );
       },
     );

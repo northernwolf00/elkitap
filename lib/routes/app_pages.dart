@@ -1,18 +1,18 @@
 import 'package:elkitap/global_widgets/bottom_nav_bar.dart';
+import 'package:elkitap/modules/library/views/notes_view.dart';
+import 'package:elkitap/modules/library/views/reading_list_view.dart';
 import 'package:elkitap/modules/profile/views/profile_view.dart';
+import 'package:elkitap/modules/splash/views/splash_view.dart';
 import 'package:get/get.dart';
 
-
 import 'app_routes.dart';
+
 abstract class AppPages {
   static final pages = [
-    GetPage(
-      name: Routes.BOTTOMNAV,
-      page: () => const BottomNavScreen(),
-    ),
-    GetPage(
-      name: Routes.PROFILE, 
-      page: () => const ProfileScreen(),
-    ),
+    GetPage(name: Routes.SPLASH, page: () => SplashPageWidget()),
+    GetPage(name: Routes.BOTTOMNAV, page: () => const BottomNavScreen()),
+    GetPage(name: Routes.PROFILE, page: () => const ProfileScreen()),
+    GetPage(name: Routes.WANTREAD, page: () => const ReadingListScreen()),
+    GetPage(name: Routes.NOTES, page: () => const NotesScreen()),
   ];
 }
