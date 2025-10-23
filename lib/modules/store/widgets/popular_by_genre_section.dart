@@ -1,4 +1,7 @@
+import 'package:elkitap/modules/store/widgets/book_card_widget.dart';
+import 'package:elkitap/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PopularByGenreSection extends StatelessWidget {
   const PopularByGenreSection({super.key});
@@ -68,17 +71,12 @@ class PopularByGenreSection extends StatelessWidget {
                             separatorBuilder:
                                 (_, __) => const SizedBox(width: 12),
                             itemBuilder: (context, index) {
-                              return Container(
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: AssetImage(
-                                      'assets/images/b$index.png',
-                                    ),
-                                    fit: BoxFit.cover,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
+                              return BookCard(
+                                index: index,
+                                tabIndex: 0,
+                                onTap: () {
+                                  Get.toNamed(Routes.BOOK_DETAIL);
+                                },
                               );
                             },
                           ),

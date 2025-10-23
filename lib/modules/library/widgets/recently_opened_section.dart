@@ -1,4 +1,7 @@
+import 'package:elkitap/modules/store/widgets/book_card_widget.dart';
+import 'package:elkitap/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class RecentlyOpenedSection extends StatelessWidget {
   const RecentlyOpenedSection({super.key});
@@ -31,12 +34,12 @@ class RecentlyOpenedSection extends StatelessWidget {
             itemCount: books.length,
             separatorBuilder: (_, __) => const SizedBox(width: 12),
             itemBuilder: (context, index) {
-              return ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: Container(
-                  width: 100,
-                  child: Image.asset(books[index], fit: BoxFit.cover),
-                ),
+              return BookCard(
+                index: index,
+                tabIndex: 0,
+                onTap: () {
+                  Get.toNamed(Routes.BOOK_DETAIL);
+                },
               );
             },
           ),

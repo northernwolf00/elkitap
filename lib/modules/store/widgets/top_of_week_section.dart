@@ -1,4 +1,7 @@
+import 'package:elkitap/modules/store/widgets/book_cart_vertical.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/utils.dart';
 
 class TopOfWeekSection extends StatelessWidget {
   const TopOfWeekSection({super.key});
@@ -31,41 +34,12 @@ class TopOfWeekSection extends StatelessWidget {
               final book = books[index];
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 6),
-                child: Row(
-                  children: [
-                    Text(
-                      "${index + 1}",
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Container(
-                      height: 60,
-                      width: 40,
-                      child: Image.asset(
-                        'assets/images/b$index.png',
-                        fit: BoxFit.cover,
-                      ),
-                      margin: const EdgeInsets.only(right: 12),
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            book["title"]!,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            book["author"]!,
-                            style: const TextStyle(color: Colors.grey),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                child: BookVerticalCart(
+                  index: index,
+                  book: book,
+                  onTap: () {
+                    Get.toNamed('/book-detail');
+                  },
                 ),
               );
             }),
