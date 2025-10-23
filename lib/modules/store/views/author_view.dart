@@ -1,3 +1,6 @@
+import 'package:elkitap/modules/store/widgets/author_appbar.dart';
+import 'package:elkitap/modules/store/widgets/author_profil_section.dart';
+import 'package:elkitap/modules/store/widgets/books_section.dart';
 import 'package:flutter/material.dart';
 
 // Main Screen

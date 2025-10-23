@@ -1,5 +1,7 @@
 import 'package:elkitap/modules/store/widgets/book_detail_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/utils.dart';
 
 class BookDetailView extends StatefulWidget {
   const BookDetailView({super.key});
@@ -85,7 +87,11 @@ class _BookDetailViewState extends State<BookDetailView> {
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
             const SizedBox(height: 6),
-            const Text("Mark Manson", style: TextStyle(color: Colors.black54)),
+            GestureDetector(
+              onTap: () {
+                Get.toNamed('/author-detail');
+              },
+              child: const Text("Mark Manson", style: TextStyle(color: Colors.black54))),
             const SizedBox(height: 10),
             const Text(
               "Health, Mind & Body • 18+",
