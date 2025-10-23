@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class GenericListWidget extends StatelessWidget {
   const GenericListWidget({super.key});
@@ -49,7 +50,11 @@ class GenericListWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    if (item == 'All Genres') {
+                       Get.toNamed('/all-genres');
+                    }
+                  },
                 ),
                 // Only show divider if not the last item
                 if (index != genres.length - 1)
