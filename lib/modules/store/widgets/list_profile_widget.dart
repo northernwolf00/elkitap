@@ -1,5 +1,7 @@
 import 'package:elkitap/modules/store/widgets/profile_cart_widget.dart';
+import 'package:elkitap/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ListProfileWidget extends StatefulWidget {
   const ListProfileWidget({super.key});
@@ -26,21 +28,27 @@ class _ListProfileWidgetState extends State<ListProfileWidget> {
         const SizedBox(height: 22),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Text(
-                'Professionals read',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontFamily: 'New York',
-                  fontWeight: FontWeight.w700,
-                  color: Colors.black87,
+          child: GestureDetector(
+            onTap: () {
+              // Navigate to professionals read view
+              Get.toNamed(Routes.PROFESSIONALS_READ);
+            },
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'Professionals read',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontFamily: 'New York',
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black87,
+                  ),
                 ),
-              ),
-              SizedBox(width: 8),
-              Icon(Icons.arrow_forward_ios, size: 18, color: Colors.grey[600]),
-            ],
+                SizedBox(width: 8),
+                Icon(Icons.arrow_forward_ios, size: 18, color: Colors.grey[600]),
+              ],
+            ),
           ),
         ),
         SizedBox(height: 14),

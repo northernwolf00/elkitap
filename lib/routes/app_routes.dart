@@ -7,5 +7,7 @@ abstract class Routes {
   static const BOOK_DETAIL = '/book-detail';
   static const AUTHOR_DETAIL = '/author-detail';
   static const ALL_GENRES = '/all-genres';
+  static const PROFESSIONALS_READ = '/professionals-read';
+  static const STORE_DETAIL = '/store-detail';
 }
 

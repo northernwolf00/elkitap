@@ -1,3 +1,4 @@
+import 'package:elkitap/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -52,7 +53,7 @@ class GenericListWidget extends StatelessWidget {
                   ),
                   onTap: () {
                     if (item == 'All Genres') {
-                       Get.toNamed('/all-genres');
+                      Get.toNamed(Routes.ALL_GENRES);
                     }
                   },
                 ),

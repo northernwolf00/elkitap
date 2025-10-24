@@ -53,6 +53,7 @@ class AllGenresView extends StatelessWidget {
               'Genres',
               style: TextStyle(
                 fontSize: 34,
+                fontFamily: 'New York',
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
@@ -62,8 +63,12 @@ class AllGenresView extends StatelessWidget {
             child: ListView.separated(
               itemCount: genres.length,
               separatorBuilder:
-                  (context, index) =>
-                      const Divider(height: 1, thickness: 0.5, indent: 16),
+                  (context, index) => const Divider(
+                    height: 1,
+                    thickness: 0.5,
+                    indent: 16,
+                    endIndent: 16,
+                  ),
               itemBuilder: (context, index) {
                 return ListTile(
                   contentPadding: const EdgeInsets.symmetric(
@@ -80,8 +85,7 @@ class AllGenresView extends StatelessWidget {
                   ),
                   trailing: const Icon(Icons.chevron_right, color: Colors.grey),
                   onTap: () {
-                    // Navigate to genre detail page
-                    print('Tapped on ${genres[index]}');
+                    
                   },
                 );
               },
