@@ -1,4 +1,5 @@
 import 'package:elkitap/modules/store/widgets/book_cart_vertical.dart';
+import 'package:elkitap/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/utils.dart';
@@ -20,12 +21,17 @@ class TopOfWeekSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 22),
-          const Text(
-            "Top of the week",
-            style: TextStyle(
-              fontSize: 20,
-              fontFamily: 'New York',
-              fontWeight: FontWeight.bold,
+          GestureDetector(
+            onTap: () {
+              Get.toNamed(Routes.GENRS_LIST);
+            },
+            child: const Text(
+              "Top of the week",
+              style: TextStyle(
+                fontSize: 20,
+                fontFamily: 'New York',
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           const SizedBox(height: 12),

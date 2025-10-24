@@ -19,9 +19,14 @@ class FeaturedBooksSection extends StatelessWidget {
             style: TextStyle(fontSize: 12, color: Colors.grey),
           ),
           const SizedBox(height: 4),
-          const Text(
-            "We recommend",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          GestureDetector(
+            onTap: () {
+              Get.toNamed(Routes.GENRS_LIST);
+            },
+            child: const Text(
+              "We recommend",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
           ),
           const SizedBox(height: 16),
           SizedBox(

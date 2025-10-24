@@ -1,5 +1,6 @@
 import 'package:elkitap/global_widgets/custom_appbar.dart';
 import 'package:elkitap/modules/store/widgets/book_cart_profil.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class ProfesionalReadersProfil extends StatefulWidget {
@@ -18,38 +19,35 @@ class _ProfesionalReadersProfilState extends State<ProfesionalReadersProfil> {
 
   final String fullBio =
       "Сегодня в рубрике «Профессии» у нас в гостях региональный директор Yüpekçi. Он поделится с вами тремя замечательными книгами, которые помогут вам научиться договариваться, продавать и глубже понимать потребности клиентов. Эти произведения не только развивают навыки общения, но и значительно повышают вашу эффективность в бизнесе. Обязательно присоединяйтесь к нам!";
-
+  final List<Map<String, dynamic>> books = [
+    {
+      'title': 'The Subtle Art of Not Giving a F*ck',
+      'author': 'Mark Manson',
+      'description':
+          'Mark Manson\'s "The Subtle Art of Not Giving a F*ck" is a blunt, humorous guide to living by choosing your battles wisely.',
+      'imageUrl': 'assets/images/b1.png',
+      'buttonText': 'Continue',
+      'buttonColor': const Color(0xFFFF5722),
+      'buttonTextColor': Colors.white,
+    },
+    {
+      'title': 'Falling bodies',
+      'author': 'Rebecca Roanhorse',
+      'description':
+          'Book by Rebecca Roanhorse is a gripping sci-fi tale exploring identity and colonialism\'s impact in a universe under alien rule.',
+      'imageUrl': 'assets/images/b2.png',
+      'buttonText': 'Read',
+      'buttonColor': Colors.grey[200],
+      'buttonTextColor': Colors.black,
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar(title: '', leadingText: 'Back'),
       body: SafeArea(
         child: Column(
           children: [
-            // Header
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: const Row(
-                      children: [
-                        Icon(Icons.arrow_back_ios, size: 20),
-                        Text(
-                          'Back',
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            // Scrollable Content
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
@@ -66,11 +64,11 @@ class _ProfesionalReadersProfilState extends State<ProfesionalReadersProfil> {
                             fit: BoxFit.cover,
                             errorBuilder: (context, error, stackTrace) {
                               return Container(
-                                color: Colors.white,
+                                color: Colors.grey[300],
                                 child: Icon(
                                   Icons.person,
                                   size: 100,
-                                  color: Colors.grey[400],
+                                  color: Colors.grey[300],
                                 ),
                               );
                             },
@@ -104,7 +102,7 @@ class _ProfesionalReadersProfilState extends State<ProfesionalReadersProfil> {
 
                     // Profile Info
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 26),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -112,76 +110,78 @@ class _ProfesionalReadersProfilState extends State<ProfesionalReadersProfil> {
                             'Merdan Durnayew',
                             style: TextStyle(
                               fontSize: 28,
+                              fontFamily: 'New York',
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           const SizedBox(height: 4),
                           const Text(
                             'Director',
-                            style: TextStyle(fontSize: 16, color: Colors.grey),
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: Colors.grey,
+                            ),
                           ),
                           const SizedBox(height: 16),
 
-                          // Bio Text
-                          Text(
-                            isExpanded ? fullBio : shortBio,
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.grey[600],
-                              height: 1.5,
-                            ),
-                          ),
-
-                          // Show More/Less Button
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                isExpanded = !isExpanded;
-                              });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 4.0),
-                              child: Text(
-                                isExpanded ? 'Show Less' : 'Show More',
-                                style: const TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black,
-                                ),
+                          RichText(
+                            text: TextSpan(
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.grey[600],
+                                height: 1.5,
                               ),
+                              children: [
+                                TextSpan(text: isExpanded ? fullBio : shortBio),
+                                TextSpan(
+                                  text:
+                                      isExpanded ? ' Show Less' : ' Show More',
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                  ),
+                                  recognizer:
+                                      TapGestureRecognizer()
+                                        ..onTap = () {
+                                          setState(() {
+                                            isExpanded = !isExpanded;
+                                          });
+                                        },
+                                ),
+                              ],
                             ),
                           ),
 
                           const SizedBox(height: 24),
-
-                          // Book List
-                          BookCardProfRedares(
-                            title: 'The Subtle Art of Not Giving a F*ck',
-                            author: 'Mark Manson',
-                            description:
-                                'Mark Manson\'s "The Subtle Art of Not Giving a F*ck" is a blunt, humorous guide to living by choosing your battles wisely.',
-                            imageUrl: 'assets/images/b1.png',
-                            buttonText: 'Continue',
-                            buttonColor: const Color(0xFFFF5722),
-                          ),
-
-                          const SizedBox(height: 16),
-
-                          BookCardProfRedares(
-                            title: 'Falling bodies',
-                            author: 'Rebecca Roanhorse',
-                            description:
-                                'Book by Rebecca Roanhorse is a gripping sci-fi tale exploring identity and colonialism\'s impact in a universe under alien rule."',
-                            imageUrl: 'assets/images/b2.png',
-                            buttonText: 'Read',
-                            buttonColor: Colors.white,
-                            buttonTextColor: Colors.black,
-                          ),
-
-                          const SizedBox(height: 32),
                         ],
                       ),
                     ),
+
+                    ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      itemCount: books.length,
+                      itemBuilder: (context, index) {
+                        final book = books[index];
+                        return Column(
+                          children: [
+                            BookCardProfRedares(
+                              title: book['title'],
+                              author: book['author'],
+                              description: book['description'],
+                              imageUrl: book['imageUrl'],
+                              buttonText: book['buttonText'],
+                              buttonColor: book['buttonColor'],
+                              buttonTextColor: book['buttonTextColor'],
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+
+                    const SizedBox(height: 32),
                   ],
                 ),
               ),

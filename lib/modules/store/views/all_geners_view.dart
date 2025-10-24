@@ -1,4 +1,6 @@
+import 'package:elkitap/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AllGenresView extends StatelessWidget {
   const AllGenresView({Key? key}) : super(key: key);
@@ -85,7 +87,7 @@ class AllGenresView extends StatelessWidget {
                   ),
                   trailing: const Icon(Icons.chevron_right, color: Colors.grey),
                   onTap: () {
-                    
+                    Get.toNamed(Routes.GENRS_DETAIL);
                   },
                 );
               },

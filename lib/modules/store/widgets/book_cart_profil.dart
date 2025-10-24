@@ -1,3 +1,4 @@
+import 'package:elkitap/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class BookCardProfRedares extends StatelessWidget {
@@ -27,13 +28,6 @@ class BookCardProfRedares extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
-          ),
-        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,21 +41,13 @@ class BookCardProfRedares extends StatelessWidget {
                 child: Image.asset(
                   imageUrl,
                   width: 70,
-                  height: 100,
+                  height: 106,
                   fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Container(
-                      width: 70,
-                      height: 100,
-                      color: Colors.grey[300],
-                      child: const Icon(Icons.book),
-                    );
-                  },
                 ),
               ),
-              
+
               const SizedBox(width: 16),
-              
+
               // Book Info
               Expanded(
                 child: Column(
@@ -77,17 +63,14 @@ class BookCardProfRedares extends StatelessWidget {
                     const SizedBox(height: 4),
                     Text(
                       author,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey[600],
-                      ),
+                      style: TextStyle(fontSize: 14, color: Colors.grey[600]),
                     ),
                   ],
                 ),
               ),
-              
+
               const SizedBox(width: 8),
-              
+
               // Button
               ElevatedButton(
                 onPressed: () {},
@@ -101,9 +84,10 @@ class BookCardProfRedares extends StatelessWidget {
                   ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
-                    side: buttonColor == Colors.white
-                        ? BorderSide(color: Colors.grey[300]!)
-                        : BorderSide.none,
+                    side:
+                        buttonColor == Colors.grey[200]
+                            ? BorderSide.none
+                            : BorderSide.none,
                   ),
                 ),
                 child: Text(
@@ -116,21 +100,21 @@ class BookCardProfRedares extends StatelessWidget {
               ),
             ],
           ),
-          
+
           const SizedBox(height: 12),
-          
+
           // Quote icon and description
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                '❝',
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Colors.grey[400],
-                  height: 0.8,
-                ),
+              Image.asset(
+                'assets/images/ic1.png',
+
+                width: 16,
+                height: 16,
+                color: AppColors.mainColor,
               ),
+
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
@@ -145,6 +129,8 @@ class BookCardProfRedares extends StatelessWidget {
               ),
             ],
           ),
+          const SizedBox(height: 10),
+          Divider(height: 32, color: Colors.grey[300]),
         ],
       ),
     );

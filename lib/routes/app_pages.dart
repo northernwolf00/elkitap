@@ -1,4 +1,6 @@
 import 'package:elkitap/global_widgets/bottom_nav_bar.dart';
+import 'package:elkitap/modules/genre/view/books_grid_screen_View.dart';
+import 'package:elkitap/modules/genre/view/genrs_page_view.dart';
 import 'package:elkitap/modules/library/views/notes_view.dart';
 import 'package:elkitap/modules/library/views/reading_list_view.dart';
 import 'package:elkitap/modules/profile/views/profile_view.dart';
@@ -26,6 +28,14 @@ abstract class AppPages {
       name: Routes.PROFESSIONALS_READ,
       page: () => const ProfessionalsReadView(),
     ),
-    GetPage(name: Routes.STORE_DETAIL, page: () => const ProfesionalReadersProfil()),
+    GetPage(
+      name: Routes.STORE_DETAIL,
+      page: () => const ProfesionalReadersProfil(),
+    ),
+    GetPage(
+      name: Routes.GENRS_DETAIL,
+      page: () => const GenrsDetailViewScreen(),
+    ),
+    GetPage(name: Routes.GENRS_LIST, page: () => BooksGridScreen()),
   ];
 }

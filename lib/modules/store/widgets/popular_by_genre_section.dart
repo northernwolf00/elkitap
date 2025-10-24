@@ -43,24 +43,29 @@ class PopularByGenreSection extends StatelessWidget {
 
                         Container(height: 1.5, color: Colors.grey[300]),
                         const SizedBox(height: 22),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              genre,
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontFamily: 'New York',
-                                fontWeight: FontWeight.bold,
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(Routes.GENRS_LIST);
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                genre,
+                                style: const TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: 'New York',
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                            SizedBox(width: 8),
-                            const Icon(
-                              Icons.arrow_forward_ios,
-                              size: 18,
-                              color: Colors.grey,
-                            ),
-                          ],
+                              SizedBox(width: 8),
+                              const Icon(
+                                Icons.arrow_forward_ios,
+                                size: 18,
+                                color: Colors.grey,
+                              ),
+                            ],
+                          ),
                         ),
                         const SizedBox(height: 12),
                         SizedBox(

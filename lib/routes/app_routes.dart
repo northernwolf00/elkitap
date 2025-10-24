@@ -9,5 +9,6 @@ abstract class Routes {
   static const ALL_GENRES = '/all-genres';
   static const PROFESSIONALS_READ = '/professionals-read';
   static const STORE_DETAIL = '/store-detail';
+  static const GENRS_DETAIL = '/genrs-detail';
+  static const GENRS_LIST = '/genrs-list';
 }
-

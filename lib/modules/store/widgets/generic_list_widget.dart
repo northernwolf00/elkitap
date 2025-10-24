@@ -54,6 +54,8 @@ class GenericListWidget extends StatelessWidget {
                   onTap: () {
                     if (item == 'All Genres') {
                       Get.toNamed(Routes.ALL_GENRES);
+                    } else {
+                      Get.toNamed(Routes.GENRS_DETAIL);
                     }
                   },
                 ),

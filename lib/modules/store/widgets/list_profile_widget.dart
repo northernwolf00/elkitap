@@ -46,7 +46,11 @@ class _ListProfileWidgetState extends State<ListProfileWidget> {
                   ),
                 ),
                 SizedBox(width: 8),
-                Icon(Icons.arrow_forward_ios, size: 18, color: Colors.grey[600]),
+                Icon(
+                  Icons.arrow_forward_ios,
+                  size: 18,
+                  color: Colors.grey[600],
+                ),
               ],
             ),
           ),
@@ -63,11 +67,16 @@ class _ListProfileWidgetState extends State<ListProfileWidget> {
             separatorBuilder: (_, __) => SizedBox(width: 12),
             itemBuilder: (context, idx) {
               final p = professionals[idx];
-              return ProfileCard(
-                role: p['role'],
-                name: p['name'],
-                initials: p['avatarInitials'],
-                bookCount: p['books'],
+              return GestureDetector(
+                onTap: () {
+                  Get.toNamed(Routes.STORE_DETAIL);
+                },
+                child: ProfileCard(
+                  role: p['role'],
+                  name: p['name'],
+                  initials: p['avatarInitials'],
+                  bookCount: p['books'],
+                ),
               );
             },
           ),
