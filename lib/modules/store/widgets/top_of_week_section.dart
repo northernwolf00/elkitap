@@ -1,8 +1,7 @@
-import 'package:elkitap/modules/store/widgets/book_cart_vertical.dart';
+import 'package:elkitap/modules/genre/widget/ranked_books_list.dart';
 import 'package:elkitap/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/utils.dart';
 
 class TopOfWeekSection extends StatelessWidget {
   const TopOfWeekSection({super.key});
@@ -10,6 +9,9 @@ class TopOfWeekSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final books = [
+      {"title": "Falling bodies", "author": "Rebecca Rainhorse"},
+      {"title": "Falling bodies", "author": "Rebecca Rainhorse"},
+      {"title": "Falling bodies", "author": "Rebecca Rainhorse"},
       {"title": "Falling bodies", "author": "Rebecca Rainhorse"},
       {"title": "Falling bodies", "author": "Rebecca Rainhorse"},
       {"title": "Falling bodies", "author": "Rebecca Rainhorse"},
@@ -35,21 +37,22 @@ class TopOfWeekSection extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          Column(
-            children: List.generate(books.length, (index) {
-              final book = books[index];
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 6),
-                child: BookVerticalCart(
-                  index: index,
-                  book: book,
-                  onTap: () {
-                    Get.toNamed('/book-detail');
-                  },
-                ),
-              );
-            }),
-          ),
+          RankedBooksList(books: books),
+          // Column(
+          //   children: List.generate(books.length, (index) {
+          //     final book = books[index];
+          //     return Padding(
+          //       padding: const EdgeInsets.symmetric(vertical: 6),
+          //       child: BookVerticalCart(
+          //         index: index,
+          //         book: book,
+          //         onTap: () {
+          //           Get.toNamed('/book-detail');
+          //         },
+          //       ),
+          //     );
+          //   }),
+          // ),
         ],
       ),
     );
