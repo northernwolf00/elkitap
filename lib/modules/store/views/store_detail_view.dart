@@ -1,3 +1,5 @@
+import 'package:elkitap/modules/reader/model/moc_book_data.dart';
+import 'package:elkitap/modules/reader/views/reader_view.dart';
 import 'package:elkitap/modules/store/widgets/book_detail_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -64,9 +66,7 @@ class _BookDetailViewState extends State<BookDetailView> {
                 borderRadius: BorderRadius.circular(8),
                 image: DecorationImage(
                   image: AssetImage(
-                    isAudio
-                        ? 'assets/audio_cover.png'
-                        : 'assets/book_cover.png',
+                    isAudio ? 'assets/images/b1.png' : 'assets/images/b4.png',
                   ),
                   fit: BoxFit.cover,
                 ),
@@ -80,7 +80,6 @@ class _BookDetailViewState extends State<BookDetailView> {
             ),
             const SizedBox(height: 10),
 
-            // --- Title & Author
             const Text(
               "The Subtle Art of Not Giving a F*ck",
               textAlign: TextAlign.center,
@@ -91,7 +90,11 @@ class _BookDetailViewState extends State<BookDetailView> {
               onTap: () {
                 Get.toNamed('/author-detail');
               },
-              child: const Text("Mark Manson", style: TextStyle(color: Colors.black54))),
+              child: const Text(
+                "Mark Manson",
+                style: TextStyle(color: Colors.black54),
+              ),
+            ),
             const SizedBox(height: 10),
             const Text(
               "Health, Mind & Body • 18+",
@@ -99,7 +102,6 @@ class _BookDetailViewState extends State<BookDetailView> {
             ),
             const SizedBox(height: 20),
 
-            // --- Buttons
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -109,7 +111,16 @@ class _BookDetailViewState extends State<BookDetailView> {
                       backgroundColor: Colors.black,
                       padding: const EdgeInsets.symmetric(vertical: 14),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(
+                        () => ReadingPageE(
+                          book: MockBookData.sampleBook,
+                          assetPath: 'assets/books/7.epub',
+                          startHref: null,
+                          startProgress: 0.0,
+                        ),
+                      );
+                    },
                     child: const Text("Read"),
                   ),
                 ),
@@ -128,7 +139,6 @@ class _BookDetailViewState extends State<BookDetailView> {
             ),
             const SizedBox(height: 14),
 
-            // --- AI mazmuny Button
             Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 14),
@@ -149,7 +159,6 @@ class _BookDetailViewState extends State<BookDetailView> {
             ),
             const SizedBox(height: 30),
 
-            // --- About Section
             const Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -165,7 +174,6 @@ class _BookDetailViewState extends State<BookDetailView> {
             ),
             const SizedBox(height: 20),
 
-            // --- Similar Books Section
             sectionTitle("Similar books"),
             horizontalBookList([
               'assets/images/b1.png',
