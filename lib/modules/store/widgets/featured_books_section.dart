@@ -1,5 +1,6 @@
+import 'package:elkitap/modules/genre/view/books_grid_screen_view.dart';
+import 'package:elkitap/modules/store/views/store_detail_view.dart';
 import 'package:elkitap/modules/store/widgets/book_card_widget.dart';
-import 'package:elkitap/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,7 +22,7 @@ class FeaturedBooksSection extends StatelessWidget {
           const SizedBox(height: 4),
           GestureDetector(
             onTap: () {
-              Get.toNamed(Routes.GENRS_LIST);
+              Get.to(BooksGridScreen(title: "We recommend",));
             },
             child: const Text(
               "We recommend",
@@ -40,7 +41,7 @@ class FeaturedBooksSection extends StatelessWidget {
                   index: index,
                   tabIndex: 0,
                   onTap: () {
-                    Get.toNamed(Routes.BOOK_DETAIL);
+                     Get.to(BookDetailView());
                   },
                 );
               },

@@ -1,4 +1,6 @@
+import 'package:elkitap/modules/store/views/store_detail_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class RankedBooksList extends StatelessWidget {
   final List<Map<String, String>> books;
@@ -25,13 +27,18 @@ class RankedBooksList extends StatelessWidget {
           final pageBooks = chunks[pageIndex];
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 8),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: List.generate(pageBooks.length, (index) {
-                final book = pageBooks[index];
-                final rank = pageIndex * 3 + index + 1;
-                return _buildBookRankCard(book, rank);
-              }),
+            child: GestureDetector(
+              onTap: () {
+                Get.to(BookDetailView());
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: List.generate(pageBooks.length, (index) {
+                  final book = pageBooks[index];
+                  final rank = pageIndex * 3 + index + 1;
+                  return _buildBookRankCard(book, rank);
+                }),
+              ),
             ),
           );
         },

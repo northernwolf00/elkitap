@@ -1,10 +1,12 @@
 import 'package:elkitap/global_widgets/custom_appbar.dart';
 import 'package:elkitap/modules/genre/widget/book_grid_cart.dart';
-import 'package:elkitap/routes/app_routes.dart';
+import 'package:elkitap/modules/store/views/store_detail_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class BooksGridScreen extends StatelessWidget {
+  late String title;
   final List<Map<String, String>> books = [
     {
       'title': '12 Rules for Life',
@@ -38,10 +40,12 @@ class BooksGridScreen extends StatelessWidget {
     },
   ];
 
+  BooksGridScreen({required this.title, super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'Fiction & Literature', leadingText: 'Back'),
+      appBar: CustomAppBar(title: title, leadingText: 'Back'),
       body: GridView.builder(
         padding: const EdgeInsets.only(
           top: 16,
@@ -64,7 +68,7 @@ class BooksGridScreen extends StatelessWidget {
             title: book['title']!,
             author: book['author']!,
             onTap: () {
-              Get.toNamed(Routes.BOOK_DETAIL);
+              Get.to(BookDetailView());
             },
           );
         },

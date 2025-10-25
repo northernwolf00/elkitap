@@ -2,7 +2,9 @@ import 'package:elkitap/modules/library/widgets/collections_section.dart';
 import 'package:elkitap/modules/library/widgets/current_book_section.dart';
 import 'package:elkitap/modules/library/widgets/library_header.dart';
 import 'package:elkitap/modules/library/widgets/recently_opened_section.dart';
+import 'package:elkitap/modules/store/views/store_detail_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class MyLibraryViewScreen extends StatelessWidget {
   const MyLibraryViewScreen({super.key});
@@ -20,10 +22,7 @@ class MyLibraryViewScreen extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [
-                      Color(0x00E5E5EA), 
-                      Color(0xFFE5E5EA), 
-                    ],
+                    colors: [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
                   ),
                 ),
                 child: Padding(
@@ -32,7 +31,12 @@ class MyLibraryViewScreen extends StatelessWidget {
                     children: [
                       LibraryHeader(),
                       SizedBox(height: 24),
-                      CurrentBookSection(),
+                      GestureDetector(
+                        onTap: () {
+                          Get.to(BookDetailView());
+                        },
+                        child: CurrentBookSection(),
+                      ),
                       Divider(
                         height: 32,
                         color: Colors.grey[300],

@@ -1,6 +1,6 @@
 import 'package:elkitap/modules/store/model/book_item_moc.dart';
+import 'package:elkitap/modules/store/views/store_detail_view.dart';
 import 'package:elkitap/modules/store/widgets/book_card_widget.dart';
-import 'package:elkitap/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -48,7 +48,7 @@ class BooksSection extends StatelessWidget {
                 index: index,
                 tabIndex: 0,
                 onTap: () {
-                  Get.toNamed(Routes.BOOK_DETAIL);
+                  Get.to(BookDetailView());
                 },
               );
             },
@@ -104,7 +104,7 @@ class AudiobooksSection extends StatelessWidget {
                 index: index,
                 tabIndex: 0,
                 onTap: () {
-                  Get.toNamed(Routes.BOOK_DETAIL);
+                  Get.to(BookDetailView());
                 },
               );
             },

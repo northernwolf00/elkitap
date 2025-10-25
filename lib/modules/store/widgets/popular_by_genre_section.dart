@@ -1,5 +1,7 @@
+import 'package:elkitap/modules/genre/view/books_grid_screen_view.dart';
+import 'package:elkitap/modules/store/views/store_detail_view.dart';
 import 'package:elkitap/modules/store/widgets/book_card_widget.dart';
-import 'package:elkitap/routes/app_routes.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -45,7 +47,7 @@ class PopularByGenreSection extends StatelessWidget {
                         const SizedBox(height: 22),
                         GestureDetector(
                           onTap: () {
-                            Get.toNamed(Routes.GENRS_LIST);
+                            Get.to(BooksGridScreen(title: genre));
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -80,7 +82,7 @@ class PopularByGenreSection extends StatelessWidget {
                                 index: index,
                                 tabIndex: 0,
                                 onTap: () {
-                                  Get.toNamed(Routes.BOOK_DETAIL);
+                                   Get.to(BookDetailView());
                                 },
                               );
                             },
