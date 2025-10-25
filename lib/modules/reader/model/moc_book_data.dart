@@ -18,7 +18,7 @@ class MockBookData {
           name: 'The Great Adventure',
           slug: 'the-great-adventure',
           totalPages: 320,
-          image: BookImage(url: 'https://picsum.photos/seed/book1/200/300'),
+          image: BookImage(url: ''),
           electronic: 'epub',
         ),
         BookDetailsEntity(
@@ -26,7 +26,7 @@ class MockBookData {
           name: 'Mystery of the Lost City',
           slug: 'mystery-of-the-lost-city',
           totalPages: 280,
-          image: BookImage(url: 'https://picsum.photos/seed/book2/200/300'),
+          image: BookImage(url: ''),
           electronic: 'epub',
         ),
         BookDetailsEntity(
@@ -34,7 +34,7 @@ class MockBookData {
           name: 'Journey Through Time',
           slug: 'journey-through-time',
           totalPages: 410,
-          image: BookImage(url: 'https://picsum.photos/seed/book3/200/300'),
+          image: BookImage(url: ''),
           electronic: 'epub',
         ),
         BookDetailsEntity(
@@ -42,7 +42,7 @@ class MockBookData {
           name: 'The Last Kingdom',
           slug: 'the-last-kingdom',
           totalPages: 350,
-          image: BookImage(url: 'https://picsum.photos/seed/book4/200/300'),
+          image: BookImage(url: ''),
           electronic: 'epub',
         ),
         BookDetailsEntity(
@@ -50,7 +50,7 @@ class MockBookData {
           name: 'Secrets of the Ocean',
           slug: 'secrets-of-the-ocean',
           totalPages: 290,
-          image: BookImage(url: 'https://picsum.photos/seed/book5/200/300'),
+          image: BookImage(url: ''),
           electronic: 'epub',
         ),
       ];
