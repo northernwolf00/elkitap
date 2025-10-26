@@ -1,3 +1,4 @@
+import 'package:elkitap/modules/genre/view/books_grid_screen_view.dart';
 import 'package:elkitap/modules/store/model/book_item_moc.dart';
 import 'package:elkitap/modules/store/views/store_detail_view.dart';
 import 'package:elkitap/modules/store/widgets/book_card_widget.dart';
@@ -35,7 +36,9 @@ class BooksSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SectionHeader(title: 'Books', onTap: () {}),
+        SectionHeader(title: 'Books', onTap: () {
+          Get.to(BooksGridScreen(title: 'Books',));
+        }),
         const SizedBox(height: 16),
         SizedBox(
           height: 180,
@@ -91,7 +94,9 @@ class AudiobooksSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SectionHeader(title: 'Audiobooks', onTap: () {}),
+        SectionHeader(title: 'Audiobooks', onTap: () {
+           Get.to(BooksGridScreen(title: 'Audiobooks',));
+        }),
         const SizedBox(height: 16),
         SizedBox(
           height: 180,
@@ -125,24 +130,29 @@ class SectionHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Row(
-        children: [
-          Text(
-            title,
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(width: 8),
-          InkWell(
-            onTap: onTap,
-            child: Icon(
-              Icons.arrow_forward_ios,
-              size: 20,
-              color: Colors.grey.shade600,
+    return GestureDetector(
+      onTap: (){
+        Get.to(BooksGridScreen(title: title,));
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        child: Row(
+          children: [
+            Text(
+              title,
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-          ),
-        ],
+            const SizedBox(width: 8),
+            InkWell(
+              onTap: onTap,
+              child: Icon(
+                Icons.arrow_forward_ios,
+                size: 20,
+                color: Colors.grey.shade600,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

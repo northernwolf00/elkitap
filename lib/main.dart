@@ -3,6 +3,7 @@ import 'package:elkitap/core/init/theme_controller.dart';
 import 'package:elkitap/core/init/translation_service.dart';
 import 'package:elkitap/core/theme/custom_dark_theme.dart';
 import 'package:elkitap/core/theme/custom_light_theme.dart';
+import 'package:elkitap/global_widgets/bottom_nav_bar.dart';
 import 'package:elkitap/routes/app_pages.dart';
 import 'package:elkitap/routes/app_routes.dart';
 import 'package:flutter/material.dart';
@@ -58,8 +59,9 @@ class MyApp extends StatelessWidget {
           theme: CustomLightTheme().themeData,
           darkTheme: CustomDarkTheme().themeData,
           themeMode: Get.find<ThemeController>().themeMode,
-          getPages: AppPages.pages,
-          initialRoute: Routes.SPLASH,
+          home: BottomNavScreen(),
+          // getPages: AppPages.pages,
+          // initialRoute: Routes.SPLASH,
         );
       },
     );
