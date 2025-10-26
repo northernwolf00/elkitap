@@ -1,5 +1,6 @@
+import 'package:elkitap/modules/store/views/profesional_readers_profil.dart';
+import 'package:elkitap/modules/store/views/profesionals_read_view.dart';
 import 'package:elkitap/modules/store/widgets/profile_cart_widget.dart';
-import 'package:elkitap/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -31,7 +32,7 @@ class _ListProfileWidgetState extends State<ListProfileWidget> {
           child: GestureDetector(
             onTap: () {
               // Navigate to professionals read view
-              Get.toNamed(Routes.PROFESSIONALS_READ);
+              Get.to(ProfessionalsReadView());
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -69,7 +70,7 @@ class _ListProfileWidgetState extends State<ListProfileWidget> {
               final p = professionals[idx];
               return GestureDetector(
                 onTap: () {
-                  Get.toNamed(Routes.STORE_DETAIL);
+                  Get.to(ProfesionalReadersProfil());
                 },
                 child: ProfileCard(
                   role: p['role'],

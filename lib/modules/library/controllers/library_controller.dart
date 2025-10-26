@@ -99,7 +99,7 @@ class ReadingListController extends GetxController {
   void showRemoveDialog(BuildContext context) {
     if (selectedBooks.isEmpty) return;
 
-    // Get up to 4 selected books
+
     final selected =
         books.where((book) => selectedBooks.contains(book.id)).take(4).toList();
 

@@ -1,3 +1,4 @@
+import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:elkitap/modules/library/controllers/library_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,6 +8,7 @@ PreferredSizeWidget customAppBar(ReadingListController controller) {
     backgroundColor: Colors.white,
     elevation: 0,
     leadingWidth: 140,
+    // ... (Leading Obx code remains the same)
     leading: Obx(() {
       if (controller.selectedBooks.isEmpty) {
         return Row(
@@ -17,7 +19,7 @@ PreferredSizeWidget customAppBar(ReadingListController controller) {
                 Get.back();
               },
             ),
-            Text(
+            const Text(
               'Back',
               style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
             ),
@@ -39,51 +41,104 @@ PreferredSizeWidget customAppBar(ReadingListController controller) {
     actions: [
       Obx(() {
         if (controller.selectedBooks.isEmpty) {
-          // 🔍 Normal mode (no selection)
           return Row(
             children: [
               IconButton(
                 icon: const Icon(Icons.search, color: Colors.black),
-                onPressed: () {
-                  // Search action
-                },
+                onPressed: () {},
               ),
               PopupMenuButton<int>(
                 icon: const Icon(Icons.more_vert, color: Colors.black),
                 offset: const Offset(0, 50),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(12),
+                  side: BorderSide(
+                    color: Colors.grey.withOpacity(0.2),
+                    width: 1,
+                  ),
                 ),
-                itemBuilder:
-                    (context) => [
-                      PopupMenuItem<int>(
-                        value: 1,
-                        child: Row(
-                          children: [
-                            const Icon(Icons.grid_view),
-                            const SizedBox(width: 8),
-                            const Text('Grid View'),
-                            const Spacer(),
-                            if (controller.isGridView.value)
-                              const Icon(Icons.check, size: 18),
-                          ],
-                        ),
+                color: Colors.white.withOpacity(0.85),
+                elevation: 8,
+                itemBuilder: (context) => [
+                  PopupMenuItem<int>(
+                    value: 1,
+                    child: SizedBox(
+                      width: 200,
+                      child: Row(
+                        children: [
+                          // if (controller.isGridView.value)
+                          //   const Icon(Icons.check,
+                          //       size: 18, color: Colors.black54),
+                          const SizedBox(width: 8),
+                          Text(
+                              controller.selectedBooks.length ==
+                                      controller.books.length
+                                  ? 'Deselect All'
+                                  : 'Select All',
+                              style: TextStyle(color: Colors.black87)),
+                          const Spacer(),
+                          CustomIcon(
+                              title: 'assets/icons/d5.svg',
+                              height: 24,
+                              width: 24,
+                              color: Colors.black)
+
+                          //  const Icon(Icons.grid_view, color: Colors.black54),
+                        ],
                       ),
-                      PopupMenuItem<int>(
-                        value: 2,
-                        child: Row(
-                          children: [
-                            const Icon(Icons.list),
-                            const SizedBox(width: 8),
-                            const Text('List View'),
-                            const Spacer(),
-                            if (!controller.isGridView.value)
-                              const Icon(Icons.check, size: 18),
-                          ],
-                        ),
+                    ),
+                  ),
+                  const PopupMenuDivider(
+                    height: 4,
+                  ),
+                  PopupMenuItem<int>(
+                    value: 1,
+                    child: SizedBox(
+                      width: 200,
+                      child: Row(
+                        children: [
+                          if (controller.isGridView.value)
+                            const Icon(Icons.check,
+                                size: 18, color: Colors.black54),
+                          const SizedBox(width: 8),
+                          const Text('Grid View',
+                              style: TextStyle(color: Colors.black87)),
+                          const Spacer(),
+                          CustomIcon(
+                              title: 'assets/icons/d8.svg',
+                              height: 24,
+                              width: 24,
+                              color: Colors.black)
+                        ],
                       ),
-                    ],
+                    ),
+                  ),
+                  const PopupMenuDivider(),
+                  PopupMenuItem<int>(
+                    value: 2,
+                    child: SizedBox(
+                      width: 200,
+                      child: Row(
+                        children: [
+                          if (!controller.isGridView.value)
+                            const Icon(Icons.check,
+                                size: 18, color: Colors.black54),
+                          const SizedBox(width: 8),
+                          const Text('List View',
+                              style: TextStyle(color: Colors.black87)),
+                          const Spacer(),
+                          CustomIcon(
+                              title: 'assets/icons/d9.svg',
+                              height: 24,
+                              width: 24,
+                              color: Colors.black),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
                 onSelected: (value) {
+                  // if (value == 1) controller.selectAll;
                   if (value == 1) controller.isGridView.value = true;
                   if (value == 2) controller.isGridView.value = false;
                 },
@@ -91,7 +146,7 @@ PreferredSizeWidget customAppBar(ReadingListController controller) {
             ],
           );
         } else {
-          // ✅ Selection mode
+          // ... (Selection mode code remains the same)
           return Padding(
             padding: const EdgeInsets.only(right: 8),
             child: Row(

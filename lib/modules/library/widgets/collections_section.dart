@@ -1,4 +1,6 @@
 import 'package:elkitap/global_widgets/custom_icon.dart';
+import 'package:elkitap/modules/library/views/notes_view.dart';
+import 'package:elkitap/modules/library/views/reading_list_view.dart';
 import 'package:elkitap/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -66,9 +68,9 @@ class CollectionsSection extends StatelessWidget {
                   ),
                   onTap: () {
                     if (index == 2) {
-                      Get.toNamed(Routes.NOTES);
+                      Get.to(NotesScreen());
                     } else {
-                      Get.toNamed(Routes.WANTREAD);
+                      Get.to(ReadingListScreen());
                     }
                   },
                 ),
