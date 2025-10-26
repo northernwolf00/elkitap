@@ -1,4 +1,6 @@
+import 'package:elkitap/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class GenericListWidget extends StatelessWidget {
   const GenericListWidget({super.key});
@@ -49,7 +51,13 @@ class GenericListWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    if (item == 'All Genres') {
+                      Get.toNamed(Routes.ALL_GENRES);
+                    } else {
+                      Get.toNamed(Routes.GENRS_DETAIL);
+                    }
+                  },
                 ),
                 // Only show divider if not the last item
                 if (index != genres.length - 1)

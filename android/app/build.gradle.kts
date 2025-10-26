@@ -8,6 +8,7 @@ plugins {
 android {
     namespace = "com.googadev.elkitap"
     compileSdk = flutter.compileSdkVersion
+    ndkVersion = "29.0.14033849"
     
 
     compileOptions {

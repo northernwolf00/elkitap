@@ -1,5 +1,7 @@
 import 'package:elkitap/global_widgets/custom_icon.dart';
+import 'package:elkitap/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CollectionsSection extends StatelessWidget {
   const CollectionsSection({super.key});
@@ -62,7 +64,13 @@ class CollectionsSection extends StatelessWidget {
                       ),
                     ],
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    if (index == 2) {
+                      Get.toNamed(Routes.NOTES);
+                    } else {
+                      Get.toNamed(Routes.WANTREAD);
+                    }
+                  },
                 ),
                 // Only show divider if not the last item
                 if (index != collections.length - 1)

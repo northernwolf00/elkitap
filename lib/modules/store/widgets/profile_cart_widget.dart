@@ -75,16 +75,11 @@ class ProfileCard extends StatelessWidget {
           ),
 
           SizedBox(height: 6),
-
-          // name
           Text(
             name,
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
           ),
-
           SizedBox(height: 10),
-
-          // shelf with books
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: _buildShelf(context),
