@@ -14,7 +14,9 @@ Widget sectionTitle(String title) {
         children: [
           Text(
             title,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18,
+            fontFamily: 'New York',
+             fontWeight: FontWeight.bold),
           ),
           const Icon(Icons.arrow_forward_ios, size: 14, color: Colors.black45),
         ],

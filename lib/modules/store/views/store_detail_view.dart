@@ -1,4 +1,6 @@
-
+import 'package:elkitap/global_widgets/custom_icon.dart';
+import 'package:elkitap/modules/reader/model/moc_book_data.dart';
+import 'package:elkitap/modules/reader/views/reader_view.dart';
 import 'package:elkitap/modules/store/controllers/store_controller.dart';
 import 'package:elkitap/modules/store/views/author_view.dart';
 import 'package:elkitap/modules/store/widgets/book_detail_widget.dart';
@@ -13,6 +15,7 @@ class BookDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     final BookDetailController controller = Get.put(BookDetailController());
     final Color accent = const Color(0xFFFF5A3C);
+    
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
@@ -123,35 +126,36 @@ class BookDetailView extends StatelessWidget {
                 // Right side buttons
                 Row(
                   children: [
-                   Obx(() => GestureDetector(
-                      onTap: () {
-                        controller.toggleAddToWantToRead();
-                             DialogUtils.showAddedDialog(context, controller.isAddedToWantToRead.value );
-                        
-                      },
-                      child: Container(
-                        width: 34,
-                        height: 34,
-                        decoration: BoxDecoration(
-                          color: controller.isAddedToWantToRead.value 
-                              ? accent 
-                              : Colors.grey[200],
-                          shape: BoxShape.circle,
-                        ),
-                        child: Icon(
-                          controller.isAddedToWantToRead.value 
-                              ? Icons.check 
-                              : Icons.add,
-                          size: 18,
-                          color: controller.isAddedToWantToRead.value 
-                              ? Colors.white 
-                              : Colors.black54,
-                        ),
-                      ),
-                    )),
+                    Obx(() => GestureDetector(
+                          onTap: () {
+                            controller.toggleAddToWantToRead();
+                            DialogUtils.showAddedDialog(
+                                context, controller.isAddedToWantToRead.value);
+                          },
+                          child: Container(
+                            width: 34,
+                            height: 34,
+                            decoration: BoxDecoration(
+                              color: controller.isAddedToWantToRead.value
+                                  ? accent
+                                  : Colors.grey[200],
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              controller.isAddedToWantToRead.value
+                                  ? Icons.check
+                                  : Icons.add,
+                              size: 18,
+                              color: controller.isAddedToWantToRead.value
+                                  ? Colors.white
+                                  : Colors.black54,
+                            ),
+                          ),
+                        )),
                     const SizedBox(width: 8),
                     GestureDetector(
-                      onTap: () => DialogUtils.showOptionsPopupMenu(context, controller),
+                      onTap: () =>
+                          DialogUtils.showOptionsPopupMenu(context, controller),
                       child: Container(
                         width: 34,
                         height: 34,
@@ -210,7 +214,8 @@ class BookDetailView extends StatelessWidget {
             GestureDetector(
               onTap: () => DialogUtils.showLanguagePopup(context, controller),
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
                   color: Colors.grey[300],
                   borderRadius: BorderRadius.circular(20),
@@ -223,24 +228,25 @@ class BookDetailView extends StatelessWidget {
                   // ],
                 ),
                 child: Obx(() => Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.language, size: 18, color: Colors.black54),
-                    const SizedBox(width: 6),
-                    Text(
-                      controller.selectedLanguage.value,
-                      style: const TextStyle(color: Colors.black87,
-                      fontSize: 16),
-                    ),
-                  ],
-                )),
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Icon(Icons.language,
+                            size: 18, color: Colors.black54),
+                        const SizedBox(width: 6),
+                        Text(
+                          controller.selectedLanguage.value,
+                          style: const TextStyle(
+                              color: Colors.black87, fontSize: 16),
+                        ),
+                      ],
+                    )),
               ),
             ),
             const SizedBox(height: 16),
 
             // --- Title & Author
             GestureDetector(
-              onTap:  () => DialogUtils.showBookDetailsBottomSheet(context),
+              onTap: () => DialogUtils.showBookDetailsBottomSheet(context),
               child: const Text(
                 "The subtle art of not giving a f*ck",
                 textAlign: TextAlign.center,
@@ -270,7 +276,6 @@ class BookDetailView extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             GestureDetector(
-             
               child: const Text(
                 "Health, Mind & Body • 18+",
                 style: TextStyle(color: Colors.black45, fontSize: 14),
@@ -278,49 +283,61 @@ class BookDetailView extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
-            // --- Buttons
+            
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: accent,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                  child: GestureDetector(
+                    onTap: () {
+                      Get.to(ReadingPageE(book: MockBookData.sampleBook, 
+                      startHref: '',
+                       assetPath: 'assets/books/7.epub',
+
+                      ));
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      decoration: BoxDecoration(
+                        color: accent,
+                       borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(12),
+                          bottomLeft: Radius.circular(12),
+                        ),
                       ),
-                      elevation: 0,
-                    ),
-                    onPressed: () {},
-                    child: const Text(
-                      "Read",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                      child: const Text(
+                        "Read",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ),
                 ),
-                const SizedBox(width: 12),
+                const SizedBox(width: 2),
                 Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: accent,
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      decoration: BoxDecoration(
+                        color: accent,
+                        borderRadius: const BorderRadius.only(
+                          topRight: Radius.circular(12),
+                          bottomRight: Radius.circular(12),
+                        ),
                       ),
-                      elevation: 0,
-                    ),
-                    onPressed: () {},
-                    child: const Text(
-                      "Listen",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                      child: const Text(
+                        "Listen",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ),
@@ -334,18 +351,21 @@ class BookDetailView extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 16),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                gradient: const LinearGradient(
-                  colors: [Color(0xFFAA5AFF), Color(0xFFFB6B78)],
-                  begin: Alignment.centerLeft,
-                  end: Alignment.centerRight,
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(12),
+                  image: DecorationImage(
+                      image: AssetImage(
+                    'assets/images/bg1.png',
+                  ))),
               alignment: Alignment.center,
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.auto_awesome, color: Colors.white, size: 20),
+                  CustomIcon(
+                      title: 'assets/icons/d7.svg',
+                      height: 24,
+                      width: 24,
+                      color: Colors.white),
+                  // Icon(Icons.auto_awesome, color: Colors.white, size: 20),
                   SizedBox(width: 8),
                   Text(
                     "AI mazmuny",
@@ -378,16 +398,16 @@ class BookDetailView extends StatelessWidget {
                 height: 1.5,
               ),
             ),
-            TextButton(
-              onPressed: () {},
-              child: const Text(
-                "Eще",
-                style: TextStyle(
-                  color: Colors.black54,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
+            // TextButton(
+            //   onPressed: () {},
+            //   child: const Text(
+            //     "Eще",
+            //     style: TextStyle(
+            //       color: Colors.black54,
+            //       fontWeight: FontWeight.w500,
+            //     ),
+            //   ),
+            // ),
             const SizedBox(height: 20),
 
             // --- Similar Books Section
@@ -414,10 +434,4 @@ class BookDetailView extends StatelessWidget {
       ),
     );
   }
-
-
-
-
-
-
 }
