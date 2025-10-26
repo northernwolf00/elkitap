@@ -1,89 +1,133 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 
-class AuthorProfileSection extends StatelessWidget {
+
+class AuthorProfileSection extends StatefulWidget {
   const AuthorProfileSection({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/images/a1.png'),
-          fit: BoxFit.cover,
-        ),
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Colors.grey.shade800, Colors.grey.shade600],
-        ),
-      ),
-      child: Column(
-        children: [
-          const SizedBox(height: 40),
-          const SizedBox(height: 24),
-          const AuthorInfo(),
-          const SizedBox(height: 24),
-        ],
-      ),
-    );
-  }
+  State<AuthorProfileSection> createState() => _AuthorProfileSectionState();
 }
 
-class AuthorInfo extends StatelessWidget {
-  const AuthorInfo({Key? key}) : super(key: key);
+class _AuthorProfileSectionState extends State<AuthorProfileSection> {
+  bool isExpanded = false;
+
+  final String shortBio =
+      "Merdan Durnayew is a film director known for his unique visual storytelling...";
+  final String fullBio =
+      "Merdan Durnayew is a film director known for his unique visual storytelling and impactful narratives. "
+      "He has directed several acclaimed projects that explore emotion and culture in depth.";
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-        children: [
-          const Text(
-            'Mark Manson',
-            style: TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
+    return Column(
+      children: [
+        // Profile Image
+        Stack(
+          children: [
+            Container(
+              width: double.infinity,
+              height: 400,
               color: Colors.white,
-            ),
-          ),
-          const SizedBox(height: 8),
-          const Text(
-            'Author',
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.white70,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          const SizedBox(height: 16),
-          RichText(
-            textAlign: TextAlign.center,
-            text: const TextSpan(
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.white70,
-                height: 1.5,
+              child: Image.asset(
+                'assets/images/u2.png',
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    color: Colors.grey[300],
+                    child: Icon(
+                      Icons.person,
+                      size: 100,
+                      color: Colors.grey[500],
+                    ),
+                  );
+                },
               ),
-              children: [
-                TextSpan(
-                  text:
-                      'Mark Manson is a bestselling author, blogger, '
-                      'and personal development consultant known '
-                      'for his bluntstraightforward advice.. ',
-                ),
-                TextSpan(
-                  text: 'Show more',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                height: 150,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.white.withOpacity(0.0),
+                      Colors.white.withOpacity(0.3),
+                      Colors.white.withOpacity(0.7),
+                      Colors.white.withOpacity(0.95),
+                      Colors.white,
+                    ],
+                    stops: const [0.0, 0.3, 0.6, 0.85, 1.0],
                   ),
                 ),
-              ],
+              ),
             ),
+          ],
+        ),
+
+        // Profile Info
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Merdan Durnayew',
+                style: TextStyle(
+                  fontSize: 28,
+                  fontFamily: 'New York',
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 4),
+              const Text(
+                'Director',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.grey,
+                ),
+              ),
+              const SizedBox(height: 16),
+
+              RichText(
+                text: TextSpan(
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.grey[600],
+                    height: 1.5,
+                  ),
+                  children: [
+                    TextSpan(text: isExpanded ? fullBio : shortBio),
+                    TextSpan(
+                      text: isExpanded ? ' Show Less' : ' Show More',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                      ),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          setState(() {
+                            isExpanded = !isExpanded;
+                          });
+                        },
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
+
+
+
+
+

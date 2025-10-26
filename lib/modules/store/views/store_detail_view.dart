@@ -1,5 +1,8 @@
+
 import 'package:elkitap/modules/store/controllers/store_controller.dart';
+import 'package:elkitap/modules/store/views/author_view.dart';
 import 'package:elkitap/modules/store/widgets/book_detail_widget.dart';
+import 'package:elkitap/utils/dialog_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,116 +17,100 @@ class BookDetailView extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(100),
+        preferredSize: const Size.fromHeight(46),
         child: AppBar(
           backgroundColor: const Color(0xFFF5F5F5),
           elevation: 0,
           automaticallyImplyLeading: false,
           flexibleSpace: Padding(
-            padding: const EdgeInsets.only(top: 40, left: 10, right: 10),
+            padding: const EdgeInsets.only(top: 60, left: 16, right: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 // Close button
-                Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.9),
-                    shape: BoxShape.circle,
-                  ),
-                  child: IconButton(
-                    icon: const Icon(Icons.close, color: Colors.black54),
-                    onPressed: () => Navigator.pop(context),
+                GestureDetector(
+                  onTap: () => Navigator.pop(context),
+                  child: Container(
+                    width: 34,
+                    height: 34,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(Icons.close,
+                        size: 18, color: Colors.black54),
                   ),
                 ),
-
+                SizedBox(
+                  width: 34,
+                  height: 34,
+                ),
                 // Center tabs
                 Obx(
                   () => Container(
+                    height: 32,
+                    width: 126,
                     decoration: BoxDecoration(
                       color: Colors.white.withOpacity(0.9),
                       borderRadius: BorderRadius.circular(25),
                     ),
-                    padding: const EdgeInsets.all(4),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         GestureDetector(
                           onTap: controller.toggleToText,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 32,
-                              vertical: 10,
-                            ),
-                            decoration: BoxDecoration(
-                              color:
-                                  !controller.isAudio.value
-                                      ? Colors.white
-                                      : Colors.transparent,
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow:
-                                  !controller.isAudio.value
-                                      ? [
-                                        BoxShadow(
-                                          color: Colors.black.withOpacity(0.1),
-                                          blurRadius: 4,
-                                          offset: const Offset(0, 2),
-                                        ),
-                                      ]
-                                      : [],
-                            ),
-                            child: Text(
-                              "Text",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight:
-                                    !controller.isAudio.value
-                                        ? FontWeight.w600
+                          child: Padding(
+                            padding: const EdgeInsets.all(1.5),
+                            child: Container(
+                              width: 60,
+                              decoration: BoxDecoration(
+                                color: !controller.isAudio.value
+                                    ? Colors.grey[200]
+                                    : Colors.transparent,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Text",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: !controller.isAudio.value
+                                        ? FontWeight.w500
                                         : FontWeight.normal,
-                                color:
-                                    !controller.isAudio.value
+                                    color: !controller.isAudio.value
                                         ? Colors.black
                                         : Colors.black45,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
                         GestureDetector(
                           onTap: controller.toggleToAudio,
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 32,
-                              vertical: 10,
-                            ),
-                            decoration: BoxDecoration(
-                              color:
-                                  controller.isAudio.value
-                                      ? Colors.white
-                                      : Colors.transparent,
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow:
-                                  controller.isAudio.value
-                                      ? [
-                                        BoxShadow(
-                                          color: Colors.black.withOpacity(0.1),
-                                          blurRadius: 4,
-                                          offset: const Offset(0, 2),
-                                        ),
-                                      ]
-                                      : [],
-                            ),
-                            child: Text(
-                              "Audio",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight:
-                                    controller.isAudio.value
+                          child: Padding(
+                            padding: const EdgeInsets.all(1.5),
+                            child: Container(
+                              width: 60,
+                              decoration: BoxDecoration(
+                                color: controller.isAudio.value
+                                    ? Colors.grey[200]
+                                    : Colors.transparent,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Audio",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: controller.isAudio.value
                                         ? FontWeight.w600
                                         : FontWeight.normal,
-                                color:
-                                    controller.isAudio.value
+                                    color: controller.isAudio.value
                                         ? Colors.black
                                         : Colors.black45,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
@@ -136,32 +123,47 @@ class BookDetailView extends StatelessWidget {
                 // Right side buttons
                 Row(
                   children: [
-                    Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.9),
-                        shape: BoxShape.circle,
+                   Obx(() => GestureDetector(
+                      onTap: () {
+                        controller.toggleAddToWantToRead();
+                             DialogUtils.showAddedDialog(context, controller.isAddedToWantToRead.value );
+                        
+                      },
+                      child: Container(
+                        width: 34,
+                        height: 34,
+                        decoration: BoxDecoration(
+                          color: controller.isAddedToWantToRead.value 
+                              ? accent 
+                              : Colors.grey[200],
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(
+                          controller.isAddedToWantToRead.value 
+                              ? Icons.check 
+                              : Icons.add,
+                          size: 18,
+                          color: controller.isAddedToWantToRead.value 
+                              ? Colors.white 
+                              : Colors.black54,
+                        ),
                       ),
-                      child: IconButton(
-                        icon: const Icon(Icons.add, color: Colors.black54),
-                        onPressed: () {},
-                      ),
-                    ),
+                    )),
                     const SizedBox(width: 8),
-                    Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.9),
-                        shape: BoxShape.circle,
-                      ),
-                      child: IconButton(
-                        icon: const Icon(
+                    GestureDetector(
+                      onTap: () => DialogUtils.showOptionsPopupMenu(context, controller),
+                      child: Container(
+                        width: 34,
+                        height: 34,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          size: 18,
                           Icons.more_horiz,
                           color: Colors.black54,
                         ),
-                        onPressed: () {},
                       ),
                     ),
                   ],
@@ -205,37 +207,54 @@ class BookDetailView extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.language, size: 18, color: Colors.black54),
-                  SizedBox(width: 6),
-                  Text("English", style: TextStyle(color: Colors.black87)),
-                ],
+            GestureDetector(
+              onTap: () => DialogUtils.showLanguagePopup(context, controller),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  borderRadius: BorderRadius.circular(20),
+                  // boxShadow: [
+                  //   BoxShadow(
+                  //     color: Colors.black.withOpacity(0.1),
+                  //     blurRadius: 10,
+                  //     offset: const Offset(0, 2),
+                  //   ),
+                  // ],
+                ),
+                child: Obx(() => Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.language, size: 18, color: Colors.black54),
+                    const SizedBox(width: 6),
+                    Text(
+                      controller.selectedLanguage.value,
+                      style: const TextStyle(color: Colors.black87,
+                      fontSize: 16),
+                    ),
+                  ],
+                )),
               ),
             ),
             const SizedBox(height: 16),
 
             // --- Title & Author
-            const Text(
-              "The subtle art of not giving a f*ck",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 22,
-                height: 1.3,
+            GestureDetector(
+              onTap:  () => DialogUtils.showBookDetailsBottomSheet(context),
+              child: const Text(
+                "The subtle art of not giving a f*ck",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22,
+                  height: 1.3,
+                ),
               ),
             ),
             const SizedBox(height: 8),
             GestureDetector(
               onTap: () {
-                Get.toNamed('/author-detail');
+                Get.to(BookAuthorView());
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -250,9 +269,12 @@ class BookDetailView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
-              "Health, Mind & Body • 18+",
-              style: TextStyle(color: Colors.black45, fontSize: 14),
+            GestureDetector(
+             
+              child: const Text(
+                "Health, Mind & Body • 18+",
+                style: TextStyle(color: Colors.black45, fontSize: 14),
+              ),
             ),
             const SizedBox(height: 24),
 
@@ -392,4 +414,10 @@ class BookDetailView extends StatelessWidget {
       ),
     );
   }
+
+
+
+
+
+
 }

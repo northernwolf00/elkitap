@@ -1,17 +1,24 @@
+import 'package:elkitap/modules/genre/view/books_grid_screen_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 Widget sectionTitle(String title) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 10),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        const Icon(Icons.arrow_forward_ios, size: 14, color: Colors.black45),
-      ],
+  return GestureDetector(
+    onTap: () {
+       Get.to(BooksGridScreen(title: title,));
+    },
+    child: Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+          const Icon(Icons.arrow_forward_ios, size: 14, color: Colors.black45),
+        ],
+      ),
     ),
   );
 }
