@@ -49,6 +49,8 @@ dependencies:
   video_player: ^2.10.0
   flutter_inappwebview: ^6.1.5
   flutter_epub_viewer: ^1.2.2
+  path_provider: ^2.1.5
+  vocsy_epub_viewer: ^3.0.0
 
   #==================== MAPS & LOCATION ====================#
   permission_handler: ^11.0.1
@@ -95,6 +97,7 @@ flutter:
     - assets/lottie/
     - assets/videos/
     - assets/books/
+    - assets/splash.json
     
    
 

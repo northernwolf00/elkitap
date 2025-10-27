@@ -1,6 +1,5 @@
 import 'package:elkitap/global_widgets/custom_icon.dart';
-import 'package:elkitap/modules/reader/model/moc_book_data.dart';
-import 'package:elkitap/modules/reader/views/reader_view.dart';
+import 'package:elkitap/modules/reader/views/new_reader_view.dart';
 import 'package:elkitap/modules/store/controllers/store_controller.dart';
 import 'package:elkitap/modules/store/views/author_view.dart';
 import 'package:elkitap/modules/store/widgets/book_detail_widget.dart';
@@ -15,7 +14,6 @@ class BookDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     final BookDetailController controller = Get.put(BookDetailController());
     final Color accent = const Color(0xFFFF5A3C);
-    
 
     return Scaffold(
       backgroundColor: const Color(0xFFF5F5F5),
@@ -283,24 +281,24 @@ class BookDetailView extends StatelessWidget {
             ),
             const SizedBox(height: 24),
 
-            
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      Get.to(ReadingPageE(book: MockBookData.sampleBook, 
-                      startHref: '',
-                       assetPath: 'assets/books/7.epub',
+                      // Get.to(ReadingPageE(book: MockBookData.sampleBook,
+                      // startHref: '',
+                      //  assetPath: 'assets/books/7.epub',
 
-                      ));
+                      // ));
+                      Get.to(EpubReaderScreen());
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       decoration: BoxDecoration(
                         color: accent,
-                       borderRadius: const BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(12),
                           bottomLeft: Radius.circular(12),
                         ),
