@@ -8,7 +8,7 @@ plugins {
 android {
     namespace = "com.googadev.elkitap"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = "29.0.14033849"
+    // ndkVersion = "29.0.14033849"
     
 
     compileOptions {
@@ -33,6 +33,8 @@ android {
 
     buildTypes {
         release {
+            minifyEnabled false
+            shrinkResources false
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
