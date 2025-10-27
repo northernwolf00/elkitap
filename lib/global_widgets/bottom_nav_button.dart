@@ -13,8 +13,8 @@ class BottomNavbarButton extends StatefulWidget {
     required this.selectedIndex,
     required this.index,
     required this.icon,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<BottomNavbarButton> createState() => _BottomNavbarButtonState();
@@ -90,10 +90,8 @@ class _BottomNavbarButtonState extends State<BottomNavbarButton> {
                         widget.index != widget.selectedIndex
                             ? widget.icon
                                 ? const Icon(Icons.local_activity)
-                                : Container(
-                                  child: Center(
-                                    child: iconsLight[widget.index],
-                                  ),
+                                : Center(
+                                  child: iconsLight[widget.index],
                                 )
                             : widget.icon
                             ? const Icon(Icons.add)

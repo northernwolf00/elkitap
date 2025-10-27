@@ -7,12 +7,12 @@ class ProfileCard extends StatelessWidget {
   final int bookCount;
 
   const ProfileCard({
-    Key? key,
+    super.key,
     required this.role,
     required this.name,
     required this.initials,
     required this.bookCount,
-  }) : super(key: key);
+  });
 
   // A small "shelf" with placeholder book cover cards
   Widget _buildShelf(BuildContext context) {

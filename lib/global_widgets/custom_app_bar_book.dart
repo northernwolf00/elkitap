@@ -8,7 +8,6 @@ PreferredSizeWidget customAppBar(ReadingListController controller) {
     backgroundColor: Colors.white,
     elevation: 0,
     leadingWidth: 140,
-    // ... (Leading Obx code remains the same)
     leading: Obx(() {
       if (controller.selectedBooks.isEmpty) {
         return Row(

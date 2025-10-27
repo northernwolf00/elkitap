@@ -36,7 +36,7 @@ import 'package:video_player/video_player.dart';
 // }
 
 class SplashPageWidget extends StatelessWidget {
-  SplashPageWidget({Key? key}) : super(key: key);
+  SplashPageWidget({super.key});
 
   final SplashController controller = Get.put(SplashController());
 

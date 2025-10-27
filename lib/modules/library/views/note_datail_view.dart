@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class NoteDetailScreen extends StatelessWidget {
   final Note note;
 
-  const NoteDetailScreen({Key? key, required this.note}) : super(key: key);
+  const NoteDetailScreen({super.key, required this.note});
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +33,8 @@ class NoteDetailScreen extends StatelessWidget {
 }
 
 class NoteDetailAppBar extends StatelessWidget {
+  const NoteDetailAppBar({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -66,7 +68,7 @@ class NoteDetailAppBar extends StatelessWidget {
 class NoteDetailContent extends StatelessWidget {
   final Note note;
 
-  const NoteDetailContent({Key? key, required this.note}) : super(key: key);
+  const NoteDetailContent({super.key, required this.note});
 
   @override
   Widget build(BuildContext context) {

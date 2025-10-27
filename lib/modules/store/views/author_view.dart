@@ -4,7 +4,7 @@ import 'package:elkitap/modules/store/widgets/books_section.dart';
 import 'package:flutter/material.dart';
 
 class BookAuthorView extends StatelessWidget {
-  const BookAuthorView({Key? key}) : super(key: key);
+  const BookAuthorView({super.key});
 
   @override
   Widget build(BuildContext context) {

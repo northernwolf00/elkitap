@@ -19,7 +19,7 @@ class SplashController extends GetxController {
       await videoController.play();
       isVideoPlaying.value = true;
     } catch (e) {
-      print('Video failed to load: $e');
+     
       videoFailed.value = true;
       isVideoInitialized.value = true;
     }
