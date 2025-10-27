@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NotesScreen extends StatelessWidget {
-  const NotesScreen({Key? key}) : super(key: key);
+  const NotesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +36,8 @@ class NotesScreen extends StatelessWidget {
 }
 
 class NotesAppBar extends StatelessWidget {
+  const NotesAppBar({super.key});
+
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<NotesController>();

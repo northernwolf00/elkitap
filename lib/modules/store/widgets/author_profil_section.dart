@@ -3,7 +3,7 @@ import 'package:flutter/gestures.dart';
 
 
 class AuthorProfileSection extends StatefulWidget {
-  const AuthorProfileSection({Key? key}) : super(key: key);
+  const AuthorProfileSection({super.key});
 
   @override
   State<AuthorProfileSection> createState() => _AuthorProfileSectionState();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AuthorAppBar extends StatelessWidget {
-  const AuthorAppBar({Key? key}) : super(key: key);
+  const AuthorAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {

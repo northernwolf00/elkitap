@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:ui';
 
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -42,8 +41,7 @@ class ReaderController extends GetxController {
       bookPath.value = file.path;
       isLoading.value = false;
     } catch (e) {
-      print('Error loading book: $e');
-      // If asset not found, still show reader for demo
+ 
       await Future.delayed(const Duration(seconds: 1));
       isLoading.value = false;
     }

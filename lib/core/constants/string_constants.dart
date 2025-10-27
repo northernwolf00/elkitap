@@ -4,5 +4,5 @@ enum ColumnSize { small, medium, large }
 
 @immutable
 class StringConstants {
-  static const String appName = 'JaýTap';
+  
 }

@@ -5,7 +5,7 @@ import 'package:elkitap/modules/store/views/store_view.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavScreen extends StatefulWidget {
-  const BottomNavScreen({Key? key}) : super(key: key);
+  const BottomNavScreen({super.key});
 
   @override
   State<BottomNavScreen> createState() => _BottomNavScreenState();

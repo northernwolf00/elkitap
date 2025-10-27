@@ -43,7 +43,7 @@ class RecentlyViewedSection extends StatelessWidget {
             itemBuilder: (context, index) {
               return ClipRRect(
                 borderRadius: BorderRadius.circular(8),
-                child: Container(
+                child: SizedBox(
                   width: 110,
 
                   child: Image.asset(books[index], fit: BoxFit.cover),

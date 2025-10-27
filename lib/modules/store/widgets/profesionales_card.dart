@@ -1,7 +1,7 @@
 import 'package:elkitap/modules/store/views/profesional_readers_profil.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
+
 
 class ProfessionalCard extends StatelessWidget {
   final String name;
@@ -9,11 +9,11 @@ class ProfessionalCard extends StatelessWidget {
   final String imageUrl;
 
   const ProfessionalCard({
-    Key? key,
+    super.key,
     required this.name,
     required this.role,
     required this.imageUrl,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +61,7 @@ class ProfessionalCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20),
-          Container(
+          SizedBox(
             width: MediaQuery.of(context).size.width * 0.8,
             height: 140,
             child: Image.asset(
