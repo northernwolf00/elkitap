@@ -1,5 +1,6 @@
 import 'package:elkitap/global_widgets/custom_icon.dart';
-import 'package:elkitap/routes/app_routes.dart';
+import 'package:elkitap/modules/profile/views/profile_view.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,7 +22,7 @@ class LibraryHeader extends StatelessWidget {
         ),
         IconButton(
           onPressed: () {
-            Get.toNamed(Routes.PROFILE);
+            Get.to(ProfileScreen());
           },
           icon: CustomIcon(
             title: 'assets/icons/i1.svg',

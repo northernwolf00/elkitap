@@ -3,9 +3,7 @@ import 'package:elkitap/core/init/theme_controller.dart';
 import 'package:elkitap/core/init/translation_service.dart';
 import 'package:elkitap/core/theme/custom_dark_theme.dart';
 import 'package:elkitap/core/theme/custom_light_theme.dart';
-import 'package:elkitap/global_widgets/bottom_nav_bar.dart';
-import 'package:elkitap/routes/app_pages.dart';
-import 'package:elkitap/routes/app_routes.dart';
+import 'package:elkitap/modules/splash/views/splash_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,13 +13,12 @@ import 'package:get_storage/get_storage.dart';
 Future<void> main() async {
   await ApplicationInitialize.initialize();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-   WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
 
   await GetStorage.init();
   await ApplicationInitialize.initialize();
 
   Get.put(ThemeController());
-
 
   runApp(MyApp());
 }
@@ -41,10 +38,9 @@ class MyApp extends StatelessWidget {
           builder: (context, child) {
             final themeController = Get.find<ThemeController>();
             return AnnotatedRegion<SystemUiOverlayStyle>(
-              value:
-                  themeController.themeMode == ThemeMode.dark
-                      ? SystemUiOverlayStyle.light
-                      : SystemUiOverlayStyle.dark,
+              value: themeController.themeMode == ThemeMode.dark
+                  ? SystemUiOverlayStyle.light
+                  : SystemUiOverlayStyle.dark,
               child: child!,
             );
           },
@@ -52,14 +48,13 @@ class MyApp extends StatelessWidget {
           defaultTransition: Transition.fade,
           fallbackLocale: const Locale('tr'),
           debugShowCheckedModeBanner: false,
-          locale:
-              storage.read('langCode') != null
-                  ? Locale(storage.read('langCode'))
-                  : const Locale('tr'),
+          locale: storage.read('langCode') != null
+              ? Locale(storage.read('langCode'))
+              : const Locale('tr'),
           theme: CustomLightTheme().themeData,
           darkTheme: CustomDarkTheme().themeData,
           themeMode: Get.find<ThemeController>().themeMode,
-          home: BottomNavScreen(),
+           home: SplashPageWidget(),
           // getPages: AppPages.pages,
           // initialRoute: Routes.SPLASH,
         );

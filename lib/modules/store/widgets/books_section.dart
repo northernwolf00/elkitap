@@ -29,7 +29,7 @@ class BooksSection extends StatelessWidget {
     ),
   ];
 
-  BooksSection({Key? key}) : super(key: key);
+  BooksSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +87,7 @@ class AudiobooksSection extends StatelessWidget {
     ),
   ];
 
-  AudiobooksSection({Key? key}) : super(key: key);
+  AudiobooksSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -125,8 +125,7 @@ class SectionHeader extends StatelessWidget {
   final String title;
   final VoidCallback onTap;
 
-  const SectionHeader({Key? key, required this.title, required this.onTap})
-    : super(key: key);
+  const SectionHeader({super.key, required this.title, required this.onTap});
 
   @override
   Widget build(BuildContext context) {

@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 class NoteCard extends StatelessWidget {
   final Note note;
 
-  const NoteCard({Key? key, required this.note}) : super(key: key);
+  const NoteCard({super.key, required this.note});
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class NoteCard extends StatelessWidget {
 class NoteCardHeader extends StatelessWidget {
   final Note note;
 
-  const NoteCardHeader({Key? key, required this.note}) : super(key: key);
+  const NoteCardHeader({super.key, required this.note});
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +85,7 @@ class NoteCardHeader extends StatelessWidget {
 class NoteMenuButton extends StatelessWidget {
   final Note note;
 
-  const NoteMenuButton({Key? key, required this.note}) : super(key: key);
+  const NoteMenuButton({super.key, required this.note});
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +149,7 @@ class NoteMenuButton extends StatelessWidget {
 
 class NoteCardContent extends StatelessWidget {
   final Note note;
-  const NoteCardContent({Key? key, required this.note}) : super(key: key);
+  const NoteCardContent({super.key, required this.note});
 
   @override
   Widget build(BuildContext context) {
@@ -179,7 +179,7 @@ class NoteCardContent extends StatelessWidget {
 class NoteCardFooter extends StatelessWidget {
   final Note note;
 
-  const NoteCardFooter({Key? key, required this.note}) : super(key: key);
+  const NoteCardFooter({super.key, required this.note});
 
   @override
   Widget build(BuildContext context) {
@@ -218,6 +218,8 @@ class ColorPicker extends StatelessWidget {
     Colors.green,
     Colors.blue,
   ];
+
+ ColorPicker({super.key});
 
   @override
   Widget build(BuildContext context) {

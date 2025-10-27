@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 class GridViewWidget extends StatelessWidget {
   final ReadingListController controller;
 
-  const GridViewWidget({Key? key, required this.controller}) : super(key: key);
+  const GridViewWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class GridViewWidget extends StatelessWidget {
 class ListViewWidget extends StatelessWidget {
   final ReadingListController controller;
 
-  const ListViewWidget({Key? key, required this.controller}) : super(key: key);
+  const ListViewWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {

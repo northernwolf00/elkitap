@@ -4,7 +4,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class ProfesionalReadersProfil extends StatefulWidget {
-  const ProfesionalReadersProfil({Key? key}) : super(key: key);
+  const ProfesionalReadersProfil({super.key});
 
   @override
   State<ProfesionalReadersProfil> createState() =>

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ReadingListScreen extends StatelessWidget {
-  const ReadingListScreen({Key? key}) : super(key: key);
+  const ReadingListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

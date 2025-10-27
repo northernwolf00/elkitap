@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 class FeaturedBooksSection extends StatelessWidget {
   final int tabIndex;
-  FeaturedBooksSection({required this.tabIndex, super.key});
+  const FeaturedBooksSection({required this.tabIndex, super.key});
 
   @override
   Widget build(BuildContext context) {

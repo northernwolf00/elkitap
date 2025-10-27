@@ -3,7 +3,7 @@ import 'package:elkitap/modules/store/widgets/profesionales_card.dart';
 import 'package:flutter/material.dart';
 
 class ProfessionalsReadView extends StatelessWidget {
-  const ProfessionalsReadView({Key? key}) : super(key: key);
+  const ProfessionalsReadView({super.key});
 
   @override
   Widget build(BuildContext context) {

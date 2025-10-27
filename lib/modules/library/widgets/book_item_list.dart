@@ -7,8 +7,7 @@ class BookListItem extends StatefulWidget {
   final Book book;
   final ReadingListController controller;
 
-  const BookListItem({Key? key, required this.book, required this.controller})
-    : super(key: key);
+  const BookListItem({super.key, required this.book, required this.controller});
 
   @override
   State<BookListItem> createState() => _BookListItemState();
