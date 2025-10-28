@@ -1,3 +1,4 @@
+import 'package:elkitap/core/theme/app_colors.dart';
 import 'package:elkitap/modules/library/controllers/library_controller.dart';
 import 'package:elkitap/modules/library/model/book_moc.dart';
 import 'package:flutter/material.dart';
@@ -51,28 +52,64 @@ class _BookGridItemState extends State<BookGridItem> {
 
             // 🔹 White glass overlay (for all items in selection mode, except selected ones)
             if (isInSelectionMode && !isSelected)
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.55),
-                  borderRadius: BorderRadius.circular(12),
-                ),
+              Stack(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.55),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  Positioned(
+                    right: 15,
+                    bottom: 45,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                              color: const Color.fromARGB(255, 238, 238, 238),
+                              width: 1)),
+                      child: Padding(
+                        padding: const EdgeInsets.all(3.0),
+                        child: Container(
+                          padding: const EdgeInsets.all(4),
+                          height: 24,
+                          width: 24,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
 
             // 🔸 Orange check icon (only for selected)
+
             if (isSelected)
               Positioned(
-                right: 8,
-                bottom: 8,
+                right: 15,
+                bottom: 45,
                 child: Container(
-                  padding: const EdgeInsets.all(4),
-                  decoration: const BoxDecoration(
-                    color: Colors.orange,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.check,
-                    color: Colors.white,
-                    size: 20,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                          color: const Color.fromARGB(255, 238, 238, 238),
+                          width: 1)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: Container(
+                      padding: const EdgeInsets.all(4),
+                      decoration: const BoxDecoration(
+                        color: AppColors.mainColor,
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.check,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                    ),
                   ),
                 ),
               ),

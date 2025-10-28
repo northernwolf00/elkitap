@@ -1,4 +1,6 @@
+import 'package:elkitap/modules/store/views/store_detail_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class RecentlyViewedSection extends StatelessWidget {
   const RecentlyViewedSection({super.key});
@@ -41,12 +43,17 @@ class RecentlyViewedSection extends StatelessWidget {
             itemCount: books.length,
             separatorBuilder: (_, __) => const SizedBox(width: 12),
             itemBuilder: (context, index) {
-              return ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: SizedBox(
-                  width: 110,
-
-                  child: Image.asset(books[index], fit: BoxFit.cover),
+              return GestureDetector(
+                onTap: (){
+                     Get.to(BookDetailView());
+                },
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: SizedBox(
+                    width: 110,
+                
+                    child: Image.asset(books[index], fit: BoxFit.cover),
+                  ),
                 ),
               );
             },
