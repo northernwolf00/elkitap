@@ -1,9 +1,13 @@
 import 'package:elkitap/core/init/theme_controller.dart';
 import 'package:elkitap/global_widgets/custom_bottom_sheet.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
+import 'package:elkitap/modules/profile/widgets/help_and_support_sheet.dart';
 import 'package:elkitap/modules/profile/widgets/model/menu_item.dart';
+import 'package:elkitap/modules/profile/widgets/paymant_bottom_sheet.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class SettingsList extends StatefulWidget {
   const SettingsList({super.key});
@@ -15,6 +19,9 @@ class SettingsList extends StatefulWidget {
 class _SettingsListState extends State<SettingsList> {
   String selectedTheme = "Light";
   String selectedLanguage = "Türkmençe";
+  final _box = GetStorage();
+  final _languageKey = 'selectedLanguage';
+  late final ThemeController _themeController;
 
   void _showLegalTermsBottomSheet(BuildContext context) {
     showModalBottomSheet(
@@ -23,6 +30,54 @@ class _SettingsListState extends State<SettingsList> {
       backgroundColor: Colors.transparent,
       builder: (context) => const CustomBottomSheet(),
     );
+  }
+
+  void _showHelpBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => const HelpAndSupportBottomSheet(),
+    );
+  }
+
+  void _showPaymantHistorySheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => const PaymentHistoryBottomSheet(),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    _themeController = Get.find<ThemeController>();
+
+    _initializeSelectedTheme(_themeController.themeMode);
+
+    _loadSelectedLanguage();
+  }
+
+  void _loadSelectedLanguage() {
+    final storedLanguage = _box.read(_languageKey);
+    if (storedLanguage != null) {
+      selectedLanguage = storedLanguage;
+    } else {
+      _box.write(_languageKey, selectedLanguage);
+    }
+  }
+
+  void _initializeSelectedTheme(ThemeMode mode) {
+    if (mode == ThemeMode.light) {
+      selectedTheme = 'Light';
+    } else if (mode == ThemeMode.dark) {
+      selectedTheme = 'Dark';
+    } else {
+      selectedTheme = 'Match Devices';
+    }
   }
 
   @override
@@ -66,7 +121,16 @@ class _SettingsListState extends State<SettingsList> {
                     } else if (title == "Language") {
                       // Get.toNamed('/legal-terms');
                       _showLanguageMenu(context, details.globalPosition);
-                    } else {
+                    } else if (title == 'Sign Out') {
+                      _showLogoutDialog(context);
+                    } else if (title == "Help & Support") {
+                      _showHelpBottomSheet(context);
+                    } else if (title == 'Payment History') {
+                      _showPaymantHistorySheet(context);
+                    } 
+                    
+                    
+                    else {
                       _showLegalTermsBottomSheet(context);
                     }
                   },
@@ -286,6 +350,60 @@ class _SettingsListState extends State<SettingsList> {
           ),
         );
       }).toList(),
+    );
+  }
+
+  void _showLogoutDialog(BuildContext context) {
+    showCupertinoDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          title: const Text(
+            "Do you really want to log out?",
+            style: TextStyle(
+              fontWeight: FontWeight.bold, // Make title bold
+              fontSize: 17, // Adjust font size as needed
+            ),
+          ),
+          content: const Text(
+            "If you log out, you won't be able to read your favorite books.",
+            style: TextStyle(
+              fontSize: 13, // Adjust font size as needed
+            ),
+          ),
+          actions: <CupertinoDialogAction>[
+            CupertinoDialogAction(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+                // Add your 'No' logic here (e.g., stay logged in)
+              },
+              child: const Text(
+                "No",
+                style: TextStyle(
+                  color: CupertinoColors.activeBlue, // Default blue color
+                  fontWeight: FontWeight.w500, // Medium weight
+                ),
+              ),
+            ),
+            CupertinoDialogAction(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+                // Add your 'Yes' (logout) logic here
+                print("User chose to log out.");
+              },
+              isDestructiveAction:
+                  true, // This makes the text red on iOS-style alerts
+              child: const Text(
+                "Yes",
+                style: TextStyle(
+                  // The isDestructiveAction property handles the red color
+                  fontWeight: FontWeight.w500, // Medium weight
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -42,7 +42,7 @@ class ResultSectionScreen extends StatelessWidget {
               const Text(
                 'Authors',
                 style: TextStyle(
-                  color: Colors.black,
+                
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
                 ),
@@ -63,7 +63,7 @@ class ResultSectionScreen extends StatelessWidget {
                         title: Text(
                           authors[index]['name']!,
                           style: const TextStyle(
-                            color: Colors.black,
+                            
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
                           ),
@@ -94,7 +94,7 @@ class ResultSectionScreen extends StatelessWidget {
               const Text(
                 'Books',
                 style: TextStyle(
-                  color: Colors.black,
+                
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
                 ),
@@ -122,7 +122,7 @@ class ResultSectionScreen extends StatelessWidget {
                         title: Text(
                           books[index]['title']!,
                           style: const TextStyle(
-                            color: Colors.black,
+                          
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
                           ),

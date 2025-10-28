@@ -1,4 +1,6 @@
+import 'package:elkitap/modules/genre/view/genrs_page_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class GenresSection extends StatelessWidget {
   const GenresSection({super.key});
@@ -48,7 +50,9 @@ class GenresSection extends StatelessWidget {
               contentPadding: EdgeInsets.zero,
               title: Text(genres[index]),
               trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-              onTap: () {},
+              onTap: () {
+                 Get.to(GenrsDetailViewScreen());
+              },
             );
           },
         ),

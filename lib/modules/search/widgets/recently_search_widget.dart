@@ -20,7 +20,7 @@ class RecentlySearchedScreen extends StatelessWidget {
             const Text(
           'Recently searched',
           style: TextStyle(
-            color: Colors.black,
+          
             fontSize: 22,
             fontWeight: FontWeight.bold,
           ),
@@ -30,10 +30,12 @@ class RecentlySearchedScreen extends StatelessWidget {
               // Handle clear action
               print('Clear recently searched');
             },
-            child: const Text(
+            child:  Text(
               'Clear',
               style: TextStyle(
-                color: Colors.black,
+                color: Theme.of(context).brightness == Brightness.dark
+    ? Colors.white 
+    : Colors.black,
                 fontSize: 16,
               ),
             ),
@@ -53,7 +55,7 @@ class RecentlySearchedScreen extends StatelessWidget {
                   title: Text(
                     recentlySearched[index],
                     style: const TextStyle(
-                      color: Colors.black,
+                      
                       fontSize: 18,
                     ),
                   ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AuthViewScreen extends StatefulWidget {
   const AuthViewScreen({super.key});
@@ -37,7 +38,7 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                 children: [
                   GestureDetector(
                     onTap: () {
-                      // Handle back navigation
+                     Get.back();
                     },
                     child: Row(
                       children: const [

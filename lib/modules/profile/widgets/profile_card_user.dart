@@ -1,3 +1,4 @@
+import 'package:elkitap/modules/profile/widgets/edit_account_bootomsheet.dart';
 import 'package:elkitap/modules/profile/widgets/no_subscribed_widget.dart';
 import 'package:elkitap/modules/profile/widgets/subscribed_widget.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,18 @@ class ProfileCardUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _showEditAccountSheet(BuildContext context) {
+      showModalBottomSheet(
+        context: context,
+        backgroundColor: Colors.transparent, // Crucial for rounded corners
+        // isScrollControlled: true, // Use this if the content might exceed fixed height
+        builder: (context) => const EditAccountBottomSheet(),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
+        ),
+      );
+    }
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -49,9 +62,14 @@ class ProfileCardUser extends StatelessWidget {
               ),
               Row(
                 children: [
-                  Text(
-                    "Edit account",
-                    style: TextStyle(fontSize: 13),
+                  GestureDetector(
+                    onTap: (){
+                      _showEditAccountSheet(context);
+                    },
+                    child: Text(
+                      "Edit account",
+                      style: TextStyle(fontSize: 13),
+                    ),
                   ),
                   SizedBox(
                     width: 3,

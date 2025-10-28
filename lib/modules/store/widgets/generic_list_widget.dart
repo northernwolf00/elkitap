@@ -1,3 +1,5 @@
+import 'package:elkitap/modules/genre/view/genrs_page_view.dart';
+import 'package:elkitap/modules/store/views/all_geners_view.dart';
 import 'package:elkitap/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -53,9 +55,9 @@ class GenericListWidget extends StatelessWidget {
                   ),
                   onTap: () {
                     if (item == 'All Genres') {
-                      Get.toNamed(Routes.ALL_GENRES);
+                      Get.to(AllGenresView());
                     } else {
-                      Get.toNamed(Routes.GENRS_DETAIL);
+                      Get.to(GenrsDetailViewScreen());
                     }
                   },
                 ),

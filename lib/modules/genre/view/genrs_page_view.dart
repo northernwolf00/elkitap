@@ -16,7 +16,7 @@ class _GenrsDetailViewScreenState extends State<GenrsDetailViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+ 
       appBar: CustomAppBar(title: '', leadingText: 'Back'),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -32,7 +32,12 @@ class _GenrsDetailViewScreenState extends State<GenrsDetailViewScreen> {
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
+                      colors:  Theme.of(context).brightness == Brightness.dark
+                            ? [
+                                Color(0x001C1C1E),
+                                Color(0xFF1C1C1E)
+                              ] // dark mode gradient
+                            : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     ),
@@ -49,7 +54,12 @@ class _GenrsDetailViewScreenState extends State<GenrsDetailViewScreen> {
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
+                      colors:  Theme.of(context).brightness == Brightness.dark
+                            ? [
+                                Color(0x001C1C1E),
+                                Color(0xFF1C1C1E)
+                              ] // dark mode gradient
+                            : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     ),
@@ -60,7 +70,12 @@ class _GenrsDetailViewScreenState extends State<GenrsDetailViewScreen> {
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
+                      colors:  Theme.of(context).brightness == Brightness.dark
+                            ? [
+                                Color(0x001C1C1E),
+                                Color(0xFF1C1C1E)
+                              ] // dark mode gradient
+                            : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     ),
