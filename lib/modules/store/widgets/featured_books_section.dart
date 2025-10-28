@@ -22,7 +22,7 @@ class FeaturedBooksSection extends StatelessWidget {
           const SizedBox(height: 4),
           GestureDetector(
             onTap: () {
-              Get.to(BooksGridScreen(title: "We recommend",));
+              Get.to(() => BooksGridScreen(title: "We recommend",));
             },
             child: const Text(
               "We recommend",
@@ -41,7 +41,7 @@ class FeaturedBooksSection extends StatelessWidget {
                   index: index,
                   tabIndex: 0,
                   onTap: () {
-                     Get.to(BookDetailView());
+                     Get.to(() => BookDetailView());
                   },
                 );
               },

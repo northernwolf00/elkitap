@@ -67,9 +67,9 @@ class CollectionsSection extends StatelessWidget {
                   ),
                   onTap: () {
                     if (index == 2) {
-                      Get.to(NotesScreen());
+                      Get.to(() => NotesScreen());
                     } else {
-                      Get.to(ReadingListScreen());
+                      Get.to(() => ReadingListScreen());
                     }
                   },
                 ),

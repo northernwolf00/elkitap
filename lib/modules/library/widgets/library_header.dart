@@ -22,7 +22,7 @@ class LibraryHeader extends StatelessWidget {
         ),
         IconButton(
           onPressed: () {
-            Get.to(ProfileScreen());
+            Get.to(() => ProfileScreen());
           },
           icon: CustomIcon(
             title: 'assets/icons/i1.svg',

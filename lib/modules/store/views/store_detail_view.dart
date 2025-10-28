@@ -1,5 +1,7 @@
 import 'package:elkitap/global_widgets/custom_icon.dart';
-import 'package:elkitap/modules/reader/views/new_reader_view.dart';
+import 'package:elkitap/modules/audio_player/views/audio_player_view.dart';
+import 'package:elkitap/modules/reader/views/reader_view.dart';
+
 import 'package:elkitap/modules/store/controllers/store_controller.dart';
 import 'package:elkitap/modules/store/views/author_view.dart';
 import 'package:elkitap/modules/store/widgets/book_detail_widget.dart';
@@ -258,7 +260,7 @@ class BookDetailView extends StatelessWidget {
             const SizedBox(height: 8),
             GestureDetector(
               onTap: () {
-                Get.to(BookAuthorView());
+                Get.to(() => BookAuthorView());
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -287,12 +289,12 @@ class BookDetailView extends StatelessWidget {
                 Expanded(
                   child: GestureDetector(
                     onTap: () {
-                      // Get.to(ReadingPageE(book: MockBookData.sampleBook,
-                      // startHref: '',
-                      //  assetPath: 'assets/books/7.epub',
-
+                      // Get.to(ReadingPageE(
+                      //   book: MockBookData.sampleBook,
+                      //   startHref: '',
+                      //   assetPath: 'assets/books/7.epub',
                       // ));
-                      Get.to(EpubReaderScreen());
+                      Get.to(() => BookLibraryScreen());
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 14),
@@ -318,7 +320,9 @@ class BookDetailView extends StatelessWidget {
                 const SizedBox(width: 2),
                 Expanded(
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(() => AudiobookPlayerScreen());
+                    },
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       decoration: BoxDecoration(

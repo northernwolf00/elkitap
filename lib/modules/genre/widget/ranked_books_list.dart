@@ -29,7 +29,7 @@ class RankedBooksList extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: GestureDetector(
               onTap: () {
-                Get.to(BookDetailView());
+                Get.to(() => BookDetailView());
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,

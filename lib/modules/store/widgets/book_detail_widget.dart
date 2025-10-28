@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 Widget sectionTitle(String title) {
   return GestureDetector(
     onTap: () {
-       Get.to(BooksGridScreen(title: title,));
+       Get.to(() => BooksGridScreen(title: title,));
     },
     child: Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),

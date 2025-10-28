@@ -21,7 +21,7 @@ class RecentlyOpenedSection extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            Get.to(BooksGridScreen(title: 'Recently Opened'));
+            Get.to(() => BooksGridScreen(title: 'Recently Opened'));
           },
           child: const Text(
             "Recently Opened",
@@ -44,7 +44,7 @@ class RecentlyOpenedSection extends StatelessWidget {
                 index: index,
                 tabIndex: 0,
                 onTap: () {
-                  Get.to(BookDetailView());
+                  Get.to(() => BookDetailView());
                 },
               );
             },

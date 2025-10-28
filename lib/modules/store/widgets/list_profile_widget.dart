@@ -32,7 +32,7 @@ class _ListProfileWidgetState extends State<ListProfileWidget> {
           child: GestureDetector(
             onTap: () {
               // Navigate to professionals read view
-              Get.to(ProfessionalsReadView());
+              Get.to(() => ProfessionalsReadView());
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -70,7 +70,7 @@ class _ListProfileWidgetState extends State<ListProfileWidget> {
               final p = professionals[idx];
               return GestureDetector(
                 onTap: () {
-                  Get.to(ProfesionalReadersProfil());
+                  Get.to(() => ProfesionalReadersProfil());
                 },
                 child: ProfileCard(
                   role: p['role'],
