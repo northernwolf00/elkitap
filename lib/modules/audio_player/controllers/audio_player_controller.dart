@@ -1,11 +1,9 @@
-
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 
-
 class AudioPlayerController extends GetxController {
   final AudioPlayer _audioPlayer = AudioPlayer();
-  
+
   final Rx<Duration> duration = Duration.zero.obs;
   final Rx<Duration> position = Duration.zero.obs;
   final RxBool isPlaying = false.obs;
@@ -85,7 +83,8 @@ class AudioPlayerController extends GetxController {
 
   void seekBackward() {
     final newPosition = position.value - const Duration(seconds: 15);
-    _audioPlayer.seek(newPosition > Duration.zero ? newPosition : Duration.zero);
+    _audioPlayer
+        .seek(newPosition > Duration.zero ? newPosition : Duration.zero);
   }
 
   void seek(Duration position) {
@@ -104,11 +103,24 @@ class AudioPlayerController extends GetxController {
   }
 
   String formatDuration(Duration d) {
-    String twoDigits(int n) => n.toString().padLeft(2, '0');
-    final hours = twoDigits(d.inHours);
-    final minutes = twoDigits(d.inMinutes.remainder(60));
-    final seconds = twoDigits(d.inSeconds.remainder(60));
-    return '$hours:$minutes:$seconds';
+    final hours = d.inHours;
+    final minutes = d.inMinutes.remainder(60);
+    final seconds = d.inSeconds.remainder(60);
+
+    if (hours == 0) {
+      // Less than 1 hour → show MM:SS
+      final m = minutes.toString(); // no leading 0 for minutes
+      final s =
+          seconds.toString().padLeft(2, '0'); // always 2 digits for seconds
+      return '$m:$s';
+    } else {
+      // 1 hour or more → human-readable
+      if (minutes > 0) {
+        return '$hours hour${hours > 1 ? 's' : ''}, $minutes minute${minutes > 1 ? 's' : ''}';
+      } else {
+        return '$hours hour${hours > 1 ? 's' : ''}';
+      }
+    }
   }
 
   @override
@@ -117,4 +129,3 @@ class AudioPlayerController extends GetxController {
     super.onClose();
   }
 }
-

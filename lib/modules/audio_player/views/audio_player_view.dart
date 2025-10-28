@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:elkitap/modules/audio_player/controllers/audio_player_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -55,27 +56,27 @@ class AudiobookPlayerScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CircleAvatar(
-                    backgroundColor: Colors.brown.shade800,
+                    backgroundColor: Colors.grey.shade800,
                     child: IconButton(
                       icon: const Icon(Icons.arrow_back, color: Colors.white),
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.back();
+                      },
                     ),
                   ),
                   Row(
                     children: [
-                      CircleAvatar(
-                        backgroundColor: Colors.brown.shade800,
-                        child: IconButton(
-                          icon: const Icon(Icons.refresh, color: Colors.white),
-                          onPressed: () {},
-                        ),
+                      IconButton(
+                        icon: const Icon(Icons.download_outlined,
+                            color: Colors.white),
+                        onPressed: () {},
                       ),
                       const SizedBox(width: 10),
                       CircleAvatar(
-                        backgroundColor: Colors.brown.shade800,
+                        backgroundColor: Colors.grey.shade800,
                         child: IconButton(
                           icon:
-                              const Icon(Icons.more_vert, color: Colors.white),
+                              const Icon(Icons.more_horiz, color: Colors.white),
                           onPressed: () {},
                         ),
                       ),
@@ -88,80 +89,72 @@ class AudiobookPlayerScreen extends StatelessWidget {
               // Book Cover
               Container(
                 width: double.infinity,
-                height: 300,
+                height: MediaQuery.of(context).size.height / 2.5,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.5),
-                      blurRadius: 20,
-                      offset: const Offset(0, 10),
-                    ),
-                  ],
                 ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: Stack(
                     children: [
                       Image.asset(
-                        'assets/images/b3.png',
+                        'assets/images/b6.png',
                         width: double.infinity,
                         height: double.infinity,
                         fit: BoxFit.cover,
                         errorBuilder: (context, error, stackTrace) {
                           return Container(
-                            color: const Color(0xFFFF6B3D),
                             child: Padding(
                               padding: const EdgeInsets.all(40.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 12,
-                                      vertical: 6,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: Colors.black,
-                                      borderRadius: BorderRadius.circular(4),
-                                    ),
-                                    child: const Text(
-                                      'SHORT BOOK SUMMARY',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(height: 30),
-                                  const Text(
-                                    'THE SUBTLE ART\nOF NOT GIVING\nA F*CK',
-                                    style: TextStyle(
-                                      fontSize: 32,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                      height: 1.2,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 20),
-                                  const Text(
-                                    'STOP STRESSING,\nSTART LIVING.',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.black,
-                                      height: 1.3,
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  const Text(
-                                    'MARK MANSON',
-                                    style: TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
+                                  // Container(
+                                  //   padding: const EdgeInsets.symmetric(
+                                  //     horizontal: 12,
+                                  //     vertical: 6,
+                                  //   ),
+                                  //   decoration: BoxDecoration(
+                                  //     color: Colors.black,
+                                  //     borderRadius: BorderRadius.circular(4),
+                                  //   ),
+                                  //   child: const Text(
+                                  //     'SHORT BOOK SUMMARY',
+                                  //     style: TextStyle(
+                                  //       color: Colors.white,
+                                  //       fontSize: 12,
+                                  //       fontWeight: FontWeight.bold,
+                                  //     ),
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 30),
+                                  // const Text(
+                                  //   'THE SUBTLE ART\nOF NOT GIVING\nA F*CK',
+                                  //   style: TextStyle(
+                                  //     fontSize: 32,
+                                  //     fontWeight: FontWeight.bold,
+                                  //     color: Colors.black,
+                                  //     height: 1.2,
+                                  //   ),
+                                  // ),
+                                  // const SizedBox(height: 20),
+                                  // const Text(
+                                  //   'STOP STRESSING,\nSTART LIVING.',
+                                  //   style: TextStyle(
+                                  //     fontSize: 18,
+                                  //     color: Colors.black,
+                                  //     height: 1.3,
+                                  //   ),
+                                  // ),
+                                  // const Spacer(),
+                                  // const Text(
+                                  //   'MARK MANSON',
+                                  //   style: TextStyle(
+                                  //     fontSize: 24,
+                                  //     fontWeight: FontWeight.bold,
+                                  //     color: Colors.black,
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                             ),
@@ -185,7 +178,8 @@ class AudiobookPlayerScreen extends StatelessWidget {
                         'Chapter 1',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 22,
+                          fontFamily: 'New York',
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -200,12 +194,14 @@ class AudiobookPlayerScreen extends StatelessWidget {
                     ],
                   ),
                   CircleAvatar(
-                    backgroundColor: Colors.brown.shade800,
-                    child: IconButton(
-                      icon: const Icon(Icons.menu, color: Colors.white),
-                      onPressed: () {},
-                    ),
-                  ),
+                      backgroundColor: Colors.grey.shade800,
+                      child: Center(
+                        child: CustomIcon(
+                            title: 'assets/icons/a8.svg',
+                            height: 24,
+                            width: 24,
+                            color: Colors.white),
+                      )),
                 ],
               ),
               const SizedBox(height: 20),
@@ -267,38 +263,45 @@ class AudiobookPlayerScreen extends StatelessWidget {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircleAvatar(
-                      radius: 30,
-                      backgroundColor: Colors.brown.shade800,
-                      child: IconButton(
-                        icon: const Icon(Icons.replay, size: 28),
-                        color: Colors.white,
-                        onPressed: controller.seekBackward,
+                    Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          controller.seekBackward();
+                        },
+                        child: CustomIcon(
+                            title: 'assets/icons/a1.svg',
+                            height: 40,
+                            width: 40,
+                            color: Colors.white),
                       ),
                     ),
-                    const SizedBox(width: 30),
+                    const SizedBox(width: 40),
                     CircleAvatar(
-                      radius: 40,
-                      backgroundColor: Colors.brown.shade900,
-                      child: IconButton(
-                        icon: Icon(
-                          controller.isPlaying.value
-                              ? Icons.pause
-                              : Icons.play_arrow,
-                          size: 40,
-                        ),
-                        color: Colors.white,
-                        onPressed: controller.playPause,
-                      ),
-                    ),
-                    const SizedBox(width: 30),
-                    CircleAvatar(
-                      radius: 30,
-                      backgroundColor: Colors.brown.shade800,
-                      child: IconButton(
-                        icon: const Icon(Icons.forward, size: 28),
-                        color: Colors.white,
-                        onPressed: controller.seekForward,
+                        radius: 40,
+                        backgroundColor: Colors.grey.shade900,
+                        child: GestureDetector(
+                          onTap: () {
+                            controller.playPause();
+                          },
+                          child: CustomIcon(
+                              title: controller.isPlaying.value
+                                  ? 'assets/icons/a4.svg'
+                                  : 'assets/icons/a3.svg',
+                              height: 40,
+                              width: 40,
+                              color: Colors.white),
+                        )),
+                    const SizedBox(width: 40),
+                    Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          controller.seekForward();
+                        },
+                        child: CustomIcon(
+                            title: 'assets/icons/a2.svg',
+                            height: 40,
+                            width: 40,
+                            color: Colors.white),
                       ),
                     ),
                   ],
@@ -317,23 +320,40 @@ class AudiobookPlayerScreen extends StatelessWidget {
                         '${controller.playbackSpeed.value}x',
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 18,
+                          fontSize: 22,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    IconButton(
-                      icon: const Icon(Icons.bedtime, color: Colors.white),
-                      onPressed: () {},
+                    Center(
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: CustomIcon(
+                            title: 'assets/icons/a5.svg',
+                            height: 32,
+                            width: 32,
+                            color: Colors.white),
+                      ),
                     ),
-                    IconButton(
-                      icon: const Icon(Icons.bookmark_border,
-                          color: Colors.white),
-                      onPressed: () {},
+                    Center(
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: CustomIcon(
+                            title: 'assets/icons/a6.svg',
+                            height: 32,
+                            width: 32,
+                            color: Colors.white),
+                      ),
                     ),
-                    IconButton(
-                      icon: const Icon(Icons.car_rental, color: Colors.white),
-                      onPressed: () {},
+                    Center(
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: CustomIcon(
+                            title: 'assets/icons/a7.svg',
+                            height: 32,
+                            width: 32,
+                            color: Colors.white),
+                      ),
                     ),
                   ],
                 );
