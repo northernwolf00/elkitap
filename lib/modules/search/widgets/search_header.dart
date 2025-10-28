@@ -22,7 +22,7 @@ class SearchHeader extends StatelessWidget {
         const SizedBox(height: 16),
         GestureDetector(
           onTap: (){
-            Get.to(SearchingViewScreen());
+            Get.to(() => SearchingViewScreen());
           },
           child: Container(
             height: 50,
@@ -67,7 +67,7 @@ class SearchHeader extends StatelessWidget {
                       ),
           
                       onChanged: (_) {
-                        Get.to(SearchingViewScreen());
+                        Get.to(() => SearchingViewScreen());
                       },
                     ),
                   ),

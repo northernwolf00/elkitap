@@ -1,119 +1,122 @@
-import 'dart:io';
-
-import 'package:flutter/services.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:vocsy_epub_viewer/epub_viewer.dart';
 
-class ReaderController extends GetxController {
-  final RxBool isLoading = true.obs;
-  final RxBool showControls = false.obs;
-  final RxBool showSettings = false.obs;
-  final Rx<Color> backgroundColor = const Color(0xFFFFFFFF).obs;
-  final Rx<Color> textColor = const Color(0xFF000000).obs;
-  final RxDouble fontSize = 16.0.obs;
-  final RxString selectedTheme = 'Bold'.obs;
-  final RxInt currentPage = 112.obs;
-  final RxInt totalPages = 112.obs;
-  final RxString bookPath = ''.obs;
+// Controller
+class BookReaderController extends GetxController {
+  var isLoading = false.obs;
+  var bookTitle = 'The Truth, Instead'.obs;
+  var selectedThemeIndex = 1.obs;
+  var fontSize = 16.0.obs;
+  var brightness = 0.5.obs;
 
-  @override
-  void onInit() {
-    super.onInit();
-    loadBook();
-  }
+  // Open book from assets
+  void openBookFromAsset(String assetPath) async {
+    isLoading.value = true;
 
-  void loadBook() async {
     try {
-      // Load EPUB from assets
-      await Future.delayed(const Duration(seconds: 2));
+      VocsyEpub.setConfig(
+        themeColor: _getThemeColor(),
+        identifier: "bookReader",
+        scrollDirection: EpubScrollDirection.HORIZONTAL,
+        allowSharing: true,
+        enableTts: true,
+        nightMode: selectedThemeIndex.value == 1,
+      );
 
-      // Copy EPUB from assets to local storage
-      final dir = await getApplicationDocumentsDirectory();
-      final file = File('${dir.path}/book.epub');
-
-      if (!await file.exists()) {
-        final data = await rootBundle.load('assets/books/7.epub');
-        final bytes = data.buffer.asUint8List();
-        await file.writeAsBytes(bytes);
-      }
-
-      bookPath.value = file.path;
-      isLoading.value = false;
+      await VocsyEpub.openAsset(
+        assetPath,
+        lastLocation: EpubLocator.fromJson({
+          "bookId": "1",
+          "href": "/chapter1.xhtml",
+          "created": DateTime.now().millisecondsSinceEpoch,
+          "locations": {"cfi": ""}
+        }),
+      );
     } catch (e) {
- 
-      await Future.delayed(const Duration(seconds: 1));
+      Get.snackbar(
+        'Error',
+        'Failed to open book: $e',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    } finally {
       isLoading.value = false;
     }
   }
 
-  void openEpubBook() {
-    if (bookPath.value.isNotEmpty) {
+  // Open book from URL
+  void openBookFromUrl(String url) async {
+    isLoading.value = true;
+
+    try {
       VocsyEpub.setConfig(
-        themeColor: backgroundColor.value,
-        identifier: "iosBook",
-        scrollDirection: EpubScrollDirection.ALLDIRECTIONS,
+        themeColor: _getThemeColor(),
+        identifier: "bookReader",
+        scrollDirection: EpubScrollDirection.HORIZONTAL,
         allowSharing: true,
         enableTts: true,
-        nightMode: selectedTheme.value == 'Quite',
+        nightMode: selectedThemeIndex.value == 1,
       );
 
       VocsyEpub.open(
-        bookPath.value,
+        url,
         lastLocation: EpubLocator.fromJson({
-          "bookId": "book",
-          "href": "/chapter1.html",
-          "created": 1539934158390,
-          "locations": {"cfi": "epubcfi(/0!/4/4[simple_book]/2/2/6)"}
+          "bookId": "1",
+          "href": "/chapter1.xhtml",
+          "created": DateTime.now().millisecondsSinceEpoch,
+          "locations": {"cfi": ""}
         }),
       );
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        'Failed to open book: $e',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    } finally {
+      isLoading.value = false;
     }
   }
 
-  final List<ThemeOption> themes = [
-    ThemeOption('Bold', Color(0xFFFFFFFF), Color(0xFF000000)),
-    ThemeOption('Quite', Color(0xFF2C2C2E), Color(0xFFE5E5E5)),
-    ThemeOption('Paper', Color(0xFFF5F1E8), Color(0xFF3C3C3C)),
-    ThemeOption('Bold', Color(0xFFFFFFFF), Color(0xFF000000)),
-    ThemeOption('Calm', Color(0xFFF5E6D3), Color(0xFF4A4A4A)),
-    ThemeOption('Focus', Color(0xFFE8E8E8), Color(0xFF1C1C1E)),
-  ];
-
-  void toggleControls() {
-    showControls.value = !showControls.value;
-    if (showControls.value) {
-      showSettings.value = false;
+  Color _getThemeColor() {
+    switch (selectedThemeIndex.value) {
+      case 0:
+      case 3:
+        return Colors.blue;
+      case 1:
+        return Colors.grey[800]!;
+      case 2:
+        return Color(0xFFF5F1E8);
+      case 4:
+        return Color(0xFFE8D5C4);
+      case 5:
+        return Colors.blue;
+      default:
+        return Colors.blue;
     }
   }
 
-  void toggleSettings() {
-    showSettings.value = !showSettings.value;
+  void changeTheme(int index) {
+    selectedThemeIndex.value = index;
+    VocsyEpub.setConfig(
+      themeColor: _getThemeColor(),
+      identifier: "bookReader",
+      scrollDirection: EpubScrollDirection.ALLDIRECTIONS,
+      allowSharing: true,
+      enableTts: true,
+      nightMode: index == 1,
+    );
   }
 
-  void selectTheme(String theme) {
-    selectedTheme.value = theme;
-    final selected = themes.firstWhere((t) => t.name == theme);
-    backgroundColor.value = selected.backgroundColor;
-    textColor.value = selected.textColor;
+  void changeFontSize(double size) {
+    fontSize.value = size;
   }
 
-  void increaseFontSize() {
-    if (fontSize.value < 28) {
-      fontSize.value += 2;
-    }
+  void changeBrightness(double value) {
+    brightness.value = value;
   }
-
-  void decreaseFontSize() {
-    if (fontSize.value > 12) {
-      fontSize.value -= 2;
-    }
-  }
-}
-
-class ThemeOption {
-  final String name;
-  final Color backgroundColor;
-  final Color textColor;
-
-  ThemeOption(this.name, this.backgroundColor, this.textColor);
 }

@@ -68,7 +68,7 @@ class BooksGridScreen extends StatelessWidget {
             title: book['title']!,
             author: book['author']!,
             onTap: () {
-              Get.to(BookDetailView());
+              Get.to(() =>  BookDetailView());
             },
           );
         },

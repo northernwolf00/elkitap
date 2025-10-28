@@ -33,7 +33,7 @@ class MyLibraryViewScreen extends StatelessWidget {
                       SizedBox(height: 24),
                       GestureDetector(
                         onTap: () {
-                          Get.to(BookDetailView());
+                          Get.to(() => BookDetailView());
                         },
                         child: CurrentBookSection(),
                       ),

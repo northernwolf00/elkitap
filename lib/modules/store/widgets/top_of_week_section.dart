@@ -25,7 +25,7 @@ class TopOfWeekSection extends StatelessWidget {
           const SizedBox(height: 22),
           GestureDetector(
             onTap: () {
-              Get.to(BooksGridScreen(title: "Top of the week",));
+              Get.to(() => BooksGridScreen(title: "Top of the week",));
             },
             child: const Text(
               "Top of the week",

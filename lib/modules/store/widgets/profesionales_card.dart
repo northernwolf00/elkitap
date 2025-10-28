@@ -43,7 +43,7 @@ class ProfessionalCard extends StatelessWidget {
           const SizedBox(height: 4),
           GestureDetector(
             onTap: () {
-              Get.to(ProfesionalReadersProfil());
+              Get.to(() => ProfesionalReadersProfil());
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

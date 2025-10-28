@@ -47,7 +47,7 @@ class PopularByGenreSection extends StatelessWidget {
                         const SizedBox(height: 22),
                         GestureDetector(
                           onTap: () {
-                            Get.to(BooksGridScreen(title: genre));
+                            Get.to(() => BooksGridScreen(title: genre));
                           },
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -82,7 +82,7 @@ class PopularByGenreSection extends StatelessWidget {
                                 index: index,
                                 tabIndex: 0,
                                 onTap: () {
-                                   Get.to(BookDetailView());
+                                   Get.to(() => BookDetailView());
                                 },
                               );
                             },

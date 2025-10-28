@@ -45,7 +45,7 @@ class RecentlyViewedSection extends StatelessWidget {
             itemBuilder: (context, index) {
               return GestureDetector(
                 onTap: (){
-                     Get.to(BookDetailView());
+                     Get.to(() => BookDetailView());
                 },
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),

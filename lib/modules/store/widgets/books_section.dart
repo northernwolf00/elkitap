@@ -37,7 +37,7 @@ class BooksSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SectionHeader(title: 'Books', onTap: () {
-          Get.to(BooksGridScreen(title: 'Books',));
+          Get.to(() => BooksGridScreen(title: 'Books',));
         }),
         const SizedBox(height: 16),
         SizedBox(
@@ -51,7 +51,7 @@ class BooksSection extends StatelessWidget {
                 index: index,
                 tabIndex: 0,
                 onTap: () {
-                  Get.to(BookDetailView());
+                  Get.to(() => BookDetailView());
                 },
               );
             },
@@ -95,7 +95,7 @@ class AudiobooksSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SectionHeader(title: 'Audiobooks', onTap: () {
-           Get.to(BooksGridScreen(title: 'Audiobooks',));
+           Get.to(() => BooksGridScreen(title: 'Audiobooks',));
         }),
         const SizedBox(height: 16),
         SizedBox(
@@ -109,7 +109,7 @@ class AudiobooksSection extends StatelessWidget {
                 index: index,
                 tabIndex: 0,
                 onTap: () {
-                  Get.to(BookDetailView());
+                  Get.to(() => BookDetailView());
                 },
               );
             },
