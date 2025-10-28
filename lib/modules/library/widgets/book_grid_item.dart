@@ -56,7 +56,9 @@ class _BookGridItemState extends State<BookGridItem> {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.55),
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.black.withOpacity(0.6)
+                          : Colors.white.withOpacity(0.55),
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
@@ -65,7 +67,9 @@ class _BookGridItemState extends State<BookGridItem> {
                     bottom: 45,
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.black
+                              : Colors.white,
                           shape: BoxShape.circle,
                           border: Border.all(
                               color: const Color.fromARGB(255, 238, 238, 238),
@@ -91,7 +95,9 @@ class _BookGridItemState extends State<BookGridItem> {
                 bottom: 45,
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.black
+                          : Colors.white,
                       shape: BoxShape.circle,
                       border: Border.all(
                           color: const Color.fromARGB(255, 238, 238, 238),
@@ -113,6 +119,45 @@ class _BookGridItemState extends State<BookGridItem> {
                   ),
                 ),
               ),
+            // 🔹 Bottom overlay with title & author
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: -10,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                decoration: BoxDecoration(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      widget.book.title,
+                      style: TextStyle(
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white
+                            : Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      widget.book.author,
+                      style: TextStyle(
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.grey[300]
+                            : Colors.grey[700],
+                        fontSize: 12,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         );
       }),

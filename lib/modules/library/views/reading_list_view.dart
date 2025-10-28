@@ -12,7 +12,7 @@ class ReadingListScreen extends StatelessWidget {
     final controller = Get.put(ReadingListController());
 
     return Scaffold(
-      appBar: customAppBar(controller),
+      appBar: customAppBar(controller, context),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -25,7 +25,6 @@ class ReadingListScreen extends StatelessWidget {
                     ? 'Want to Read'
                     : '${controller.selectedBooks.length} selected',
                 style: const TextStyle(
-                  color: Colors.black,
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
                 ),

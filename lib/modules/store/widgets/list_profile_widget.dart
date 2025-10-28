@@ -43,7 +43,6 @@ class _ListProfileWidgetState extends State<ListProfileWidget> {
                     fontSize: 20,
                     fontFamily: 'New York',
                     fontWeight: FontWeight.w700,
-                    color: Colors.black87,
                   ),
                 ),
                 SizedBox(width: 8),
@@ -57,7 +56,6 @@ class _ListProfileWidgetState extends State<ListProfileWidget> {
           ),
         ),
         SizedBox(height: 14),
-
         SizedBox(
           height: 265,
           child: ListView.separated(
@@ -82,7 +80,6 @@ class _ListProfileWidgetState extends State<ListProfileWidget> {
             },
           ),
         ),
-
         SizedBox(height: 24),
       ],
     );

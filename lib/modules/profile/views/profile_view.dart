@@ -17,8 +17,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: '',showBackButton: true, leadingText : 'Back',),
-      backgroundColor: Colors.white,
+      appBar: CustomAppBar(
+        title: '',
+        showBackButton: true,
+        leadingText: 'Back',
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(

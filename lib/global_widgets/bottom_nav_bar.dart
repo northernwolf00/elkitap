@@ -34,7 +34,6 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     return Scaffold(
       bottomNavigationBar: Container(
         height: 80,
-        decoration: BoxDecoration(color: Colors.white),
         child: Row(
           children: [
             Expanded(

@@ -11,8 +11,10 @@ class CustomBottomSheet extends StatelessWidget {
       maxChildSize: 0.95,
       builder: (context, scrollController) {
         return Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
+          decoration: BoxDecoration(
+            color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.black
+                : Colors.white,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
@@ -30,10 +32,11 @@ class CustomBottomSheet extends StatelessWidget {
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
-              
+
               // Header
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Row(
                   children: [
                     IconButton(
@@ -65,9 +68,9 @@ class CustomBottomSheet extends StatelessWidget {
                   ],
                 ),
               ),
-              
+
               const Divider(height: 1),
-              
+
               // Content
               Expanded(
                 child: ListView(
@@ -90,7 +93,7 @@ class CustomBottomSheet extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 32),
-                    
+
                     // Repeated sections
                     _buildSection(),
                     const SizedBox(height: 32),

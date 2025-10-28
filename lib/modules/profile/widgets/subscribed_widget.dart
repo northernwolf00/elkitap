@@ -11,21 +11,22 @@ class SubscribedView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-          const SizedBox(height: 25),
+        const SizedBox(height: 25),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
               "Subscription ends in $daysLeft days",
-              style: const TextStyle(color: Colors.black54),
+              style: const TextStyle(fontSize: 14),
             ),
-            Image.asset('assets/images/subscribed.png',
-            height: 46,
-            width: 46,)
+            Image.asset(
+              'assets/images/subscribed.png',
+              height: 46,
+              width: 46,
+            )
           ],
         ),
-        
         const SizedBox(height: 12),
         Container(height: 1, color: Colors.grey[300]),
         const SizedBox(height: 12),
@@ -39,10 +40,9 @@ class SubscribedView extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40),
                   ),
-                  
                 ),
-                child: const Text("Extend", style: TextStyle(fontSize: 14,
-            color: Colors.white)),
+                child: const Text("Extend",
+                    style: TextStyle(fontSize: 14, color: Colors.white)),
               ),
             ),
             const SizedBox(width: 12),
@@ -54,10 +54,9 @@ class SubscribedView extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(40),
                   ),
-                  
                 ),
-                child: const Text("Promocode", style: TextStyle(fontSize: 14,
-            color: Colors.black)),
+                child: const Text("Promocode",
+                    style: TextStyle(fontSize: 14, color: Colors.black)),
               ),
             ),
           ],

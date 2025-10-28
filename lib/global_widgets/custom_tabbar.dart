@@ -69,7 +69,11 @@ class _TabItem extends StatelessWidget {
               fontSize: 28,
               fontFamily: 'New York',
               fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
-              color: isSelected ? Colors.black : Colors.grey,
+              color: isSelected
+                  ? Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black
+                  : Colors.grey,
             ),
           ),
           const SizedBox(height: 4),

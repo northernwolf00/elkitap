@@ -43,18 +43,20 @@ class _BookListItemState extends State<BookListItem> {
               margin: const EdgeInsets.only(bottom: 16),
               padding: const EdgeInsets.only(bottom: 16),
               decoration: BoxDecoration(
-                // border: Border(bottom: BorderSide(color: Colors.grey[300]!)),
-              ),
+                  // border: Border(bottom: BorderSide(color: Colors.grey[300]!)),
+                  ),
               child: Row(
                 children: [
                   // Selection indicator circle
                   Container(
-                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                          color: const Color.fromARGB(255, 223, 220, 220),
-                          width: 1)),
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.black
+                            : Colors.white,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 223, 220, 220),
+                            width: 1)),
                     child: Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: Container(
@@ -62,14 +64,18 @@ class _BookListItemState extends State<BookListItem> {
                         height: 24,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: isSelected ? AppColors.mainColor : Colors.transparent,
+                          color: isSelected
+                              ? AppColors.mainColor
+                              : Colors.transparent,
                           border: Border.all(
-                            color: isSelected ? AppColors.mainColor  : Colors.white,
+                            color:
+                                isSelected ? AppColors.mainColor : Colors.white,
                             width: 2,
                           ),
                         ),
                         child: isSelected
-                            ? const Icon(Icons.check, size: 16, color: Colors.white)
+                            ? const Icon(Icons.check,
+                                size: 16, color: Colors.white)
                             : null,
                       ),
                     ),
@@ -117,7 +123,9 @@ class _BookListItemState extends State<BookListItem> {
             if (isInSelectionMode && !isSelected)
               Positioned.fill(
                 child: Container(
-                  color: Colors.white.withOpacity(0.55),
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.black.withOpacity(0.6)
+                      : Colors.white.withOpacity(0.55),
                 ),
               ),
           ],

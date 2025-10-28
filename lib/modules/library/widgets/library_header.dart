@@ -28,7 +28,9 @@ class LibraryHeader extends StatelessWidget {
             title: 'assets/icons/i1.svg',
             height: 40,
             width: 40,
-            color: Colors.black,
+            color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.white
+                : Colors.black,
           ),
         ),
       ],

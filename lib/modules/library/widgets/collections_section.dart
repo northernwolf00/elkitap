@@ -26,7 +26,6 @@ class CollectionsSection extends StatelessWidget {
             "Collections",
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-
           const SizedBox(height: 12),
           Container(height: 1, color: Colors.grey[200]),
           ...collections.asMap().entries.map((entry) {
@@ -41,7 +40,9 @@ class CollectionsSection extends StatelessWidget {
                     title: item["icon"].toString(),
                     height: 24,
                     width: 24,
-                    color: Colors.black,
+                    color: Theme.of(context).brightness == Brightness.dark
+                        ? Colors.white
+                        : Colors.black,
                   ),
                   title: Text(
                     item["title"] as String,

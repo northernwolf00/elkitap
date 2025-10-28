@@ -3,9 +3,9 @@ import 'package:elkitap/modules/library/controllers/library_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-PreferredSizeWidget customAppBar(ReadingListController controller) {
+PreferredSizeWidget customAppBar(
+    ReadingListController controller, BuildContext context) {
   return AppBar(
-    backgroundColor: Colors.white,
     elevation: 0,
     leadingWidth: 140,
     leading: Obx(() {
@@ -13,7 +13,9 @@ PreferredSizeWidget customAppBar(ReadingListController controller) {
         return Row(
           children: [
             IconButton(
-              icon: const Icon(Icons.arrow_back_ios, color: Colors.black),
+              icon: const Icon(
+                Icons.arrow_back_ios,
+              ),
               onPressed: () {
                 Get.back();
               },
@@ -31,7 +33,11 @@ PreferredSizeWidget customAppBar(ReadingListController controller) {
             controller.selectedBooks.length == controller.books.length
                 ? 'Deselect All'
                 : 'Select All',
-            style: const TextStyle(color: Colors.black, fontSize: 16),
+            style: TextStyle(
+                fontSize: 16,
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white
+                    : Colors.black),
           ),
         );
       }
@@ -43,11 +49,15 @@ PreferredSizeWidget customAppBar(ReadingListController controller) {
           return Row(
             children: [
               IconButton(
-                icon: const Icon(Icons.search, color: Colors.black),
+                icon: const Icon(
+                  Icons.search,
+                ),
                 onPressed: () {},
               ),
               PopupMenuButton<int>(
-                icon: const Icon(Icons.more_vert, color: Colors.black),
+                icon: const Icon(
+                  Icons.more_vert,
+                ),
                 offset: const Offset(0, 50),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -56,7 +66,9 @@ PreferredSizeWidget customAppBar(ReadingListController controller) {
                     width: 1,
                   ),
                 ),
-                color: Colors.white.withOpacity(0.85),
+                color: Theme.of(context).brightness == Brightness.dark
+                    ? Colors.black.withOpacity(0.6) // dark mode
+                    : Colors.white.withOpacity(0.85),
                 elevation: 8,
                 itemBuilder: (context) => [
                   PopupMenuItem<int>(
@@ -74,13 +86,16 @@ PreferredSizeWidget customAppBar(ReadingListController controller) {
                                       controller.books.length
                                   ? 'Deselect All'
                                   : 'Select All',
-                              style: TextStyle(color: Colors.black87)),
+                              style: TextStyle()),
                           const Spacer(),
                           CustomIcon(
                               title: 'assets/icons/d5.svg',
                               height: 24,
                               width: 24,
-                              color: Colors.black)
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Colors.white
+                                  : Colors.black)
 
                           //  const Icon(Icons.grid_view, color: Colors.black54),
                         ],
@@ -97,17 +112,21 @@ PreferredSizeWidget customAppBar(ReadingListController controller) {
                       child: Row(
                         children: [
                           if (controller.isGridView.value)
-                            const Icon(Icons.check,
-                                size: 18, color: Colors.black54),
+                            const Icon(
+                              Icons.check,
+                              size: 18,
+                            ),
                           const SizedBox(width: 8),
-                          const Text('Grid View',
-                              style: TextStyle(color: Colors.black87)),
+                          const Text('Grid View', style: TextStyle()),
                           const Spacer(),
                           CustomIcon(
                               title: 'assets/icons/d8.svg',
                               height: 24,
                               width: 24,
-                              color: Colors.black)
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Colors.white
+                                  : Colors.black)
                         ],
                       ),
                     ),
@@ -120,17 +139,21 @@ PreferredSizeWidget customAppBar(ReadingListController controller) {
                       child: Row(
                         children: [
                           if (!controller.isGridView.value)
-                            const Icon(Icons.check,
-                                size: 18, color: Colors.black54),
+                            const Icon(
+                              Icons.check,
+                              size: 18,
+                            ),
                           const SizedBox(width: 8),
-                          const Text('List View',
-                              style: TextStyle(color: Colors.black87)),
+                          const Text('List View', style: TextStyle()),
                           const Spacer(),
                           CustomIcon(
                               title: 'assets/icons/d9.svg',
                               height: 24,
                               width: 24,
-                              color: Colors.black),
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Colors.white
+                                  : Colors.black),
                         ],
                       ),
                     ),
@@ -164,10 +187,12 @@ PreferredSizeWidget customAppBar(ReadingListController controller) {
                 ),
                 TextButton(
                   onPressed: () => controller.selectedBooks.clear(),
-                  child: const Text(
+                  child: Text(
                     'Done',
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.white
+                          : Colors.black,
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
                     ),
