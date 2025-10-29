@@ -66,7 +66,7 @@ class SplashPageWidget extends StatelessWidget {
               !controller.videoFailed.value) {
             return AnimatedOpacity(
               opacity: controller.isVideoPlaying.value ? 1.0 : 0.0,
-              duration: const Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 400),
               child: FittedBox(
                 fit: BoxFit.cover,
                 child: SizedBox(

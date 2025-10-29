@@ -1,6 +1,5 @@
 import 'package:elkitap/modules/genre/view/genrs_page_view.dart';
 import 'package:elkitap/modules/store/views/all_geners_view.dart';
-import 'package:elkitap/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
