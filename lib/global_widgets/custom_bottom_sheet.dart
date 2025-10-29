@@ -35,7 +35,8 @@ class CustomBottomSheet extends StatelessWidget {
 
               // Header
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16,vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Row(
                   children: [
                     GestureDetector(
@@ -63,8 +64,6 @@ class CustomBottomSheet extends StatelessWidget {
                 ),
               ),
 
-              
-
               // Content
               Expanded(
                 child: ListView(
@@ -75,11 +74,11 @@ class CustomBottomSheet extends StatelessWidget {
                       'Legal Terms of Use',
                       style: TextStyle(
                         fontSize: 32,
-                        fontFamily: 'New York',
+                        fontFamily: 'NewYork',
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    
+
                     Text(
                       'Last updated on 1/12/2025',
                       style: TextStyle(
@@ -114,7 +113,7 @@ class CustomBottomSheet extends StatelessWidget {
           'General Rules',
           style: TextStyle(
             fontSize: 20,
-            fontFamily: 'New York',
+            fontFamily: 'NewYork',
             fontWeight: FontWeight.bold,
           ),
         ),

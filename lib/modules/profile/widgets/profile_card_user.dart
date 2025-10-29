@@ -50,7 +50,7 @@ class ProfileCardUser extends StatelessWidget {
                     "Murat Sapayev",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'New York',
+                        fontFamily: 'NewYork',
                         fontSize: 20),
                   ),
                   SizedBox(height: 4),
@@ -63,7 +63,7 @@ class ProfileCardUser extends StatelessWidget {
               Row(
                 children: [
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       _showEditAccountSheet(context);
                     },
                     child: Text(

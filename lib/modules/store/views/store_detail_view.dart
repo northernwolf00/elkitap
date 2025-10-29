@@ -168,7 +168,9 @@ class BookDetailView extends StatelessWidget {
                               color: controller.isAddedToWantToRead.value
                                   ? Colors.white
                                   : Theme.of(context).brightness ==
-                                          Brightness.dark ?Colors.white : Colors.black54,
+                                          Brightness.dark
+                                      ? Colors.white
+                                      : Colors.black54,
                             ),
                           ),
                         )),
@@ -180,16 +182,14 @@ class BookDetailView extends StatelessWidget {
                         width: 34,
                         height: 34,
                         decoration: BoxDecoration(
-                          color: Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? Colors.grey[700]
-                                      : Colors.grey[200],
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.grey[700]
+                              : Colors.grey[200],
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(
                           size: 18,
                           Icons.more_horiz,
-                         
                         ),
                       ),
                     ),
@@ -240,10 +240,9 @@ class BookDetailView extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? Colors.grey[700]
-                                      : Colors.grey[200],
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.grey[700]
+                      : Colors.grey[200],
                   borderRadius: BorderRadius.circular(20),
                   // boxShadow: [
                   //   BoxShadow(
@@ -256,13 +255,14 @@ class BookDetailView extends StatelessWidget {
                 child: Obx(() => Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(Icons.language,
-                            size: 18,),
+                        const Icon(
+                          Icons.language,
+                          size: 18,
+                        ),
                         const SizedBox(width: 6),
                         Text(
                           controller.selectedLanguage.value,
-                          style: const TextStyle(
-                             fontSize: 16),
+                          style: const TextStyle(fontSize: 16),
                         ),
                       ],
                     )),
@@ -293,18 +293,21 @@ class BookDetailView extends StatelessWidget {
                 children: const [
                   Text(
                     "Mark Manson",
-                    style: TextStyle( fontSize: 16),
+                    style: TextStyle(fontSize: 16),
                   ),
                   SizedBox(width: 4),
-                  Icon(Icons.chevron_right, size: 18,)
+                  Icon(
+                    Icons.chevron_right,
+                    size: 18,
+                  )
                 ],
               ),
             ),
             const SizedBox(height: 8),
             GestureDetector(
-              child:  Text(
+              child: Text(
                 "Health, Mind & Body • 18+",
-                style: TextStyle( fontSize: 14, color: Colors.grey[300]),
+                style: TextStyle(fontSize: 14, color: Colors.grey[300]),
               ),
             ),
             const SizedBox(height: 24),
@@ -320,7 +323,7 @@ class BookDetailView extends StatelessWidget {
                       //   startHref: '',
                       //   assetPath: 'assets/books/7.epub',
                       // ));
-                      Get.to(() => BookLibraryScreen());
+                      Get.to(() => EpubReaderScreen());
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 14),
@@ -421,7 +424,6 @@ class BookDetailView extends StatelessWidget {
               "Сегодня в рубрике «Профессии» наш гость — региональный директор Üйрекçi. "
               "Он расскажет о трёх книгах, которые научат договариваться, продавать и понимать...",
               style: TextStyle(
-               
                 fontSize: 15,
                 height: 1.5,
               ),

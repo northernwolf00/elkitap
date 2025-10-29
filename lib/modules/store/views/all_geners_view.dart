@@ -29,18 +29,17 @@ class AllGenresView extends StatelessWidget {
     ];
 
     return Scaffold(
-   
       appBar: AppBar(
-      
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios, ),
+          icon: const Icon(
+            Icons.arrow_back_ios,
+          ),
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
           'Back',
           style: TextStyle(
-            
             fontSize: 17,
             fontWeight: FontWeight.w400,
           ),
@@ -56,22 +55,20 @@ class AllGenresView extends StatelessWidget {
               'Genres',
               style: TextStyle(
                 fontSize: 34,
-                fontFamily: 'New York',
+                fontFamily: 'NewYork',
                 fontWeight: FontWeight.bold,
-               
               ),
             ),
           ),
           Expanded(
             child: ListView.separated(
               itemCount: genres.length,
-              separatorBuilder:
-                  (context, index) => const Divider(
-                    height: 1,
-                    thickness: 0.5,
-                    indent: 16,
-                    endIndent: 16,
-                  ),
+              separatorBuilder: (context, index) => const Divider(
+                height: 1,
+                thickness: 0.5,
+                indent: 16,
+                endIndent: 16,
+              ),
               itemBuilder: (context, index) {
                 return ListTile(
                   contentPadding: const EdgeInsets.symmetric(
@@ -83,7 +80,6 @@ class AllGenresView extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w400,
-                     
                     ),
                   ),
                   trailing: const Icon(Icons.chevron_right, color: Colors.grey),

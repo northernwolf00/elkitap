@@ -27,7 +27,7 @@ class RecentlyOpenedSection extends StatelessWidget {
             "Recently Opened",
             style: TextStyle(
               fontSize: 20,
-              fontFamily: 'New York',
+              fontFamily: 'NewYork',
               fontWeight: FontWeight.bold,
             ),
           ),

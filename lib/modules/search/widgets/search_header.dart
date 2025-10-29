@@ -15,21 +15,21 @@ class SearchHeader extends StatelessWidget {
           "Search",
           style: TextStyle(
             fontSize: 34,
-            fontFamily: 'New York',
+            fontFamily: 'NewYork',
             fontWeight: FontWeight.bold,
           ),
         ),
         const SizedBox(height: 16),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             Get.to(() => SearchingViewScreen());
           },
           child: Container(
             height: 50,
             decoration: BoxDecoration(
               color: Theme.of(context).brightness == Brightness.dark
-    ? Colors.grey[800] 
-    : Colors.grey[100],
+                  ? Colors.grey[800]
+                  : Colors.grey[100],
               borderRadius: BorderRadius.circular(16),
             ),
             child: Row(
@@ -67,7 +67,6 @@ class SearchHeader extends StatelessWidget {
                         errorBorder: InputBorder.none,
                         disabledBorder: InputBorder.none,
                       ),
-          
                       onChanged: (_) {
                         Get.to(() => SearchingViewScreen());
                       },

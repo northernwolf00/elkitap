@@ -67,7 +67,7 @@ class _TabItem extends StatelessWidget {
             text,
             style: TextStyle(
               fontSize: 28,
-              fontFamily: 'New York',
+              fontFamily: 'NewYork',
               fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
               color: isSelected
                   ? Theme.of(context).brightness == Brightness.dark

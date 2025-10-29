@@ -41,7 +41,7 @@ class _ListProfileWidgetState extends State<ListProfileWidget> {
                   'Professionals read',
                   style: TextStyle(
                     fontSize: 20,
-                    fontFamily: 'New York',
+                    fontFamily: 'NewYork',
                     fontWeight: FontWeight.w700,
                   ),
                 ),

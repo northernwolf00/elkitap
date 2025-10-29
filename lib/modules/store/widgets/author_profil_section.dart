@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 
-
 class AuthorProfileSection extends StatefulWidget {
   const AuthorProfileSection({super.key});
 
@@ -79,7 +78,7 @@ class _AuthorProfileSectionState extends State<AuthorProfileSection> {
                 'Merdan Durnayew',
                 style: TextStyle(
                   fontSize: 28,
-                  fontFamily: 'New York',
+                  fontFamily: 'NewYork',
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -93,7 +92,6 @@ class _AuthorProfileSectionState extends State<AuthorProfileSection> {
                 ),
               ),
               const SizedBox(height: 16),
-
               RichText(
                 text: TextSpan(
                   style: TextStyle(
@@ -126,8 +124,3 @@ class _AuthorProfileSectionState extends State<AuthorProfileSection> {
     );
   }
 }
-
-
-
-
-

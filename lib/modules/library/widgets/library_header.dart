@@ -16,7 +16,7 @@ class LibraryHeader extends StatelessWidget {
         const Text(
           "My Library",
           style: TextStyle(
-            fontFamily: 'New York',
+            fontFamily: 'NewYork',
             fontSize: 34,
             fontWeight: FontWeight.bold,
           ),

@@ -25,13 +25,15 @@ class TopOfWeekSection extends StatelessWidget {
           const SizedBox(height: 22),
           GestureDetector(
             onTap: () {
-              Get.to(() => BooksGridScreen(title: "Top of the week",));
+              Get.to(() => BooksGridScreen(
+                    title: "Top of the week",
+                  ));
             },
             child: const Text(
               "Top of the week",
               style: TextStyle(
                 fontSize: 20,
-                fontFamily: 'New York',
+                fontFamily: 'NewYork',
                 fontWeight: FontWeight.bold,
               ),
             ),

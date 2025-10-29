@@ -178,7 +178,7 @@ class AudiobookPlayerScreen extends StatelessWidget {
                         'Chapter 1',
                         style: TextStyle(
                           color: Colors.white,
-                          fontFamily: 'New York',
+                          fontFamily: 'NewYork',
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),

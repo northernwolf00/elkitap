@@ -43,7 +43,7 @@ class SplashPageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     controller.initializeVideo();
-    Future.delayed(const Duration(seconds: 4), () async {
+    Future.delayed(const Duration(seconds: 3), () async {
       Get.off(() => BottomNavScreen());
     });
 

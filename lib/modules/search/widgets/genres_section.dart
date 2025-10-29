@@ -34,7 +34,7 @@ class GenresSection extends StatelessWidget {
           "Genres",
           style: TextStyle(
             fontSize: 20,
-            fontFamily: 'New York',
+            fontFamily: 'NewYork',
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -43,15 +43,15 @@ class GenresSection extends StatelessWidget {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: genres.length,
-          separatorBuilder:
-              (_, __) => Container(height: 1, color: Colors.grey[200]),
+          separatorBuilder: (_, __) =>
+              Container(height: 1, color: Colors.grey[200]),
           itemBuilder: (context, index) {
             return ListTile(
               contentPadding: EdgeInsets.zero,
               title: Text(genres[index]),
               trailing: const Icon(Icons.arrow_forward_ios, size: 16),
               onTap: () {
-                 Get.to(GenrsDetailViewScreen());
+                Get.to(GenrsDetailViewScreen());
               },
             );
           },

@@ -88,22 +88,18 @@ class _ProfesionalReadersProfilState extends State<ProfesionalReadersProfil> {
                                 colors: Theme.of(context).brightness ==
                                         Brightness.dark
                                     ? [
-                                       
                                         Colors.black.withOpacity(0.0),
                                         Colors.black.withOpacity(0.3),
                                         Colors.black.withOpacity(0.7),
                                         Colors.black.withOpacity(0.95),
-                                        Colors
-                                            .black, 
+                                        Colors.black,
                                       ]
                                     : [
-                                       
                                         Colors.white.withOpacity(0.0),
                                         Colors.white.withOpacity(0.3),
                                         Colors.white.withOpacity(0.7),
                                         Colors.white.withOpacity(0.95),
-                                        Colors
-                                            .white,
+                                        Colors.white,
                                       ],
                                 stops: const [0.0, 0.3, 0.6, 0.85, 1.0],
                               ),
@@ -123,7 +119,7 @@ class _ProfesionalReadersProfilState extends State<ProfesionalReadersProfil> {
                             'Merdan Durnayew',
                             style: TextStyle(
                               fontSize: 28,
-                              fontFamily: 'New York',
+                              fontFamily: 'NewYork',
                               fontWeight: FontWeight.bold,
                             ),
                           ),

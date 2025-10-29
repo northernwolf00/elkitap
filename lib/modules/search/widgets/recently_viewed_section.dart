@@ -25,7 +25,7 @@ class RecentlyViewedSection extends StatelessWidget {
               "Recently Viewed",
               style: TextStyle(
                 fontSize: 20,
-                fontFamily: 'New York',
+                fontFamily: 'NewYork',
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -44,14 +44,13 @@ class RecentlyViewedSection extends StatelessWidget {
             separatorBuilder: (_, __) => const SizedBox(width: 12),
             itemBuilder: (context, index) {
               return GestureDetector(
-                onTap: (){
-                     Get.to(() => BookDetailView());
+                onTap: () {
+                  Get.to(() => BookDetailView());
                 },
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: SizedBox(
                     width: 110,
-                
                     child: Image.asset(books[index], fit: BoxFit.cover),
                   ),
                 ),

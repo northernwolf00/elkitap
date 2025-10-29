@@ -4,6 +4,7 @@ import 'package:elkitap/core/init/translation_service.dart';
 import 'package:elkitap/core/theme/custom_dark_theme.dart';
 import 'package:elkitap/core/theme/custom_light_theme.dart';
 import 'package:elkitap/modules/splash/views/splash_view.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,7 +18,7 @@ Future<void> main() async {
 
   await GetStorage.init();
   await ApplicationInitialize.initialize();
-
+  await Firebase.initializeApp();
   Get.put(ThemeController());
 
   runApp(MyApp());

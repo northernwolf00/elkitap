@@ -1,5 +1,9 @@
 plugins {
     id("com.android.application")
+    // START: FlutterFire Configuration
+    id("com.google.gms.google-services")
+    id("com.google.firebase.firebase-perf")
+    // END: FlutterFire Configuration
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
@@ -11,13 +15,22 @@ android {
     // ndkVersion = "29.0.14033849"
     
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+    // compileOptions {
+    //     sourceCompatibility = JavaVersion.VERSION_11
+    //     targetCompatibility = JavaVersion.VERSION_11
+    // }
+
+    // kotlinOptions {
+    //     jvmTarget = JavaVersion.VERSION_11.toString()
+    // }
+   compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+        isCoreLibraryDesugaringEnabled = true
     }
 
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_11.toString()
+        jvmTarget = "1.8"
     }
 
     defaultConfig {
@@ -44,4 +57,9 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    // your other dependencies
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
 }
