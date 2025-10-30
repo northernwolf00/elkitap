@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 
 class BookVerticalCart extends StatelessWidget {
@@ -22,6 +23,7 @@ class BookVerticalCart extends StatelessWidget {
             "${index + 1}",
             style: const TextStyle(
               fontSize: 18,
+               fontFamily: StringConstants.SFPro,
               fontWeight: FontWeight.bold,
             ),
           ),

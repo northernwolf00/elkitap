@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:elkitap/modules/store/controllers/store_controller.dart';
 import 'package:flutter/material.dart';
@@ -152,6 +153,7 @@ class DialogUtils {
                 isAdded ? 'Added' : 'Removed',
                 style: const TextStyle(
                   fontSize: 28,
+                   fontFamily: StringConstants.SFPro,
                   fontWeight: FontWeight.bold,
                  
                 ),
@@ -164,7 +166,7 @@ class DialogUtils {
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 16,
-                 
+                  fontFamily: StringConstants.SFPro,
                   height: 1.4,
                 ),
               ),
@@ -241,7 +243,7 @@ class DialogUtils {
                                             language,
                                             style: const TextStyle(
                                               fontSize: 17,
-                                          
+                                           fontFamily: StringConstants.SFPro,
                                               fontWeight: FontWeight.w400,
                                             ),
                                           ),
@@ -296,6 +298,7 @@ class DialogUtils {
                 style: TextStyle(
                   fontSize: 17,
                   color: titleColor ,
+                   fontFamily: StringConstants.SFPro,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -370,6 +373,7 @@ class DialogUtils {
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: Colors.black87,
+                               fontFamily: StringConstants.SFPro,
                               height: 1.3,
                             ),
                           ),
@@ -378,6 +382,7 @@ class DialogUtils {
                             'Mark Manson',
                             style: TextStyle(
                               fontSize: 16,
+                               fontFamily: StringConstants.SFPro,
                               color: Colors.grey[600],
                             ),
                           ),
@@ -420,6 +425,7 @@ class DialogUtils {
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
+                         fontFamily: StringConstants.SFPro,
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -428,6 +434,7 @@ class DialogUtils {
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.grey[600],
+                         fontFamily: StringConstants.SFPro,
                         height: 1.5,
                       ),
                     ),
@@ -437,6 +444,7 @@ class DialogUtils {
                       'Basic Info',
                       style: TextStyle(
                         fontSize: 20,
+                         fontFamily: StringConstants.SFPro,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
                       ),
@@ -473,6 +481,7 @@ class DialogUtils {
                   label,
                   style: TextStyle(
                     fontSize: 15,
+                     fontFamily: StringConstants.SFPro,
                     color: Colors.grey[600],
                   ),
                 ),
@@ -484,6 +493,7 @@ class DialogUtils {
                     fontSize: 15,
                     color: Colors.black87,
                     fontWeight: FontWeight.w500,
+                     fontFamily: StringConstants.SFPro,
                   ),
                 ),
               ),

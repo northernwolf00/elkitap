@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/core/theme/app_colors.dart';
 import 'package:elkitap/modules/library/controllers/library_controller.dart';
 import 'package:elkitap/modules/library/model/book_moc.dart';
@@ -101,6 +102,7 @@ class _BookListItemState extends State<BookListItem> {
                           widget.book.title,
                           style: const TextStyle(
                             fontSize: 16,
+                             fontFamily: StringConstants.SFPro,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -109,6 +111,7 @@ class _BookListItemState extends State<BookListItem> {
                           widget.book.author,
                           style: TextStyle(
                             fontSize: 14,
+                             fontFamily: StringConstants.SFPro,
                             color: Colors.grey[600],
                           ),
                         ),

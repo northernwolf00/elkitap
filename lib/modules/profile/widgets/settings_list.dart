@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/core/init/theme_controller.dart';
 import 'package:elkitap/global_widgets/custom_bottom_sheet.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
@@ -98,7 +99,7 @@ class _SettingsListState extends State<SettingsList> {
           padding: EdgeInsets.symmetric(vertical: 10),
           child: Text(
             "Settings",
-            style: TextStyle(fontSize: 16, color: Colors.grey),
+            style: TextStyle(fontSize: 16, fontFamily: StringConstants.SFPro, color: Colors.grey),
           ),
         ),
         Container(height: 1, color: Colors.grey[200]),
@@ -148,6 +149,7 @@ class _SettingsListState extends State<SettingsList> {
                       title,
                       style: const TextStyle(
                         fontSize: 16,
+                         fontFamily: StringConstants.SFPro,
                       ),
                     ),
                     trailing: Row(
@@ -160,6 +162,7 @@ class _SettingsListState extends State<SettingsList> {
                             style: const TextStyle(
                               color: Colors.grey,
                               fontSize: 15,
+                               fontFamily: StringConstants.SFPro,
                             ),
                           ),
                         Icon(Icons.chevron_right, color: Colors.grey[350]),
@@ -327,6 +330,7 @@ class _SettingsListState extends State<SettingsList> {
                     item.title,
                     style: const TextStyle(
                       fontSize: 16,
+                       fontFamily: StringConstants.SFPro,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -361,6 +365,7 @@ class _SettingsListState extends State<SettingsList> {
           title: const Text(
             "Do you really want to log out?",
             style: TextStyle(
+               fontFamily: StringConstants.SFPro,
               fontWeight: FontWeight.bold, // Make title bold
               fontSize: 17, // Adjust font size as needed
             ),
@@ -368,6 +373,7 @@ class _SettingsListState extends State<SettingsList> {
           content: const Text(
             "If you log out, you won't be able to read your favorite books.",
             style: TextStyle(
+               fontFamily: StringConstants.SFPro,
               fontSize: 13, // Adjust font size as needed
             ),
           ),
@@ -380,6 +386,7 @@ class _SettingsListState extends State<SettingsList> {
               child: const Text(
                 "No",
                 style: TextStyle(
+                   fontFamily: StringConstants.SFPro,
                   color: CupertinoColors.activeBlue, // Default blue color
                   fontWeight: FontWeight.w500, // Medium weight
                 ),
@@ -396,6 +403,7 @@ class _SettingsListState extends State<SettingsList> {
               child: const Text(
                 "Yes",
                 style: TextStyle(
+                   fontFamily: StringConstants.SFPro,
                   // The isDestructiveAction property handles the red color
                   fontWeight: FontWeight.w500, // Medium weight
                 ),

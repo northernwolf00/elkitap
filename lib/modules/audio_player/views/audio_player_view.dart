@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:elkitap/modules/audio_player/controllers/audio_player_controller.dart';
 import 'package:flutter/material.dart';
@@ -178,7 +179,7 @@ class AudiobookPlayerScreen extends StatelessWidget {
                         'Chapter 1',
                         style: TextStyle(
                           color: Colors.white,
-                          fontFamily: 'NewYork',
+                          fontFamily: StringConstants.NewYork,
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
@@ -188,6 +189,7 @@ class AudiobookPlayerScreen extends StatelessWidget {
                         'The Subtle art of not giving - Mark Manson',
                         style: TextStyle(
                           color: Colors.white70,
+                           fontFamily: StringConstants.SFPro,
                           fontSize: 14,
                         ),
                       ),
@@ -240,15 +242,18 @@ class AudiobookPlayerScreen extends StatelessWidget {
                           Text(
                             controller
                                 .formatDuration(controller.position.value),
-                            style: const TextStyle(color: Colors.white70),
+                            style: const TextStyle(color: Colors.white70,
+                             fontFamily: StringConstants.SFPro,),
                           ),
                           Text(
                             '${controller.formatDuration(controller.duration.value)}',
-                            style: const TextStyle(color: Colors.white70),
+                            style: const TextStyle(color: Colors.white70,
+                             fontFamily: StringConstants.SFPro,),
                           ),
                           Text(
                             '-${controller.formatDuration(controller.duration.value - controller.position.value)}',
-                            style: const TextStyle(color: Colors.white70),
+                            style: const TextStyle(color: Colors.white70,
+                             fontFamily: StringConstants.SFPro,),
                           ),
                         ],
                       ),
@@ -322,6 +327,7 @@ class AudiobookPlayerScreen extends StatelessWidget {
                           color: Colors.white,
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
+                           fontFamily: StringConstants.SFPro,
                         ),
                       ),
                     ),

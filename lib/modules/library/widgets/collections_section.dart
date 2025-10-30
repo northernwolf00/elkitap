@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:elkitap/modules/library/views/notes_view.dart';
 import 'package:elkitap/modules/library/views/reading_list_view.dart';
@@ -24,7 +25,9 @@ class CollectionsSection extends StatelessWidget {
         children: [
           const Text(
             "Collections",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18,
+             fontFamily: StringConstants.NewYork,
+             fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 12),
           Container(height: 1, color: Colors.grey[200]),
@@ -46,7 +49,8 @@ class CollectionsSection extends StatelessWidget {
                   ),
                   title: Text(
                     item["title"] as String,
-                    style: const TextStyle(fontWeight: FontWeight.w500),
+                    style: const TextStyle(fontWeight: FontWeight.w500,
+                     fontFamily: StringConstants.SFPro,),
                   ),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -56,6 +60,7 @@ class CollectionsSection extends StatelessWidget {
                         style: const TextStyle(
                           color: Colors.grey,
                           fontWeight: FontWeight.w600,
+                           fontFamily: StringConstants.SFPro,
                           fontSize: 16,
                         ),
                       ),

@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/library/controllers/note_controller.dart';
 import 'package:elkitap/modules/library/model/note_moc.dart';
 import 'package:elkitap/modules/library/widgets/note_cart.dart';
@@ -46,6 +47,7 @@ class NoteDetailAppBar extends StatelessWidget {
             'Note',
             style: TextStyle(
               fontSize: 17,
+               fontFamily: StringConstants.SFPro,
               fontWeight: FontWeight.w600,
             ),
           ),
@@ -54,6 +56,7 @@ class NoteDetailAppBar extends StatelessWidget {
             child: Text(
               'Done',
               style: TextStyle(
+                 fontFamily: StringConstants.SFPro,
                 color: Colors.blue,
                 fontSize: 17,
               ),

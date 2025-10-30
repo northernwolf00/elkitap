@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -93,7 +94,7 @@ class SearchingHeader extends StatelessWidget {
             },
              child: Text('Cancel',
               style: TextStyle(
-             
+              fontFamily: StringConstants.SFPro,
                 fontSize: 16
               ),),
            ),

@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 
 class ProfileCard extends StatelessWidget {
@@ -60,6 +61,7 @@ class ProfileCard extends StatelessWidget {
             role.toUpperCase(),
             style: TextStyle(
               fontSize: 12,
+               fontFamily: StringConstants.SFPro,
               color: Colors.grey[600],
               letterSpacing: 1.0,
             ),

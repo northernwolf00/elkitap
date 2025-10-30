@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/store/views/store_detail_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,13 +26,15 @@ class RecentlyViewedSection extends StatelessWidget {
               "Recently Viewed",
               style: TextStyle(
                 fontSize: 20,
-                fontFamily: 'NewYork',
+                fontFamily: StringConstants.NewYork,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
               "Clear",
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+              style: TextStyle(fontSize: 17, 
+               fontFamily: StringConstants.SFPro,
+              fontWeight: FontWeight.w500),
             ),
           ],
         ),

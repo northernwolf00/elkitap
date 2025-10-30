@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -48,6 +49,7 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                           'Back',
                           style: TextStyle(
                             fontSize: 17,
+                             fontFamily: StringConstants.SFPro,
                             fontWeight: FontWeight.w400,
                           ),
                         ),
@@ -68,7 +70,8 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                       children: const [
                         Icon(Icons.language, size: 20),
                         SizedBox(width: 6),
-                        Text('English', style: TextStyle(fontSize: 15)),
+                        Text('English', style: TextStyle(fontSize: 15,
+                         fontFamily: StringConstants.SFPro,)),
                       ],
                     ),
                   ),
@@ -102,13 +105,16 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
          
             const Text(
               'Phone Number',
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600),
+              style: TextStyle(fontSize: 28,
+               fontFamily: StringConstants.SFPro,
+               fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 8),
             const Text(
               'Enter your number to login your account.',
               style: TextStyle(
                 fontSize: 15,
+                 fontFamily: StringConstants.SFPro,
                 color: Colors.grey,
                 fontWeight: FontWeight.w400,
               ),
@@ -121,7 +127,8 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                 children: [
                   const Text(
                     'Phone number',
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: 15,
+                     fontFamily: StringConstants.SFPro, fontWeight: FontWeight.w500),
                   ),
                   const SizedBox(height: 12),
                   Container(
@@ -142,6 +149,7 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                           '+993',
                           style: TextStyle(
                             fontSize: 17,
+                             fontFamily: StringConstants.SFPro,
                             fontWeight: FontWeight.w400,
                           ),
                         ),
@@ -188,6 +196,7 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                     'Continue',
                     style: TextStyle(
                       fontSize: 17,
+                       fontFamily: StringConstants.SFPro,
                       fontWeight: FontWeight.w600,
                       color: Color(0xFFC7C7CC),
                     ),
@@ -203,6 +212,7 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                 text: const TextSpan(
                   style: TextStyle(
                     fontSize: 13,
+                     fontFamily: StringConstants.SFPro,
                     color: Colors.grey,
                     fontWeight: FontWeight.w400,
                   ),

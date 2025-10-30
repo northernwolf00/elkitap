@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,7 @@ class NotSubscribedView extends StatelessWidget {
         Text(
           "Not subscribed",
           style: const TextStyle(
+             fontFamily: StringConstants.SFPro,
             fontSize: 14,
           ),
         ),
@@ -34,7 +36,9 @@ class NotSubscribedView extends StatelessWidget {
               ),
             ),
             child: const Text("Subscribe",
-                style: TextStyle(fontSize: 14, color: Colors.white)),
+                style: TextStyle(fontSize: 14,
+                 fontFamily: StringConstants.SFPro,
+                 color: Colors.white)),
           ),
         ),
       ],

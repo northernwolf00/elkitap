@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 
 class AuthorAppBar extends StatelessWidget {
@@ -23,7 +24,8 @@ class AuthorAppBar extends StatelessWidget {
                 SizedBox(width: 4),
                 Text(
                   'Back',
-                  style: TextStyle(fontSize: 16),
+                  style: TextStyle(fontSize: 16,
+                   fontFamily: StringConstants.SFPro,),
                 ),
               ],
             ),

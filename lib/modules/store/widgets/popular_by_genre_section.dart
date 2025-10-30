@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/genre/view/books_grid_screen_view.dart';
 import 'package:elkitap/modules/store/views/store_detail_view.dart';
 import 'package:elkitap/modules/store/widgets/book_card_widget.dart';
@@ -28,7 +29,7 @@ class PopularByGenreSection extends StatelessWidget {
             "Popular by Genre",
             style: TextStyle(
               fontSize: 20,
-              fontFamily: 'NewYork',
+              fontFamily: StringConstants.NewYork,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -54,7 +55,7 @@ class PopularByGenreSection extends StatelessWidget {
                             genre,
                             style: const TextStyle(
                               fontSize: 18,
-                              fontFamily: 'NewYork',
+                              fontFamily: StringConstants.NewYork,
                               fontWeight: FontWeight.bold,
                             ),
                           ),

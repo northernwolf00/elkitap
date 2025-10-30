@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/genre/view/genrs_page_view.dart';
 
 import 'package:flutter/material.dart';
@@ -41,6 +42,7 @@ class AllGenresView extends StatelessWidget {
           'Back',
           style: TextStyle(
             fontSize: 17,
+             fontFamily: StringConstants.SFPro,
             fontWeight: FontWeight.w400,
           ),
         ),
@@ -55,7 +57,7 @@ class AllGenresView extends StatelessWidget {
               'Genres',
               style: TextStyle(
                 fontSize: 34,
-                fontFamily: 'NewYork',
+                fontFamily: StringConstants.NewYork,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -80,6 +82,7 @@ class AllGenresView extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w400,
+                       fontFamily: StringConstants.SFPro,
                     ),
                   ),
                   trailing: const Icon(Icons.chevron_right, color: Colors.grey),

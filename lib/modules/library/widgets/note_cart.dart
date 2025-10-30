@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/library/controllers/note_controller.dart';
 import 'package:elkitap/modules/library/model/note_moc.dart';
 import 'package:elkitap/modules/library/views/note_datail_view.dart';
@@ -67,11 +68,15 @@ class NoteCardHeader extends StatelessWidget {
             children: [
               Text(
                 note.title,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                style: TextStyle(fontSize: 16, 
+                 fontFamily: StringConstants.SFPro,
+                fontWeight: FontWeight.w600),
               ),
               Text(
                 note.author,
-                style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                style: TextStyle(fontSize: 14, 
+                 fontFamily: StringConstants.SFPro,
+                color: Colors.grey[600]),
               ),
             ],
           ),
@@ -100,7 +105,10 @@ class NoteMenuButton extends StatelessWidget {
                 children: [
                   Icon(Icons.book_outlined),
                   SizedBox(width: 12),
-                  Text('Open book'),
+                  Text('Open book',
+                  style: TextStyle(
+                     fontFamily: StringConstants.SFPro,
+                  ),),
                 ],
               ),
             ),
@@ -110,7 +118,10 @@ class NoteMenuButton extends StatelessWidget {
                 children: [
                   Icon(Icons.share_outlined),
                   SizedBox(width: 12),
-                  Text('Share'),
+                  Text('Share',
+                  style: TextStyle(
+                     fontFamily: StringConstants.SFPro,
+                  ),),
                 ],
               ),
             ),
@@ -120,7 +131,10 @@ class NoteMenuButton extends StatelessWidget {
                 children: [
                   Icon(Icons.edit_outlined),
                   SizedBox(width: 12),
-                  Text('Edit'),
+                  Text('Edit',
+                  style: TextStyle(
+                     fontFamily: StringConstants.SFPro,
+                  ),),
                 ],
               ),
             ),
@@ -130,7 +144,8 @@ class NoteMenuButton extends StatelessWidget {
                 children: [
                   Icon(Icons.delete_outline, color: Colors.red),
                   SizedBox(width: 12),
-                  Text('Delete', style: TextStyle(color: Colors.red)),
+                  Text('Delete', style: TextStyle(color: Colors.red,
+                   fontFamily: StringConstants.SFPro,)),
                 ],
               ),
             ),
@@ -163,12 +178,16 @@ class NoteCardContent extends StatelessWidget {
         children: [
           Text(
             note.content,
-            style: TextStyle(fontSize: 15, height: 1.5, color: Colors.black87),
+            style: TextStyle(fontSize: 15,
+             fontFamily: StringConstants.NewYork,
+             height: 1.5, color: Colors.black87),
           ),
           const SizedBox(height: 12),
           Text(
             note.comment,
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+            style: TextStyle(fontSize: 15,
+             fontFamily: StringConstants.SFPro,
+             fontWeight: FontWeight.w600),
           ),
         ],
       ),
@@ -185,7 +204,8 @@ class NoteCardFooter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       '${note.timestamp.hour}:${note.timestamp.minute.toString().padLeft(2, '0')} ${_getMonthName(note.timestamp.month)} ${note.timestamp.day}, ${note.timestamp.year}',
-      style: TextStyle(fontSize: 13, color: Colors.grey[500]),
+      style: TextStyle(fontSize: 13, color: Colors.grey[500],
+       fontFamily: StringConstants.SFPro,),
     );
   }
 

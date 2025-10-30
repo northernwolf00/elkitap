@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 
@@ -78,7 +79,7 @@ class _AuthorProfileSectionState extends State<AuthorProfileSection> {
                 'Merdan Durnayew',
                 style: TextStyle(
                   fontSize: 28,
-                  fontFamily: 'NewYork',
+                  fontFamily: StringConstants.NewYork,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -88,6 +89,7 @@ class _AuthorProfileSectionState extends State<AuthorProfileSection> {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
+                   fontFamily: StringConstants.SFPro,
                   color: Colors.grey,
                 ),
               ),
@@ -106,6 +108,7 @@ class _AuthorProfileSectionState extends State<AuthorProfileSection> {
                       style: const TextStyle(
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
+                         fontFamily: StringConstants.SFPro,
                       ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {

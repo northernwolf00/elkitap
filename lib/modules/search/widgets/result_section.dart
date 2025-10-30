@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 
 class ResultSectionScreen extends StatelessWidget {
@@ -42,7 +43,7 @@ class ResultSectionScreen extends StatelessWidget {
               const Text(
                 'Authors',
                 style: TextStyle(
-                
+                 fontFamily: StringConstants.NewYork,
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
                 ),
@@ -63,7 +64,7 @@ class ResultSectionScreen extends StatelessWidget {
                         title: Text(
                           authors[index]['name']!,
                           style: const TextStyle(
-                            
+                             fontFamily: StringConstants.SFPro,
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
                           ),
@@ -73,6 +74,7 @@ class ResultSectionScreen extends StatelessWidget {
                           style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 14,
+                             fontFamily: StringConstants.SFPro,
                           ),
                         ),
                         onTap: () {
@@ -94,7 +96,7 @@ class ResultSectionScreen extends StatelessWidget {
               const Text(
                 'Books',
                 style: TextStyle(
-                
+                 fontFamily: StringConstants.SFPro,
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
                 ),
@@ -122,7 +124,7 @@ class ResultSectionScreen extends StatelessWidget {
                         title: Text(
                           books[index]['title']!,
                           style: const TextStyle(
-                          
+                           fontFamily: StringConstants.SFPro,
                             fontSize: 18,
                             fontWeight: FontWeight.w600,
                           ),
@@ -132,6 +134,7 @@ class ResultSectionScreen extends StatelessWidget {
                           style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 14,
+                             fontFamily: StringConstants.SFPro,
                           ),
                         ),
                         onTap: () {

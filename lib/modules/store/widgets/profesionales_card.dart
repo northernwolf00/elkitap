@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/store/views/profesional_readers_profil.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,6 +42,7 @@ class ProfessionalCard extends StatelessWidget {
             role,
             style: TextStyle(
               color: Colors.grey[600],
+               fontFamily: StringConstants.SFPro,
               fontSize: 12,
               letterSpacing: 1.2,
             ),
@@ -57,6 +59,7 @@ class ProfessionalCard extends StatelessWidget {
                   name,
                   style: const TextStyle(
                     fontSize: 20,
+                     fontFamily: StringConstants.NewYork,
                     fontWeight: FontWeight.w600,
                   ),
                 ),

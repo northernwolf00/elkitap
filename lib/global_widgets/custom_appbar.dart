@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -39,6 +40,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                         leadingText!,
                         style: TextStyle(
                           fontSize: 17,
+                          
+                           fontFamily: StringConstants.SFPro,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -53,6 +56,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 title,
                 style: TextStyle(
                   fontSize: 18,
+                   fontFamily: StringConstants.SFPro,
                   fontWeight: FontWeight.bold,
                 ),
               ),

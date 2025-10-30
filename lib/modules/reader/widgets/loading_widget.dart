@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 
 class LoadingScreen extends StatefulWidget {
@@ -212,6 +213,7 @@ class _LoadingScreenState extends State<LoadingScreen>
                       'Loading...',
                       style: TextStyle(
                         fontSize: 18,
+                         fontFamily: StringConstants.SFPro,
                         fontWeight: FontWeight.w500,
                         color: Color(0xFF1A1A1A),
                       ),

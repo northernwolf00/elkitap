@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:elkitap/modules/library/controllers/library_controller.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,9 @@ PreferredSizeWidget customAppBar(
             ),
             const Text(
               'Back',
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+              style: TextStyle(fontSize: 17, 
+              fontFamily: StringConstants.SFPro,
+              fontWeight: FontWeight.w500),
             ),
           ],
         );
@@ -34,6 +37,7 @@ PreferredSizeWidget customAppBar(
                 ? 'Deselect All'
                 : 'Select All',
             style: TextStyle(
+              fontFamily: StringConstants.SFPro,
                 fontSize: 16,
                 color: Theme.of(context).brightness == Brightness.dark
                     ? Colors.white
@@ -117,7 +121,9 @@ PreferredSizeWidget customAppBar(
                               size: 18,
                             ),
                           const SizedBox(width: 8),
-                          const Text('Grid View', style: TextStyle()),
+                          const Text('Grid View', style: TextStyle(
+                             fontFamily: StringConstants.SFPro,
+                          )),
                           const Spacer(),
                           CustomIcon(
                               title: 'assets/icons/d8.svg',
@@ -144,7 +150,9 @@ PreferredSizeWidget customAppBar(
                               size: 18,
                             ),
                           const SizedBox(width: 8),
-                          const Text('List View', style: TextStyle()),
+                          const Text('List View', style: TextStyle(
+                             fontFamily: StringConstants.SFPro,
+                          )),
                           const Spacer(),
                           CustomIcon(
                               title: 'assets/icons/d9.svg',
@@ -179,6 +187,7 @@ PreferredSizeWidget customAppBar(
                   child: const Text(
                     'Remove',
                     style: TextStyle(
+                       fontFamily: StringConstants.SFPro,
                       color: Colors.red,
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
@@ -190,6 +199,7 @@ PreferredSizeWidget customAppBar(
                   child: Text(
                     'Done',
                     style: TextStyle(
+                       fontFamily: StringConstants.SFPro,
                       color: Theme.of(context).brightness == Brightness.dark
                           ? Colors.white
                           : Colors.black,

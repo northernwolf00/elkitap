@@ -43,7 +43,7 @@ class SplashPageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     controller.initializeVideo();
-    Future.delayed(const Duration(seconds: 3), () async {
+    Future.delayed(const Duration(seconds: 4), () async {
       Get.off(() => BottomNavScreen());
     });
 
@@ -66,7 +66,7 @@ class SplashPageWidget extends StatelessWidget {
               !controller.videoFailed.value) {
             return AnimatedOpacity(
               opacity: controller.isVideoPlaying.value ? 1.0 : 0.0,
-              duration: const Duration(milliseconds: 400),
+              duration: const Duration(milliseconds: 300),
               child: FittedBox(
                 fit: BoxFit.cover,
                 child: SizedBox(

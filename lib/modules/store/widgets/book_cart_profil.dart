@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -57,13 +58,16 @@ class BookCardProfRedares extends StatelessWidget {
                       title,
                       style: const TextStyle(
                         fontSize: 17,
+                         fontFamily: StringConstants.SFPro,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       author,
-                      style: TextStyle(fontSize: 14, color: Colors.grey[600]),
+                      style: TextStyle(fontSize: 14, 
+                       fontFamily: StringConstants.SFPro,
+                      color: Colors.grey[600]),
                     ),
                   ],
                 ),
@@ -94,6 +98,7 @@ class BookCardProfRedares extends StatelessWidget {
                   buttonText,
                   style: const TextStyle(
                     fontSize: 14,
+                     fontFamily: StringConstants.SFPro,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -121,6 +126,7 @@ class BookCardProfRedares extends StatelessWidget {
                   description,
                   style: TextStyle(
                     fontSize: 14,
+                     fontFamily: StringConstants.NewYork,
                     fontStyle: FontStyle.italic,
                     color: Colors.grey[700],
                     height: 1.4,

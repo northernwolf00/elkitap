@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/icon_constants.dart';
 import 'package:elkitap/global_widgets/custom_tabbar.dart';
 import 'package:elkitap/modules/store/widgets/featured_books_section.dart';
 import 'package:elkitap/modules/store/widgets/generic_list_widget.dart';
@@ -5,6 +6,7 @@ import 'package:elkitap/modules/store/widgets/list_profile_widget.dart';
 import 'package:elkitap/modules/store/widgets/popular_by_genre_section.dart';
 import 'package:elkitap/modules/store/widgets/top_of_week_section.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class StoreViewScreen extends StatefulWidget {
   const StoreViewScreen({super.key});
@@ -195,10 +197,7 @@ class _Header extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: const Text(
-            "elkitap",
-            style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-          ),
+          child: SvgPicture.asset(IconConstants.elkitap)
         ),
       ],
     );

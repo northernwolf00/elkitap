@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:elkitap/modules/audio_player/views/audio_player_view.dart';
 import 'package:elkitap/modules/reader/views/reader_view.dart';
@@ -90,6 +91,7 @@ class BookDetailView extends StatelessWidget {
                                   "Text",
                                   style: TextStyle(
                                     fontSize: 12,
+                                     fontFamily: StringConstants.SFPro,
                                     fontWeight: !controller.isAudio.value
                                         ? FontWeight.w500
                                         : FontWeight.normal,
@@ -122,6 +124,7 @@ class BookDetailView extends StatelessWidget {
                                   "Audio",
                                   style: TextStyle(
                                     fontSize: 12,
+                                     fontFamily: StringConstants.SFPro,
                                     fontWeight: controller.isAudio.value
                                         ? FontWeight.w600
                                         : FontWeight.normal,
@@ -262,7 +265,8 @@ class BookDetailView extends StatelessWidget {
                         const SizedBox(width: 6),
                         Text(
                           controller.selectedLanguage.value,
-                          style: const TextStyle(fontSize: 16),
+                          style: const TextStyle(fontSize: 16,
+                           fontFamily: StringConstants.SFPro,),
                         ),
                       ],
                     )),
@@ -278,6 +282,7 @@ class BookDetailView extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
+                  fontFamily: StringConstants.NewYork,
                   fontSize: 22,
                   height: 1.3,
                 ),
@@ -293,7 +298,8 @@ class BookDetailView extends StatelessWidget {
                 children: const [
                   Text(
                     "Mark Manson",
-                    style: TextStyle(fontSize: 16),
+                    style: TextStyle(fontSize: 16,
+                     fontFamily: StringConstants.SFPro,),
                   ),
                   SizedBox(width: 4),
                   Icon(
@@ -307,7 +313,9 @@ class BookDetailView extends StatelessWidget {
             GestureDetector(
               child: Text(
                 "Health, Mind & Body • 18+",
-                style: TextStyle(fontSize: 14, color: Colors.grey[300]),
+                style: TextStyle(fontSize: 14, 
+                 fontFamily: StringConstants.SFPro,
+                color: Colors.grey[200]),
               ),
             ),
             const SizedBox(height: 24),
@@ -340,6 +348,7 @@ class BookDetailView extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
+                           fontFamily: StringConstants.SFPro,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -367,6 +376,7 @@ class BookDetailView extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
+                           fontFamily: StringConstants.SFPro,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -402,6 +412,7 @@ class BookDetailView extends StatelessWidget {
                     "AI mazmuny",
                     style: TextStyle(
                       color: Colors.white,
+                       fontFamily: StringConstants.SFPro,
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
                     ),
@@ -416,7 +427,9 @@ class BookDetailView extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 "About",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style: TextStyle(fontWeight: FontWeight.bold,
+                 fontFamily: StringConstants.NewYork,
+                 fontSize: 20),
               ),
             ),
             const SizedBox(height: 12),
@@ -426,6 +439,7 @@ class BookDetailView extends StatelessWidget {
               style: TextStyle(
                 fontSize: 15,
                 height: 1.5,
+                 fontFamily: StringConstants.SFPro,
               ),
             ),
             // TextButton(

@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/library/model/book_moc.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -254,6 +255,7 @@ class ReadingListController extends GetxController {
                         style: TextStyle(
                           color: Colors.red,
                           fontSize: 18,
+                           fontFamily: StringConstants.SFPro,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -270,6 +272,7 @@ class ReadingListController extends GetxController {
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 18,
+                           fontFamily: StringConstants.SFPro,
                           fontWeight: FontWeight.w500,
                         ),
                       ),

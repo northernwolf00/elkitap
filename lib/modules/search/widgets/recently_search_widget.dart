@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 
 class RecentlySearchedScreen extends StatelessWidget {
@@ -20,7 +21,7 @@ class RecentlySearchedScreen extends StatelessWidget {
             const Text(
           'Recently searched',
           style: TextStyle(
-          
+           fontFamily: StringConstants.SFPro,
             fontSize: 22,
             fontWeight: FontWeight.bold,
           ),
@@ -33,6 +34,7 @@ class RecentlySearchedScreen extends StatelessWidget {
             child:  Text(
               'Clear',
               style: TextStyle(
+                 fontFamily: StringConstants.SFPro,
                 color: Theme.of(context).brightness == Brightness.dark
     ? Colors.white 
     : Colors.black,
@@ -54,8 +56,10 @@ class RecentlySearchedScreen extends StatelessWidget {
                   leading: const Icon(Icons.search, color: Colors.grey),
                   title: Text(
                     recentlySearched[index],
+                    
                     style: const TextStyle(
                       
+                       fontFamily: StringConstants.SFPro,
                       fontSize: 18,
                     ),
                   ),

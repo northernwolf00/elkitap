@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 
 
@@ -36,6 +37,7 @@ class PaymentHistoryBottomSheet extends StatelessWidget {
                   "Profile", // Text for 'Profile'
                   style: TextStyle(
                     fontSize: 18,
+                     fontFamily: StringConstants.SFPro,
                     color: Theme.of(context).textTheme.bodyLarge!.color,
                     fontWeight: FontWeight.w400,
                   ),
@@ -46,6 +48,7 @@ class PaymentHistoryBottomSheet extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 18,
+                       fontFamily: StringConstants.SFPro,
                       fontWeight: FontWeight.bold, // Make it bold as in the image
                       color: Theme.of(context).textTheme.bodyLarge!.color,
                     ),
@@ -177,6 +180,7 @@ class PaymentHistoryBottomSheet extends StatelessWidget {
                       status,
                       style: TextStyle(
                         fontSize: 16,
+                         fontFamily: StringConstants.SFPro,
                         fontWeight: FontWeight.w500, // Medium bold
                         color: statusColor,
                       ),
@@ -186,6 +190,7 @@ class PaymentHistoryBottomSheet extends StatelessWidget {
                       bankService,
                       style: TextStyle(
                         fontSize: 14,
+                         fontFamily: StringConstants.SFPro,
                         color: primaryTextColor.withOpacity(0.8), // Slightly less opaque
                       ),
                     ),
@@ -194,6 +199,7 @@ class PaymentHistoryBottomSheet extends StatelessWidget {
                       date,
                       style: TextStyle(
                         fontSize: 12,
+                         fontFamily: StringConstants.SFPro,
                         color: secondaryTextColor,
                       ),
                     ),
@@ -208,6 +214,7 @@ class PaymentHistoryBottomSheet extends StatelessWidget {
                     amount,
                     style: TextStyle(
                       fontSize: 16,
+                       fontFamily: StringConstants.SFPro,
                       fontWeight: FontWeight.w500, // Medium bold
                       color: primaryTextColor,
                     ),
@@ -217,6 +224,7 @@ class PaymentHistoryBottomSheet extends StatelessWidget {
                     duration,
                     style: TextStyle(
                       fontSize: 12,
+                       fontFamily: StringConstants.SFPro,
                       color: secondaryTextColor,
                     ),
                   ),

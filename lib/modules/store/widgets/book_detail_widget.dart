@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/genre/view/books_grid_screen_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,7 +19,7 @@ Widget sectionTitle(String title) {
             title,
             style: const TextStyle(
                 fontSize: 18,
-                fontFamily: 'NewYork',
+                fontFamily: StringConstants.NewYork,
                 fontWeight: FontWeight.bold),
           ),
           const Icon(Icons.arrow_forward_ios, size: 14, color: Colors.black45),

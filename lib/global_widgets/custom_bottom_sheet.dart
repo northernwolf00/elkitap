@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomBottomSheet extends StatelessWidget {
@@ -46,7 +47,7 @@ class CustomBottomSheet extends StatelessWidget {
                         child: Icon(Icons.arrow_back_ios, size: 20)),
                     const Text(
                       'Profile',
-                      style: TextStyle(fontSize: 16, fontFamily: 'SF Pro'),
+                      style: TextStyle(fontSize: 16,  fontFamily: StringConstants.SFPro,),
                     ),
                     const Expanded(
                       child: Center(
@@ -55,7 +56,7 @@ class CustomBottomSheet extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              fontFamily: 'SF Pro'),
+                               fontFamily: StringConstants.SFPro,),
                         ),
                       ),
                     ),
@@ -74,7 +75,7 @@ class CustomBottomSheet extends StatelessWidget {
                       'Legal Terms of Use',
                       style: TextStyle(
                         fontSize: 32,
-                        fontFamily: 'NewYork',
+                        fontFamily: StringConstants.NewYork,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -82,7 +83,7 @@ class CustomBottomSheet extends StatelessWidget {
                     Text(
                       'Last updated on 1/12/2025',
                       style: TextStyle(
-                        fontFamily: 'SF Pro',
+                        fontFamily: StringConstants.SFPro,
                         fontSize: 13,
                         color: Colors.grey[600],
                       ),
@@ -113,7 +114,7 @@ class CustomBottomSheet extends StatelessWidget {
           'General Rules',
           style: TextStyle(
             fontSize: 20,
-            fontFamily: 'NewYork',
+            fontFamily: StringConstants.NewYork,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -122,7 +123,7 @@ class CustomBottomSheet extends StatelessWidget {
           'Welcome to our platform! By using our services, you agree to comply with our Terms of Use. These terms outline your rights and responsibilities while using our website, including acceptable behavior, intellectual property rights, and limitations of liability. Please read them carefully to ensure a smooth experience. If you have any questions, feel free to reach out!',
           style: TextStyle(
             fontSize: 15,
-            fontFamily: 'SF Pro',
+            fontFamily: StringConstants.SFPro,
             height: 1.5,
             color: Colors.grey[800],
           ),

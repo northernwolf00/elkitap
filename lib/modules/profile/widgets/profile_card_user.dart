@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/profile/widgets/edit_account_bootomsheet.dart';
 import 'package:elkitap/modules/profile/widgets/no_subscribed_widget.dart';
 import 'package:elkitap/modules/profile/widgets/subscribed_widget.dart';
@@ -50,13 +51,14 @@ class ProfileCardUser extends StatelessWidget {
                     "Murat Sapayev",
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'NewYork',
+                        fontFamily: StringConstants.NewYork,
                         fontSize: 20),
                   ),
                   SizedBox(height: 4),
                   Text(
                     "+993 61626406",
-                    style: TextStyle(fontSize: 13),
+                    style: TextStyle(fontSize: 13,
+                     fontFamily: StringConstants.SFPro,),
                   ),
                 ],
               ),
@@ -68,7 +70,9 @@ class ProfileCardUser extends StatelessWidget {
                     },
                     child: Text(
                       "Edit account",
-                      style: TextStyle(fontSize: 13),
+                      
+                      style: TextStyle(fontSize: 13,
+                       fontFamily: StringConstants.SFPro,),
                     ),
                   ),
                   SizedBox(

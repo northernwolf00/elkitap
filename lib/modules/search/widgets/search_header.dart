@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/search/views/searching_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +16,7 @@ class SearchHeader extends StatelessWidget {
           "Search",
           style: TextStyle(
             fontSize: 34,
-            fontFamily: 'NewYork',
+            fontFamily: StringConstants.NewYork,
             fontWeight: FontWeight.bold,
           ),
         ),

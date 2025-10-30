@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/store/views/profesional_readers_profil.dart';
 import 'package:elkitap/modules/store/views/profesionals_read_view.dart';
 import 'package:elkitap/modules/store/widgets/profile_cart_widget.dart';
@@ -41,7 +42,7 @@ class _ListProfileWidgetState extends State<ListProfileWidget> {
                   'Professionals read',
                   style: TextStyle(
                     fontSize: 20,
-                    fontFamily: 'NewYork',
+                    fontFamily: StringConstants.NewYork,
                     fontWeight: FontWeight.w700,
                   ),
                 ),

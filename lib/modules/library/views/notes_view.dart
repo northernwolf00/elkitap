@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/library/controllers/note_controller.dart';
 import 'package:elkitap/modules/library/widgets/note_cart.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,8 @@ class NotesAppBar extends StatelessWidget {
               child: Row(
                 children: [
                   Icon(Icons.chevron_left, color: Colors.blue),
-                  Text('Back', style: TextStyle(color: Colors.blue)),
+                  Text('Back', style: TextStyle(color: Colors.blue,
+                   fontFamily: StringConstants.SFPro,)),
                 ],
               ),
             ),
@@ -61,6 +63,7 @@ class NotesAppBar extends StatelessWidget {
               'Notes',
               style: TextStyle(
                 fontSize: 34,
+                 fontFamily: StringConstants.SFPro,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -70,7 +73,9 @@ class NotesAppBar extends StatelessWidget {
                   : null,
               child: Text(
                 'Select',
+                
                 style: TextStyle(
+                   fontFamily: StringConstants.SFPro,
                   color: controller.isSelectionMode.value
                       ? Colors.blue
                       : Colors.blue,

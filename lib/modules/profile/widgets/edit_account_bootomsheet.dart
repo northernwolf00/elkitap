@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 
 class EditAccountBottomSheet extends StatefulWidget {
@@ -100,6 +101,7 @@ class _EditAccountBottomSheetState extends State<EditAccountBottomSheet> {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
+                     fontFamily: StringConstants.SFPro,
                     color: Theme.of(context).textTheme.bodyLarge!.color,
                   ),
                 ),
@@ -129,6 +131,7 @@ class _EditAccountBottomSheetState extends State<EditAccountBottomSheet> {
                           "Account",
                           style: TextStyle(
                             fontSize: 13,
+                             fontFamily: StringConstants.SFPro,
                             color: Theme.of(context).textTheme.bodySmall!.color,
                           ),
                         ),
@@ -137,6 +140,7 @@ class _EditAccountBottomSheetState extends State<EditAccountBottomSheet> {
                           _phoneNumber,
                           style: TextStyle(
                             fontSize: 16,
+                             fontFamily: StringConstants.SFPro,
                             fontWeight: FontWeight.w500,
                             color: Theme.of(context).textTheme.bodyLarge!.color,
                           ),
@@ -152,6 +156,7 @@ class _EditAccountBottomSheetState extends State<EditAccountBottomSheet> {
                     "Name",
                     style: TextStyle(
                       fontSize: 13,
+                       fontFamily: StringConstants.SFPro,
                       color: Theme.of(context).textTheme.bodySmall!.color,
                     ),
                   ),
@@ -199,6 +204,7 @@ class _EditAccountBottomSheetState extends State<EditAccountBottomSheet> {
                         style: TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.w600,
+                           fontFamily: StringConstants.SFPro,
                           color: _isSaveButtonActive ? activeSaveButtonTextColor : inactiveSaveButtonTextColor,
                         ),
                       ),

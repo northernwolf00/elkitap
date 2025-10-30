@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/custom_appbar.dart';
 import 'package:elkitap/modules/store/widgets/book_cart_profil.dart';
 import 'package:flutter/gestures.dart';
@@ -119,7 +120,7 @@ class _ProfesionalReadersProfilState extends State<ProfesionalReadersProfil> {
                             'Merdan Durnayew',
                             style: TextStyle(
                               fontSize: 28,
-                              fontFamily: 'NewYork',
+                              fontFamily: StringConstants.NewYork,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -128,6 +129,7 @@ class _ProfesionalReadersProfilState extends State<ProfesionalReadersProfil> {
                             'Director',
                             style: TextStyle(
                               fontSize: 16,
+                               fontFamily: StringConstants.SFPro,
                               fontWeight: FontWeight.w500,
                               color: Colors.grey,
                             ),
@@ -147,6 +149,7 @@ class _ProfesionalReadersProfilState extends State<ProfesionalReadersProfil> {
                                       isExpanded ? ' Show Less' : ' Show More',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w600,
+                                     fontFamily: StringConstants.SFPro,
                                     color: Colors.black,
                                   ),
                                   recognizer: TapGestureRecognizer()

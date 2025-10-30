@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/genre/view/books_grid_screen_view.dart';
 import 'package:elkitap/modules/store/views/store_detail_view.dart';
 import 'package:elkitap/modules/store/widgets/book_card_widget.dart';
@@ -17,7 +18,9 @@ class FeaturedBooksSection extends StatelessWidget {
         children: [
           Text(
             tabIndex == 0 ? "FEATURED BOOKS" : 'FEATURED AUDIOBOOKS',
-            style: TextStyle(fontSize: 12, color: Colors.grey),
+            style: TextStyle(fontSize: 12,
+            fontFamily: StringConstants.SFPro,
+             color: Colors.grey),
           ),
           const SizedBox(height: 4),
           GestureDetector(
@@ -26,7 +29,9 @@ class FeaturedBooksSection extends StatelessWidget {
             },
             child: const Text(
               "We recommend",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18,
+              fontFamily:StringConstants.NewYork ,
+               fontWeight: FontWeight.bold),
             ),
           ),
           const SizedBox(height: 16),

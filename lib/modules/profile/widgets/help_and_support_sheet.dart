@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:flutter/material.dart';
 
@@ -36,6 +37,7 @@ class HelpAndSupportBottomSheet extends StatelessWidget {
                   "Profile", 
                   style: TextStyle(
                     fontSize: 18,
+                     fontFamily: StringConstants.SFPro,
                     color: Theme.of(context).textTheme.bodyLarge!.color, // Theme-adaptive text color
                     fontWeight: FontWeight.w400,
                   ),
@@ -46,6 +48,7 @@ class HelpAndSupportBottomSheet extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 18,
+                       fontFamily: StringConstants.SFPro,
                       fontWeight: FontWeight.bold, // Make it bold as in the image
                       color: Theme.of(context).textTheme.bodyLarge!.color, // Theme-adaptive text color
                     ),
@@ -136,6 +139,7 @@ class HelpAndSupportBottomSheet extends StatelessWidget {
           title: Text(
             title,
             style: TextStyle(
+               fontFamily: StringConstants.SFPro,
               fontSize: 16,
               color: Theme.of(context).textTheme.bodyLarge!.color, // Theme-adaptive text color
             ),

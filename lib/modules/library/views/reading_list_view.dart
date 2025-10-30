@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/custom_app_bar_book.dart';
 import 'package:elkitap/modules/library/controllers/library_controller.dart';
 import 'package:elkitap/modules/library/widgets/grid_list_widget.dart';
@@ -26,6 +27,7 @@ class ReadingListScreen extends StatelessWidget {
                     : '${controller.selectedBooks.length} selected',
                 style: const TextStyle(
                   fontSize: 28,
+                   fontFamily: StringConstants.NewYork,
                   fontWeight: FontWeight.bold,
                 ),
               );

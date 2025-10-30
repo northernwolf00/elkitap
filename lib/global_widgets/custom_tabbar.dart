@@ -1,3 +1,5 @@
+import 'package:elkitap/core/constants/string_constants.dart';
+import 'package:elkitap/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomTabBar extends StatefulWidget {
@@ -67,8 +69,8 @@ class _TabItem extends StatelessWidget {
             text,
             style: TextStyle(
               fontSize: 28,
-              fontFamily: 'NewYork',
-              fontWeight: isSelected ? FontWeight.bold : FontWeight.w500,
+              fontFamily: StringConstants.NewYork,
+              fontWeight: isSelected ? FontWeight.bold : FontWeight.bold,
               color: isSelected
                   ? Theme.of(context).brightness == Brightness.dark
                       ? Colors.white
