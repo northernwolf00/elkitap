@@ -1,13 +1,19 @@
 import 'package:elkitap/core/constants/string_constants.dart';
+import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:elkitap/modules/library/controllers/note_controller.dart';
 import 'package:elkitap/modules/library/model/note_moc.dart';
 import 'package:elkitap/modules/library/widgets/note_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class NotesScreen extends StatelessWidget {
+class NotesScreen extends StatefulWidget {
   const NotesScreen({Key? key}) : super(key: key);
 
+  @override
+  State<NotesScreen> createState() => _NotesScreenState();
+}
+
+class _NotesScreenState extends State<NotesScreen> {
   @override
   Widget build(BuildContext context) {
     final NotesController controller = Get.put(NotesController());
@@ -55,8 +61,7 @@ class NotesScreen extends StatelessWidget {
             actions: controller.isSelectionMode.value
                 ? [
                     TextButton(
-                      onPressed: () =>
-                          controller.showDeleteConfirmation(context),
+                      onPressed: () => controller.showCupertinoMenu(context),
                       child: const Text(
                         'Remove',
                         style: TextStyle(
@@ -69,54 +74,95 @@ class NotesScreen extends StatelessWidget {
                       onPressed: () => controller.toggleSelectionMode(),
                       child: const Text(
                         'Done',
-                        style: TextStyle(color: Colors.black,
-                        fontFamily: StringConstants.SFPro,
-                         fontSize: 17),
+                        style: TextStyle(color: Colors.black, fontSize: 17),
                       ),
                     ),
                   ]
-                : [
-                    TextButton(
-                      onPressed: () => controller.toggleSelectionMode(),
-                      child: const Text(
-                        'Select',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: StringConstants.SFPro,
-                            fontSize: 17),
-                      ),
-                    ),
-                  ],
+                : controller.notes.isEmpty
+                    ? [Container()]
+                    : [
+                        TextButton(
+                          onPressed: () => controller.toggleSelectionMode(),
+                          child: const Text(
+                            'Select',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: StringConstants.SFPro,
+                                fontSize: 17),
+                          ),
+                        ),
+                      ],
           ),
-          body: Obx(
-            () => ListView.builder(
+          body: Obx(() {
+            final notes = controller.notes;
+
+            if (notes.isEmpty) {
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CustomIcon(
+                          title: 'assets/icons/library_filled.svg',
+                          height: 60,
+                          width: 60,
+                          color: Colors.black),
+                      SizedBox(height: 16),
+                      Text(
+                        'This collection is empty',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      SizedBox(height: 6),
+                      Text(
+                        'Your finished books will appear here..',
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.grey,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }
+
+            return ListView.builder(
               padding: const EdgeInsets.all(16),
-              itemCount: controller.notes.length,
+              itemCount: notes.length,
               itemBuilder: (context, index) {
-                final note = controller.notes[index];
+                final note = notes[index];
                 final isSelected = controller.selectedNotes.contains(note.id);
 
-                return NoteCard(
-                  note: note,
-                  isSelectionMode: controller.isSelectionMode.value,
-                  isSelected: isSelected,
-                  onTap: () {
-                    if (controller.isSelectionMode.value) {
-                      controller.toggleNoteSelection(note.id);
-                    }
-                  },
-                  onLongPress: () {
-                    if (!controller.isSelectionMode.value) {
-                      controller.isSelectionMode.value = true;
-                      controller.toggleNoteSelection(note.id);
-                    }
-                  },
-                  onEdit: () => _showEditBottomSheet(context, note, controller),
-                  onDelete: () => controller.deleteNote(note.id),
-                );
+                return Obx(() {
+                  final isSelected = controller.selectedNotes.contains(note.id);
+                  return NoteCard(
+                    note: note,
+                    isSelectionMode: controller.isSelectionMode.value,
+                    isSelected: isSelected,
+                    onTap: () {
+                      if (controller.isSelectionMode.value) {
+                        controller.toggleNoteSelection(note.id);
+                      }
+                    },
+                    onLongPress: () {
+                      if (!controller.isSelectionMode.value) {
+                        controller.isSelectionMode.value = true;
+                        controller.toggleNoteSelection(note.id);
+                      }
+                    },
+                    onEdit: () =>
+                        _showEditBottomSheet(context, note, controller),
+                    onDelete: () => controller.deleteNote(note.id),
+                  );
+                });
               },
-            ),
-          ),
+            );
+          }),
         ));
   }
 

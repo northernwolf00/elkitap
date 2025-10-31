@@ -2,6 +2,7 @@ import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:elkitap/modules/store/controllers/store_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'dart:ui';
 
@@ -33,8 +34,8 @@ class DialogUtils {
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
                         color: Theme.of(context).brightness == Brightness.dark
-                          ? Colors.black.withOpacity(0.3)
-                          : Colors.white.withOpacity(0.3),
+                            ? Colors.black.withOpacity(0.3)
+                            : Colors.white.withOpacity(0.3),
                         width: 1.5,
                       ),
                       boxShadow: [
@@ -49,66 +50,61 @@ class DialogUtils {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         _buildMenuOption(
-                          icon: 'assets/icons/d1.svg',
-                          title: 'Share',
-                          onTap: () {
-                            Navigator.pop(context);
-                            // Handle share
-                          },
-                          context: context
-                        ),
+                            icon: 'assets/icons/d1.svg',
+                            title: 'Share',
+                            onTap: () {
+                              Navigator.pop(context);
+                              // Handle share
+                            },
+                            context: context),
                         Container(
                           height: 6,
                           color: Colors.grey[400],
                         ),
                         Obx(() => _buildMenuOption(
-                              icon: controller.isAddedToWantToRead.value
-                                  ? 'assets/icons/d5.svg'
-                                  : 'assets/icons/d2.svg',
-                              title: 'Add to Want to Read',
-                              onTap: () {
-                                Navigator.pop(context);
-                                controller.toggleAddToWantToRead();
-                                showAddedDialog(context,
-                                    controller.isAddedToWantToRead.value);
-                              },
-                               context: context
-                            )),
+                            icon: controller.isAddedToWantToRead.value
+                                ? 'assets/icons/d5.svg'
+                                : 'assets/icons/d2.svg',
+                            title: 'Add to Want to Read',
+                            onTap: () {
+                              Navigator.pop(context);
+                              controller.toggleAddToWantToRead();
+                              showAddedDialog(context,
+                                  controller.isAddedToWantToRead.value);
+                            },
+                            context: context)),
                         Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
                         _buildMenuOption(
-                          icon: 'assets/icons/d3.svg',
-                          title: 'Add to Collection',
-                          onTap: () {
-                            Navigator.pop(context);
-                            // Handle add to collection
-                          },
-                           context: context
-                        ),
+                            icon: 'assets/icons/d3.svg',
+                            title: 'Add to Collection',
+                            onTap: () {
+                              Navigator.pop(context);
+                              // Handle add to collection
+                            },
+                            context: context),
                         Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
                         _buildMenuOption(
-                          icon: 'assets/icons/d5.svg',
-                          title: 'Mark as Finished',
-                          onTap: () {
-                            Navigator.pop(context);
-                            // Handle mark as finished
-                          },
-                           context: context
-                        ),
+                            icon: 'assets/icons/d5.svg',
+                            title: 'Mark as Finished',
+                            onTap: () {
+                              Navigator.pop(context);
+                              // Handle mark as finished
+                            },
+                            context: context),
                         Container(
                           height: 6,
                           color: Colors.grey[400],
                         ),
                         _buildMenuOption(
-                          icon: 'assets/icons/d6.svg',
-                          title: 'Remove...',
-                          titleColor: const Color(0xFFFF5A3C),
-                          iconColor: const Color(0xFFFF5A3C),
-                          onTap: () {
-                            Navigator.pop(context);
-                            // Handle remove
-                          },
-                           context: context
-                        ),
+                            icon: 'assets/icons/d6.svg',
+                            title: 'Remove...',
+                            titleColor: const Color(0xFFFF5A3C),
+                            iconColor: const Color(0xFFFF5A3C),
+                            onTap: () {
+                              Navigator.pop(context);
+                              // Handle remove
+                            },
+                            context: context),
                       ],
                     ),
                   ),
@@ -126,7 +122,6 @@ class DialogUtils {
       context: context,
       barrierDismissible: true,
       builder: (context) => Dialog(
-       
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
@@ -144,7 +139,6 @@ class DialogUtils {
                 ),
                 child: Icon(
                   isAdded ? Icons.check : Icons.close,
-                 
                   size: 40,
                 ),
               ),
@@ -153,9 +147,8 @@ class DialogUtils {
                 isAdded ? 'Added' : 'Removed',
                 style: const TextStyle(
                   fontSize: 28,
-                   fontFamily: StringConstants.SFPro,
+                  fontFamily: StringConstants.SFPro,
                   fontWeight: FontWeight.bold,
-                 
                 ),
               ),
               const SizedBox(height: 12),
@@ -243,7 +236,7 @@ class DialogUtils {
                                             language,
                                             style: const TextStyle(
                                               fontSize: 17,
-                                           fontFamily: StringConstants.SFPro,
+                                              fontFamily: StringConstants.SFPro,
                                               fontWeight: FontWeight.w400,
                                             ),
                                           ),
@@ -253,7 +246,6 @@ class DialogUtils {
                                           const Icon(
                                             Icons.check,
                                             size: 24,
-                                           
                                           ),
                                       ],
                                     ),
@@ -297,8 +289,8 @@ class DialogUtils {
                 title,
                 style: TextStyle(
                   fontSize: 17,
-                  color: titleColor ,
-                   fontFamily: StringConstants.SFPro,
+                  color: titleColor,
+                  fontFamily: StringConstants.SFPro,
                   fontWeight: FontWeight.w400,
                 ),
               ),
@@ -307,9 +299,10 @@ class DialogUtils {
                 title: icon,
                 height: 24,
                 width: 24,
-                color: iconColor ?? (Theme.of(context).brightness == Brightness.dark
-        ? Colors.white70 
-        : Colors.black87))
+                color: iconColor ??
+                    (Theme.of(context).brightness == Brightness.dark
+                        ? Colors.white70
+                        : Colors.black87))
           ],
         ),
       ),
@@ -373,7 +366,7 @@ class DialogUtils {
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: Colors.black87,
-                               fontFamily: StringConstants.SFPro,
+                              fontFamily: StringConstants.SFPro,
                               height: 1.3,
                             ),
                           ),
@@ -382,7 +375,7 @@ class DialogUtils {
                             'Mark Manson',
                             style: TextStyle(
                               fontSize: 16,
-                               fontFamily: StringConstants.SFPro,
+                              fontFamily: StringConstants.SFPro,
                               color: Colors.grey[600],
                             ),
                           ),
@@ -425,7 +418,7 @@ class DialogUtils {
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
-                         fontFamily: StringConstants.SFPro,
+                        fontFamily: StringConstants.SFPro,
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -434,7 +427,7 @@ class DialogUtils {
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.grey[600],
-                         fontFamily: StringConstants.SFPro,
+                        fontFamily: StringConstants.SFPro,
                         height: 1.5,
                       ),
                     ),
@@ -444,7 +437,7 @@ class DialogUtils {
                       'Basic Info',
                       style: TextStyle(
                         fontSize: 20,
-                         fontFamily: StringConstants.SFPro,
+                        fontFamily: StringConstants.SFPro,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
                       ),
@@ -481,7 +474,7 @@ class DialogUtils {
                   label,
                   style: TextStyle(
                     fontSize: 15,
-                     fontFamily: StringConstants.SFPro,
+                    fontFamily: StringConstants.SFPro,
                     color: Colors.grey[600],
                   ),
                 ),
@@ -493,7 +486,7 @@ class DialogUtils {
                     fontSize: 15,
                     color: Colors.black87,
                     fontWeight: FontWeight.w500,
-                     fontFamily: StringConstants.SFPro,
+                    fontFamily: StringConstants.SFPro,
                   ),
                 ),
               ),
@@ -509,5 +502,124 @@ class DialogUtils {
     );
   }
 
-  // Show added/removed confirmation dialog
+  static void showIOSStylePopup(BuildContext context, Function onShare,
+      Function onAddToCollection, Function onMarkFinished, Function onRemove) {
+    showDialog(
+      context: context,
+      barrierColor: Colors.black26,
+      builder: (context) => Stack(
+        children: [
+          Positioned(
+            top: 120,
+            right: 40,
+            child: Material(
+              color: Colors.transparent,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                  child: Container(
+                    width: 200,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.black.withOpacity(0.75)
+                          : Colors.white.withOpacity(0.85),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.black.withOpacity(0.3)
+                            : Colors.white.withOpacity(0.3),
+                        width: 1.5,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 30,
+                          offset: const Offset(0, 10),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _buildIOSMenuOption(
+                          context,
+                          iconPath: 'assets/icons/d11.svg',
+                          title: 'Open book',
+                          onTap: () => onShare(),
+                        ),
+                        Container(
+                          height: 6,
+                          color: Colors.grey[400],
+                        ),
+                        _buildIOSMenuOption(
+                          context,
+                          iconPath: 'assets/icons/d1.svg',
+                          title: 'Share',
+                          onTap: () => onAddToCollection(),
+                        ),
+                        Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
+                        _buildIOSMenuOption(
+                          context,
+                          iconPath: 'assets/icons/d10.svg',
+                          title: 'Edit',
+                          onTap: () => onMarkFinished(),
+                        ),
+                        Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
+                        _buildIOSMenuOption(
+                          context,
+                          iconPath: 'assets/icons/d6.svg',
+                          title: 'Delete',
+                          iconColor: const Color(0xFFFF5A3C),
+                          titleColor: const Color(0xFFFF5A3C),
+                          onTap: () => onRemove(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  static Widget _buildIOSMenuOption(
+    BuildContext context, {
+    required String iconPath,
+    required String title,
+    required VoidCallback onTap,
+    Color? iconColor,
+    Color? titleColor,
+  }) {
+    return InkWell(
+      onTap: () {
+        Navigator.pop(context);
+        onTap();
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+        child: Row(
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                fontSize: 16,
+                color: titleColor ?? Colors.black,
+              ),
+            ),
+            Spacer(),
+            SvgPicture.asset(
+              iconPath,
+              width: 20,
+              height: 20,
+              color: iconColor ?? Colors.black,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:elkitap/modules/library/model/note_moc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -102,67 +103,33 @@ class NotesController extends GetxController {
     }
   }
 
-  void showDeleteConfirmation(BuildContext context) {
-    showModalBottomSheet(
+  void showCupertinoMenu(BuildContext context) {
+    showCupertinoModalPopup(
       context: context,
-      backgroundColor: Colors.transparent,
-      builder: (context) => Container(
-        decoration: const BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(12)),
+      builder: (BuildContext context) => CupertinoActionSheet(
+        title: const Text(
+          'Do you want to remove this note?',
+          style: TextStyle(
+            fontSize: 17,
+            fontWeight: FontWeight.w600,
+          ),
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const SizedBox(height: 20),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-              child: Text(
-                'Do you want to remove this note?',
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w600,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            const Divider(height: 1),
-            InkWell(
-              onTap: () {
-                Navigator.pop(context);
-                deleteSelectedNotes();
-              },
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: const Text(
-                  'Remove',
-                  style: TextStyle(
-                    fontSize: 17,
-                    color: Colors.red,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-            const Divider(height: 1),
-            InkWell(
-              onTap: () => Navigator.pop(context),
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                child: const Text(
-                  'Cancel',
-                  style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
-          ],
+        actions: [
+          CupertinoActionSheetAction(
+            onPressed: () {
+              Navigator.pop(context);
+              deleteSelectedNotes();
+            },
+            isDestructiveAction: true,
+            child: const Text('Remove'),
+          ),
+        ],
+        cancelButton: CupertinoActionSheetAction(
+          onPressed: () => Navigator.pop(context),
+          child: const Text(
+            'Cancel',
+            style: TextStyle(fontWeight: FontWeight.w600, color: Colors.black),
+          ),
         ),
       ),
     );

@@ -1,5 +1,7 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/core/theme/app_colors.dart';
 import 'package:elkitap/modules/library/model/note_moc.dart';
+import 'package:elkitap/utils/dialog_utils.dart';
 import 'package:flutter/material.dart';
 
 class NoteCard extends StatelessWidget {
@@ -58,6 +60,7 @@ class NoteCard extends StatelessWidget {
                             note.title,
                             style: const TextStyle(
                               fontSize: 16,
+                              fontFamily: StringConstants.SFPro,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
@@ -65,6 +68,7 @@ class NoteCard extends StatelessWidget {
                             note.author,
                             style: TextStyle(
                               fontSize: 13,
+                              fontFamily: StringConstants.SFPro,
                               color: Colors.grey[600],
                             ),
                           ),
@@ -109,67 +113,15 @@ class NoteCard extends StatelessWidget {
                         ),
                       )
                     else
-                      PopupMenuButton<String>(
+                      IconButton(
                         icon: const Icon(Icons.more_horiz),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                        onPressed: () => DialogUtils.showIOSStylePopup(
+                          context,
+                          onDelete,
+                          () {},
+                          onEdit,
+                          () {},
                         ),
-                        itemBuilder: (context) => [
-                          const PopupMenuItem(
-                            value: 'open',
-                            child: Row(
-                              children: [
-                                Text('Open book'),
-                                Spacer(),
-                                Icon(Icons.book_outlined, size: 20),
-                              ],
-                            ),
-                          ),
-                          const PopupMenuItem(
-                            value: 'share',
-                            child: Row(
-                              children: [
-                                Text('Share'),
-                                Spacer(),
-                                Icon(Icons.ios_share, size: 20),
-                              ],
-                            ),
-                          ),
-                          const PopupMenuItem(
-                            value: 'edit',
-                            child: Row(
-                              children: [
-                                Text('Edit'),
-                                Spacer(),
-                                Icon(Icons.edit_outlined, size: 20),
-                              ],
-                            ),
-                          ),
-                          const PopupMenuItem(
-                            value: 'delete',
-                            child: Row(
-                              children: [
-                                Text(
-                                  'Delete',
-                                  style: TextStyle(color: Colors.red),
-                                ),
-                                Spacer(),
-                                Icon(Icons.delete_outline,
-                                    size: 20, color: Colors.red),
-                              ],
-                            ),
-                          ),
-                        ],
-                        onSelected: (value) {
-                          switch (value) {
-                            case 'edit':
-                              onEdit();
-                              break;
-                            case 'delete':
-                              onDelete();
-                              break;
-                          }
-                        },
                       ),
                   ],
                 ),
@@ -184,8 +136,8 @@ class NoteCard extends StatelessWidget {
                   child: Text(
                     note.quote,
                     style: const TextStyle(
-                      fontSize: 15,
-                      height: 1.4,
+                      fontSize: 16,
+                      fontFamily: StringConstants.NewYork,
                     ),
                   ),
                 ),
@@ -194,6 +146,7 @@ class NoteCard extends StatelessWidget {
                   note.comment,
                   style: const TextStyle(
                     fontSize: 15,
+                    fontFamily: StringConstants.SFPro,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -202,6 +155,7 @@ class NoteCard extends StatelessWidget {
                   note.date,
                   style: TextStyle(
                     fontSize: 13,
+                    fontFamily: StringConstants.SFPro,
                     color: Colors.grey[600],
                   ),
                 ),
