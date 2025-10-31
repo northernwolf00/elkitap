@@ -1,5 +1,5 @@
 import 'package:elkitap/core/constants/string_constants.dart';
-import 'package:elkitap/core/theme/app_colors.dart';
+
 import 'package:flutter/material.dart';
 
 class CustomTabBar extends StatefulWidget {
