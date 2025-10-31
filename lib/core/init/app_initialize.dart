@@ -2,12 +2,7 @@ import 'dart:async';
 
 // import 'package:firebase_analytics/firebase_analytics.dart';
 
-import 'package:elkitap/core/init/firebase_messaging_service.dart';
-import 'package:elkitap/core/init/local_notifications_service.dart';
-import 'package:elkitap/firebase_options.dart';
 import 'package:elkitap/modules/auth/controllers/login_controller.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';

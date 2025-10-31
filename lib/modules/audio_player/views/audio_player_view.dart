@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:elkitap/modules/audio_player/controllers/audio_player_controller.dart';
+import 'package:elkitap/modules/audio_player/widgets/audiobook_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -67,11 +68,11 @@ class AudiobookPlayerScreen extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      IconButton(
-                        icon: const Icon(Icons.download_outlined,
-                            color: Colors.white),
-                        onPressed: () {},
-                      ),
+                      CustomIcon(
+                          title: 'assets/icons/a9.svg',
+                          height: 30,
+                          width: 30,
+                          color: Colors.white),
                       const SizedBox(width: 10),
                       CircleAvatar(
                         backgroundColor: Colors.grey.shade800,
@@ -189,21 +190,31 @@ class AudiobookPlayerScreen extends StatelessWidget {
                         'The Subtle art of not giving - Mark Manson',
                         style: TextStyle(
                           color: Colors.white70,
-                           fontFamily: StringConstants.SFPro,
+                          fontFamily: StringConstants.SFPro,
                           fontSize: 14,
                         ),
                       ),
                     ],
                   ),
-                  CircleAvatar(
-                      backgroundColor: Colors.grey.shade800,
-                      child: Center(
-                        child: CustomIcon(
-                            title: 'assets/icons/a8.svg',
-                            height: 24,
-                            width: 24,
-                            color: Colors.white),
-                      )),
+                  GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) => const AudiobookBottomSheet(),
+                      );
+                    },
+                    child: CircleAvatar(
+                        backgroundColor: Colors.grey.shade800,
+                        child: Center(
+                          child: CustomIcon(
+                              title: 'assets/icons/a8.svg',
+                              height: 24,
+                              width: 24,
+                              color: Colors.white),
+                        )),
+                  ),
                 ],
               ),
               const SizedBox(height: 20),
@@ -242,18 +253,24 @@ class AudiobookPlayerScreen extends StatelessWidget {
                           Text(
                             controller
                                 .formatDuration(controller.position.value),
-                            style: const TextStyle(color: Colors.white70,
-                             fontFamily: StringConstants.SFPro,),
+                            style: const TextStyle(
+                              color: Colors.white70,
+                              fontFamily: StringConstants.SFPro,
+                            ),
                           ),
                           Text(
                             '${controller.formatDuration(controller.duration.value)}',
-                            style: const TextStyle(color: Colors.white70,
-                             fontFamily: StringConstants.SFPro,),
+                            style: const TextStyle(
+                              color: Colors.white70,
+                              fontFamily: StringConstants.SFPro,
+                            ),
                           ),
                           Text(
                             '-${controller.formatDuration(controller.duration.value - controller.position.value)}',
-                            style: const TextStyle(color: Colors.white70,
-                             fontFamily: StringConstants.SFPro,),
+                            style: const TextStyle(
+                              color: Colors.white70,
+                              fontFamily: StringConstants.SFPro,
+                            ),
                           ),
                         ],
                       ),
@@ -327,7 +344,7 @@ class AudiobookPlayerScreen extends StatelessWidget {
                           color: Colors.white,
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
-                           fontFamily: StringConstants.SFPro,
+                          fontFamily: StringConstants.SFPro,
                         ),
                       ),
                     ),
