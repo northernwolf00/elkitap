@@ -1,21 +1,22 @@
 import 'dart:ui';
 
-class Note {
+class NoteItem {
   final String id;
   final String title;
   final String author;
-  final String content;
+  final String quote;
   final String comment;
-  final DateTime timestamp;
-  final Color accentColor;
+  final String date;
+  final Color color;
 
-  Note({
+  NoteItem({
     required this.id,
     required this.title,
     required this.author,
-    required this.content,
+    required this.quote,
     required this.comment,
-    required this.timestamp,
-    required this.accentColor,
+    required this.date,
+    required this.color,
   });
 }
+

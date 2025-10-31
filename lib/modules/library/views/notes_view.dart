@@ -1,88 +1,260 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/library/controllers/note_controller.dart';
+import 'package:elkitap/modules/library/model/note_moc.dart';
 import 'package:elkitap/modules/library/widgets/note_cart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class NotesScreen extends StatelessWidget {
-  const NotesScreen({super.key});
+  const NotesScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(NotesController());
+    final NotesController controller = Get.put(NotesController());
 
-    return Scaffold(
-      backgroundColor: Colors.grey[100],
-      body: SafeArea(
-        child: Column(
-          children: [
-            NotesAppBar(),
-            Expanded(
-              child: Obx(
-                () => ListView.builder(
-                  padding: const EdgeInsets.all(16),
-                  itemCount: controller.notes.length,
-                  itemBuilder: (context, index) {
-                    final note = controller.notes[index];
-                    return NoteCard(note: note);
+    return Obx(() => Scaffold(
+          backgroundColor: controller.isSelectionMode.value
+              ? Colors.grey[300]
+              : Colors.white,
+          appBar: AppBar(
+            backgroundColor: controller.isSelectionMode.value
+                ? Colors.grey[300]
+                : Colors.white,
+            elevation: 0,
+            leadingWidth: 120,
+            leading: controller.isSelectionMode.value
+                ? TextButton(
+                    onPressed: () => controller.toggleSelectAll(),
+                    child: Obx(() => Text(
+                          controller.isAllSelected ? 'Deselect' : 'Select All',
+                          style: const TextStyle(
+                              fontFamily: StringConstants.SFPro,
+                              color: Colors.black,
+                              fontSize: 17),
+                        )),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Icon(
+                            Icons.arrow_back_ios,
+                          ),
+                        ),
+                        Text(
+                          'Back',
+                          style: TextStyle(fontFamily: StringConstants.SFPro),
+                        )
+                      ],
+                    ),
+                  ),
+            actions: controller.isSelectionMode.value
+                ? [
+                    TextButton(
+                      onPressed: () =>
+                          controller.showDeleteConfirmation(context),
+                      child: const Text(
+                        'Remove',
+                        style: TextStyle(
+                            color: Colors.red,
+                            fontFamily: StringConstants.SFPro,
+                            fontSize: 17),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () => controller.toggleSelectionMode(),
+                      child: const Text(
+                        'Done',
+                        style: TextStyle(color: Colors.black,
+                        fontFamily: StringConstants.SFPro,
+                         fontSize: 17),
+                      ),
+                    ),
+                  ]
+                : [
+                    TextButton(
+                      onPressed: () => controller.toggleSelectionMode(),
+                      child: const Text(
+                        'Select',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: StringConstants.SFPro,
+                            fontSize: 17),
+                      ),
+                    ),
+                  ],
+          ),
+          body: Obx(
+            () => ListView.builder(
+              padding: const EdgeInsets.all(16),
+              itemCount: controller.notes.length,
+              itemBuilder: (context, index) {
+                final note = controller.notes[index];
+                final isSelected = controller.selectedNotes.contains(note.id);
+
+                return NoteCard(
+                  note: note,
+                  isSelectionMode: controller.isSelectionMode.value,
+                  isSelected: isSelected,
+                  onTap: () {
+                    if (controller.isSelectionMode.value) {
+                      controller.toggleNoteSelection(note.id);
+                    }
                   },
-                ),
-              ),
+                  onLongPress: () {
+                    if (!controller.isSelectionMode.value) {
+                      controller.isSelectionMode.value = true;
+                      controller.toggleNoteSelection(note.id);
+                    }
+                  },
+                  onEdit: () => _showEditBottomSheet(context, note, controller),
+                  onDelete: () => controller.deleteNote(note.id),
+                );
+              },
             ),
-          ],
-        ),
-      ),
+          ),
+        ));
+  }
+
+  void _showEditBottomSheet(
+      BuildContext context, NoteItem note, NotesController controller) {
+    final TextEditingController textController =
+        TextEditingController(text: note.quote + '\n\n' + note.comment);
+    final Rx<Color> selectedColor = note.color.obs;
+
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => Obx(() => Container(
+            height: MediaQuery.of(context).size.height * 0.9,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+            ),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        'Note',
+                        style: TextStyle(
+                          fontSize: 17,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          controller.updateNoteColor(
+                              note.id, selectedColor.value);
+                          Navigator.pop(context);
+                        },
+                        child: const Text(
+                          'Done',
+                          style: TextStyle(
+                            fontSize: 17,
+                            color: Colors.black,
+                            fontFamily: StringConstants.SFPro,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 4,
+                          margin: const EdgeInsets.only(right: 12),
+                          decoration: BoxDecoration(
+                            color: selectedColor.value,
+                            borderRadius: BorderRadius.circular(2),
+                          ),
+                        ),
+                        Expanded(
+                          child: TextField(
+                            controller: textController,
+                            maxLines: null,
+                            decoration: const InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Note',
+                            ),
+                            style: const TextStyle(fontSize: 17),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      _buildColorButton(Colors.grey, selectedColor.value,
+                          (color) {
+                        selectedColor.value = color;
+                      }),
+                      _buildColorButton(Colors.red, selectedColor.value,
+                          (color) {
+                        selectedColor.value = color;
+                      }),
+                      _buildColorButton(Colors.amber, selectedColor.value,
+                          (color) {
+                        selectedColor.value = color;
+                      }),
+                      _buildColorButton(Colors.brown, selectedColor.value,
+                          (color) {
+                        selectedColor.value = color;
+                      }),
+                      _buildColorButton(Colors.purple, selectedColor.value,
+                          (color) {
+                        selectedColor.value = color;
+                      }),
+                      _buildColorButton(Colors.green, selectedColor.value,
+                          (color) {
+                        selectedColor.value = color;
+                      }),
+                      _buildColorButton(Colors.blue, selectedColor.value,
+                          (color) {
+                        selectedColor.value = color;
+                      }),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
+                )
+              ],
+            ),
+          )),
     );
   }
-}
 
-class NotesAppBar extends StatelessWidget {
-  const NotesAppBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final controller = Get.find<NotesController>();
-
-    return Obx(
-      () => Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            TextButton(
-              onPressed: () => Get.back(),
-              child: Row(
-                children: [
-                  Icon(Icons.chevron_left, color: Colors.blue),
-                  Text('Back', style: TextStyle(color: Colors.blue,
-                   fontFamily: StringConstants.SFPro,)),
-                ],
-              ),
-            ),
-            Text(
-              'Notes',
-              style: TextStyle(
-                fontSize: 34,
-                 fontFamily: StringConstants.SFPro,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            TextButton(
-              onPressed: controller.isSelectionMode.value
-                  ? () => controller.clearSelection()
-                  : null,
-              child: Text(
-                'Select',
-                
-                style: TextStyle(
-                   fontFamily: StringConstants.SFPro,
-                  color: controller.isSelectionMode.value
-                      ? Colors.blue
-                      : Colors.blue,
-                ),
-              ),
-            ),
-          ],
+  Widget _buildColorButton(
+      Color color, Color selectedColor, Function(Color) onTap) {
+    bool isSelected = color == selectedColor;
+    return GestureDetector(
+      onTap: () => onTap(color),
+      child: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          color: color,
+          shape: BoxShape.circle,
+          border: isSelected ? Border.all(color: Colors.black, width: 3) : null,
         ),
       ),
     );

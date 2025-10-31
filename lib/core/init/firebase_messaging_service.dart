@@ -28,7 +28,7 @@ class FirebaseMessagingService {
 
     // FirebaseMessaging.onMessageOpenedApp.listen(_onMessageOpenedApp);
 
-    final initialMessage = await FirebaseMessaging.instance.getInitialMessage();
+    // final initialMessage = await FirebaseMessaging.instance.getInitialMessage();
     // if (initialMessage != null) {
     //   _onMessageOpenedApp(initialMessage);
     // }
@@ -63,9 +63,9 @@ class FirebaseMessagingService {
     }
   }
 
-  void _onMessageOpenedApp(RemoteMessage message) {
-    log('Notification caused the app to open: ${message.data.toString()}');
-  }
+  // void _onMessageOpenedApp(RemoteMessage message) {
+  //   log('Notification caused the app to open: ${message.data.toString()}');
+  // }
 }
 
 Future<void> _incrementNotificationCount() async {
