@@ -196,9 +196,11 @@ class _Header extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: SvgPicture.asset(IconConstants.elkitap)
-        ),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: SvgPicture.asset(
+                Theme.of(context).brightness == Brightness.dark
+                    ? 'assets/icons/e1.svg'
+                    : IconConstants.elkitap)),
       ],
     );
   }

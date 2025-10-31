@@ -2,6 +2,7 @@ import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/core/theme/app_colors.dart';
 import 'package:elkitap/modules/library/controllers/library_controller.dart';
 import 'package:elkitap/modules/library/model/book_moc.dart';
+import 'package:elkitap/modules/store/views/store_detail_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,13 +29,13 @@ class _BookListItemState extends State<BookListItem> {
 
       return GestureDetector(
         onTap: () {
-          // Only toggle if already in selection mode
           if (isInSelectionMode) {
             widget.controller.toggleSelection(widget.book.id);
+          } else {
+            Get.to(() => BookDetailView());
           }
         },
         onLongPress: () {
-          // Enter selection mode and select this book
           widget.controller.toggleSelection(widget.book.id);
         },
         child: Stack(
@@ -102,7 +103,7 @@ class _BookListItemState extends State<BookListItem> {
                           widget.book.title,
                           style: const TextStyle(
                             fontSize: 16,
-                             fontFamily: StringConstants.SFPro,
+                            fontFamily: StringConstants.SFPro,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -111,7 +112,7 @@ class _BookListItemState extends State<BookListItem> {
                           widget.book.author,
                           style: TextStyle(
                             fontSize: 14,
-                             fontFamily: StringConstants.SFPro,
+                            fontFamily: StringConstants.SFPro,
                             color: Colors.grey[600],
                           ),
                         ),

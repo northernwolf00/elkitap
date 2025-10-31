@@ -15,23 +15,23 @@ android {
     // ndkVersion = "29.0.14033849"
     
 
-    // compileOptions {
-    //     sourceCompatibility = JavaVersion.VERSION_11
-    //     targetCompatibility = JavaVersion.VERSION_11
-    // }
-
-    // kotlinOptions {
-    //     jvmTarget = JavaVersion.VERSION_11.toString()
-    // }
-   compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-        isCoreLibraryDesugaringEnabled = true
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
+//    compileOptions {
+//         sourceCompatibility = JavaVersion.VERSION_1_8
+//         targetCompatibility = JavaVersion.VERSION_1_8
+//         isCoreLibraryDesugaringEnabled = true
+//     }
+
+//     kotlinOptions {
+//         jvmTarget = "1.8"
+//     }
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
@@ -46,8 +46,8 @@ android {
 
     buildTypes {
         release {
-            // isMinifyEnabled = false
-            // isShrinkResources = false
+            isMinifyEnabled = false
+            isShrinkResources = false
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")

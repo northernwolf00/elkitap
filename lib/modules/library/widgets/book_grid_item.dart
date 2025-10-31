@@ -2,6 +2,7 @@ import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/core/theme/app_colors.dart';
 import 'package:elkitap/modules/library/controllers/library_controller.dart';
 import 'package:elkitap/modules/library/model/book_moc.dart';
+import 'package:elkitap/modules/store/views/store_detail_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,10 +25,18 @@ class _BookGridItemState extends State<BookGridItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Only toggle selection if already in selection mode
         if (widget.controller.selectedBooks.isNotEmpty) {
+          // In selection mode: toggle selection
           widget.controller.toggleSelection(widget.book.id);
+          setState(() {}); // refresh UI
+        } else {
+          // Not in selection mode: navigate to detail
+          Get.to(() => BookDetailView());
         }
+        // Only toggle selection if already in selection mode
+        // if (widget.controller.selectedBooks.isNotEmpty) {
+        //   widget.controller.toggleSelection(widget.book.id);
+        // }
       },
       onLongPress: () {
         // Long press enters selection mode and selects this book
@@ -139,7 +148,7 @@ class _BookGridItemState extends State<BookGridItem> {
                             ? Colors.white
                             : Colors.black,
                         fontWeight: FontWeight.bold,
-                         fontFamily: StringConstants.SFPro,
+                        fontFamily: StringConstants.SFPro,
                         fontSize: 14,
                       ),
                       maxLines: 1,
@@ -152,7 +161,7 @@ class _BookGridItemState extends State<BookGridItem> {
                             ? Colors.grey[300]
                             : Colors.grey[700],
                         fontSize: 12,
-                         fontFamily: StringConstants.SFPro,
+                        fontFamily: StringConstants.SFPro,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,

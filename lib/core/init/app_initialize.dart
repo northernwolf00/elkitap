@@ -11,7 +11,7 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:kartal/kartal.dart';
+
 
 @immutable
 final class ApplicationInitialize {
@@ -50,7 +50,7 @@ final class ApplicationInitialize {
       // Get.put(EditHouseController(), permanent: true);
       // Get.find<AddHouseController>().fetchInitialData();
       SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-      await DeviceUtility.instance.initPackageInfo();
+     
       // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
       // final localNotificationsService = LocalNotificationsService.instance();
       // await localNotificationsService.init();
