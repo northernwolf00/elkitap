@@ -1,7 +1,9 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/core/init/theme_controller.dart';
+import 'package:elkitap/global_widgets/bottom_nav_bar.dart';
 import 'package:elkitap/global_widgets/custom_bottom_sheet.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
+import 'package:elkitap/modules/auth/controllers/login_controller.dart';
 import 'package:elkitap/modules/profile/widgets/help_and_support_sheet.dart';
 import 'package:elkitap/modules/profile/widgets/model/menu_item.dart';
 import 'package:elkitap/modules/profile/widgets/paymant_bottom_sheet.dart';
@@ -23,6 +25,7 @@ class _SettingsListState extends State<SettingsList> {
   final _box = GetStorage();
   final _languageKey = 'selectedLanguage';
   late final ThemeController _themeController;
+  final AuthController authController = Get.find<AuthController>();
 
   void _showLegalTermsBottomSheet(BuildContext context) {
     showModalBottomSheet(
@@ -99,7 +102,10 @@ class _SettingsListState extends State<SettingsList> {
           padding: EdgeInsets.symmetric(vertical: 10),
           child: Text(
             "Settings",
-            style: TextStyle(fontSize: 16, fontFamily: StringConstants.SFPro, color: Colors.grey),
+            style: TextStyle(
+                fontSize: 16,
+                fontFamily: StringConstants.SFPro,
+                color: Colors.grey),
           ),
         ),
         Container(height: 1, color: Colors.grey[200]),
@@ -128,10 +134,7 @@ class _SettingsListState extends State<SettingsList> {
                       _showHelpBottomSheet(context);
                     } else if (title == 'Payment History') {
                       _showPaymantHistorySheet(context);
-                    } 
-                    
-                    
-                    else {
+                    } else {
                       _showLegalTermsBottomSheet(context);
                     }
                   },
@@ -149,7 +152,7 @@ class _SettingsListState extends State<SettingsList> {
                       title,
                       style: const TextStyle(
                         fontSize: 16,
-                         fontFamily: StringConstants.SFPro,
+                        fontFamily: StringConstants.SFPro,
                       ),
                     ),
                     trailing: Row(
@@ -162,7 +165,7 @@ class _SettingsListState extends State<SettingsList> {
                             style: const TextStyle(
                               color: Colors.grey,
                               fontSize: 15,
-                               fontFamily: StringConstants.SFPro,
+                              fontFamily: StringConstants.SFPro,
                             ),
                           ),
                         Icon(Icons.chevron_right, color: Colors.grey[350]),
@@ -330,7 +333,7 @@ class _SettingsListState extends State<SettingsList> {
                     item.title,
                     style: const TextStyle(
                       fontSize: 16,
-                       fontFamily: StringConstants.SFPro,
+                      fontFamily: StringConstants.SFPro,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
@@ -365,7 +368,7 @@ class _SettingsListState extends State<SettingsList> {
           title: const Text(
             "Do you really want to log out?",
             style: TextStyle(
-               fontFamily: StringConstants.SFPro,
+              fontFamily: StringConstants.SFPro,
               fontWeight: FontWeight.bold, // Make title bold
               fontSize: 17, // Adjust font size as needed
             ),
@@ -373,7 +376,7 @@ class _SettingsListState extends State<SettingsList> {
           content: const Text(
             "If you log out, you won't be able to read your favorite books.",
             style: TextStyle(
-               fontFamily: StringConstants.SFPro,
+              fontFamily: StringConstants.SFPro,
               fontSize: 13, // Adjust font size as needed
             ),
           ),
@@ -386,7 +389,7 @@ class _SettingsListState extends State<SettingsList> {
               child: const Text(
                 "No",
                 style: TextStyle(
-                   fontFamily: StringConstants.SFPro,
+                  fontFamily: StringConstants.SFPro,
                   color: CupertinoColors.activeBlue, // Default blue color
                   fontWeight: FontWeight.w500, // Medium weight
                 ),
@@ -394,16 +397,16 @@ class _SettingsListState extends State<SettingsList> {
             ),
             CupertinoDialogAction(
               onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
-                // Add your 'Yes' (logout) logic here
-                print("User chose to log out.");
+                Navigator.of(context).pop();
+                authController.logout();
+                Get.offAll(() => const BottomNavScreen());
               },
               isDestructiveAction:
                   true, // This makes the text red on iOS-style alerts
               child: const Text(
                 "Yes",
                 style: TextStyle(
-                   fontFamily: StringConstants.SFPro,
+                  fontFamily: StringConstants.SFPro,
                   // The isDestructiveAction property handles the red color
                   fontWeight: FontWeight.w500, // Medium weight
                 ),

@@ -1,5 +1,6 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
+import 'package:elkitap/modules/auth/controllers/login_controller.dart';
 import 'package:elkitap/modules/auth/views/login_view.dart';
 import 'package:elkitap/modules/profile/views/profile_view.dart';
 
@@ -11,6 +12,7 @@ class LibraryHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AuthController authController = Get.find<AuthController>();
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -24,8 +26,11 @@ class LibraryHeader extends StatelessWidget {
         ),
         IconButton(
           onPressed: () {
-            // Get.to(() => ProfileScreen());
-            Get.to(() => AuthViewScreen());
+            if (authController.isAuthenticated.value) {
+              Get.to(() => const ProfileScreen());
+            } else {
+              Get.to(() => const AuthViewScreen());
+            }
           },
           icon: CustomIcon(
             title: 'assets/icons/i1.svg',

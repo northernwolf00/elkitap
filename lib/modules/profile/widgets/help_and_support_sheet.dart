@@ -8,18 +8,16 @@ class HelpAndSupportBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-    
       decoration: BoxDecoration(
-        color: Theme.of(context).scaffoldBackgroundColor, 
+        color: Theme.of(context).scaffoldBackgroundColor,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(20.0)),
       ),
-     
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-        
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
             child: Row(
               children: [
                 GestureDetector(
@@ -28,17 +26,20 @@ class HelpAndSupportBottomSheet extends StatelessWidget {
                   },
                   child: Icon(
                     Icons.arrow_back_ios,
-                    color: Theme.of(context).iconTheme.color, 
+                    color: Theme.of(context).iconTheme.color,
                     size: 20,
                   ),
                 ),
                 const SizedBox(width: 10),
                 Text(
-                  "Profile", 
+                  "Profile",
                   style: TextStyle(
                     fontSize: 18,
-                     fontFamily: StringConstants.SFPro,
-                    color: Theme.of(context).textTheme.bodyLarge!.color, // Theme-adaptive text color
+                    fontFamily: StringConstants.SFPro,
+                    color: Theme.of(context)
+                        .textTheme
+                        .bodyLarge!
+                        .color, // Theme-adaptive text color
                     fontWeight: FontWeight.w400,
                   ),
                 ),
@@ -48,24 +49,32 @@ class HelpAndSupportBottomSheet extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 18,
-                       fontFamily: StringConstants.SFPro,
-                      fontWeight: FontWeight.bold, // Make it bold as in the image
-                      color: Theme.of(context).textTheme.bodyLarge!.color, // Theme-adaptive text color
+                      fontFamily: StringConstants.SFPro,
+                      fontWeight:
+                          FontWeight.bold, // Make it bold as in the image
+                      color: Theme.of(context)
+                          .textTheme
+                          .bodyLarge!
+                          .color, // Theme-adaptive text color
                     ),
                   ),
                 ),
                 // An empty SizedBox to balance the row if there's no trailing widget
-                const SizedBox(width: 46), // Adjust to match combined width of back icon and "Profile" text
+                const SizedBox(
+                    width:
+                        80), // Adjust to match combined width of back icon and "Profile" text
               ],
             ),
           ),
-          
-         
-         
-          Flexible( // Use Flexible to prevent bottom sheet from taking infinite height
+          SizedBox(
+            height: 20,
+          ),
+          Flexible(
+            // Use Flexible to prevent bottom sheet from taking infinite height
             child: ListView(
               shrinkWrap: true, // Make ListView only take the space it needs
-              physics: const NeverScrollableScrollPhysics(), // Disable scrolling for this short list
+              physics:
+                  const NeverScrollableScrollPhysics(), // Disable scrolling for this short list
               children: [
                 _buildOptionTile(
                   context,
@@ -90,7 +99,8 @@ class HelpAndSupportBottomSheet extends StatelessWidget {
                 _buildOptionTile(
                   context,
                   icon: 'assets/icons/p10.svg', // Send icon (for Telegram)
-                  title: "Start", // Assuming 'Start' is some chat or quick action
+                  title:
+                      "Start", // Assuming 'Start' is some chat or quick action
                   hasTrailingIcon: true, // Has trailing icon
                   onTap: () {
                     // Handle Start tap
@@ -111,7 +121,7 @@ class HelpAndSupportBottomSheet extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: 20), 
+          const SizedBox(height: 20),
           Spacer()
         ],
       ),
@@ -130,26 +140,34 @@ class HelpAndSupportBottomSheet extends StatelessWidget {
     return Column(
       children: [
         ListTile(
-          leading: CustomIcon(title: icon, height: 24, width: 24, 
-          color: Theme.of(context).brightness == Brightness.dark
-                          ? Colors.white
-                          : Colors.black,
-          )
-         ,
+          leading: CustomIcon(
+            title: icon,
+            height: 24,
+            width: 24,
+            color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.white
+                : Colors.black,
+          ),
           title: Text(
             title,
             style: TextStyle(
-               fontFamily: StringConstants.SFPro,
+              fontFamily: StringConstants.SFPro,
               fontSize: 16,
-              color: Theme.of(context).textTheme.bodyLarge!.color, // Theme-adaptive text color
+              color: Theme.of(context)
+                  .textTheme
+                  .bodyLarge!
+                  .color, // Theme-adaptive text color
             ),
           ),
           trailing: hasTrailingIcon
-              ?  CustomIcon(title: 'assets/icons/p11.svg', height: 24, width: 24, 
-          color: Theme.of(context).brightness == Brightness.dark
-                          ? Colors.white
-                          : Colors.black,
-          )
+              ? CustomIcon(
+                  title: 'assets/icons/p11.svg',
+                  height: 40,
+                  width: 40,
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.white
+                      : Colors.black,
+                )
               : null,
           onTap: onTap,
           contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -159,7 +177,8 @@ class HelpAndSupportBottomSheet extends StatelessWidget {
             padding: const EdgeInsets.only(left: 16.0), // Indent divider
             child: Divider(
               height: 1,
-              color: Theme.of(context).dividerColor.withOpacity(0.5), // Theme-adaptive divider color with opacity
+              color: Theme.of(context).dividerColor.withOpacity(
+                  0.5), // Theme-adaptive divider color with opacity
               thickness: 0.5,
             ),
           ),
@@ -167,4 +186,3 @@ class HelpAndSupportBottomSheet extends StatelessWidget {
     );
   }
 }
-

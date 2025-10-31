@@ -136,7 +136,6 @@ class _NotesScreenState extends State<NotesScreen> {
               itemCount: notes.length,
               itemBuilder: (context, index) {
                 final note = notes[index];
-                final isSelected = controller.selectedNotes.contains(note.id);
 
                 return Obx(() {
                   final isSelected = controller.selectedNotes.contains(note.id);
