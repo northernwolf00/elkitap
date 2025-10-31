@@ -1,5 +1,6 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/core/theme/app_colors.dart';
+import 'package:elkitap/modules/profile/widgets/subscription_expired_sheet.dart';
 import 'package:flutter/material.dart';
 
 class SubscribedView extends StatelessWidget {
@@ -9,6 +10,16 @@ class SubscribedView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _showSubscriptionExpiredSheet(BuildContext context) {
+      showModalBottomSheet(
+        context: context,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        ),
+        builder: (context) => const SubscriptionExpiredSheet(),
+      );
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -18,7 +29,7 @@ class SubscribedView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              "Subscription ends in $daysLeft days",
+              "Subscription ends in 30 days",
               style: const TextStyle(fontSize: 14),
             ),
             Image.asset(
@@ -35,7 +46,9 @@ class SubscribedView extends StatelessWidget {
           children: [
             Expanded(
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  _showSubscriptionExpiredSheet(context);
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.bgItemProColor,
                   shape: RoundedRectangleBorder(
@@ -43,7 +56,10 @@ class SubscribedView extends StatelessWidget {
                   ),
                 ),
                 child: const Text("Extend",
-                    style: TextStyle(fontSize: 14, fontFamily: StringConstants.SFPro, color: Colors.white)),
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: StringConstants.SFPro,
+                        color: Colors.white)),
               ),
             ),
             const SizedBox(width: 12),
@@ -57,8 +73,10 @@ class SubscribedView extends StatelessWidget {
                   ),
                 ),
                 child: const Text("Promocode",
-                    style: TextStyle(fontSize: 14, 
-                     fontFamily: StringConstants.SFPro, color: Colors.black)),
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontFamily: StringConstants.SFPro,
+                        color: Colors.black)),
               ),
             ),
           ],

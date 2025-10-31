@@ -3,7 +3,7 @@ import 'dart:ui';
 class AppColors {
   static const Color mainColor = Color(0xFFF15A24);
   static const Color searchIconColor = Color.fromRGBO(130, 130, 130, 1);
-  static const Color disableColor = Color(0xFF3C3C4399);
+  static const Color disableColor = Color.fromRGBO(130, 130, 130, 1);
   static const Color searchColor = Color.fromRGBO(242, 242, 242, 1);
   static const Color borderColor = Color.fromRGBO(241, 241, 241, 1);
 

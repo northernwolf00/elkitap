@@ -12,7 +12,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ApplicationInitialize.initialize();
@@ -34,7 +33,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(360, 800),
       minTextAdapt: true,
-      // splitScreenMode: true,
+      splitScreenMode: true,
       builder: (_, __) {
         return GetMaterialApp(
           builder: (context, child) {

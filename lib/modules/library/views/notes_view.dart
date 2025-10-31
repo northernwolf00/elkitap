@@ -20,12 +20,20 @@ class _NotesScreenState extends State<NotesScreen> {
 
     return Obx(() => Scaffold(
           backgroundColor: controller.isSelectionMode.value
-              ? Colors.grey[300]
-              : Colors.white,
+              ? (Theme.of(context).brightness == Brightness.dark
+                  ? Colors.grey[700] // darker grey for dark mode
+                  : Colors.grey[300]) // light grey for light mode
+              : (Theme.of(context).brightness == Brightness.dark
+                  ? Colors.black // black for dark mode
+                  : Colors.white),
           appBar: AppBar(
             backgroundColor: controller.isSelectionMode.value
-                ? Colors.grey[300]
-                : Colors.white,
+                ? (Theme.of(context).brightness == Brightness.dark
+                    ? Colors.grey[700]
+                    : Colors.grey[300])
+                : (Theme.of(context).brightness == Brightness.dark
+                    ? Colors.black
+                    : Colors.white),
             elevation: 0,
             leadingWidth: 120,
             leading: controller.isSelectionMode.value
@@ -33,9 +41,12 @@ class _NotesScreenState extends State<NotesScreen> {
                     onPressed: () => controller.toggleSelectAll(),
                     child: Obx(() => Text(
                           controller.isAllSelected ? 'Deselect' : 'Select All',
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontFamily: StringConstants.SFPro,
-                              color: Colors.black,
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Colors.white
+                                  : Colors.black,
                               fontSize: 17),
                         )),
                   )
@@ -72,9 +83,14 @@ class _NotesScreenState extends State<NotesScreen> {
                     ),
                     TextButton(
                       onPressed: () => controller.toggleSelectionMode(),
-                      child: const Text(
+                      child: Text(
                         'Done',
-                        style: TextStyle(color: Colors.black, fontSize: 17),
+                        style: TextStyle(
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.white
+                                    : Colors.black,
+                            fontSize: 17),
                       ),
                     ),
                   ]
@@ -83,10 +99,13 @@ class _NotesScreenState extends State<NotesScreen> {
                     : [
                         TextButton(
                           onPressed: () => controller.toggleSelectionMode(),
-                          child: const Text(
+                          child: Text(
                             'Select',
                             style: TextStyle(
-                                color: Colors.black,
+                                color: Theme.of(context).brightness ==
+                                        Brightness.dark
+                                    ? Colors.white
+                                    : Colors.black,
                                 fontFamily: StringConstants.SFPro,
                                 fontSize: 17),
                           ),
@@ -177,8 +196,10 @@ class _NotesScreenState extends State<NotesScreen> {
       backgroundColor: Colors.transparent,
       builder: (context) => Obx(() => Container(
             height: MediaQuery.of(context).size.height * 0.9,
-            decoration: const BoxDecoration(
-              color: Colors.white,
+            decoration: BoxDecoration(
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.black // black for dark mode
+                  : Colors.white,
               borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
             ),
             child: Column(
@@ -201,11 +222,14 @@ class _NotesScreenState extends State<NotesScreen> {
                               note.id, selectedColor.value);
                           Navigator.pop(context);
                         },
-                        child: const Text(
+                        child: Text(
                           'Done',
                           style: TextStyle(
                             fontSize: 17,
-                            color: Colors.black,
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.white
+                                    : Colors.black,
                             fontFamily: StringConstants.SFPro,
                             fontWeight: FontWeight.w600,
                           ),

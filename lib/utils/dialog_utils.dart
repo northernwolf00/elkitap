@@ -506,7 +506,9 @@ class DialogUtils {
       Function onAddToCollection, Function onMarkFinished, Function onRemove) {
     showDialog(
       context: context,
-      barrierColor: Colors.black26,
+      barrierColor: Theme.of(context).brightness == Brightness.dark
+          ? Colors.white24 // light semi-transparent overlay in dark mode
+          : Colors.black26,
       builder: (context) => Stack(
         children: [
           Positioned(
@@ -558,7 +560,14 @@ class DialogUtils {
                           title: 'Share',
                           onTap: () => onAddToCollection(),
                         ),
-                        Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
+                        Divider(
+                          height: 1,
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.white.withOpacity(
+                                  0.1) // subtle divider in dark mode
+                              : Colors.grey.withOpacity(
+                                  0.2), // light divider in light mode
+                        ),
                         _buildIOSMenuOption(
                           context,
                           iconPath: 'assets/icons/d10.svg',
@@ -606,17 +615,20 @@ class DialogUtils {
             Text(
               title,
               style: TextStyle(
-                fontSize: 16,
-                color: titleColor ?? Colors.black,
-              ),
+                  fontSize: 16,
+                  color: titleColor ??
+                      (Theme.of(context).brightness == Brightness.dark
+                          ? Colors.white // white in dark mode
+                          : Colors.black)),
             ),
             Spacer(),
-            SvgPicture.asset(
-              iconPath,
-              width: 20,
-              height: 20,
-              color: iconColor ?? Colors.black,
-            ),
+            SvgPicture.asset(iconPath,
+                width: 20,
+                height: 20,
+                color: iconColor ??
+                    (Theme.of(context).brightness == Brightness.dark
+                        ? Colors.white // white in dark mode
+                        : Colors.black)),
           ],
         ),
       ),
