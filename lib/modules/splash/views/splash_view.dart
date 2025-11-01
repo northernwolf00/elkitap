@@ -24,7 +24,7 @@ class SplashPageWidget extends StatelessWidget {
         color: Theme.of(context).colorScheme.background,
         child: Center(
           child: Lottie.asset(
-            'assets/animations/blue_house.json',
+            'assets/animations/elkitap_splash.json',
             width: 200,
             height: 200,
             fit: BoxFit.contain,
