@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/store/views/profesional_readers_profil.dart';
 import 'package:elkitap/modules/store/views/profesionals_read_view.dart';
 import 'package:elkitap/modules/store/widgets/profile_cart_widget.dart';
@@ -41,9 +42,8 @@ class _ListProfileWidgetState extends State<ListProfileWidget> {
                   'Professionals read',
                   style: TextStyle(
                     fontSize: 20,
-                    fontFamily: 'New York',
+                    fontFamily: StringConstants.NewYork,
                     fontWeight: FontWeight.w700,
-                    color: Colors.black87,
                   ),
                 ),
                 SizedBox(width: 8),
@@ -57,7 +57,6 @@ class _ListProfileWidgetState extends State<ListProfileWidget> {
           ),
         ),
         SizedBox(height: 14),
-
         SizedBox(
           height: 265,
           child: ListView.separated(
@@ -82,7 +81,6 @@ class _ListProfileWidgetState extends State<ListProfileWidget> {
             },
           ),
         ),
-
         SizedBox(height: 24),
       ],
     );

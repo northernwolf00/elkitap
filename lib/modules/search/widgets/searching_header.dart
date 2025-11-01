@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +20,9 @@ class SearchingHeader extends StatelessWidget {
               width:MediaQuery.of(context).size.width - 100 ,
               height: 50,
               decoration: BoxDecoration(
-                color: Colors.grey[100],
+                color: Theme.of(context).brightness == Brightness.dark
+    ? Colors.grey[800] 
+    : Colors.grey[100],
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Row(
@@ -91,7 +94,7 @@ class SearchingHeader extends StatelessWidget {
             },
              child: Text('Cancel',
               style: TextStyle(
-                color: Colors.black,
+              fontFamily: StringConstants.SFPro,
                 fontSize: 16
               ),),
            ),

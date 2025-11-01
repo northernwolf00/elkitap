@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/search/views/searching_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,19 +16,21 @@ class SearchHeader extends StatelessWidget {
           "Search",
           style: TextStyle(
             fontSize: 34,
-            fontFamily: 'New York',
+            fontFamily: StringConstants.NewYork,
             fontWeight: FontWeight.bold,
           ),
         ),
         const SizedBox(height: 16),
         GestureDetector(
-          onTap: (){
+          onTap: () {
             Get.to(() => SearchingViewScreen());
           },
           child: Container(
             height: 50,
             decoration: BoxDecoration(
-              color: Colors.grey[100],
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.grey[800]
+                  : Colors.grey[100],
               borderRadius: BorderRadius.circular(16),
             ),
             child: Row(
@@ -65,7 +68,6 @@ class SearchHeader extends StatelessWidget {
                         errorBorder: InputBorder.none,
                         disabledBorder: InputBorder.none,
                       ),
-          
                       onChanged: (_) {
                         Get.to(() => SearchingViewScreen());
                       },

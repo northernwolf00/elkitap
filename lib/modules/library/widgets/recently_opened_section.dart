@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/genre/view/books_grid_screen_view.dart';
 import 'package:elkitap/modules/store/views/store_detail_view.dart';
 import 'package:elkitap/modules/store/widgets/book_card_widget.dart';
@@ -27,7 +28,7 @@ class RecentlyOpenedSection extends StatelessWidget {
             "Recently Opened",
             style: TextStyle(
               fontSize: 20,
-              fontFamily: 'New York',
+              fontFamily: StringConstants.NewYork,
               fontWeight: FontWeight.bold,
             ),
           ),

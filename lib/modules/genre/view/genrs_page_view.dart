@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/custom_appbar.dart';
 import 'package:elkitap/modules/store/widgets/featured_books_section.dart';
 import 'package:elkitap/modules/store/widgets/popular_by_genre_section.dart';
@@ -16,7 +17,7 @@ class _GenrsDetailViewScreenState extends State<GenrsDetailViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+ 
       appBar: CustomAppBar(title: '', leadingText: 'Back'),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -32,7 +33,12 @@ class _GenrsDetailViewScreenState extends State<GenrsDetailViewScreen> {
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
+                      colors:  Theme.of(context).brightness == Brightness.dark
+                            ? [
+                                Color(0x001C1C1E),
+                                Color(0xFF1C1C1E)
+                              ] // dark mode gradient
+                            : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     ),
@@ -49,7 +55,12 @@ class _GenrsDetailViewScreenState extends State<GenrsDetailViewScreen> {
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
+                      colors:  Theme.of(context).brightness == Brightness.dark
+                            ? [
+                                Color(0x001C1C1E),
+                                Color(0xFF1C1C1E)
+                              ] // dark mode gradient
+                            : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     ),
@@ -60,7 +71,12 @@ class _GenrsDetailViewScreenState extends State<GenrsDetailViewScreen> {
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors: [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
+                      colors:  Theme.of(context).brightness == Brightness.dark
+                            ? [
+                                Color(0x001C1C1E),
+                                Color(0xFF1C1C1E)
+                              ] // dark mode gradient
+                            : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     ),
@@ -100,7 +116,9 @@ class _Header extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: const Text(
             "Health, Mind & Body",
-            style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 26,
+             fontFamily: StringConstants.NewYork,
+             fontWeight: FontWeight.bold),
           ),
         ),
       ],

@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/store/views/profesional_readers_profil.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,9 +22,14 @@ class ProfessionalCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 16),
       padding: const EdgeInsets.symmetric(vertical: 24),
       decoration: BoxDecoration(
-        color: Colors.white,
+   
         gradient: LinearGradient(
-          colors: [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
+          colors: Theme.of(context).brightness == Brightness.dark
+                            ? [
+                                Color(0x001C1C1E),
+                                Color(0xFF1C1C1E)
+                              ] // dark mode gradient
+                            : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
@@ -36,6 +42,7 @@ class ProfessionalCard extends StatelessWidget {
             role,
             style: TextStyle(
               color: Colors.grey[600],
+               fontFamily: StringConstants.SFPro,
               fontSize: 12,
               letterSpacing: 1.2,
             ),
@@ -52,6 +59,7 @@ class ProfessionalCard extends StatelessWidget {
                   name,
                   style: const TextStyle(
                     fontSize: 20,
+                     fontFamily: StringConstants.NewYork,
                     fontWeight: FontWeight.w600,
                   ),
                 ),

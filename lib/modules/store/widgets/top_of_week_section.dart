@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/genre/view/books_grid_screen_view.dart';
 import 'package:elkitap/modules/genre/widget/ranked_books_list.dart';
 import 'package:flutter/material.dart';
@@ -25,13 +26,15 @@ class TopOfWeekSection extends StatelessWidget {
           const SizedBox(height: 22),
           GestureDetector(
             onTap: () {
-              Get.to(() => BooksGridScreen(title: "Top of the week",));
+              Get.to(() => BooksGridScreen(
+                    title: "Top of the week",
+                  ));
             },
             child: const Text(
               "Top of the week",
               style: TextStyle(
                 fontSize: 20,
-                fontFamily: 'New York',
+                fontFamily: StringConstants.NewYork,
                 fontWeight: FontWeight.bold,
               ),
             ),

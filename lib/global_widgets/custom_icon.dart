@@ -22,7 +22,6 @@ class CustomIcon extends StatelessWidget {
       title,
       height: height,
       width: width,
-      // ignore: deprecated_member_use
       color: color,
     );
   }

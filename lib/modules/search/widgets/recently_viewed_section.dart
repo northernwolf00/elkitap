@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/store/views/store_detail_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,13 +26,15 @@ class RecentlyViewedSection extends StatelessWidget {
               "Recently Viewed",
               style: TextStyle(
                 fontSize: 20,
-                fontFamily: 'New York',
+                fontFamily: StringConstants.NewYork,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
               "Clear",
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w500),
+              style: TextStyle(fontSize: 17, 
+               fontFamily: StringConstants.SFPro,
+              fontWeight: FontWeight.w500),
             ),
           ],
         ),
@@ -44,14 +47,13 @@ class RecentlyViewedSection extends StatelessWidget {
             separatorBuilder: (_, __) => const SizedBox(width: 12),
             itemBuilder: (context, index) {
               return GestureDetector(
-                onTap: (){
-                     Get.to(() => BookDetailView());
+                onTap: () {
+                  Get.to(() => BookDetailView());
                 },
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: SizedBox(
                     width: 110,
-                
                     child: Image.asset(books[index], fit: BoxFit.cover),
                   ),
                 ),

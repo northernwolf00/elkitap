@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +16,10 @@ class NotSubscribedView extends StatelessWidget {
         const SizedBox(height: 25),
         Text(
           "Not subscribed",
-          style: const TextStyle(color: Colors.black54),
+          style: const TextStyle(
+             fontFamily: StringConstants.SFPro,
+            fontSize: 14,
+          ),
         ),
         const SizedBox(height: 12),
         Container(height: 1, color: Colors.grey[300]),
@@ -26,14 +30,15 @@ class NotSubscribedView extends StatelessWidget {
           child: ElevatedButton(
             onPressed: onSubscribe,
             style: ElevatedButton.styleFrom(
-               backgroundColor: AppColors.bgItemProColor,
+              backgroundColor: AppColors.bgItemProColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(40),
               ),
-           
             ),
-            child: const Text("Subscribe", style: TextStyle(fontSize: 14,
-            color: Colors.white)),
+            child: const Text("Subscribe",
+                style: TextStyle(fontSize: 14,
+                 fontFamily: StringConstants.SFPro,
+                 color: Colors.white)),
           ),
         ),
       ],

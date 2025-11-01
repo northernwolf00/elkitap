@@ -1,257 +1,170 @@
-import 'package:elkitap/modules/library/controllers/note_controller.dart';
+import 'package:elkitap/core/constants/string_constants.dart';
+import 'package:elkitap/core/theme/app_colors.dart';
 import 'package:elkitap/modules/library/model/note_moc.dart';
-import 'package:elkitap/modules/library/views/note_datail_view.dart';
+import 'package:elkitap/utils/dialog_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class NoteCard extends StatelessWidget {
-  final Note note;
+  final NoteItem note;
+  final bool isSelectionMode;
+  final bool isSelected;
+  final VoidCallback onTap;
+  final VoidCallback onLongPress;
+  final VoidCallback onEdit;
+  final VoidCallback onDelete;
 
-  const NoteCard({super.key, required this.note});
+  const NoteCard({
+    Key? key,
+    required this.note,
+    required this.isSelectionMode,
+    required this.isSelected,
+    required this.onTap,
+    required this.onLongPress,
+    required this.onEdit,
+    required this.onDelete,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.to(() => NoteDetailScreen(note: note)),
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 12),
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(12),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              blurRadius: 10,
-              offset: Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            NoteCardHeader(note: note),
-            const SizedBox(height: 12),
-            NoteCardContent(note: note),
-            const SizedBox(height: 12),
-            NoteCardFooter(note: note),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class NoteCardHeader extends StatelessWidget {
-  final Note note;
-
-  const NoteCardHeader({super.key, required this.note});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          width: 40,
-          height: 40,
+      onTap: onTap,
+      onLongPress: onLongPress,
+      child: Opacity(
+        opacity: isSelectionMode && !isSelected ? 0.4 : 1.0,
+        child: Container(
+          margin: const EdgeInsets.only(bottom: 16),
           decoration: BoxDecoration(
-            color: Colors.red[100],
-            borderRadius: BorderRadius.circular(8),
+            color: Theme.of(context).brightness == Brightness.dark
+                ? const Color(0xFF1F1F1F)
+                : const Color(0xFFF3F4F6),
+            borderRadius: BorderRadius.circular(12),
           ),
-          child: Icon(Icons.book, color: Colors.red[800], size: 20),
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                note.title,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-              Text(
-                note.author,
-                style: TextStyle(fontSize: 14, color: Colors.grey[600]),
-              ),
-            ],
-          ),
-        ),
-        NoteMenuButton(note: note),
-      ],
-    );
-  }
-}
-
-class NoteMenuButton extends StatelessWidget {
-  final Note note;
-
-  const NoteMenuButton({super.key, required this.note});
-
-  @override
-  Widget build(BuildContext context) {
-    return PopupMenuButton<String>(
-      icon: Icon(Icons.more_horiz),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      itemBuilder:
-          (context) => [
-            PopupMenuItem(
-              value: 'open',
-              child: Row(
-                children: [
-                  Icon(Icons.book_outlined),
-                  SizedBox(width: 12),
-                  Text('Open book'),
-                ],
-              ),
-            ),
-            PopupMenuItem(
-              value: 'share',
-              child: Row(
-                children: [
-                  Icon(Icons.share_outlined),
-                  SizedBox(width: 12),
-                  Text('Share'),
-                ],
-              ),
-            ),
-            PopupMenuItem(
-              value: 'edit',
-              child: Row(
-                children: [
-                  Icon(Icons.edit_outlined),
-                  SizedBox(width: 12),
-                  Text('Edit'),
-                ],
-              ),
-            ),
-            PopupMenuItem(
-              value: 'delete',
-              child: Row(
-                children: [
-                  Icon(Icons.delete_outline, color: Colors.red),
-                  SizedBox(width: 12),
-                  Text('Delete', style: TextStyle(color: Colors.red)),
-                ],
-              ),
-            ),
-          ],
-      onSelected: (value) {
-        final controller = Get.find<NotesController>();
-        if (value == 'delete') {
-          controller.deleteNote(note.id);
-        } else if (value == 'edit') {
-          Get.to(() => NoteDetailScreen(note: note));
-        }
-      },
-    );
-  }
-}
-
-class NoteCardContent extends StatelessWidget {
-  final Note note;
-  const NoteCardContent({super.key, required this.note});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(left: 12),
-      decoration: BoxDecoration(
-        border: Border(left: BorderSide(color: note.accentColor, width: 3)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            note.content,
-            style: TextStyle(fontSize: 15, height: 1.5, color: Colors.black87),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            note.comment,
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class NoteCardFooter extends StatelessWidget {
-  final Note note;
-
-  const NoteCardFooter({super.key, required this.note});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      '${note.timestamp.hour}:${note.timestamp.minute.toString().padLeft(2, '0')} ${_getMonthName(note.timestamp.month)} ${note.timestamp.day}, ${note.timestamp.year}',
-      style: TextStyle(fontSize: 13, color: Colors.grey[500]),
-    );
-  }
-
-  String _getMonthName(int month) {
-    const months = [
-      'Jan',
-      'Feb',
-      'Mar',
-      'Apr',
-      'May',
-      'Jun',
-      'Jul',
-      'Aug',
-      'Sep',
-      'Oct',
-      'Nov',
-      'Dec',
-    ];
-    return months[month - 1];
-  }
-}
-
-class ColorPicker extends StatelessWidget {
-  final List<Color> colors = [
-    Colors.grey,
-    Colors.red,
-    Colors.yellow,
-    Colors.brown,
-    Colors.purple,
-    Colors.green,
-    Colors.blue,
-  ];
-
- ColorPicker({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final controller = Get.find<NoteDetailController>();
-
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children:
-            colors.map((color) {
-              return Obx(
-                () => GestureDetector(
-                  onTap: () => controller.updateColor(color),
-                  child: Container(
-                    width: 40,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: color,
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color:
-                            controller.selectedColor.value == color
-                                ? Colors.black
-                                : Colors.transparent,
-                        width: 2,
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    Container(
+                        width: 40,
+                        height: 40,
+                        child: Image.asset(
+                          'assets/images/b4.png',
+                          fit: BoxFit.fill,
+                        )),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            note.title,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontFamily: StringConstants.SFPro,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          Text(
+                            note.author,
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontFamily: StringConstants.SFPro,
+                              color: Colors.grey[600],
+                            ),
+                          ),
+                        ],
                       ),
+                    ),
+                    if (isSelectionMode)
+                      Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color:
+                                isSelected ? Colors.grey : Colors.transparent,
+                            width: 1,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: Container(
+                            width: 28,
+                            height: 28,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: isSelected
+                                  ? AppColors.mainColor
+                                  : Colors.transparent,
+                              border: Border.all(
+                                color: isSelected
+                                    ? AppColors.mainColor
+                                    : Colors.grey,
+                                width: 2,
+                              ),
+                            ),
+                            child: isSelected
+                                ? const Icon(
+                                    Icons.check,
+                                    color: Colors.white,
+                                    size: 18,
+                                  )
+                                : null,
+                          ),
+                        ),
+                      )
+                    else
+                      IconButton(
+                        icon: const Icon(Icons.more_horiz),
+                        onPressed: () => DialogUtils.showIOSStylePopup(
+                          context,
+                          onDelete,
+                          () {},
+                          onEdit,
+                          () {},
+                        ),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+                Container(
+                  padding: const EdgeInsets.only(left: 12),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      left: BorderSide(color: note.color, width: 4),
+                    ),
+                  ),
+                  child: Text(
+                    note.quote,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontFamily: StringConstants.NewYork,
                     ),
                   ),
                 ),
-              );
-            }).toList(),
+                const SizedBox(height: 12),
+                Text(
+                  note.comment,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontFamily: StringConstants.SFPro,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  note.date,
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontFamily: StringConstants.SFPro,
+                    color: Colors.grey[600],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

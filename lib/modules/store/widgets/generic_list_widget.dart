@@ -1,4 +1,6 @@
-import 'package:elkitap/routes/app_routes.dart';
+import 'package:elkitap/core/constants/string_constants.dart';
+import 'package:elkitap/modules/genre/view/genrs_page_view.dart';
+import 'package:elkitap/modules/store/views/all_geners_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +25,9 @@ class GenericListWidget extends StatelessWidget {
         children: [
           const Text(
             "Genres",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18,
+             fontFamily: StringConstants.NewYork,
+             fontWeight: FontWeight.bold),
           ),
 
           const SizedBox(height: 16),
@@ -39,7 +43,9 @@ class GenericListWidget extends StatelessWidget {
 
                   title: Text(
                     item,
-                    style: const TextStyle(fontWeight: FontWeight.w500),
+                    style: const TextStyle(fontWeight: FontWeight.w500,
+                     
+                     fontFamily: StringConstants.SFPro,),
                   ),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -53,9 +59,9 @@ class GenericListWidget extends StatelessWidget {
                   ),
                   onTap: () {
                     if (item == 'All Genres') {
-                      Get.toNamed(Routes.ALL_GENRES);
+                      Get.to(AllGenresView());
                     } else {
-                      Get.toNamed(Routes.GENRS_DETAIL);
+                      Get.to(GenrsDetailViewScreen());
                     }
                   },
                 ),

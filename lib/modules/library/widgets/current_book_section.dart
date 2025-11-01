@@ -12,9 +12,7 @@ class CurrentBookSection extends StatelessWidget {
             height: 180,
             width: 120,
             decoration: BoxDecoration(
-              color: Colors.grey.shade200,
               borderRadius: BorderRadius.circular(8),
-
               image: const DecorationImage(
                 image: AssetImage('assets/images/b1.png'),
                 fit: BoxFit.cover,

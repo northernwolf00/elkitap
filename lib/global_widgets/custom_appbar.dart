@@ -1,17 +1,13 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
-
-
-
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  final String title;      // Center title
+  final String title; // Center title
   final String? leadingText; // Text next to back icon
   final Color backgroundColor;
   final Color textColor;
-   final bool showBackButton;
- 
+  final bool showBackButton;
 
   const CustomAppBar({
     super.key,
@@ -25,7 +21,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: backgroundColor,
       elevation: 0,
       automaticallyImplyLeading: false, // We’ll build our own leading row
       titleSpacing: 0,
@@ -33,24 +28,26 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // 👈 Back + Leading Text
-         showBackButton ? Row(
-            children: [
-              IconButton(
-                icon: const Icon(Icons.arrow_back_ios),
-                color: textColor,
-                onPressed: () => Get.back(),
-              ),
-              if (leadingText != null)
-                Text(
-                  leadingText!,
-                  style: TextStyle(
-                    color: textColor,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-            ],
-          ) : SizedBox(),
+          showBackButton
+              ? Row(
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.arrow_back_ios),
+                      onPressed: () => Get.back(),
+                    ),
+                    if (leadingText != null)
+                      Text(
+                        leadingText!,
+                        style: TextStyle(
+                          fontSize: 17,
+                          
+                           fontFamily: StringConstants.SFPro,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                  ],
+                )
+              : SizedBox(),
 
           // 🧭 Center Title
           Expanded(
@@ -58,8 +55,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Text(
                 title,
                 style: TextStyle(
-                  color: textColor,
                   fontSize: 18,
+                   fontFamily: StringConstants.SFPro,
                   fontWeight: FontWeight.bold,
                 ),
               ),

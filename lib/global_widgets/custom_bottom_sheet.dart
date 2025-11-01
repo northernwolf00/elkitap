@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomBottomSheet extends StatelessWidget {
@@ -11,8 +12,10 @@ class CustomBottomSheet extends StatelessWidget {
       maxChildSize: 0.95,
       builder: (context, scrollController) {
         return Container(
-          decoration: const BoxDecoration(
-            color: Colors.white,
+          decoration: BoxDecoration(
+            color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.black
+                : Colors.white,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
@@ -24,50 +27,44 @@ class CustomBottomSheet extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.only(top: 12, bottom: 8),
                 width: 40,
-                height: 4,
+                height: 5,
                 decoration: BoxDecoration(
                   color: Colors.grey[300],
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
-              
+
               // Header
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Row(
                   children: [
-                    IconButton(
-                      icon: const Icon(Icons.arrow_back_ios, size: 20),
-                      onPressed: () => Navigator.pop(context),
-                      padding: EdgeInsets.zero,
-                      constraints: const BoxConstraints(),
-                    ),
-                    const SizedBox(width: 8),
+                    GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Icon(Icons.arrow_back_ios, size: 20)),
                     const Text(
                       'Profile',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey,
-                      ),
+                      style: TextStyle(fontSize: 16,  fontFamily: StringConstants.SFPro,),
                     ),
                     const Expanded(
                       child: Center(
                         child: Text(
                           'Legal Terms of Use',
                           style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                               fontFamily: StringConstants.SFPro,),
                         ),
                       ),
                     ),
-                    const SizedBox(width: 40),
+                    const SizedBox(width: 60),
                   ],
                 ),
               ),
-              
-              const Divider(height: 1),
-              
+
               // Content
               Expanded(
                 child: ListView(
@@ -78,19 +75,21 @@ class CustomBottomSheet extends StatelessWidget {
                       'Legal Terms of Use',
                       style: TextStyle(
                         fontSize: 32,
+                        fontFamily: StringConstants.NewYork,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(height: 8),
+
                     Text(
                       'Last updated on 1/12/2025',
                       style: TextStyle(
-                        fontSize: 14,
+                        fontFamily: StringConstants.SFPro,
+                        fontSize: 13,
                         color: Colors.grey[600],
                       ),
                     ),
                     const SizedBox(height: 32),
-                    
+
                     // Repeated sections
                     _buildSection(),
                     const SizedBox(height: 32),
@@ -115,6 +114,7 @@ class CustomBottomSheet extends StatelessWidget {
           'General Rules',
           style: TextStyle(
             fontSize: 20,
+            fontFamily: StringConstants.NewYork,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -123,6 +123,7 @@ class CustomBottomSheet extends StatelessWidget {
           'Welcome to our platform! By using our services, you agree to comply with our Terms of Use. These terms outline your rights and responsibilities while using our website, including acceptable behavior, intellectual property rights, and limitations of liability. Please read them carefully to ensure a smooth experience. If you have any questions, feel free to reach out!',
           style: TextStyle(
             fontSize: 15,
+            fontFamily: StringConstants.SFPro,
             height: 1.5,
             color: Colors.grey[800],
           ),

@@ -23,6 +23,7 @@ class ThemeController extends GetxController {
       _saveThemeMode(false);
       Get.changeThemeMode(ThemeMode.light);
     }
+    update(); // Add this to notify GetBuilder
   }
 
   void toggleTheme() {
@@ -33,10 +34,12 @@ class ThemeController extends GetxController {
       _saveThemeMode(false);
       Get.changeThemeMode(ThemeMode.light);
     }
+    update(); // Add this to notify GetBuilder
   }
 
   void setTheme(ThemeMode mode) {
     _saveThemeMode(mode == ThemeMode.dark);
     Get.changeThemeMode(mode);
+    update(); // Add this to notify GetBuilder
   }
 }

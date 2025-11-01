@@ -1,4 +1,7 @@
+import 'package:elkitap/core/constants/string_constants.dart';
+import 'package:elkitap/modules/genre/view/genrs_page_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class GenresSection extends StatelessWidget {
   const GenresSection({super.key});
@@ -32,7 +35,7 @@ class GenresSection extends StatelessWidget {
           "Genres",
           style: TextStyle(
             fontSize: 20,
-            fontFamily: 'New York',
+            fontFamily: StringConstants.NewYork,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -41,14 +44,19 @@ class GenresSection extends StatelessWidget {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: genres.length,
-          separatorBuilder:
-              (_, __) => Container(height: 1, color: Colors.grey[200]),
+          separatorBuilder: (_, __) =>
+              Container(height: 1, color: Colors.grey[200]),
           itemBuilder: (context, index) {
             return ListTile(
               contentPadding: EdgeInsets.zero,
-              title: Text(genres[index]),
+              title: Text(genres[index],
+              style: TextStyle(
+                 fontFamily: StringConstants.SFPro,
+              ),),
               trailing: const Icon(Icons.arrow_forward_ios, size: 16),
-              onTap: () {},
+              onTap: () {
+                Get.to(GenrsDetailViewScreen());
+              },
             );
           },
         ),

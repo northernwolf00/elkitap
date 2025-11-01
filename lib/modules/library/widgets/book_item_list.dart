@@ -1,6 +1,8 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/core/theme/app_colors.dart';
 import 'package:elkitap/modules/library/controllers/library_controller.dart';
 import 'package:elkitap/modules/library/model/book_moc.dart';
+import 'package:elkitap/modules/store/views/store_detail_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,13 +29,13 @@ class _BookListItemState extends State<BookListItem> {
 
       return GestureDetector(
         onTap: () {
-          // Only toggle if already in selection mode
           if (isInSelectionMode) {
             widget.controller.toggleSelection(widget.book.id);
+          } else {
+            Get.to(() => BookDetailView());
           }
         },
         onLongPress: () {
-          // Enter selection mode and select this book
           widget.controller.toggleSelection(widget.book.id);
         },
         child: Stack(
@@ -43,18 +45,20 @@ class _BookListItemState extends State<BookListItem> {
               margin: const EdgeInsets.only(bottom: 16),
               padding: const EdgeInsets.only(bottom: 16),
               decoration: BoxDecoration(
-                // border: Border(bottom: BorderSide(color: Colors.grey[300]!)),
-              ),
+                  // border: Border(bottom: BorderSide(color: Colors.grey[300]!)),
+                  ),
               child: Row(
                 children: [
                   // Selection indicator circle
                   Container(
-                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                          color: const Color.fromARGB(255, 223, 220, 220),
-                          width: 1)),
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.black
+                            : Colors.white,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                            color: const Color.fromARGB(255, 223, 220, 220),
+                            width: 1)),
                     child: Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: Container(
@@ -62,14 +66,18 @@ class _BookListItemState extends State<BookListItem> {
                         height: 24,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: isSelected ? AppColors.mainColor : Colors.transparent,
+                          color: isSelected
+                              ? AppColors.mainColor
+                              : Colors.transparent,
                           border: Border.all(
-                            color: isSelected ? AppColors.mainColor  : Colors.white,
+                            color:
+                                isSelected ? AppColors.mainColor : Colors.white,
                             width: 2,
                           ),
                         ),
                         child: isSelected
-                            ? const Icon(Icons.check, size: 16, color: Colors.white)
+                            ? const Icon(Icons.check,
+                                size: 16, color: Colors.white)
                             : null,
                       ),
                     ),
@@ -95,6 +103,7 @@ class _BookListItemState extends State<BookListItem> {
                           widget.book.title,
                           style: const TextStyle(
                             fontSize: 16,
+                            fontFamily: StringConstants.SFPro,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
@@ -103,6 +112,7 @@ class _BookListItemState extends State<BookListItem> {
                           widget.book.author,
                           style: TextStyle(
                             fontSize: 14,
+                            fontFamily: StringConstants.SFPro,
                             color: Colors.grey[600],
                           ),
                         ),
@@ -117,7 +127,9 @@ class _BookListItemState extends State<BookListItem> {
             if (isInSelectionMode && !isSelected)
               Positioned.fill(
                 child: Container(
-                  color: Colors.white.withOpacity(0.55),
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.black.withOpacity(0.6)
+                      : Colors.white.withOpacity(0.55),
                 ),
               ),
           ],

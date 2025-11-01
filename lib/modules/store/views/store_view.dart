@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/icon_constants.dart';
 import 'package:elkitap/global_widgets/custom_tabbar.dart';
 import 'package:elkitap/modules/store/widgets/featured_books_section.dart';
 import 'package:elkitap/modules/store/widgets/generic_list_widget.dart';
@@ -5,6 +6,7 @@ import 'package:elkitap/modules/store/widgets/list_profile_widget.dart';
 import 'package:elkitap/modules/store/widgets/popular_by_genre_section.dart';
 import 'package:elkitap/modules/store/widgets/top_of_week_section.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class StoreViewScreen extends StatefulWidget {
   const StoreViewScreen({super.key});
@@ -18,7 +20,6 @@ class _StoreViewScreenState extends State<StoreViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -41,7 +42,12 @@ class _StoreViewScreenState extends State<StoreViewScreen> {
                   Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
+                        colors: Theme.of(context).brightness == Brightness.dark
+                            ? [
+                                Color(0x001C1C1E),
+                                Color(0xFF1C1C1E)
+                              ] // dark mode gradient
+                            : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                       ),
@@ -54,11 +60,15 @@ class _StoreViewScreenState extends State<StoreViewScreen> {
                       ],
                     ),
                   ),
-
                   Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
+                        colors: Theme.of(context).brightness == Brightness.dark
+                            ? [
+                                Color(0x001C1C1E),
+                                Color(0xFF1C1C1E)
+                              ] // dark mode gradient
+                            : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                       ),
@@ -69,18 +79,27 @@ class _StoreViewScreenState extends State<StoreViewScreen> {
                   Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
+                        colors: Theme.of(context).brightness == Brightness.dark
+                            ? [
+                                Color(0x001C1C1E),
+                                Color(0xFF1C1C1E)
+                              ] // dark mode gradient
+                            : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                       ),
                     ),
                     child: const PopularByGenreSection(),
                   ),
-
                   Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
+                        colors: Theme.of(context).brightness == Brightness.dark
+                            ? [
+                                Color(0x001C1C1E),
+                                Color(0xFF1C1C1E)
+                              ] // dark mode gradient
+                            : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                       ),
@@ -93,7 +112,12 @@ class _StoreViewScreenState extends State<StoreViewScreen> {
                   Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
+                        colors: Theme.of(context).brightness == Brightness.dark
+                            ? [
+                                Color(0x001C1C1E),
+                                Color(0xFF1C1C1E)
+                              ] // dark mode gradient
+                            : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                       ),
@@ -106,11 +130,15 @@ class _StoreViewScreenState extends State<StoreViewScreen> {
                       ],
                     ),
                   ),
-
                   Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
+                        colors: Theme.of(context).brightness == Brightness.dark
+                            ? [
+                                Color(0x001C1C1E),
+                                Color(0xFF1C1C1E)
+                              ] // dark mode gradient
+                            : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                       ),
@@ -121,18 +149,27 @@ class _StoreViewScreenState extends State<StoreViewScreen> {
                   Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
+                        colors: Theme.of(context).brightness == Brightness.dark
+                            ? [
+                                Color(0x001C1C1E),
+                                Color(0xFF1C1C1E)
+                              ] // dark mode gradient
+                            : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                       ),
                     ),
                     child: const PopularByGenreSection(),
                   ),
-
                   Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        colors: [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
+                        colors: Theme.of(context).brightness == Brightness.dark
+                            ? [
+                                Color(0x001C1C1E),
+                                Color(0xFF1C1C1E)
+                              ] // dark mode gradient
+                            : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                       ),
@@ -159,12 +196,11 @@ class _Header extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: const Text(
-            "elkitap",
-            style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-          ),
-        ),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: SvgPicture.asset(
+                Theme.of(context).brightness == Brightness.dark
+                    ? 'assets/icons/e1.svg'
+                    : IconConstants.elkitap)),
       ],
     );
   }

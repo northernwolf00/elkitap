@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/custom_appbar.dart';
 import 'package:elkitap/modules/store/widgets/book_cart_profil.dart';
 import 'package:flutter/gestures.dart';
@@ -85,13 +86,22 @@ class _ProfesionalReadersProfilState extends State<ProfesionalReadersProfil> {
                               gradient: LinearGradient(
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
-                                colors: [
-                                  Colors.white.withOpacity(0.0),
-                                  Colors.white.withOpacity(0.3),
-                                  Colors.white.withOpacity(0.7),
-                                  Colors.white.withOpacity(0.95),
-                                  Colors.white,
-                                ],
+                                colors: Theme.of(context).brightness ==
+                                        Brightness.dark
+                                    ? [
+                                        Colors.black.withOpacity(0.0),
+                                        Colors.black.withOpacity(0.3),
+                                        Colors.black.withOpacity(0.7),
+                                        Colors.black.withOpacity(0.95),
+                                        Colors.black,
+                                      ]
+                                    : [
+                                        Colors.white.withOpacity(0.0),
+                                        Colors.white.withOpacity(0.3),
+                                        Colors.white.withOpacity(0.7),
+                                        Colors.white.withOpacity(0.95),
+                                        Colors.white,
+                                      ],
                                 stops: const [0.0, 0.3, 0.6, 0.85, 1.0],
                               ),
                             ),
@@ -110,7 +120,7 @@ class _ProfesionalReadersProfilState extends State<ProfesionalReadersProfil> {
                             'Merdan Durnayew',
                             style: TextStyle(
                               fontSize: 28,
-                              fontFamily: 'New York',
+                              fontFamily: StringConstants.NewYork,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -119,12 +129,12 @@ class _ProfesionalReadersProfilState extends State<ProfesionalReadersProfil> {
                             'Director',
                             style: TextStyle(
                               fontSize: 16,
+                               fontFamily: StringConstants.SFPro,
                               fontWeight: FontWeight.w500,
                               color: Colors.grey,
                             ),
                           ),
                           const SizedBox(height: 16),
-
                           RichText(
                             text: TextSpan(
                               style: TextStyle(
@@ -139,20 +149,19 @@ class _ProfesionalReadersProfilState extends State<ProfesionalReadersProfil> {
                                       isExpanded ? ' Show Less' : ' Show More',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w600,
+                                     fontFamily: StringConstants.SFPro,
                                     color: Colors.black,
                                   ),
-                                  recognizer:
-                                      TapGestureRecognizer()
-                                        ..onTap = () {
-                                          setState(() {
-                                            isExpanded = !isExpanded;
-                                          });
-                                        },
+                                  recognizer: TapGestureRecognizer()
+                                    ..onTap = () {
+                                      setState(() {
+                                        isExpanded = !isExpanded;
+                                      });
+                                    },
                                 ),
                               ],
                             ),
                           ),
-
                           const SizedBox(height: 24),
                         ],
                       ),

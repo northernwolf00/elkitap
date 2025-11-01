@@ -1,3 +1,5 @@
+import 'package:elkitap/core/constants/string_constants.dart';
+import 'package:elkitap/modules/profile/widgets/edit_account_bootomsheet.dart';
 import 'package:elkitap/modules/profile/widgets/no_subscribed_widget.dart';
 import 'package:elkitap/modules/profile/widgets/subscribed_widget.dart';
 import 'package:flutter/material.dart';
@@ -16,10 +18,24 @@ class ProfileCardUser extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _showEditAccountSheet(BuildContext context) {
+      showModalBottomSheet(
+        context: context,
+        backgroundColor: Colors.transparent, // Crucial for rounded corners
+        // isScrollControlled: true, // Use this if the content might exceed fixed height
+        builder: (context) => const EditAccountBottomSheet(),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20.0)),
+        ),
+      );
+    }
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.grey.shade100,
+        color: Theme.of(context).brightness == Brightness.dark
+            ? const Color(0xFF1C1C1E)
+            : Colors.grey.shade100,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
@@ -33,31 +49,39 @@ class ProfileCardUser extends StatelessWidget {
                 children: [
                   Text(
                     "Murat Sapayev",
-                    style: TextStyle(fontWeight: FontWeight.bold, 
-                    fontFamily: 'New York',
-                    fontSize: 20),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: StringConstants.NewYork,
+                        fontSize: 20),
                   ),
                   SizedBox(height: 4),
                   Text(
                     "+993 61626406",
-                    style: TextStyle(color: Colors.black54,
-                    fontSize: 13
-                    ),
+                    style: TextStyle(fontSize: 13,
+                     fontFamily: StringConstants.SFPro,),
                   ),
                 ],
               ),
               Row(
                 children: [
-                  Text(
-                    "Edit account",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 13
+                  GestureDetector(
+                    onTap: () {
+                      _showEditAccountSheet(context);
+                    },
+                    child: Text(
+                      "Edit account",
+                      
+                      style: TextStyle(fontSize: 13,
+                       fontFamily: StringConstants.SFPro,),
                     ),
-                    ),
-                    SizedBox(width: 3,),
-                    Icon(Icons.arrow_forward_ios,
-                    size: 16,)
+                  ),
+                  SizedBox(
+                    width: 3,
+                  ),
+                  Icon(
+                    Icons.arrow_forward_ios,
+                    size: 16,
+                  )
                 ],
               ),
             ],

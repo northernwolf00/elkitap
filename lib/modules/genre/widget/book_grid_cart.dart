@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 
 class BookCardGridView extends StatelessWidget {
@@ -35,7 +36,9 @@ class BookCardGridView extends StatelessWidget {
             textAlign: TextAlign.center,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 17),
+            style: const TextStyle(fontWeight: FontWeight.w600, 
+             fontFamily: StringConstants.SFPro,
+            fontSize: 17),
           ),
 
           const SizedBox(height: 2),
@@ -44,7 +47,9 @@ class BookCardGridView extends StatelessWidget {
           Text(
             author,
             textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.grey[600], fontSize: 12),
+            style: TextStyle(color: Colors.grey[600],
+             fontFamily: StringConstants.SFPro,
+             fontSize: 12),
           ),
         ],
       ),

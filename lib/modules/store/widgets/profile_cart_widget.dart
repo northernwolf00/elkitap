@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 
 class ProfileCard extends StatelessWidget {
@@ -26,19 +27,6 @@ class ProfileCard extends StatelessWidget {
           fit: BoxFit.cover,
         ),
       ),
-      child: Center(
-        child: RotatedBox(
-          quarterTurns: 0,
-          child: Text(
-            'Book',
-            style: TextStyle(
-              fontSize: 9,
-              fontWeight: FontWeight.bold,
-              color: Colors.white70,
-            ),
-          ),
-        ),
-      ),
     );
   }
 
@@ -47,10 +35,14 @@ class ProfileCard extends StatelessWidget {
     return Container(
       width: 260,
       decoration: BoxDecoration(
-        color: Colors.grey[100],
+        color: Theme.of(context).brightness == Brightness.dark
+            ? Color.fromARGB(255, 40, 40, 43) // dark mode color
+            : Colors.grey[100],
         borderRadius: BorderRadius.circular(14),
-
-        border: Border.all(color: Colors.grey.shade200),
+        border: Border.all(
+            color: Theme.of(context).brightness == Brightness.dark
+                ? Colors.transparent
+                : Colors.grey.shade200),
       ),
       child: Column(
         children: [
@@ -69,6 +61,7 @@ class ProfileCard extends StatelessWidget {
             role.toUpperCase(),
             style: TextStyle(
               fontSize: 12,
+               fontFamily: StringConstants.SFPro,
               color: Colors.grey[600],
               letterSpacing: 1.0,
             ),

@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/custom_app_bar_book.dart';
 import 'package:elkitap/modules/library/controllers/library_controller.dart';
 import 'package:elkitap/modules/library/widgets/grid_list_widget.dart';
@@ -12,7 +13,7 @@ class ReadingListScreen extends StatelessWidget {
     final controller = Get.put(ReadingListController());
 
     return Scaffold(
-      appBar: customAppBar(controller),
+      appBar: customAppBar(controller, context),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -25,8 +26,8 @@ class ReadingListScreen extends StatelessWidget {
                     ? 'Want to Read'
                     : '${controller.selectedBooks.length} selected',
                 style: const TextStyle(
-                  color: Colors.black,
                   fontSize: 28,
+                   fontFamily: StringConstants.NewYork,
                   fontWeight: FontWeight.bold,
                 ),
               );

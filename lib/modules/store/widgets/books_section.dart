@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/genre/view/books_grid_screen_view.dart';
 import 'package:elkitap/modules/store/model/book_item_moc.dart';
 import 'package:elkitap/modules/store/views/store_detail_view.dart';
@@ -139,7 +140,9 @@ class SectionHeader extends StatelessWidget {
           children: [
             Text(
               title,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 24,
+               fontFamily: StringConstants.NewYork,
+               fontWeight: FontWeight.bold),
             ),
             const SizedBox(width: 8),
             InkWell(

@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/core/theme/app_colors.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:flutter/material.dart';
@@ -115,7 +116,7 @@ class _BottomNavbarButtonState extends State<BottomNavbarButton> {
                                 ? FontWeight.w600
                                 : FontWeight.w400,
                         fontStyle: FontStyle.normal,
-                        fontFamily: 'Rubik',
+                        fontFamily: StringConstants.SFPro,
                         fontSize: 12,
                       ),
                     ),

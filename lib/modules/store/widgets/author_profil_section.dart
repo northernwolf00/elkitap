@@ -1,6 +1,6 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-
 
 class AuthorProfileSection extends StatefulWidget {
   const AuthorProfileSection({super.key});
@@ -79,7 +79,7 @@ class _AuthorProfileSectionState extends State<AuthorProfileSection> {
                 'Merdan Durnayew',
                 style: TextStyle(
                   fontSize: 28,
-                  fontFamily: 'New York',
+                  fontFamily: StringConstants.NewYork,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -89,11 +89,11 @@ class _AuthorProfileSectionState extends State<AuthorProfileSection> {
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
+                   fontFamily: StringConstants.SFPro,
                   color: Colors.grey,
                 ),
               ),
               const SizedBox(height: 16),
-
               RichText(
                 text: TextSpan(
                   style: TextStyle(
@@ -108,6 +108,7 @@ class _AuthorProfileSectionState extends State<AuthorProfileSection> {
                       style: const TextStyle(
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
+                         fontFamily: StringConstants.SFPro,
                       ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
@@ -126,8 +127,3 @@ class _AuthorProfileSectionState extends State<AuthorProfileSection> {
     );
   }
 }
-
-
-
-
-

@@ -12,7 +12,6 @@ class MyLibraryViewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(vertical: 8),
@@ -22,7 +21,12 @@ class MyLibraryViewScreen extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    colors: [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
+                    colors: Theme.of(context).brightness == Brightness.dark
+                        ? [
+                            Color(0x001C1C1E),
+                            Color(0xFF1C1C1E)
+                          ] // dark mode gradient
+                        : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
                   ),
                 ),
                 child: Padding(
@@ -47,7 +51,6 @@ class MyLibraryViewScreen extends StatelessWidget {
                   ),
                 ),
               ),
-
               SizedBox(height: 24),
               CollectionsSection(),
             ],

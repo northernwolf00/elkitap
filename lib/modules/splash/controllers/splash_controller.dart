@@ -12,7 +12,7 @@ class SplashController extends GetxController {
     try {
       videoController =
           VideoPlayerController.asset('assets/videos/splash.mp4');
-      await videoController.setLooping(true);
+      await videoController.setLooping(false);
       await videoController.initialize();
 
       isVideoInitialized.value = true;

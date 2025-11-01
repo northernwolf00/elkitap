@@ -1,6 +1,8 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/core/theme/app_colors.dart';
 import 'package:elkitap/modules/library/controllers/library_controller.dart';
 import 'package:elkitap/modules/library/model/book_moc.dart';
+import 'package:elkitap/modules/store/views/store_detail_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,10 +25,18 @@ class _BookGridItemState extends State<BookGridItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Only toggle selection if already in selection mode
         if (widget.controller.selectedBooks.isNotEmpty) {
+          // In selection mode: toggle selection
           widget.controller.toggleSelection(widget.book.id);
+          setState(() {}); // refresh UI
+        } else {
+          // Not in selection mode: navigate to detail
+          Get.to(() => BookDetailView());
         }
+        // Only toggle selection if already in selection mode
+        // if (widget.controller.selectedBooks.isNotEmpty) {
+        //   widget.controller.toggleSelection(widget.book.id);
+        // }
       },
       onLongPress: () {
         // Long press enters selection mode and selects this book
@@ -56,7 +66,9 @@ class _BookGridItemState extends State<BookGridItem> {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.55),
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.black.withOpacity(0.6)
+                          : Colors.white.withOpacity(0.55),
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
@@ -65,7 +77,9 @@ class _BookGridItemState extends State<BookGridItem> {
                     bottom: 45,
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.black
+                              : Colors.white,
                           shape: BoxShape.circle,
                           border: Border.all(
                               color: const Color.fromARGB(255, 238, 238, 238),
@@ -91,7 +105,9 @@ class _BookGridItemState extends State<BookGridItem> {
                 bottom: 45,
                 child: Container(
                   decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.black
+                          : Colors.white,
                       shape: BoxShape.circle,
                       border: Border.all(
                           color: const Color.fromARGB(255, 238, 238, 238),
@@ -113,6 +129,47 @@ class _BookGridItemState extends State<BookGridItem> {
                   ),
                 ),
               ),
+            // 🔹 Bottom overlay with title & author
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: -10,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                decoration: BoxDecoration(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      widget.book.title,
+                      style: TextStyle(
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white
+                            : Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: StringConstants.SFPro,
+                        fontSize: 14,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      widget.book.author,
+                      style: TextStyle(
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.grey[300]
+                            : Colors.grey[700],
+                        fontSize: 12,
+                        fontFamily: StringConstants.SFPro,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         );
       }),

@@ -12,7 +12,7 @@ class BottomNavScreen extends StatefulWidget {
 }
 
 class _BottomNavScreenState extends State<BottomNavScreen> {
-  int selectedIndex = 0;
+  int selectedIndex = 1;
 
   bool isvisible = false;
   @override
@@ -34,7 +34,6 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     return Scaffold(
       bottomNavigationBar: Container(
         height: 80,
-        decoration: BoxDecoration(color: Colors.white),
         child: Row(
           children: [
             Expanded(

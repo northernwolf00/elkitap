@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:elkitap/modules/audio_player/views/audio_player_view.dart';
 import 'package:elkitap/modules/reader/views/reader_view.dart';
@@ -18,11 +19,15 @@ class BookDetailView extends StatelessWidget {
     final Color accent = const Color(0xFFFF5A3C);
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: Theme.of(context).brightness == Brightness.dark
+          ? const Color(0xFF1E1E1E)
+          : const Color(0xFFF5F5F5),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(46),
         child: AppBar(
-          backgroundColor: const Color(0xFFF5F5F5),
+          backgroundColor: Theme.of(context).brightness == Brightness.dark
+              ? const Color(0xFF1E1E1E)
+              : const Color(0xFFF5F5F5),
           elevation: 0,
           automaticallyImplyLeading: false,
           flexibleSpace: Padding(
@@ -37,16 +42,20 @@ class BookDetailView extends StatelessWidget {
                     width: 34,
                     height: 34,
                     decoration: BoxDecoration(
-                      color: Colors.grey[200],
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.grey[700]
+                          : Colors.grey[200],
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(Icons.close,
-                        size: 18, color: Colors.black54),
+                    child: const Icon(
+                      Icons.close,
+                      size: 18,
+                    ),
                   ),
                 ),
                 SizedBox(
-                  width: 34,
-                  height: 34,
+                  width: 14,
+                  height: 14,
                 ),
                 // Center tabs
                 Obx(
@@ -54,7 +63,9 @@ class BookDetailView extends StatelessWidget {
                     height: 32,
                     width: 126,
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.9),
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.black.withOpacity(0.9)
+                          : Colors.white.withOpacity(0.9),
                       borderRadius: BorderRadius.circular(25),
                     ),
                     child: Row(
@@ -68,7 +79,10 @@ class BookDetailView extends StatelessWidget {
                               width: 60,
                               decoration: BoxDecoration(
                                 color: !controller.isAudio.value
-                                    ? Colors.grey[200]
+                                    ? Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? Colors.grey[700]
+                                        : Colors.grey[200]
                                     : Colors.transparent,
                                 borderRadius: BorderRadius.circular(20),
                               ),
@@ -77,12 +91,13 @@ class BookDetailView extends StatelessWidget {
                                   "Text",
                                   style: TextStyle(
                                     fontSize: 12,
+                                    fontFamily: StringConstants.SFPro,
                                     fontWeight: !controller.isAudio.value
                                         ? FontWeight.w500
                                         : FontWeight.normal,
-                                    color: !controller.isAudio.value
-                                        ? Colors.black
-                                        : Colors.black45,
+                                    // color: !controller.isAudio.value
+                                    //     ? Colors.black
+                                    //     : Colors.black45,
                                   ),
                                 ),
                               ),
@@ -97,7 +112,10 @@ class BookDetailView extends StatelessWidget {
                               width: 60,
                               decoration: BoxDecoration(
                                 color: controller.isAudio.value
-                                    ? Colors.grey[200]
+                                    ? Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? Colors.grey[700]
+                                        : Colors.grey[200]
                                     : Colors.transparent,
                                 borderRadius: BorderRadius.circular(20),
                               ),
@@ -106,12 +124,13 @@ class BookDetailView extends StatelessWidget {
                                   "Audio",
                                   style: TextStyle(
                                     fontSize: 12,
+                                    fontFamily: StringConstants.SFPro,
                                     fontWeight: controller.isAudio.value
                                         ? FontWeight.w600
                                         : FontWeight.normal,
-                                    color: controller.isAudio.value
-                                        ? Colors.black
-                                        : Colors.black45,
+                                    // color: controller.isAudio.value
+                                    //     ? Colors.black
+                                    //     : Colors.black45,
                                   ),
                                 ),
                               ),
@@ -138,7 +157,10 @@ class BookDetailView extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: controller.isAddedToWantToRead.value
                                   ? accent
-                                  : Colors.grey[200],
+                                  : Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? Colors.grey[700]
+                                      : Colors.grey[200],
                               shape: BoxShape.circle,
                             ),
                             child: Icon(
@@ -148,7 +170,10 @@ class BookDetailView extends StatelessWidget {
                               size: 18,
                               color: controller.isAddedToWantToRead.value
                                   ? Colors.white
-                                  : Colors.black54,
+                                  : Theme.of(context).brightness ==
+                                          Brightness.dark
+                                      ? Colors.white
+                                      : Colors.black54,
                             ),
                           ),
                         )),
@@ -160,13 +185,14 @@ class BookDetailView extends StatelessWidget {
                         width: 34,
                         height: 34,
                         decoration: BoxDecoration(
-                          color: Colors.grey[200],
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.grey[700]
+                              : Colors.grey[200],
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(
                           size: 18,
                           Icons.more_horiz,
-                          color: Colors.black54,
                         ),
                       ),
                     ),
@@ -217,7 +243,9 @@ class BookDetailView extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 decoration: BoxDecoration(
-                  color: Colors.grey[300],
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Colors.grey[700]
+                      : Colors.grey[200],
                   borderRadius: BorderRadius.circular(20),
                   // boxShadow: [
                   //   BoxShadow(
@@ -230,13 +258,17 @@ class BookDetailView extends StatelessWidget {
                 child: Obx(() => Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Icon(Icons.language,
-                            size: 18, color: Colors.black54),
+                        const Icon(
+                          Icons.language,
+                          size: 18,
+                        ),
                         const SizedBox(width: 6),
                         Text(
                           controller.selectedLanguage.value,
                           style: const TextStyle(
-                              color: Colors.black87, fontSize: 16),
+                            fontSize: 16,
+                            fontFamily: StringConstants.SFPro,
+                          ),
                         ),
                       ],
                     )),
@@ -252,6 +284,7 @@ class BookDetailView extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
+                  fontFamily: StringConstants.NewYork,
                   fontSize: 22,
                   height: 1.3,
                 ),
@@ -267,18 +300,27 @@ class BookDetailView extends StatelessWidget {
                 children: const [
                   Text(
                     "Mark Manson",
-                    style: TextStyle(color: Colors.black54, fontSize: 16),
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontFamily: StringConstants.SFPro,
+                    ),
                   ),
                   SizedBox(width: 4),
-                  Icon(Icons.chevron_right, size: 18, color: Colors.black54),
+                  Icon(
+                    Icons.chevron_right,
+                    size: 18,
+                  )
                 ],
               ),
             ),
             const SizedBox(height: 8),
             GestureDetector(
-              child: const Text(
+              child: Text(
                 "Health, Mind & Body • 18+",
-                style: TextStyle(color: Colors.black45, fontSize: 14),
+                style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: StringConstants.SFPro,
+                    color: Colors.grey[200]),
               ),
             ),
             const SizedBox(height: 24),
@@ -294,7 +336,7 @@ class BookDetailView extends StatelessWidget {
                       //   startHref: '',
                       //   assetPath: 'assets/books/7.epub',
                       // ));
-                      Get.to(() => BookLibraryScreen());
+                      Get.to(() => EpubReaderScreen());
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 14),
@@ -311,6 +353,7 @@ class BookDetailView extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
+                          fontFamily: StringConstants.SFPro,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -338,6 +381,7 @@ class BookDetailView extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
+                          fontFamily: StringConstants.SFPro,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -373,6 +417,7 @@ class BookDetailView extends StatelessWidget {
                     "AI mazmuny",
                     style: TextStyle(
                       color: Colors.white,
+                      fontFamily: StringConstants.SFPro,
                       fontWeight: FontWeight.w600,
                       fontSize: 16,
                     ),
@@ -387,7 +432,10 @@ class BookDetailView extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 "About",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: StringConstants.NewYork,
+                    fontSize: 20),
               ),
             ),
             const SizedBox(height: 12),
@@ -395,9 +443,9 @@ class BookDetailView extends StatelessWidget {
               "Сегодня в рубрике «Профессии» наш гость — региональный директор Üйрекçi. "
               "Он расскажет о трёх книгах, которые научат договариваться, продавать и понимать...",
               style: TextStyle(
-                color: Colors.black87,
                 fontSize: 15,
                 height: 1.5,
+                fontFamily: StringConstants.SFPro,
               ),
             ),
             // TextButton(

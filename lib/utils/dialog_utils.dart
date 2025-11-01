@@ -1,12 +1,15 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:elkitap/modules/store/controllers/store_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'dart:ui';
 
 class DialogUtils {
   // Show options popup menu
-  static void showOptionsPopupMenu(BuildContext context, BookDetailController controller) {
+  static void showOptionsPopupMenu(
+      BuildContext context, BookDetailController controller) {
     showDialog(
       context: context,
       barrierColor: Colors.black26,
@@ -25,10 +28,14 @@ class DialogUtils {
                   child: Container(
                     width: 300,
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.75),
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.black.withOpacity(0.75)
+                          : Colors.white.withOpacity(0.75),
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
-                        color: Colors.white.withOpacity(0.3),
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.black.withOpacity(0.3)
+                            : Colors.white.withOpacity(0.3),
                         width: 1.5,
                       ),
                       boxShadow: [
@@ -43,60 +50,61 @@ class DialogUtils {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         _buildMenuOption(
-                          icon: 'assets/icons/d1.svg',
-                          title: 'Share',
-                          onTap: () {
-                            Navigator.pop(context);
-                            // Handle share
-                          },
-                        ),
-                       Container(
-                        height: 6,
-                        color: Colors.grey[400],
-                       ),
-                        Obx(() => _buildMenuOption(
-                          icon: controller.isAddedToWantToRead.value 
-                              ?  'assets/icons/d5.svg'
-                              :  'assets/icons/d2.svg',
-                          title: 'Add to Want to Read',
-                          onTap: () {
-                            Navigator.pop(context);
-                            controller.toggleAddToWantToRead();
-                            showAddedDialog(context, controller.isAddedToWantToRead.value );
-                          },
-                        )),
-                        Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
-                        _buildMenuOption(
-                          icon:  'assets/icons/d3.svg',
-                          title: 'Add to Collection',
-                          onTap: () {
-                            Navigator.pop(context);
-                            // Handle add to collection
-                          },
-                        ),
-                        Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
-                        _buildMenuOption(
-                          icon:  'assets/icons/d5.svg',
-                          title: 'Mark as Finished',
-                          onTap: () {
-                            Navigator.pop(context);
-                            // Handle mark as finished
-                          },
-                        ),
+                            icon: 'assets/icons/d1.svg',
+                            title: 'Share',
+                            onTap: () {
+                              Navigator.pop(context);
+                              // Handle share
+                            },
+                            context: context),
                         Container(
-                        height: 6,
-                        color: Colors.grey[400],
-                       ),
-                        _buildMenuOption(
-                          icon:  'assets/icons/d6.svg',
-                          title: 'Remove...',
-                          titleColor: const Color(0xFFFF5A3C),
-                          iconColor: const Color(0xFFFF5A3C),
-                          onTap: () {
-                            Navigator.pop(context);
-                            // Handle remove
-                          },
+                          height: 6,
+                          color: Colors.grey[400],
                         ),
+                        Obx(() => _buildMenuOption(
+                            icon: controller.isAddedToWantToRead.value
+                                ? 'assets/icons/d5.svg'
+                                : 'assets/icons/d2.svg',
+                            title: 'Add to Want to Read',
+                            onTap: () {
+                              Navigator.pop(context);
+                              controller.toggleAddToWantToRead();
+                              showAddedDialog(context,
+                                  controller.isAddedToWantToRead.value);
+                            },
+                            context: context)),
+                        Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
+                        _buildMenuOption(
+                            icon: 'assets/icons/d3.svg',
+                            title: 'Add to Collection',
+                            onTap: () {
+                              Navigator.pop(context);
+                              // Handle add to collection
+                            },
+                            context: context),
+                        Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
+                        _buildMenuOption(
+                            icon: 'assets/icons/d5.svg',
+                            title: 'Mark as Finished',
+                            onTap: () {
+                              Navigator.pop(context);
+                              // Handle mark as finished
+                            },
+                            context: context),
+                        Container(
+                          height: 6,
+                          color: Colors.grey[400],
+                        ),
+                        _buildMenuOption(
+                            icon: 'assets/icons/d6.svg',
+                            title: 'Remove...',
+                            titleColor: const Color(0xFFFF5A3C),
+                            iconColor: const Color(0xFFFF5A3C),
+                            onTap: () {
+                              Navigator.pop(context);
+                              // Handle remove
+                            },
+                            context: context),
                       ],
                     ),
                   ),
@@ -108,15 +116,12 @@ class DialogUtils {
       ),
     );
   }
-  
 
-
-static void showAddedDialog(BuildContext context, bool isAdded) {
+  static void showAddedDialog(BuildContext context, bool isAdded) {
     showDialog(
       context: context,
       barrierDismissible: true,
       builder: (context) => Dialog(
-        backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
@@ -134,7 +139,6 @@ static void showAddedDialog(BuildContext context, bool isAdded) {
                 ),
                 child: Icon(
                   isAdded ? Icons.check : Icons.close,
-                  color: Colors.white,
                   size: 40,
                 ),
               ),
@@ -143,8 +147,8 @@ static void showAddedDialog(BuildContext context, bool isAdded) {
                 isAdded ? 'Added' : 'Removed',
                 style: const TextStyle(
                   fontSize: 28,
+                  fontFamily: StringConstants.SFPro,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black87,
                 ),
               ),
               const SizedBox(height: 12),
@@ -155,7 +159,7 @@ static void showAddedDialog(BuildContext context, bool isAdded) {
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 16,
-                  color: Colors.black54,
+                  fontFamily: StringConstants.SFPro,
                   height: 1.4,
                 ),
               ),
@@ -166,21 +170,21 @@ static void showAddedDialog(BuildContext context, bool isAdded) {
     );
   }
 
-
- static void showLanguagePopup(BuildContext context, BookDetailController controller) {
+  static void showLanguagePopup(
+      BuildContext context, BookDetailController controller) {
     final languages = ['Türkmençe', 'Русский', 'English'];
-    
+
     showDialog(
       context: context,
       barrierColor: Colors.black26,
       builder: (context) => Stack(
         children: [
           Positioned(
-            top: MediaQuery.of(context).size.height /2 - 40,
+            top: MediaQuery.of(context).size.height / 2 - 40,
             left: 110,
 
             // bottom: 60,
-       
+
             child: Material(
               color: Colors.transparent,
               child: ClipRRect(
@@ -190,10 +194,15 @@ static void showAddedDialog(BuildContext context, bool isAdded) {
                   child: Container(
                     width: 200,
                     decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.85),
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.black.withOpacity(0.85)
+                          : Colors.white.withOpacity(0.85),
                       borderRadius: BorderRadius.circular(16),
                       border: Border.all(
-                        color: Colors.white.withOpacity(0.3),
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.black.withOpacity(
+                                0.3) // Dark Mode: Use highly opaque white
+                            : Colors.white.withOpacity(0.3),
                         width: 1.5,
                       ),
                       boxShadow: [
@@ -211,37 +220,37 @@ static void showAddedDialog(BuildContext context, bool isAdded) {
                         return Column(
                           children: [
                             Obx(() => InkWell(
-                              onTap: () {
-                                controller.setLanguage(language);
-                                Navigator.pop(context);
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                  vertical: 16,
-                                ),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        language,
-                                        style: const TextStyle(
-                                          fontSize: 17,
-                                          color: Colors.black87,
-                                          fontWeight: FontWeight.w400,
-                                        ),
-                                      ),
+                                  onTap: () {
+                                    controller.setLanguage(language);
+                                    Navigator.pop(context);
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                      vertical: 16,
                                     ),
-                                    if (controller.selectedLanguage.value == language)
-                                      const Icon(
-                                        Icons.check,
-                                        size: 24,
-                                        color: Colors.black87,
-                                      ),
-                                  ],
-                                ),
-                              ),
-                            )),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            language,
+                                            style: const TextStyle(
+                                              fontSize: 17,
+                                              fontFamily: StringConstants.SFPro,
+                                              fontWeight: FontWeight.w400,
+                                            ),
+                                          ),
+                                        ),
+                                        if (controller.selectedLanguage.value ==
+                                            language)
+                                          const Icon(
+                                            Icons.check,
+                                            size: 24,
+                                          ),
+                                      ],
+                                    ),
+                                  ),
+                                )),
                             if (!isLast)
                               Divider(
                                 height: 1,
@@ -261,11 +270,11 @@ static void showAddedDialog(BuildContext context, bool isAdded) {
     );
   }
 
-
   static Widget _buildMenuOption({
     required String icon,
     required String title,
     required VoidCallback onTap,
+    required BuildContext context,
     Color? titleColor,
     Color? iconColor,
   }) {
@@ -280,19 +289,27 @@ static void showAddedDialog(BuildContext context, bool isAdded) {
                 title,
                 style: TextStyle(
                   fontSize: 17,
-                  color: titleColor ?? Colors.black87,
+                  color: titleColor,
+                  fontFamily: StringConstants.SFPro,
                   fontWeight: FontWeight.w400,
                 ),
               ),
             ),
-            CustomIcon(title: icon, height: 24, width: 24, color:iconColor ?? Colors.black87 )
-            
+            CustomIcon(
+                title: icon,
+                height: 24,
+                width: 24,
+                color: iconColor ??
+                    (Theme.of(context).brightness == Brightness.dark
+                        ? Colors.white70
+                        : Colors.black87))
           ],
         ),
       ),
     );
   }
- static  void showBookDetailsBottomSheet(BuildContext context) {
+
+  static void showBookDetailsBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -312,8 +329,8 @@ static void showAddedDialog(BuildContext context, bool isAdded) {
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                 
-                  borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+                  borderRadius:
+                      const BorderRadius.vertical(top: Radius.circular(20)),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.05),
@@ -327,15 +344,16 @@ static void showAddedDialog(BuildContext context, bool isAdded) {
                   children: [
                     // Book cover
                     Container(
-                      width: 70,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFFF5A3C),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Image.asset('assets/images/b4.png',
-                      fit: BoxFit.cover,)
-                    ),
+                        width: 70,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFFF5A3C),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Image.asset(
+                          'assets/images/b4.png',
+                          fit: BoxFit.cover,
+                        )),
                     const SizedBox(width: 16),
                     // Title and author
                     Expanded(
@@ -348,6 +366,7 @@ static void showAddedDialog(BuildContext context, bool isAdded) {
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: Colors.black87,
+                              fontFamily: StringConstants.SFPro,
                               height: 1.3,
                             ),
                           ),
@@ -356,6 +375,7 @@ static void showAddedDialog(BuildContext context, bool isAdded) {
                             'Mark Manson',
                             style: TextStyle(
                               fontSize: 16,
+                              fontFamily: StringConstants.SFPro,
                               color: Colors.grey[600],
                             ),
                           ),
@@ -382,7 +402,9 @@ static void showAddedDialog(BuildContext context, bool isAdded) {
                   ],
                 ),
               ),
-              Divider(height: 1.5,),
+              Divider(
+                height: 1.5,
+              ),
               // Scrollable content
               Expanded(
                 child: ListView(
@@ -396,6 +418,7 @@ static void showAddedDialog(BuildContext context, bool isAdded) {
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
+                        fontFamily: StringConstants.SFPro,
                       ),
                     ),
                     const SizedBox(height: 12),
@@ -404,6 +427,7 @@ static void showAddedDialog(BuildContext context, bool isAdded) {
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.grey[600],
+                        fontFamily: StringConstants.SFPro,
                         height: 1.5,
                       ),
                     ),
@@ -413,6 +437,7 @@ static void showAddedDialog(BuildContext context, bool isAdded) {
                       'Basic Info',
                       style: TextStyle(
                         fontSize: 20,
+                        fontFamily: StringConstants.SFPro,
                         fontWeight: FontWeight.bold,
                         color: Colors.black87,
                       ),
@@ -422,7 +447,8 @@ static void showAddedDialog(BuildContext context, bool isAdded) {
                     _buildInfoRow('Language', 'English'),
                     _buildInfoRow('Genre', 'Health, Mind & Body'),
                     _buildInfoRow('Age', '18+'),
-                    _buildInfoRow('Publication date', '28.10.2024', isLast: true),
+                    _buildInfoRow('Publication date', '28.10.2024',
+                        isLast: true),
                   ],
                 ),
               ),
@@ -432,7 +458,9 @@ static void showAddedDialog(BuildContext context, bool isAdded) {
       ),
     );
   }
-static Widget _buildInfoRow(String label, String value, {bool isLast = false}) {
+
+  static Widget _buildInfoRow(String label, String value,
+      {bool isLast = false}) {
     return Column(
       children: [
         Padding(
@@ -446,6 +474,7 @@ static Widget _buildInfoRow(String label, String value, {bool isLast = false}) {
                   label,
                   style: TextStyle(
                     fontSize: 15,
+                    fontFamily: StringConstants.SFPro,
                     color: Colors.grey[600],
                   ),
                 ),
@@ -457,6 +486,7 @@ static Widget _buildInfoRow(String label, String value, {bool isLast = false}) {
                     fontSize: 15,
                     color: Colors.black87,
                     fontWeight: FontWeight.w500,
+                    fontFamily: StringConstants.SFPro,
                   ),
                 ),
               ),
@@ -472,15 +502,136 @@ static Widget _buildInfoRow(String label, String value, {bool isLast = false}) {
     );
   }
 
+  static void showIOSStylePopup(BuildContext context, Function onShare,
+      Function onAddToCollection, Function onMarkFinished, Function onRemove) {
+    showDialog(
+      context: context,
+      barrierColor: Theme.of(context).brightness == Brightness.dark
+          ? Colors.white24 // light semi-transparent overlay in dark mode
+          : Colors.black26,
+      builder: (context) => Stack(
+        children: [
+          Positioned(
+            top: 120,
+            right: 40,
+            child: Material(
+              color: Colors.transparent,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                  child: Container(
+                    width: 200,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.black.withOpacity(0.75)
+                          : Colors.white.withOpacity(0.85),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.black.withOpacity(0.3)
+                            : Colors.white.withOpacity(0.3),
+                        width: 1.5,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 30,
+                          offset: const Offset(0, 10),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _buildIOSMenuOption(
+                          context,
+                          iconPath: 'assets/icons/d11.svg',
+                          title: 'Open book',
+                          onTap: () => onShare(),
+                        ),
+                        Container(
+                          height: 6,
+                          color: Colors.grey[400],
+                        ),
+                        _buildIOSMenuOption(
+                          context,
+                          iconPath: 'assets/icons/d1.svg',
+                          title: 'Share',
+                          onTap: () => onAddToCollection(),
+                        ),
+                        Divider(
+                          height: 1,
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.white.withOpacity(
+                                  0.1) // subtle divider in dark mode
+                              : Colors.grey.withOpacity(
+                                  0.2), // light divider in light mode
+                        ),
+                        _buildIOSMenuOption(
+                          context,
+                          iconPath: 'assets/icons/d10.svg',
+                          title: 'Edit',
+                          onTap: () => onMarkFinished(),
+                        ),
+                        Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
+                        _buildIOSMenuOption(
+                          context,
+                          iconPath: 'assets/icons/d6.svg',
+                          title: 'Delete',
+                          iconColor: const Color(0xFFFF5A3C),
+                          titleColor: const Color(0xFFFF5A3C),
+                          onTap: () => onRemove(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
-
-
-
-
-
-
-
-
-  // Show added/removed confirmation dialog
- 
+  static Widget _buildIOSMenuOption(
+    BuildContext context, {
+    required String iconPath,
+    required String title,
+    required VoidCallback onTap,
+    Color? iconColor,
+    Color? titleColor,
+  }) {
+    return InkWell(
+      onTap: () {
+        Navigator.pop(context);
+        onTap();
+      },
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+        child: Row(
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                  fontSize: 16,
+                  color: titleColor ??
+                      (Theme.of(context).brightness == Brightness.dark
+                          ? Colors.white // white in dark mode
+                          : Colors.black)),
+            ),
+            Spacer(),
+            SvgPicture.asset(iconPath,
+                width: 20,
+                height: 20,
+                color: iconColor ??
+                    (Theme.of(context).brightness == Brightness.dark
+                        ? Colors.white // white in dark mode
+                        : Colors.black)),
+          ],
+        ),
+      ),
+    );
+  }
 }

@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/store/views/store_detail_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -74,6 +75,7 @@ class RankedBooksList extends StatelessWidget {
                   '$rank',
                   style: const TextStyle(
                     fontSize: 28,
+                     fontFamily: StringConstants.NewYork,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -88,13 +90,16 @@ class RankedBooksList extends StatelessWidget {
                         book['title'] ?? '',
                         style: const TextStyle(
                           fontWeight: FontWeight.w600,
+                           fontFamily: StringConstants.SFPro,
                           fontSize: 16,
                         ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         book['author'] ?? '',
-                        style: TextStyle(color: Colors.grey[600], fontSize: 13),
+                        style: TextStyle(color: Colors.grey[600],
+                         fontFamily: StringConstants.SFPro,
+                         fontSize: 13),
                       ),
                     ],
                   ),

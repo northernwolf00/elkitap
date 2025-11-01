@@ -1,3 +1,4 @@
+import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 
 class LoadingScreen extends StatefulWidget {
@@ -35,7 +36,7 @@ class _LoadingScreenState extends State<LoadingScreen>
           children: [
             // Status Bar Space
             const SizedBox(height: 40),
-            
+
             // Book Cover
             Expanded(
               child: Center(
@@ -82,7 +83,7 @@ class _LoadingScreenState extends State<LoadingScreen>
                                       horizontal: 12, vertical: 4),
                                   color: const Color(0xFFFF8C42),
                                   child: const Text(
-                                    '#1 NEW YORK TIMES BESTSELLER',
+                                    '#1 NewYork TIMES BESTSELLER',
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 9,
@@ -93,7 +94,7 @@ class _LoadingScreenState extends State<LoadingScreen>
                                   ),
                                 ),
                               ),
-                              
+
                               // Main Title
                               Positioned(
                                 top: 60,
@@ -115,7 +116,7 @@ class _LoadingScreenState extends State<LoadingScreen>
                                   ],
                                 ),
                               ),
-                              
+
                               // Author Badge
                               Positioned(
                                 top: 340,
@@ -153,7 +154,7 @@ class _LoadingScreenState extends State<LoadingScreen>
                                   ),
                                 ),
                               ),
-                              
+
                               // Subtitle
                               Positioned(
                                 bottom: 80,
@@ -170,7 +171,7 @@ class _LoadingScreenState extends State<LoadingScreen>
                                   ),
                                 ),
                               ),
-                              
+
                               // Author Name
                               Positioned(
                                 bottom: 30,
@@ -191,9 +192,9 @@ class _LoadingScreenState extends State<LoadingScreen>
                         ),
                       ),
                     ),
-                    
+
                     const SizedBox(height: 80),
-                    
+
                     // Animated Loading Eyes
                     AnimatedBuilder(
                       animation: _controller,
@@ -204,14 +205,15 @@ class _LoadingScreenState extends State<LoadingScreen>
                         );
                       },
                     ),
-                    
+
                     const SizedBox(height: 20),
-                    
+
                     // Loading Text
                     const Text(
                       'Loading...',
                       style: TextStyle(
                         fontSize: 18,
+                         fontFamily: StringConstants.SFPro,
                         fontWeight: FontWeight.w500,
                         color: Color(0xFF1A1A1A),
                       ),
@@ -245,7 +247,8 @@ class EyesPainter extends CustomPainter {
 
     // Left Eye
     final leftEyeRect = Rect.fromCenter(
-      center: Offset(size.width / 2 - eyeWidth / 2 - eyeSpacing / 2, size.height / 2),
+      center: Offset(
+          size.width / 2 - eyeWidth / 2 - eyeSpacing / 2, size.height / 2),
       width: eyeWidth,
       height: eyeHeight,
     );
@@ -253,7 +256,8 @@ class EyesPainter extends CustomPainter {
 
     // Right Eye
     final rightEyeRect = Rect.fromCenter(
-      center: Offset(size.width / 2 + eyeWidth / 2 + eyeSpacing / 2, size.height / 2),
+      center: Offset(
+          size.width / 2 + eyeWidth / 2 + eyeSpacing / 2, size.height / 2),
       width: eyeWidth,
       height: eyeHeight,
     );
