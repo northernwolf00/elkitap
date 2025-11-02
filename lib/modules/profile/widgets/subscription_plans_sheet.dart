@@ -1,5 +1,6 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SubscriptionPlansSheet extends StatefulWidget {
   const SubscriptionPlansSheet({Key? key}) : super(key: key);
@@ -29,7 +30,7 @@ class _SubscriptionPlansSheetState extends State<SubscriptionPlansSheet> {
                 onPressed: () => Navigator.pop(context),
               ),
               Text(
-                'Back',
+                'leading_text'.tr,
                 style: TextStyle(
                   fontSize: 18,
                   fontFamily: StringConstants.SFPro,

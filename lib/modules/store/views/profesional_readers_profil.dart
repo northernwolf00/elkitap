@@ -3,6 +3,7 @@ import 'package:elkitap/global_widgets/custom_appbar.dart';
 import 'package:elkitap/modules/store/widgets/book_cart_profil.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfesionalReadersProfil extends StatefulWidget {
   const ProfesionalReadersProfil({super.key});
@@ -45,7 +46,7 @@ class _ProfesionalReadersProfilState extends State<ProfesionalReadersProfil> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: '', leadingText: 'Back'),
+      appBar: CustomAppBar(title: '', leadingText: 'leading_text'.tr),
       body: SafeArea(
         child: Column(
           children: [
@@ -129,7 +130,7 @@ class _ProfesionalReadersProfilState extends State<ProfesionalReadersProfil> {
                             'Director',
                             style: TextStyle(
                               fontSize: 16,
-                               fontFamily: StringConstants.SFPro,
+                              fontFamily: StringConstants.SFPro,
                               fontWeight: FontWeight.w500,
                               color: Colors.grey,
                             ),
@@ -149,7 +150,7 @@ class _ProfesionalReadersProfilState extends State<ProfesionalReadersProfil> {
                                       isExpanded ? ' Show Less' : ' Show More',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w600,
-                                     fontFamily: StringConstants.SFPro,
+                                    fontFamily: StringConstants.SFPro,
                                     color: Colors.black,
                                   ),
                                   recognizer: TapGestureRecognizer()

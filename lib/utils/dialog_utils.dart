@@ -140,14 +140,14 @@ class DialogUtils {
                     decoration: BoxDecoration(
                       color: Theme.of(context).brightness == Brightness.dark
                           ? Colors.black.withOpacity(0.75)
-                          : Colors.white.withOpacity(0.75),
+                          : Color(0xFF3D3633).withOpacity(0.95),
                       borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: Theme.of(context).brightness == Brightness.dark
-                            ? Colors.black.withOpacity(0.3)
-                            : Colors.white.withOpacity(0.3),
-                        width: 1.5,
-                      ),
+                      // border: Border.all(
+                      //   color: Theme.of(context).brightness == Brightness.dark
+                      //       ? Colors.black.withOpacity(0.3)
+                      //       : Colors.white.withOpacity(0.3),
+                      //   width: 1.5,
+                      // ),
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.1),
@@ -162,6 +162,7 @@ class DialogUtils {
                         _buildMenuOption(
                             icon: 'assets/icons/m1.svg',
                             title: 'Switch to Book',
+                             titleColor: const Color.fromARGB(255, 255, 255, 255),
                             onTap: () {
                               Navigator.pop(context);
                               // Handle share
@@ -171,6 +172,7 @@ class DialogUtils {
                         _buildMenuOption(
                             icon: 'assets/icons/d11.svg',
                             title: 'Book description',
+                             titleColor: const Color.fromARGB(255, 255, 255, 255),
                             onTap: () {
                               Navigator.pop(context);
                             },
@@ -179,6 +181,7 @@ class DialogUtils {
                         _buildMenuOption(
                             icon: 'assets/icons/a10.svg',
                             title: 'Download',
+                             titleColor: const Color.fromARGB(255, 255, 255, 255),
                             onTap: () {
                               Navigator.pop(context);
                               // Handle add to collection
@@ -188,6 +191,7 @@ class DialogUtils {
                         _buildMenuOption(
                             icon: 'assets/icons/d11.svg',
                             title: 'Transcript View',
+                             titleColor: const Color.fromARGB(255, 255, 255, 255),
                             onTap: () {
                               Navigator.pop(context);
                               // Handle mark as finished
@@ -197,6 +201,7 @@ class DialogUtils {
                         _buildMenuOption(
                             icon: 'assets/icons/a11.svg',
                             title: 'Add to Want to Listen',
+                             titleColor: const Color.fromARGB(255, 255, 255, 255),
                             onTap: () {
                               Navigator.pop(context);
                               // Handle mark as finished
@@ -206,6 +211,7 @@ class DialogUtils {
                         _buildMenuOption(
                             icon: 'assets/icons/d1.svg',
                             title: 'Share',
+                            titleColor: const Color.fromARGB(255, 255, 255, 255),
                             onTap: () {
                               Navigator.pop(context);
                               // Handle mark as finished
@@ -417,9 +423,8 @@ class DialogUtils {
                 height: 24,
                 width: 24,
                 color: iconColor ??
-                    (Theme.of(context).brightness == Brightness.dark
-                        ? Colors.white70
-                        : Colors.black87))
+                     Colors.white
+                        )
           ],
         ),
       ),

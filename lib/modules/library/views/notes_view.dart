@@ -63,7 +63,7 @@ class _NotesScreenState extends State<NotesScreen> {
                           ),
                         ),
                         Text(
-                          'Back',
+                          'leading_text'.tr,
                           style: TextStyle(fontFamily: StringConstants.SFPro),
                         )
                       ],

@@ -4,6 +4,7 @@ import 'package:elkitap/modules/store/widgets/featured_books_section.dart';
 import 'package:elkitap/modules/store/widgets/popular_by_genre_section.dart';
 import 'package:elkitap/modules/store/widgets/top_of_week_section.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class GenrsDetailViewScreen extends StatefulWidget {
   const GenrsDetailViewScreen({super.key});
@@ -17,8 +18,7 @@ class _GenrsDetailViewScreenState extends State<GenrsDetailViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
- 
-      appBar: CustomAppBar(title: '', leadingText: 'Back'),
+      appBar: CustomAppBar(title: '', leadingText: 'leading_text'.tr),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -33,12 +33,12 @@ class _GenrsDetailViewScreenState extends State<GenrsDetailViewScreen> {
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors:  Theme.of(context).brightness == Brightness.dark
-                            ? [
-                                Color(0x001C1C1E),
-                                Color(0xFF1C1C1E)
-                              ] // dark mode gradient
-                            : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
+                      colors: Theme.of(context).brightness == Brightness.dark
+                          ? [
+                              Color(0x001C1C1E),
+                              Color(0xFF1C1C1E)
+                            ] // dark mode gradient
+                          : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     ),
@@ -55,12 +55,12 @@ class _GenrsDetailViewScreenState extends State<GenrsDetailViewScreen> {
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors:  Theme.of(context).brightness == Brightness.dark
-                            ? [
-                                Color(0x001C1C1E),
-                                Color(0xFF1C1C1E)
-                              ] // dark mode gradient
-                            : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
+                      colors: Theme.of(context).brightness == Brightness.dark
+                          ? [
+                              Color(0x001C1C1E),
+                              Color(0xFF1C1C1E)
+                            ] // dark mode gradient
+                          : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     ),
@@ -71,12 +71,12 @@ class _GenrsDetailViewScreenState extends State<GenrsDetailViewScreen> {
                 Container(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                      colors:  Theme.of(context).brightness == Brightness.dark
-                            ? [
-                                Color(0x001C1C1E),
-                                Color(0xFF1C1C1E)
-                              ] // dark mode gradient
-                            : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
+                      colors: Theme.of(context).brightness == Brightness.dark
+                          ? [
+                              Color(0x001C1C1E),
+                              Color(0xFF1C1C1E)
+                            ] // dark mode gradient
+                          : [Color(0x00E5E5EA), Color(0xFFE5E5EA)],
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     ),
@@ -116,9 +116,10 @@ class _Header extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: const Text(
             "Health, Mind & Body",
-            style: TextStyle(fontSize: 26,
-             fontFamily: StringConstants.NewYork,
-             fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: 26,
+                fontFamily: StringConstants.NewYork,
+                fontWeight: FontWeight.bold),
           ),
         ),
       ],

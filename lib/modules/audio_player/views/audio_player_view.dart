@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:elkitap/modules/audio_player/controllers/audio_player_controller.dart';
-import 'package:elkitap/modules/audio_player/controllers/bluetooth_controller.dart';
 import 'package:elkitap/modules/audio_player/views/driver_mode_screen.dart';
 
 import 'package:elkitap/modules/audio_player/widgets/audiobook_bottom_sheet.dart';
@@ -19,7 +18,7 @@ class AudiobookPlayerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(AudioPlayerController());
     // final bluetoothController = Get.put(BluetoothController());
-    final hasTimer = controller.sleepTimerEndTime.value != null;
+  
     return Scaffold(
         body: Stack(children: [
       // Background Image
@@ -290,7 +289,7 @@ class AudiobookPlayerScreen extends StatelessWidget {
                   ],
                 );
               }),
-              const SizedBox(height: 30),
+               SizedBox(height: 40),
 
               // Bottom Controls
               Obx(() {
@@ -342,8 +341,10 @@ class AudiobookPlayerScreen extends StatelessWidget {
                     ),
                     Center(
                       child: GestureDetector(
-                        onTap: () {},
-                        // showBluetoothPopup(context, bluetoothController),
+                        onTap: () {
+                          showBluetoothPopup(context);
+                        },
+                        
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -354,14 +355,14 @@ class AudiobookPlayerScreen extends StatelessWidget {
                               color: Colors.white,
                             ),
                             // if (hasConnection) ...[
-                            //   const SizedBox(width: 8),
-                            //   Icon(
-                            //     bluetoothController.getDeviceIcon(
-                            //         bluetoothController
-                            //             .connectedDevice.value!),
-                            //     size: 20,
-                            //     color: Colors.white70,
-                            //   ),
+                              // const SizedBox(width: 8),
+                              // Icon(
+                              //   bluetoothController.getDeviceIcon(
+                              //       bluetoothController
+                              //           .connectedDevice.value!),
+                              //   size: 20,
+                              //   color: Colors.white70,
+                              // ),
                             // ],
                           ],
                         ),
@@ -625,253 +626,253 @@ class AudiobookPlayerScreen extends StatelessWidget {
     );
   }
 
-  // static void showBluetoothPopup(
-  //     BuildContext context, BluetoothController controller) {
-  //   controller.startDiscovery();
+  static void showBluetoothPopup(
+      BuildContext context) {
 
-  //   showDialog(
-  //     context: context,
-  //     barrierColor: Colors.black26,
-  //     builder: (context) => Stack(
-  //       children: [
-  //         Positioned(
-  //           bottom: 80,
-  //           right: 20,
-  //           child: Material(
-  //             color: Colors.transparent,
-  //             child: ClipRRect(
-  //               borderRadius: BorderRadius.circular(16),
-  //               child: BackdropFilter(
-  //                 filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
-  //                 child: Container(
-  //                   width: 320,
-  //                   constraints: const BoxConstraints(maxHeight: 400),
-  //                   decoration: BoxDecoration(
-  //                     color: const Color(0xFF3D3633).withOpacity(0.95),
-  //                     borderRadius: BorderRadius.circular(16),
-  //                     boxShadow: [
-  //                       BoxShadow(
-  //                         color: Colors.black.withOpacity(0.3),
-  //                         blurRadius: 20,
-  //                         offset: const Offset(0, 8),
-  //                       ),
-  //                     ],
-  //                   ),
-  //                   child: Column(
-  //                     mainAxisSize: MainAxisSize.min,
-  //                     children: [
-  //                       // Header
-  //                       Padding(
-  //                         padding: const EdgeInsets.all(16),
-  //                         child: Row(
-  //                           children: [
-  //                             Icon(
-  //                               Icons.broadcast_on_personal,
-  //                               color: Colors.white,
-  //                               size: 24,
-  //                             ),
-  //                             const SizedBox(width: 12),
-  //                             const Text(
-  //                               'Broadcasting',
-  //                               style: TextStyle(
-  //                                 fontSize: 17,
-  //                                 fontFamily: 'SF Pro',
-  //                                 fontWeight: FontWeight.w600,
-  //                                 color: Colors.white,
-  //                               ),
-  //                             ),
-  //                           ],
-  //                         ),
-  //                       ),
-  //                       Divider(
-  //                         height: 1,
-  //                         thickness: 0.5,
-  //                         color: Colors.white.withOpacity(0.15),
-  //                       ),
-  //                       // Device list
-  //                       Flexible(
-  //                         child: Obx(() {
-  //                           if (!controller.isBluetoothEnabled.value) {
-  //                             return Padding(
-  //                               padding: const EdgeInsets.all(40),
-  //                               child: Column(
-  //                                 mainAxisSize: MainAxisSize.min,
-  //                                 children: [
-  //                                   const Icon(
-  //                                     Icons.bluetooth_disabled,
-  //                                     color: Colors.white70,
-  //                                     size: 48,
-  //                                   ),
-  //                                   const SizedBox(height: 16),
-  //                                   const Text(
-  //                                     'Bluetooth is disabled',
-  //                                     style: TextStyle(
-  //                                       fontSize: 15,
-  //                                       fontFamily: 'SF Pro',
-  //                                       color: Colors.white70,
-  //                                     ),
-  //                                   ),
-  //                                   const SizedBox(height: 16),
-  //                                   ElevatedButton(
-  //                                     onPressed: () =>
-  //                                         controller.enableBluetooth(),
-  //                                     child: const Text('Enable Bluetooth'),
-  //                                   ),
-  //                                 ],
-  //                               ),
-  //                             );
-  //                           }
 
-  //                           if (controller.isSearching.value) {
-  //                             return Padding(
-  //                               padding: const EdgeInsets.all(40),
-  //                               child: Column(
-  //                                 mainAxisSize: MainAxisSize.min,
-  //                                 children: [
-  //                                   const CircularProgressIndicator(
-  //                                     color: Colors.white,
-  //                                     strokeWidth: 2,
-  //                                   ),
-  //                                   const SizedBox(height: 16),
-  //                                   const Text(
-  //                                     'Searching Devices',
-  //                                     style: TextStyle(
-  //                                       fontSize: 15,
-  //                                       fontFamily: 'SF Pro',
-  //                                       color: Colors.white70,
-  //                                     ),
-  //                                   ),
-  //                                 ],
-  //                               ),
-  //                             );
-  //                           }
+    showDialog(
+      context: context,
+      barrierColor: Colors.black26,
+      builder: (context) => Stack(
+        children: [
+          Positioned(
+            bottom: 80,
+            right: 20,
+            child: Material(
+              color: Colors.transparent,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                  child: Container(
+                    width: 320,
+                    constraints: const BoxConstraints(maxHeight: 400),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF3D3633).withOpacity(0.95),
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.3),
+                          blurRadius: 20,
+                          offset: const Offset(0, 8),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        // Header
+                        Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.broadcast_on_personal,
+                                color: Colors.white,
+                                size: 24,
+                              ),
+                              const SizedBox(width: 12),
+                              const Text(
+                                'Broadcasting',
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  fontFamily: 'SF Pro',
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Divider(
+                          height: 1,
+                          thickness: 0.5,
+                          color: Colors.white.withOpacity(0.15),
+                        ),
+                        // Device list
+                        Flexible(
+                          child: 
+                            // if (!controller.isBluetoothEnabled.value) {
+                            //   return Padding(
+                            //     padding: const EdgeInsets.all(40),
+                            //     child: Column(
+                            //       mainAxisSize: MainAxisSize.min,
+                            //       children: [
+                            //         const Icon(
+                            //           Icons.bluetooth_disabled,
+                            //           color: Colors.white70,
+                            //           size: 48,
+                            //         ),
+                            //         const SizedBox(height: 16),
+                            //         const Text(
+                            //           'Bluetooth is disabled',
+                            //           style: TextStyle(
+                            //             fontSize: 15,
+                            //             fontFamily: 'SF Pro',
+                            //             color: Colors.white70,
+                            //           ),
+                            //         ),
+                            //         const SizedBox(height: 16),
+                            //         ElevatedButton(
+                            //           onPressed: () =>
+                            //               controller.enableBluetooth(),
+                            //           child: const Text('Enable Bluetooth'),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   );
+                            // }
 
-  //                           final allDevices = [
-  //                             ...controller.pairedDevices,
-  //                             ...controller.discoveredDevices
-  //                                 .map((r) => r.device),
-  //                           ];
+                            // if (controller.isSearching.value) {
+                            //   return Padding(
+                            //     padding: const EdgeInsets.all(40),
+                            //     child: Column(
+                            //       mainAxisSize: MainAxisSize.min,
+                            //       children: [
+                            //         const CircularProgressIndicator(
+                            //           color: Colors.white,
+                            //           strokeWidth: 2,
+                            //         ),
+                            //         const SizedBox(height: 16),
+                            //         const Text(
+                            //           'Searching Devices',
+                            //           style: TextStyle(
+                            //             fontSize: 15,
+                            //             fontFamily: 'SF Pro',
+                            //             color: Colors.white70,
+                            //           ),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   );
+                            // }
 
-  //                           // Remove duplicates
-  //                           final uniqueDevices = <BluetoothDevice>[];
-  //                           final addresses = <String>{};
-  //                           for (var device in allDevices) {
-  //                             if (!addresses.contains(device.address)) {
-  //                               addresses.add(device.address);
-  //                               uniqueDevices.add(device);
-  //                             }
-  //                           }
+                            // final allDevices = [
+                            //   ...controller.pairedDevices,
+                            //   ...controller.discoveredDevices
+                            //       .map((r) => r.device),
+                            // ];
 
-  //                           if (uniqueDevices.isEmpty) {
-  //                             return Padding(
-  //                               padding: const EdgeInsets.all(40),
-  //                               child: Column(
-  //                                 mainAxisSize: MainAxisSize.min,
-  //                                 children: [
-  //                                   const Text(
-  //                                     'No devices found',
-  //                                     style: TextStyle(
-  //                                       fontSize: 15,
-  //                                       fontFamily: 'SF Pro',
-  //                                       color: Colors.white70,
-  //                                     ),
-  //                                   ),
-  //                                   const SizedBox(height: 16),
-  //                                   TextButton(
-  //                                     onPressed: () =>
-  //                                         controller.startDiscovery(),
-  //                                     child: const Text('Scan Again'),
-  //                                   ),
-  //                                 ],
-  //                               ),
-  //                             );
-  //                           }
+                            // // Remove duplicates
+                            // final uniqueDevices = <BluetoothDevice>[];
+                            // final addresses = <String>{};
+                            // for (var device in allDevices) {
+                            //   if (!addresses.contains(device.address)) {
+                            //     addresses.add(device.address);
+                            //     uniqueDevices.add(device);
+                            //   }
+                            // }
 
-  //                           return ListView.separated(
-  //                             shrinkWrap: true,
-  //                             itemCount: uniqueDevices.length,
-  //                             separatorBuilder: (context, index) => Divider(
-  //                               height: 1,
-  //                               thickness: 0.5,
-  //                               color: Colors.white.withOpacity(0.15),
-  //                             ),
-  //                             itemBuilder: (context, index) {
-  //                               final device = uniqueDevices[index];
-  //                               final isConnected =
-  //                                   controller.connectedDevice.value?.address ==
-  //                                       device.address;
+                            // if (uniqueDevices.isEmpty) {
+                            //   return Padding(
+                            //     padding: const EdgeInsets.all(40),
+                            //     child: Column(
+                            //       mainAxisSize: MainAxisSize.min,
+                            //       children: [
+                            //         const Text(
+                            //           'No devices found',
+                            //           style: TextStyle(
+                            //             fontSize: 15,
+                            //             fontFamily: 'SF Pro',
+                            //             color: Colors.white70,
+                            //           ),
+                            //         ),
+                            //         const SizedBox(height: 16),
+                            //         TextButton(
+                            //           onPressed: () =>
+                            //               controller.startDiscovery(),
+                            //           child: const Text('Scan Again'),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   );
+                            // }
 
-  //                               return InkWell(
-  //                                 onTap: () {
-  //                                   controller.connectToDevice(device);
-  //                                   Navigator.pop(context);
-  //                                 },
-  //                                 child: Padding(
-  //                                   padding: const EdgeInsets.symmetric(
-  //                                     horizontal: 20,
-  //                                     vertical: 16,
-  //                                   ),
-  //                                   child: Row(
-  //                                     children: [
-  //                                       Icon(
-  //                                         controller.getDeviceIcon(device),
-  //                                         color: Colors.white,
-  //                                         size: 24,
-  //                                       ),
-  //                                       const SizedBox(width: 16),
-  //                                       Expanded(
-  //                                         child: Column(
-  //                                           crossAxisAlignment:
-  //                                               CrossAxisAlignment.start,
-  //                                           children: [
-  //                                             Text(
-  //                                               device.name ?? 'Unknown Device',
-  //                                               style: const TextStyle(
-  //                                                 fontSize: 17,
-  //                                                 fontFamily: 'SF Pro',
-  //                                                 fontWeight: FontWeight.w400,
-  //                                                 color: Colors.white,
-  //                                               ),
-  //                                             ),
-  //                                             if (device.name == null ||
-  //                                                 device.name!.isEmpty)
-  //                                               Text(
-  //                                                 device.address,
-  //                                                 style: TextStyle(
-  //                                                   fontSize: 13,
-  //                                                   fontFamily: 'SF Pro',
-  //                                                   color: Colors.white70,
-  //                                                 ),
-  //                                               ),
-  //                                           ],
-  //                                         ),
-  //                                       ),
-  //                                       if (isConnected)
-  //                                         const Icon(
-  //                                           Icons.check,
-  //                                           size: 24,
-  //                                           color: Colors.white,
-  //                                         ),
-  //                                     ],
-  //                                   ),
-  //                                 ),
-  //                               );
-  //                             },
-  //                           );
-  //                         }),
-  //                       ),
-  //                     ],
-  //                   ),
-  //                 ),
-  //               ),
-  //             ),
-  //           ),
-  //         ),
-  //       ],
-  //     ),
-  //   ).then((_) {
-  //     // Cancel discovery when dialog closes
-  //     controller.cancelDiscovery();
-  //   });
-  // }
+                            ListView.separated(
+                              shrinkWrap: true,
+                              itemCount: 2,
+                              separatorBuilder: (context, index) => Divider(
+                                height: 1,
+                                thickness: 0.5,
+                                color: Colors.white.withOpacity(0.15),
+                              ),
+                              itemBuilder: (context, index) {
+                                // final device = uniqueDevices[index];
+                                // final isConnected =
+                                //     controller.connectedDevice.value?.address ==
+                                //         device.address;
+
+                                return InkWell(
+                                  onTap: () {
+                                    // controller.connectToDevice(device);
+                                    Navigator.pop(context);
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                      vertical: 16,
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.phone_android,
+                                          color: Colors.white,
+                                          size: 24,
+                                        ),
+                                        const SizedBox(width: 16),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                               'Unknown Device',
+                                                style: const TextStyle(
+                                                  fontSize: 17,
+                                                  fontFamily: 'SF Pro',
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              // if (device.name == null ||
+                                              //     device.name!.isEmpty)
+                                              //   Text(
+                                              //     device.address,
+                                              //     style: TextStyle(
+                                              //       fontSize: 13,
+                                              //       fontFamily: 'SF Pro',
+                                              //       color: Colors.white70,
+                                              //     ),
+                                              //   ),
+                                            ],
+                                          ),
+                                        ),
+                                        // if (isConnected)
+                                        //   const Icon(
+                                        //     Icons.check,
+                                        //     size: 24,
+                                        //     color: Colors.white,
+                                        //   ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              
+                            
+                          }),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    ).then((_) {
+      // Cancel discovery when dialog closes
+      // controller.cancelDiscovery();
+    });
+  }
 }

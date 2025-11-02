@@ -1,5 +1,6 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/core/init/theme_controller.dart';
+import 'package:elkitap/core/init/translation_service.dart';
 import 'package:elkitap/global_widgets/bottom_nav_bar.dart';
 import 'package:elkitap/global_widgets/custom_bottom_sheet.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
@@ -262,7 +263,14 @@ class _SettingsListState extends State<SettingsList> {
       setState(() {
         selectedLanguage = result;
       });
+
+      final TranslationService translationService = Get.find<TranslationService>();
+    translationService.changeLocale(result);
+
+    _box.write(_languageKey, result);
     }
+
+    
   }
 
   Future<String?> showUniversalMenu({

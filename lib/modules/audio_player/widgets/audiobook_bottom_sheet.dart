@@ -29,8 +29,8 @@ class AudiobookBottomSheet extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-                Color.fromARGB(255, 77, 78, 80),
-                Color.fromARGB(255, 88, 88, 89)
+                Color.fromARGB(255, 45, 45, 47),
+                Color.fromARGB(255, 49, 49, 50)
               ],
             ),
             borderRadius: BorderRadius.only(
@@ -78,24 +78,37 @@ class AudiobookBottomSheet extends StatelessWidget {
                     ),
 
                     // Close button
-                    CircleAvatar(
-                      backgroundColor: Colors.grey,
-                      child: IconButton(
-                        onPressed: () => Navigator.pop(context),
-                        icon: const Icon(Icons.close, color: Colors.white),
-                        padding: EdgeInsets.zero,
-                        constraints: const BoxConstraints(),
+                    SizedBox(
+                      height: 30,
+                      width: 30,
+                      child: CircleAvatar(
+                        backgroundColor: Colors.grey,
+                        child: IconButton(
+                          onPressed: () => Navigator.pop(context),
+                          icon: const Icon(Icons.close,
+                          size: 16,
+                           color: Colors.white),
+                          padding: EdgeInsets.zero,
+                                        
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
 
-              // Chapters list
+              Divider(
+                height: 1,
+                color: Colors.grey,
+              ),
+
+              SizedBox(
+                height: 20,
+              ),
               Expanded(
                 child: ListView.builder(
                   controller: scrollController,
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 0),
                   itemCount: chapters.length,
                   itemBuilder: (context, index) {
                     return ChapterTile(chapter: chapters[index]);

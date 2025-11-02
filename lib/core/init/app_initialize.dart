@@ -2,6 +2,8 @@ import 'dart:async';
 
 // import 'package:firebase_analytics/firebase_analytics.dart';
 
+import 'package:elkitap/core/init/theme_controller.dart';
+import 'package:elkitap/core/init/translation_service.dart';
 import 'package:elkitap/modules/auth/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,9 +32,9 @@ final class ApplicationInitialize {
   static Future<void> _initialize() async {
     try {
       Get.put(AuthController());
+      Get.put(TranslationService());
       // await GetStorage.init();
-      // Get.put(AuthStorage());
-      // Get.put(ThemeController());
+      Get.put(ThemeController());
       // Get.put(HomeController());
       // Get.put(SearchControllerMine());
       // Get.put(UserProfilController());

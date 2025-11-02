@@ -1,6 +1,7 @@
 import 'package:elkitap/global_widgets/custom_appbar.dart';
 import 'package:elkitap/modules/store/widgets/profesionales_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfessionalsReadView extends StatelessWidget {
   const ProfessionalsReadView({super.key});
@@ -8,7 +9,8 @@ class ProfessionalsReadView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'Professionals read', leadingText: 'Back'),
+      appBar: CustomAppBar(
+          title: 'Professionals read', leadingText: 'leading_text'.tr),
       body: ListView(
         children: const [
           ProfessionalCard(

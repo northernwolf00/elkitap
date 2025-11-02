@@ -45,7 +45,7 @@ class BooksGridScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: title, leadingText: 'Back'),
+      appBar: CustomAppBar(title: title, leadingText: 'leading_text'.tr),
       body: GridView.builder(
         padding: const EdgeInsets.only(
           top: 16,
@@ -68,7 +68,7 @@ class BooksGridScreen extends StatelessWidget {
             title: book['title']!,
             author: book['author']!,
             onTap: () {
-              Get.to(() =>  BookDetailView());
+              Get.to(() => BookDetailView());
             },
           );
         },

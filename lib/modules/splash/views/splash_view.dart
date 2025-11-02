@@ -77,12 +77,15 @@ class SplashPageWidget extends StatelessWidget {
               ),
             );
           } else if (controller.videoFailed.value) {
-            return Center(child: Lottie.asset('assets/animations/elkitap.json'));
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+            // return Center(child: Lottie.asset('assets/animations/elkitap.json'));
           } else {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [CircularProgressIndicator(strokeWidth: 3)],
+                // children: const [CircularProgressIndicator(strokeWidth: 3)],
               ),
             );
           }

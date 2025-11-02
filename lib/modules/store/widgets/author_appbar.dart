@@ -1,5 +1,6 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AuthorAppBar extends StatelessWidget {
   const AuthorAppBar({super.key});
@@ -18,14 +19,16 @@ class AuthorAppBar extends StatelessWidget {
         children: [
           InkWell(
             onTap: () => Navigator.pop(context),
-            child: const Row(
+            child:  Row(
               children: [
                 Icon(Icons.arrow_back_ios, size: 20),
                 SizedBox(width: 4),
                 Text(
-                  'Back',
-                  style: TextStyle(fontSize: 16,
-                   fontFamily: StringConstants.SFPro,),
+                  'leading_text'.tr,
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: StringConstants.SFPro,
+                  ),
                 ),
               ],
             ),

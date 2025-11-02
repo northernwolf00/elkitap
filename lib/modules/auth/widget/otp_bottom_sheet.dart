@@ -110,8 +110,8 @@ class _OtpVerificationSheetContentState
                     Navigator.pop(context);
                   },
                 ),
-                const Text(
-                  'Back',
+                 Text(
+                  'leading_text'.tr,
                   style: TextStyle(
                       fontSize: 17,
                       fontFamily: StringConstants.SFPro,
