@@ -33,7 +33,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Container(
-        height: 80,
+        height: 70,
         child: Row(
           children: [
             Expanded(

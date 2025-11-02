@@ -31,7 +31,7 @@ class BookDetailView extends StatelessWidget {
           elevation: 0,
           automaticallyImplyLeading: false,
           flexibleSpace: Padding(
-            padding: const EdgeInsets.only(top: 60, left: 16, right: 16),
+            padding: const EdgeInsets.only(top: 20, left: 16, right: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

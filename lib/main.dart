@@ -15,7 +15,8 @@ import 'package:get_storage/get_storage.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ApplicationInitialize.initialize();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  // SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual);
 
   await GetStorage.init();
   await Firebase.initializeApp();
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, __) {
+        
         return GetMaterialApp(
           builder: (context, child) {
             final themeController = Get.find<ThemeController>();

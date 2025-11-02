@@ -125,7 +125,7 @@ class _BottomNavbarButtonState extends State<BottomNavbarButton> {
               ),
             ),
           ),
-          SizedBox(height: 15),
+          SizedBox(height: 5),
         ],
       ),
     );
