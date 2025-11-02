@@ -330,7 +330,7 @@ class AudiobookPlayerScreen extends StatelessWidget {
                                   style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,
-                                    fontFamily: 'SF Pro',
+                                    fontFamily: 'SFPro',
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),

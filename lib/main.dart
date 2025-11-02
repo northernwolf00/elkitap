@@ -3,6 +3,7 @@ import 'package:elkitap/core/init/theme_controller.dart';
 import 'package:elkitap/core/init/translation_service.dart';
 import 'package:elkitap/core/theme/custom_dark_theme.dart';
 import 'package:elkitap/core/theme/custom_light_theme.dart';
+import 'package:elkitap/modules/audio_player/views/global_mini_player.dart';
 
 import 'package:elkitap/modules/splash/views/splash_view.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -36,7 +37,6 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, __) {
-        
         return GetMaterialApp(
           builder: (context, child) {
             final themeController = Get.find<ThemeController>();
@@ -44,7 +44,19 @@ class MyApp extends StatelessWidget {
               value: themeController.themeMode == ThemeMode.dark
                   ? SystemUiOverlayStyle.light
                   : SystemUiOverlayStyle.dark,
-              child: child!,
+              child: Stack(
+                children: [
+                  child ?? const SizedBox.shrink(),
+
+                  // Global mini player overlay
+                  const Positioned(
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    child: GlobalMiniPlayer(),
+                  ),
+                ],
+              ),
             );
           },
           translations: TranslationService(),
