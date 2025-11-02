@@ -1,6 +1,7 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class HelpAndSupportBottomSheet extends StatelessWidget {
   const HelpAndSupportBottomSheet({super.key});
@@ -32,7 +33,7 @@ class HelpAndSupportBottomSheet extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 Text(
-                  "Profile",
+                  'profile'.tr,
                   style: TextStyle(
                     fontSize: 18,
                     fontFamily: StringConstants.SFPro,
@@ -45,7 +46,7 @@ class HelpAndSupportBottomSheet extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    "Help and Support", // Title of the bottom sheet
+                    'help_and_support'.tr, // Title of the bottom sheet
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 18,

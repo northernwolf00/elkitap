@@ -1,6 +1,6 @@
 final Map<String, String> enUS = {
   'hello': 'Hello',
-  'language': 'Language',
+
   'change_language': 'Change Language',
   'leading_text': 'Back',
 
@@ -11,6 +11,7 @@ final Map<String, String> enUS = {
   'save': 'Save',
   'profile': 'Profile',
   'sign_out': 'Sign Out',
+
   
   // Menu Items & Selection
   'theme': 'Theme',
