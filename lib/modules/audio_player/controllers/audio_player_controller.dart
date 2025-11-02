@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 
@@ -8,6 +10,14 @@ class AudioPlayerController extends GetxController {
   final Rx<Duration> position = Duration.zero.obs;
   final RxBool isPlaying = false.obs;
   final RxDouble playbackSpeed = 1.0.obs;
+  
+  // Sleep timer properties
+  final Rxn<Duration> sleepTimerDuration = Rxn<Duration>();
+  final Rx<DateTime?> sleepTimerEndTime = Rx<DateTime?>(null);
+  Timer? _sleepTimer;
+  Timer? _countdownTimer;
+
+  final RxBool isDriverMode = false.obs;
 
   @override
   void onInit() {
@@ -16,12 +26,11 @@ class AudioPlayerController extends GetxController {
   }
 
   final RxString audioSource = ''.obs;
-  final RxBool isAssetAudio = true.obs; // true for asset, false for URL
+  final RxBool isAssetAudio = true.obs;
 
   Future<void> _initAudio() async {
     try {
       if (audioSource.value.isEmpty) {
-        // Default audio source - change this to your preference
         audioSource.value = 'assets/audio/au2.mp3';
         isAssetAudio.value = true;
       }
@@ -58,12 +67,10 @@ class AudioPlayerController extends GetxController {
     }
   }
 
-  // Load audio from asset file
   void loadFromAsset(String assetPath) {
     loadAudio(assetPath, true);
   }
 
-  // Load audio from URL
   void loadFromUrl(String url) {
     loadAudio(url, false);
   }
@@ -108,13 +115,10 @@ class AudioPlayerController extends GetxController {
     final seconds = d.inSeconds.remainder(60);
 
     if (hours == 0) {
-      // Less than 1 hour → show MM:SS
-      final m = minutes.toString(); // no leading 0 for minutes
-      final s =
-          seconds.toString().padLeft(2, '0'); // always 2 digits for seconds
+      final m = minutes.toString();
+      final s = seconds.toString().padLeft(2, '0');
       return '$m:$s';
     } else {
-      // 1 hour or more → human-readable
       if (minutes > 0) {
         return '$hours hour${hours > 1 ? 's' : ''}, $minutes minute${minutes > 1 ? 's' : ''}';
       } else {
@@ -123,9 +127,73 @@ class AudioPlayerController extends GetxController {
     }
   }
 
+  void setSpeed(double speed) {
+    playbackSpeed.value = speed;
+    _audioPlayer.setSpeed(speed);
+  }
+
+  // Sleep timer methods
+  void setSleepTimer(Duration? duration) {
+    cancelSleepTimer();
+    
+    if (duration == null) {
+      sleepTimerDuration.value = null;
+      sleepTimerEndTime.value = null;
+      return;
+    }
+
+    sleepTimerDuration.value = duration;
+    sleepTimerEndTime.value = DateTime.now().add(duration);
+
+    _sleepTimer = Timer(duration, () {
+      _audioPlayer.pause();
+      sleepTimerDuration.value = null;
+      sleepTimerEndTime.value = null;
+      _countdownTimer?.cancel();
+    });
+
+    // Update countdown every second
+    _countdownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (sleepTimerEndTime.value == null) {
+        timer.cancel();
+      }
+    });
+  }
+
+  void cancelSleepTimer() {
+    _sleepTimer?.cancel();
+    _countdownTimer?.cancel();
+    sleepTimerDuration.value = null;
+    sleepTimerEndTime.value = null;
+  }
+
+  String getRemainingTime() {
+    if (sleepTimerEndTime.value == null) return '';
+    
+    final remaining = sleepTimerEndTime.value!.difference(DateTime.now());
+    if (remaining.isNegative) return '0:00';
+    
+    final minutes = remaining.inMinutes;
+    final seconds = remaining.inSeconds.remainder(60);
+    return '$minutes:${seconds.toString().padLeft(2, '0')}';
+  }
+
+   void toggleDriverMode() {
+    isDriverMode.value = !isDriverMode.value;
+  }
+
+  void enableDriverMode() {
+    isDriverMode.value = true;
+  }
+
+  void disableDriverMode() {
+    isDriverMode.value = false;
+  }
+
   @override
   void onClose() {
     _audioPlayer.dispose();
+    cancelSleepTimer();
     super.onClose();
   }
 }

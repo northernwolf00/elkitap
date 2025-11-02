@@ -117,6 +117,123 @@ class DialogUtils {
     );
   }
 
+  static void showAudioPopupMenu(
+    BuildContext context,
+  ) {
+    showDialog(
+      context: context,
+      barrierColor: Colors.black26,
+      builder: (context) => Stack(
+        children: [
+          // Positioned popup menu
+          Positioned(
+            top: 60,
+            right: 16,
+            child: Material(
+              color: Colors.transparent,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 20, sigmaY: 20),
+                  child: Container(
+                    width: 300,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.black.withOpacity(0.75)
+                          : Colors.white.withOpacity(0.75),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.black.withOpacity(0.3)
+                            : Colors.white.withOpacity(0.3),
+                        width: 1.5,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 30,
+                          offset: const Offset(0, 10),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        _buildMenuOption(
+                            icon: 'assets/icons/m1.svg',
+                            title: 'Switch to Book',
+                            onTap: () {
+                              Navigator.pop(context);
+                              // Handle share
+                            },
+                            context: context),
+                        Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
+                        _buildMenuOption(
+                            icon: 'assets/icons/d11.svg',
+                            title: 'Book description',
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            context: context),
+                        Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
+                        _buildMenuOption(
+                            icon: 'assets/icons/a10.svg',
+                            title: 'Download',
+                            onTap: () {
+                              Navigator.pop(context);
+                              // Handle add to collection
+                            },
+                            context: context),
+                        Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
+                        _buildMenuOption(
+                            icon: 'assets/icons/d11.svg',
+                            title: 'Transcript View',
+                            onTap: () {
+                              Navigator.pop(context);
+                              // Handle mark as finished
+                            },
+                            context: context),
+                        Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
+                        _buildMenuOption(
+                            icon: 'assets/icons/a11.svg',
+                            title: 'Add to Want to Listen',
+                            onTap: () {
+                              Navigator.pop(context);
+                              // Handle mark as finished
+                            },
+                            context: context),
+                        Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
+                        _buildMenuOption(
+                            icon: 'assets/icons/d1.svg',
+                            title: 'Share',
+                            onTap: () {
+                              Navigator.pop(context);
+                              // Handle mark as finished
+                            },
+                            context: context),
+                        Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
+                        _buildMenuOption(
+                            icon: 'assets/icons/a12.svg',
+                            title: 'Report an Issue',
+                            titleColor: const Color(0xFFFF5A3C),
+                            iconColor: const Color(0xFFFF5A3C),
+                            onTap: () {
+                              Navigator.pop(context);
+                              // Handle remove
+                            },
+                            context: context),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   static void showAddedDialog(BuildContext context, bool isAdded) {
     showDialog(
       context: context,
