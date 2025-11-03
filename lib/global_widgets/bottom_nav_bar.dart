@@ -1,4 +1,5 @@
 import 'package:elkitap/global_widgets/bottom_nav_button.dart';
+import 'package:elkitap/modules/audio_player/views/global_mini_player.dart';
 import 'package:elkitap/modules/library/views/library_view.dart';
 import 'package:elkitap/modules/search/views/search_view.dart';
 import 'package:elkitap/modules/store/views/store_view.dart';
@@ -20,7 +21,11 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     super.dispose();
   }
 
-  List page = [MyLibraryViewScreen(), StoreViewScreen(), SearchViewScreen()];
+  final List<Widget> page = [
+    MyLibraryViewScreen(),
+    StoreViewScreen(),
+    SearchViewScreen()
+  ];
 
   @override
   void initState() {
@@ -32,6 +37,23 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: Stack(
+        children: [
+          // Main pages
+          Positioned.fill(
+            child: IndexedStack(
+              index: selectedIndex,
+              children: page,
+            ),
+          ),
+
+          // Global Mini Audio Player
+          // const Align(
+          //   alignment: Alignment.bottomCenter,
+          //   child: GlobalMiniPlayer(),
+          // ),
+        ],
+      ),
       bottomNavigationBar: Container(
         height: 70,
         child: Row(
@@ -69,10 +91,10 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
           ],
         ),
       ),
-      body: IndexedStack(
-        // index: selectedIndex,
-        children: [Center(child: page[selectedIndex])],
-      ),
+      // body: IndexedStack(
+      //   // index: selectedIndex,
+      //   children: [Center(child: page[selectedIndex])],
+      // ),
     );
   }
 

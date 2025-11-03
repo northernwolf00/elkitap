@@ -10,7 +10,7 @@ class MiniAudioPlayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<AudioPlayerController>();
-
+    final globalMiniCtrl = Get.find<GlobalMiniPlayerController>();
     return Obx(() {
       // Only show if audio is loaded and controller is initialized
       if (controller.duration.value == Duration.zero) {
@@ -21,6 +21,7 @@ class MiniAudioPlayer extends StatelessWidget {
         onTap: () {
           // Navigate to full player screen
           Get.to(() => const AudiobookPlayerScreen());
+          globalMiniCtrl.hide();
         },
         child: Container(
           height: 70,
@@ -73,9 +74,8 @@ class MiniAudioPlayer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      'The subtle art of not givin...',
+                      'The subtle art of ',
                       style: TextStyle(
-                        color: Colors.black,
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         fontFamily: StringConstants.SFPro,
@@ -90,42 +90,6 @@ class MiniAudioPlayer extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.grey.shade600,
                           fontSize: 12,
-                          fontFamily: StringConstants.SFPro,
-                        ),
-                      );
-                    }),
-                  ],
-                ),
-              ),
-
-              // Time Badge
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 6,
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade100,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.access_time,
-                      size: 16,
-                      color: Colors.grey.shade700,
-                    ),
-                    const SizedBox(width: 4),
-                    Obx(() {
-                      final remaining =
-                          controller.duration.value - controller.position.value;
-                      return Text(
-                        controller.formatDuration(remaining),
-                        style: TextStyle(
-                          color: Colors.grey.shade700,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
                           fontFamily: StringConstants.SFPro,
                         ),
                       );

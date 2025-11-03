@@ -10,7 +10,7 @@ class AudioPlayerController extends GetxController {
   final Rx<Duration> position = Duration.zero.obs;
   final RxBool isPlaying = false.obs;
   final RxDouble playbackSpeed = 1.0.obs;
-  
+
   // Sleep timer properties
   final Rxn<Duration> sleepTimerDuration = Rxn<Duration>();
   final Rx<DateTime?> sleepTimerEndTime = Rx<DateTime?>(null);
@@ -78,6 +78,8 @@ class AudioPlayerController extends GetxController {
   void playPause() {
     if (isPlaying.value) {
       _audioPlayer.pause();
+      // isPlaying.value = false;
+      // Get.find<GlobalMiniPlayerController>().hide();
     } else {
       _audioPlayer.play();
     }
@@ -135,7 +137,7 @@ class AudioPlayerController extends GetxController {
   // Sleep timer methods
   void setSleepTimer(Duration? duration) {
     cancelSleepTimer();
-    
+
     if (duration == null) {
       sleepTimerDuration.value = null;
       sleepTimerEndTime.value = null;
@@ -169,16 +171,16 @@ class AudioPlayerController extends GetxController {
 
   String getRemainingTime() {
     if (sleepTimerEndTime.value == null) return '';
-    
+
     final remaining = sleepTimerEndTime.value!.difference(DateTime.now());
     if (remaining.isNegative) return '0:00';
-    
+
     final minutes = remaining.inMinutes;
     final seconds = remaining.inSeconds.remainder(60);
     return '$minutes:${seconds.toString().padLeft(2, '0')}';
   }
 
-   void toggleDriverMode() {
+  void toggleDriverMode() {
     isDriverMode.value = !isDriverMode.value;
   }
 
@@ -190,10 +192,28 @@ class AudioPlayerController extends GetxController {
     isDriverMode.value = false;
   }
 
+  void stopAudio() {
+    _audioPlayer.pause();
+    // duration.value = Duration.zero;
+    // position.value = Duration.zero;
+    // isPlaying.value = false;
+    // _audioPlayer.stop();
+    isPlaying.value = false;
+    Get.find<GlobalMiniPlayerController>().hide();
+  }
+
   @override
   void onClose() {
     _audioPlayer.dispose();
     cancelSleepTimer();
     super.onClose();
   }
+}
+
+class GlobalMiniPlayerController extends GetxController {
+  final RxBool isVisible = false.obs;
+
+  void show() => isVisible.value = true;
+  void hide() => isVisible.value = false;
+  void toggle() => isVisible.value = !isVisible.value;
 }

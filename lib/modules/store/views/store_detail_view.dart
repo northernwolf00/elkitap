@@ -1,5 +1,6 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
+import 'package:elkitap/modules/audio_player/controllers/audio_player_controller.dart';
 import 'package:elkitap/modules/audio_player/views/audio_player_view.dart';
 import 'package:elkitap/modules/reader/views/reader_view.dart';
 
@@ -17,7 +18,7 @@ class BookDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     final BookDetailController controller = Get.put(BookDetailController());
     final Color accent = const Color(0xFFFF5A3C);
-
+    final globalMiniCtrl = Get.find<GlobalMiniPlayerController>();
     return Scaffold(
       backgroundColor: Theme.of(context).brightness == Brightness.dark
           ? const Color(0xFF1E1E1E)
@@ -142,15 +143,15 @@ class BookDetailView extends StatelessWidget {
                       ),
                     ),
                   ),
-              
+
                   // Right side buttons
                   Row(
                     children: [
                       Obx(() => GestureDetector(
                             onTap: () {
                               controller.toggleAddToWantToRead();
-                              DialogUtils.showAddedDialog(
-                                  context, controller.isAddedToWantToRead.value);
+                              DialogUtils.showAddedDialog(context,
+                                  controller.isAddedToWantToRead.value);
                             },
                             child: Container(
                               width: 34,
@@ -180,15 +181,16 @@ class BookDetailView extends StatelessWidget {
                           )),
                       const SizedBox(width: 8),
                       GestureDetector(
-                        onTap: () =>
-                            DialogUtils.showOptionsPopupMenu(context, controller),
+                        onTap: () => DialogUtils.showOptionsPopupMenu(
+                            context, controller),
                         child: Container(
                           width: 34,
                           height: 34,
                           decoration: BoxDecoration(
-                            color: Theme.of(context).brightness == Brightness.dark
-                                ? Colors.grey[700]
-                                : Colors.grey[200],
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? Colors.grey[700]
+                                    : Colors.grey[200],
                             shape: BoxShape.circle,
                           ),
                           child: const Icon(
@@ -367,6 +369,7 @@ class BookDetailView extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () {
                       Get.to(() => AudiobookPlayerScreen());
+                      globalMiniCtrl.hide();
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 14),

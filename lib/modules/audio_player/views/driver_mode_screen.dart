@@ -175,26 +175,30 @@ class DriverModeScreen extends StatelessWidget {
                   }),
 
                   Obx(() {
+                    final duration = controller.duration.value;
+                    final position = controller.position.value;
+
+                    final durationSeconds = duration.inSeconds.toDouble();
+                    // Clamp the position value so it’s always within 0 → max
+                    final positionSeconds = position.inSeconds.toDouble().clamp(
+                          0.0,
+                          durationSeconds > 0 ? durationSeconds : 1.0,
+                        );
+
                     return Column(
                       children: [
                         SliderTheme(
                           data: SliderThemeData(
                             trackHeight: 4,
                             thumbShape: const RoundSliderThumbShape(
-                              enabledThumbRadius: 8,
-                            ),
+                                enabledThumbRadius: 8),
                             overlayShape: const RoundSliderOverlayShape(
-                              overlayRadius: 16,
-                            ),
+                                overlayRadius: 16),
                           ),
                           child: Slider(
-                            value:
-                                controller.position.value.inSeconds.toDouble(),
-                            max: controller.duration.value.inSeconds
-                                        .toDouble() >
-                                    0
-                                ? controller.duration.value.inSeconds.toDouble()
-                                : 1.0,
+                            value: positionSeconds, // ✅ safe clamped value
+                            min: 0.0,
+                            max: durationSeconds > 0 ? durationSeconds : 1.0,
                             activeColor: Colors.white,
                             inactiveColor: Colors.white30,
                             onChanged: (value) {
