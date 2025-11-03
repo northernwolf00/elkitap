@@ -134,24 +134,17 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                         shape: BoxShape.circle,
                         border: Border.all(color: Colors.black, width: 1.5),
                       ),
-                      child: const Center(
-                        child: Text(
-                          '?',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
+                      child: Text(
+                        'questionMark'.tr,
                     ),
-                  ),
+                  ),)
                 ],
               ),
             ),
 
             const SizedBox(height: 40),
-            const Text(
-              'Phone Number',
+            Text(
+              'phoneNumber'.tr,
               style: TextStyle(
                 fontSize: 28,
                 fontFamily: StringConstants.SFPro,
@@ -159,8 +152,8 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Enter your number to login your account.',
+            Text(
+              'enterNumberToLogin'.tr,
               style: TextStyle(
                 fontSize: 15,
                 fontFamily: StringConstants.SFPro,
@@ -175,8 +168,8 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Phone number',
+                  Text(
+                    'phoneNumber'.tr,
                     style: TextStyle(
                       fontSize: 15,
                       fontFamily: StringConstants.SFPro,
@@ -194,8 +187,8 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                         horizontal: 16, vertical: 14),
                     child: Row(
                       children: [
-                        const Text(
-                          '+993',
+                        Text(
+                          'countryCode'.tr,
                           style: TextStyle(
                             fontSize: 17,
                             fontFamily: StringConstants.SFPro,
@@ -246,7 +239,7 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                   ),
                   child: Center(
                     child: Text(
-                      'Continue',
+                      'continue_text'.tr,
                       style: TextStyle(
                         fontSize: 17,
                         fontFamily: StringConstants.SFPro,
@@ -263,7 +256,7 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: RichText(
                 textAlign: TextAlign.center,
-                text: const TextSpan(
+                text:  TextSpan(
                   style: TextStyle(
                     fontSize: 13,
                     fontFamily: StringConstants.SFPro,
@@ -271,17 +264,17 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                     fontWeight: FontWeight.w400,
                   ),
                   children: [
-                    TextSpan(text: 'By pressing Continue, you agree to the '),
+                    TextSpan(text: 'byPressingContinue'.tr),
                     TextSpan(
-                      text: 'Terms of Use',
+                      text: 'termsOfUse'.tr,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    TextSpan(text: ' and\n'),
+                    TextSpan(text: 'andNewLine'.tr),
                     TextSpan(
-                      text: 'Privacy Policy',
+                      text: 'privacyPolicy'.tr,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,

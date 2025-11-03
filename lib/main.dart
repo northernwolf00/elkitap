@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
                 children: [
                   child ?? const SizedBox.shrink(),
 
-                  // Global mini player overlay
+                 
                   const Positioned(
                     left: 0,
                     right: 0,

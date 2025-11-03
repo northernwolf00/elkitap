@@ -22,7 +22,7 @@ class SettingsList extends StatefulWidget {
 
 class _SettingsListState extends State<SettingsList> {
   String selectedTheme = 'light'.tr;
-  String selectedLanguage = "Türkmençe";
+  String selectedLanguage = 'turkmen'.tr;
   final _box = GetStorage();
   final _languageKey = 'selectedLanguage';
   late final ThemeController _themeController;
@@ -79,19 +79,19 @@ class _SettingsListState extends State<SettingsList> {
     if (mode == ThemeMode.light) {
       selectedTheme = 'light'.tr;
     } else if (mode == ThemeMode.dark) {
-      selectedTheme = 'Dark';
+      selectedTheme = 'dark'.tr;
     } else {
-      selectedTheme = 'Match Devices';
+      selectedTheme = 'match_devices'.tr;
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final settings = [
-      ("Payment History", null),
+      ('paymentHistory'.tr, null),
       ('theme'.tr, selectedTheme),
       ('language'.tr, selectedLanguage),
-      ("Help & Support", null),
+      ('help_and_support'.tr, null),
       ('legal_terms_of_use'.tr, null),
       ('privacy_and_policy'.tr, null),
       ('sign_out'.tr, null),
@@ -129,11 +129,12 @@ class _SettingsListState extends State<SettingsList> {
                     } else if (title == 'language'.tr) {
                       // Get.toNamed('/legal-terms');
                       _showLanguageMenu(context, details.globalPosition);
-                    } else if (title == 'Sign Out') {
+                    }
+                    if (title == 'signOut'.tr) {
                       _showLogoutDialog(context);
-                    } else if (title == "Help & Support") {
+                    } else if (title == 'help_and_support'.tr) {
                       _showHelpBottomSheet(context);
-                    } else if (title == 'Payment History') {
+                    } else if (title == 'paymentHistory'.tr) {
                       _showPaymantHistorySheet(context);
                     } else {
                       _showLegalTermsBottomSheet(context);
@@ -189,8 +190,9 @@ class _SettingsListState extends State<SettingsList> {
     final items = [
       MenuItem(
           title: 'light'.tr, value: 'Light', icon: Icons.wb_sunny_outlined),
-      MenuItem(title: 'Dark', value: 'Dark', icon: Icons.nightlight_round),
-      MenuItem(title: 'Match Devices', value: 'System', icon: Icons.contrast),
+      MenuItem(title: 'dark'.tr, value: 'Dark', icon: Icons.nightlight_round),
+      MenuItem(
+          title: 'match_devices'.tr, value: 'System', icon: Icons.contrast),
     ];
 
     final result = await showUniversalMenu(
@@ -216,7 +218,7 @@ class _SettingsListState extends State<SettingsList> {
         case 'Dark':
           themeController.setTheme(ThemeMode.dark);
           break;
-        case 'System':
+        case 'Match devices':
           themeController.setTheme(ThemeMode.system);
           break;
       }
@@ -247,9 +249,9 @@ class _SettingsListState extends State<SettingsList> {
 
   void _showLanguageMenu(BuildContext context, Offset position) async {
     final items = [
-      MenuItem(title: 'Türkmençe', value: 'Türkmençe'),
-      MenuItem(title: 'Русский', value: 'Русский'),
-      MenuItem(title: 'English', value: 'English'),
+      MenuItem(title: 'turkmen'.tr, value: 'Turkmen'),
+      MenuItem(title: 'russian'.tr, value: 'Russian'),
+      MenuItem(title: 'english'.tr, value: 'English'),
     ];
 
     final result = await showUniversalMenu(
@@ -373,16 +375,16 @@ class _SettingsListState extends State<SettingsList> {
       context: context,
       builder: (BuildContext context) {
         return CupertinoAlertDialog(
-          title: const Text(
-            "Do you really want to log out?",
+          title: Text(
+            'do_you_really_want_to_log_out'.tr,
             style: TextStyle(
               fontFamily: StringConstants.SFPro,
               fontWeight: FontWeight.bold, // Make title bold
               fontSize: 17, // Adjust font size as needed
             ),
           ),
-          content: const Text(
-            "If you log out, you won't be able to read your favorite books.",
+          content: Text(
+            'log_out_warning'.tr,
             style: TextStyle(
               fontFamily: StringConstants.SFPro,
               fontSize: 13, // Adjust font size as needed
@@ -394,8 +396,8 @@ class _SettingsListState extends State<SettingsList> {
                 Navigator.of(context).pop(); // Close the dialog
                 // Add your 'No' logic here (e.g., stay logged in)
               },
-              child: const Text(
-                "No",
+              child: Text(
+                'no'.tr,
                 style: TextStyle(
                   fontFamily: StringConstants.SFPro,
                   color: CupertinoColors.activeBlue, // Default blue color
@@ -411,8 +413,8 @@ class _SettingsListState extends State<SettingsList> {
               },
               isDestructiveAction:
                   true, // This makes the text red on iOS-style alerts
-              child: const Text(
-                "Yes",
+              child: Text(
+                'yes'.tr,
                 style: TextStyle(
                   fontFamily: StringConstants.SFPro,
                   // The isDestructiveAction property handles the red color

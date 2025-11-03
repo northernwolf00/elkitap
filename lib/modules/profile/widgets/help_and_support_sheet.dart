@@ -101,7 +101,7 @@ class HelpAndSupportBottomSheet extends StatelessWidget {
                   context,
                   icon: 'assets/icons/p10.svg', // Send icon (for Telegram)
                   title:
-                      "Start", // Assuming 'Start' is some chat or quick action
+                      "Start", 
                   hasTrailingIcon: true, // Has trailing icon
                   onTap: () {
                     // Handle Start tap

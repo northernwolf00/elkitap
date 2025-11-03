@@ -40,7 +40,7 @@ class _NotesScreenState extends State<NotesScreen> {
                 ? TextButton(
                     onPressed: () => controller.toggleSelectAll(),
                     child: Obx(() => Text(
-                          controller.isAllSelected ? 'Deselect' : 'Select All',
+                          controller.isAllSelected ? 'deselect'.tr : 'selectAll'.tr,
                           style: TextStyle(
                               fontFamily: StringConstants.SFPro,
                               color: Theme.of(context).brightness ==
@@ -73,8 +73,8 @@ class _NotesScreenState extends State<NotesScreen> {
                 ? [
                     TextButton(
                       onPressed: () => controller.showCupertinoMenu(context),
-                      child: const Text(
-                        'Remove',
+                      child: Text(
+                        'remove'.tr,
                         style: TextStyle(
                             color: Colors.red,
                             fontFamily: StringConstants.SFPro,
@@ -84,7 +84,7 @@ class _NotesScreenState extends State<NotesScreen> {
                     TextButton(
                       onPressed: () => controller.toggleSelectionMode(),
                       child: Text(
-                        'Done',
+                        'done'.tr,
                         style: TextStyle(
                             color:
                                 Theme.of(context).brightness == Brightness.dark
@@ -100,7 +100,7 @@ class _NotesScreenState extends State<NotesScreen> {
                         TextButton(
                           onPressed: () => controller.toggleSelectionMode(),
                           child: Text(
-                            'Select',
+                            'select'.tr,
                             style: TextStyle(
                                 color: Theme.of(context).brightness ==
                                         Brightness.dark
@@ -129,7 +129,7 @@ class _NotesScreenState extends State<NotesScreen> {
                           color: Colors.black),
                       SizedBox(height: 16),
                       Text(
-                        'This collection is empty',
+                        'emptyCollection'.tr,
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
@@ -137,7 +137,7 @@ class _NotesScreenState extends State<NotesScreen> {
                       ),
                       SizedBox(height: 6),
                       Text(
-                        'Your finished books will appear here..',
+                        'finishedBooksAppearHere'.tr,
                         style: TextStyle(
                           fontSize: 15,
                           color: Colors.grey,
@@ -209,8 +209,8 @@ class _NotesScreenState extends State<NotesScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        'Note',
+                       Text(
+                        'notes'.tr,
                         style: TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.w600,
@@ -223,7 +223,7 @@ class _NotesScreenState extends State<NotesScreen> {
                           Navigator.pop(context);
                         },
                         child: Text(
-                          'Done',
+                          'done'.tr,
                           style: TextStyle(
                             fontSize: 17,
                             color:
@@ -256,9 +256,9 @@ class _NotesScreenState extends State<NotesScreen> {
                           child: TextField(
                             controller: textController,
                             maxLines: null,
-                            decoration: const InputDecoration(
+                            decoration:  InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'Note',
+                              hintText: 'notes'.tr,
                             ),
                             style: const TextStyle(fontSize: 17),
                           ),

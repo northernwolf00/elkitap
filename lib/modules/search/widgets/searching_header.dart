@@ -11,18 +11,16 @@ class SearchingHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 26),
-       
-   
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              width:MediaQuery.of(context).size.width - 100 ,
+              width: MediaQuery.of(context).size.width - 100,
               height: 50,
               decoration: BoxDecoration(
                 color: Theme.of(context).brightness == Brightness.dark
-    ? Colors.grey[800] 
-    : Colors.grey[100],
+                    ? Colors.grey[800]
+                    : Colors.grey[100],
                 borderRadius: BorderRadius.circular(16),
               ),
               child: Row(
@@ -50,16 +48,16 @@ class SearchingHeader extends StatelessWidget {
                       width: MediaQuery.of(context).size.width / 1.8,
                       child: TextFormField(
                         maxLines: 1,
-                        style: const TextStyle(color: Colors.black, fontSize: 14),
-                        decoration: const InputDecoration(
-                          hintText: 'Search',
+                        style:
+                            const TextStyle(color: Colors.black, fontSize: 14),
+                        decoration: InputDecoration(
+                          hintText: 'search'.tr,
                           border: InputBorder.none,
                           focusedBorder: InputBorder.none,
                           enabledBorder: InputBorder.none,
                           errorBorder: InputBorder.none,
                           disabledBorder: InputBorder.none,
                         ),
-            
                         onChanged: (_) {},
                       ),
                     ),
@@ -69,36 +67,33 @@ class SearchingHeader extends StatelessWidget {
                     height: 20,
                     width: 20,
                     decoration: BoxDecoration(
-                      color: Colors.grey,
-                      shape: BoxShape.circle
-                    ),
+                        color: Colors.grey, shape: BoxShape.circle),
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.all(0),
-                        child: Icon(Icons.close,
-                        size: 14,),
+                        child: Icon(
+                          Icons.close,
+                          size: 14,
+                        ),
                       ),
                     ),
-                  )
-                  , 
+                  ),
                   SizedBox(
                     width: 10,
                   )
                 ],
               ),
             ),
-           
-           GestureDetector(
-            onTap: (){
-              Get.back();
-            },
-             child: Text('Cancel',
-              style: TextStyle(
-              fontFamily: StringConstants.SFPro,
-                fontSize: 16
-              ),),
-           ),
-             
+            GestureDetector(
+              onTap: () {
+                Get.back();
+              },
+              child: Text(
+                'cancel'.tr,
+                style:
+                    TextStyle(fontFamily: StringConstants.SFPro, fontSize: 16),
+              ),
+            ),
           ],
         ),
       ],

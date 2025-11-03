@@ -16,8 +16,8 @@ class LibraryHeader extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text(
-          "My Library",
+        Text(
+          'myLibrary'.tr,
           style: TextStyle(
             fontFamily: StringConstants.NewYork,
             fontSize: 34,

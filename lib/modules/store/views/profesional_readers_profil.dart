@@ -21,14 +21,17 @@ class _ProfesionalReadersProfilState extends State<ProfesionalReadersProfil> {
 
   final String fullBio =
       "Сегодня в рубрике «Профессии» у нас в гостях региональный директор Yüpekçi. Он поделится с вами тремя замечательными книгами, которые помогут вам научиться договариваться, продавать и глубже понимать потребности клиентов. Эти произведения не только развивают навыки общения, но и значительно повышают вашу эффективность в бизнесе. Обязательно присоединяйтесь к нам!";
-  final List<Map<String, dynamic>> books = [
+  
+  @override
+  Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> books = [
     {
       'title': 'The Subtle Art of Not Giving a F*ck',
       'author': 'Mark Manson',
       'description':
           'Mark Manson\'s "The Subtle Art of Not Giving a F*ck" is a blunt, humorous guide to living by choosing your battles wisely.',
       'imageUrl': 'assets/images/b1.png',
-      'buttonText': 'Continue',
+      'buttonText': 'continue_text'.tr,
       'buttonColor': const Color(0xFFFF5722),
       'buttonTextColor': Colors.white,
     },
@@ -38,13 +41,11 @@ class _ProfesionalReadersProfilState extends State<ProfesionalReadersProfil> {
       'description':
           'Book by Rebecca Roanhorse is a gripping sci-fi tale exploring identity and colonialism\'s impact in a universe under alien rule.',
       'imageUrl': 'assets/images/b2.png',
-      'buttonText': 'Read',
+      'buttonText': 'read'.tr,
       'buttonColor': Colors.grey[200],
       'buttonTextColor': Colors.black,
     },
   ];
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: '', leadingText: 'leading_text'.tr),
       body: SafeArea(

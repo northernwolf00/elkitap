@@ -59,7 +59,7 @@ class _OtpVerificationSheetContentState
   void _resendCode() {
     // Implement actual resend logic here
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Resending code...')),
+      SnackBar(content: Text('resendingCode'.tr)),
     );
     _startTimer(); // Restart the timer
   }
@@ -110,7 +110,7 @@ class _OtpVerificationSheetContentState
                     Navigator.pop(context);
                   },
                 ),
-                 Text(
+                Text(
                   'leading_text'.tr,
                   style: TextStyle(
                       fontSize: 17,
@@ -122,8 +122,8 @@ class _OtpVerificationSheetContentState
             ),
             const SizedBox(height: 8),
 
-            const Text(
-              'Phone Number Code',
+            Text(
+              'phoneNumberCode'.tr,
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
@@ -132,11 +132,7 @@ class _OtpVerificationSheetContentState
             ),
             const SizedBox(height: 8),
             Text(
-              'You\'ll receive 5 digit code to verify your login.',
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.grey[600],
-              ),
+              'receive5DigitCode'.tr,
             ),
             const SizedBox(height: 24),
             // Align(
@@ -224,8 +220,8 @@ class _OtpVerificationSheetContentState
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
-                child: const Text(
-                  'Continue',
+                child: Text(
+                  'continue_text'.tr,
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
               ),
@@ -238,8 +234,8 @@ class _OtpVerificationSheetContentState
               child: _canResend
                   ? TextButton(
                       onPressed: _resendCode,
-                      child: const Text(
-                        'Recent Code',
+                      child: Text(
+                        'recentCode'.tr,
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.red,
@@ -248,7 +244,7 @@ class _OtpVerificationSheetContentState
                       ),
                     )
                   : Text(
-                      'Recent Code ( 00:${_start.toString().padLeft(2, '0')} )',
+                      '${'recentCodeWithTimer'.tr} ${_start.toString().padLeft(2, '0')} )',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.grey[600],

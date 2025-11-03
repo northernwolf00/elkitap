@@ -2,6 +2,7 @@ import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/core/theme/app_colors.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class BottomNavbarButton extends StatefulWidget {
@@ -22,7 +23,7 @@ class BottomNavbarButton extends StatefulWidget {
 }
 
 class _BottomNavbarButtonState extends State<BottomNavbarButton> {
-  List<String> title = ['My Library', 'Book Store', 'Search'];
+
 
   List iconsLight = [
     CustomIcon(
@@ -73,6 +74,7 @@ class _BottomNavbarButtonState extends State<BottomNavbarButton> {
 
   @override
   Widget build(BuildContext context) {
+    List<String> title = ['myLibrary'.tr, 'bookStore'.tr, 'search'.tr];
     return GestureDetector(
       onTap: widget.onTapp,
       child: Column(

@@ -19,15 +19,16 @@ class ReadingListScreen extends StatelessWidget {
         children: [
           // Header text showing selected books count
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.only(left: 16),
             child: Obx(() {
               return Text(
                 controller.selectedBooks.isEmpty
-                    ? 'Want to Read'
-                    : '${controller.selectedBooks.length} selected',
+                    ? 'wantToRead'.tr
+                    : controller.selectedBooks.length.toString() +
+                        'selectedBooksCount'.tr,
                 style: const TextStyle(
                   fontSize: 28,
-                   fontFamily: StringConstants.NewYork,
+                  fontFamily: StringConstants.NewYork,
                   fontWeight: FontWeight.bold,
                 ),
               );

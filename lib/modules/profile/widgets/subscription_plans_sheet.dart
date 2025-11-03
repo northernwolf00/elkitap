@@ -133,8 +133,8 @@ class _SubscriptionPlansSheetState extends State<SubscriptionPlansSheet> {
             ),
           ),
           const SizedBox(height: 12),
-          const Text(
-            'By pressing Continue, you agree to the Terms of Use and Privacy Policy',
+          Text(
+            'agreement_text'.tr,
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.grey, fontSize: 12),
           ),

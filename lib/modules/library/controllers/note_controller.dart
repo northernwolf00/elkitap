@@ -7,31 +7,28 @@ class NotesController extends GetxController {
   var notes = <NoteItem>[
     NoteItem(
       id: '1',
-      title: 'Stop over thinking',
+      title: 'stopOverThinking'.tr,
       author: 'Rebecca Roanhorse',
-      quote:
-          'What happens if, instead, we decide to stop lying? What does this even mean? We are limited in our knowledge, after all. We must make decisions, here and now, even though the best means and the best goals can never be discerned with certainty.',
-      comment: 'This quote is amazing!',
+      quote: 'quoteText'.tr,
+      comment: 'quoteComment'.tr,
       date: '22:30 July 27, 2025',
       color: Colors.blue,
     ),
     NoteItem(
       id: '2',
-      title: 'Stop over thinking',
+      quote: 'quoteText'.tr,
       author: 'Rebecca Roanhorse',
-      quote:
-          'What happens if, instead, we decide to stop lying? What does this even mean? We are limited in our knowledge, after all. We must make decisions, here and now, even though the best means and the best goals can never be discerned with certainty.',
-      comment: 'This quote is amazing!',
       date: '22:30 July 27, 2025',
+      title: 'stopOverThinking'.tr,
+      comment: 'quoteComment'.tr,
       color: Colors.yellow,
     ),
     NoteItem(
       id: '3',
-      title: 'Stop over thinking',
+      title: 'stopOverThinking'.tr,
       author: 'Rebecca Roanhorse',
-      quote:
-          'What happens if, instead, we decide to stop lying? What does this even mean? We are limited in our knowledge, after all. We must make decisions, here and now, even though the best means and the best goals can never be discerned with certainty.',
-      comment: 'This quote is amazing!',
+      quote: 'quoteText'.tr,
+      comment: 'quoteComment'.tr,
       date: '22:30 July 27, 2025',
       color: Colors.green,
     ),
@@ -107,8 +104,8 @@ class NotesController extends GetxController {
     showCupertinoModalPopup(
       context: context,
       builder: (BuildContext context) => CupertinoActionSheet(
-        title: const Text(
-          'Do you want to remove this note?',
+        title: Text(
+          'remove_this_note_question'.tr,
           style: TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.w600,
@@ -121,13 +118,13 @@ class NotesController extends GetxController {
               deleteSelectedNotes();
             },
             isDestructiveAction: true,
-            child: const Text('Remove'),
+            child: Text('remove'.tr),
           ),
         ],
         cancelButton: CupertinoActionSheetAction(
           onPressed: () => Navigator.pop(context),
-          child: const Text(
-            'Cancel',
+          child: Text(
+            'cancel'.tr,
             style: TextStyle(fontWeight: FontWeight.w600, color: Colors.black),
           ),
         ),

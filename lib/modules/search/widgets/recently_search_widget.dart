@@ -1,5 +1,6 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class RecentlySearchedScreen extends StatelessWidget {
   final List<String> recentlySearched = [
@@ -18,8 +19,8 @@ class RecentlySearchedScreen extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
-          'Recently searched',
+            Text(
+          'recentlySearched'.tr,
           style: TextStyle(
            fontFamily: StringConstants.SFPro,
             fontSize: 22,
@@ -32,7 +33,7 @@ class RecentlySearchedScreen extends StatelessWidget {
               print('Clear recently searched');
             },
             child:  Text(
-              'Clear',
+              'clear'.tr,
               style: TextStyle(
                  fontFamily: StringConstants.SFPro,
                 color: Theme.of(context).brightness == Brightness.dark
