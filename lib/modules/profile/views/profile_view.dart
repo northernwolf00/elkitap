@@ -2,6 +2,7 @@ import 'package:elkitap/global_widgets/custom_appbar.dart';
 import 'package:elkitap/modules/profile/widgets/profile_card_user.dart';
 import 'package:elkitap/modules/profile/widgets/settings_list.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -20,7 +21,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: CustomAppBar(
         title: '',
         showBackButton: true,
-        leadingText: 'Back',
+        leadingText: 'leading_text'.tr,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),

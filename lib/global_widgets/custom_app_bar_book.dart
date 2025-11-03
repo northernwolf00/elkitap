@@ -21,11 +21,12 @@ PreferredSizeWidget customAppBar(
                 Get.back();
               },
             ),
-            const Text(
-              'Back',
-              style: TextStyle(fontSize: 17, 
-              fontFamily: StringConstants.SFPro,
-              fontWeight: FontWeight.w500),
+             Text(
+              'leading_text'.tr,
+              style: TextStyle(
+                  fontSize: 17,
+                  fontFamily: StringConstants.SFPro,
+                  fontWeight: FontWeight.w500),
             ),
           ],
         );
@@ -37,7 +38,7 @@ PreferredSizeWidget customAppBar(
                 ? 'Deselect All'
                 : 'Select All',
             style: TextStyle(
-              fontFamily: StringConstants.SFPro,
+                fontFamily: StringConstants.SFPro,
                 fontSize: 16,
                 color: Theme.of(context).brightness == Brightness.dark
                     ? Colors.white
@@ -121,9 +122,10 @@ PreferredSizeWidget customAppBar(
                               size: 18,
                             ),
                           const SizedBox(width: 8),
-                          const Text('Grid View', style: TextStyle(
-                             fontFamily: StringConstants.SFPro,
-                          )),
+                          const Text('Grid View',
+                              style: TextStyle(
+                                fontFamily: StringConstants.SFPro,
+                              )),
                           const Spacer(),
                           CustomIcon(
                               title: 'assets/icons/d8.svg',
@@ -150,9 +152,10 @@ PreferredSizeWidget customAppBar(
                               size: 18,
                             ),
                           const SizedBox(width: 8),
-                          const Text('List View', style: TextStyle(
-                             fontFamily: StringConstants.SFPro,
-                          )),
+                          const Text('List View',
+                              style: TextStyle(
+                                fontFamily: StringConstants.SFPro,
+                              )),
                           const Spacer(),
                           CustomIcon(
                               title: 'assets/icons/d9.svg',
@@ -187,7 +190,7 @@ PreferredSizeWidget customAppBar(
                   child: const Text(
                     'Remove',
                     style: TextStyle(
-                       fontFamily: StringConstants.SFPro,
+                      fontFamily: StringConstants.SFPro,
                       color: Colors.red,
                       fontSize: 16,
                       fontWeight: FontWeight.w500,
@@ -199,7 +202,7 @@ PreferredSizeWidget customAppBar(
                   child: Text(
                     'Done',
                     style: TextStyle(
-                       fontFamily: StringConstants.SFPro,
+                      fontFamily: StringConstants.SFPro,
                       color: Theme.of(context).brightness == Brightness.dark
                           ? Colors.white
                           : Colors.black,

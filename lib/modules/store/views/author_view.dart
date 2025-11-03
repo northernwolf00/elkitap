@@ -2,6 +2,7 @@ import 'package:elkitap/global_widgets/custom_appbar.dart';
 import 'package:elkitap/modules/store/widgets/author_profil_section.dart';
 import 'package:elkitap/modules/store/widgets/books_section.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class BookAuthorView extends StatelessWidget {
   const BookAuthorView({super.key});
@@ -10,7 +11,7 @@ class BookAuthorView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: const CustomAppBar(title: '', leadingText: 'Back'),
+      appBar:  CustomAppBar(title: '', leadingText: 'leading_text'.tr),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.only(bottom: 24),

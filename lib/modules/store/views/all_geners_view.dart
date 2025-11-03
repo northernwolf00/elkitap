@@ -38,11 +38,11 @@ class AllGenresView extends StatelessWidget {
           ),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
-          'Back',
+        title:  Text(
+          'leading_text'.tr,
           style: TextStyle(
             fontSize: 17,
-             fontFamily: StringConstants.SFPro,
+            fontFamily: StringConstants.SFPro,
             fontWeight: FontWeight.w400,
           ),
         ),
@@ -82,7 +82,7 @@ class AllGenresView extends StatelessWidget {
                     style: const TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w400,
-                       fontFamily: StringConstants.SFPro,
+                      fontFamily: StringConstants.SFPro,
                     ),
                   ),
                   trailing: const Icon(Icons.chevron_right, color: Colors.grey),

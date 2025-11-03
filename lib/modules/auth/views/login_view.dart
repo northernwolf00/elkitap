@@ -103,11 +103,11 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                   GestureDetector(
                     onTap: () => Get.back(),
                     child: Row(
-                      children: const [
+                      children:  [
                         Icon(Icons.arrow_back_ios, size: 20),
                         SizedBox(width: 4),
                         Text(
-                          'Back',
+                          'leading_text'.tr,
                           style: TextStyle(
                             fontSize: 17,
                             fontFamily: StringConstants.SFPro,

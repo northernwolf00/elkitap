@@ -24,7 +24,7 @@ import 'package:video_player/video_player.dart';
 //         color: Theme.of(context).colorScheme.background,
 //         child: Center(
 //           child: Lottie.asset(
-//             'assets/splash.json',
+//             'assets/animations/elkitap_screen.json',
 //             width: 200,
 //             height: 200,
 //             fit: BoxFit.contain,
@@ -77,12 +77,15 @@ class SplashPageWidget extends StatelessWidget {
               ),
             );
           } else if (controller.videoFailed.value) {
-            return Center(child: Lottie.asset('assets/lottie/splash.json'));
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+            // return Center(child: Lottie.asset('assets/animations/elkitap.json'));
           } else {
             return Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [CircularProgressIndicator(strokeWidth: 3)],
+                // children: const [CircularProgressIndicator(strokeWidth: 3)],
               ),
             );
           }

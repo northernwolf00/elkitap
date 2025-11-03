@@ -1,5 +1,6 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class EditAccountBottomSheet extends StatefulWidget {
   const EditAccountBottomSheet({super.key});
@@ -9,7 +10,8 @@ class EditAccountBottomSheet extends StatefulWidget {
 }
 
 class _EditAccountBottomSheetState extends State<EditAccountBottomSheet> {
-  final TextEditingController _nameController = TextEditingController(text: "Murat"); // Changed initial text for demo
+  final TextEditingController _nameController =
+      TextEditingController(text: "Murat"); // Changed initial text for demo
   final String _phoneNumber = "+993 61626406";
 
   late FocusNode _nameFocusNode;
@@ -60,30 +62,38 @@ class _EditAccountBottomSheetState extends State<EditAccountBottomSheet> {
 
     // Define button colors based on state and theme
     final Color activeSaveButtonColor = Colors.deepOrange;
-    final Color inactiveSaveButtonColor = Theme.of(context).brightness == Brightness.dark
-        ? Colors.grey[700]!
-        : Colors.grey[200]!;
+    final Color inactiveSaveButtonColor =
+        Theme.of(context).brightness == Brightness.dark
+            ? Colors.grey[700]!
+            : Colors.grey[200]!;
 
     final Color activeSaveButtonTextColor = Colors.white;
-    final Color inactiveSaveButtonTextColor = Theme.of(context).brightness == Brightness.dark
-        ? Colors.white.withOpacity(0.5)
-        : Colors.grey[500]!;
+    final Color inactiveSaveButtonTextColor =
+        Theme.of(context).brightness == Brightness.dark
+            ? Colors.white.withOpacity(0.5)
+            : Colors.grey[500]!;
 
     return Container(
-      height: sheetHeight + keyboardHeight, // Add keyboard height to total sheet height
-                                          // This allows the sheet to "push up" and not be resized
-                                          // by the keyboard overlay, but rather use the scroll view.
+      height: sheetHeight +
+          keyboardHeight, // Add keyboard height to total sheet height
+      // This allows the sheet to "push up" and not be resized
+      // by the keyboard overlay, but rather use the scroll view.
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
         borderRadius: const BorderRadius.vertical(top: Radius.circular(20.0)),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0),
-        child: SingleChildScrollView( // Wrap content in SingleChildScrollView
+        child: SingleChildScrollView(
+          // Wrap content in SingleChildScrollView
           child: Padding(
-            padding: EdgeInsets.only(bottom: keyboardHeight > 0 ? keyboardHeight : 0), // Add padding for keyboard
+            padding: EdgeInsets.only(
+                bottom: keyboardHeight > 0
+                    ? keyboardHeight
+                    : 0), // Add padding for keyboard
             child: Column(
-              mainAxisSize: MainAxisSize.min, // Now crucial for SingleChildScrollView to wrap content
+              mainAxisSize: MainAxisSize
+                  .min, // Now crucial for SingleChildScrollView to wrap content
               children: [
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10.0),
@@ -97,11 +107,11 @@ class _EditAccountBottomSheetState extends State<EditAccountBottomSheet> {
                   ),
                 ),
                 Text(
-                  "Edit account",
+                  'edit_account'.tr,
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                     fontFamily: StringConstants.SFPro,
+                    fontFamily: StringConstants.SFPro,
                     color: Theme.of(context).textTheme.bodyLarge!.color,
                   ),
                 ),
@@ -128,10 +138,10 @@ class _EditAccountBottomSheetState extends State<EditAccountBottomSheet> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Account",
+                          'account'.tr,
                           style: TextStyle(
                             fontSize: 13,
-                             fontFamily: StringConstants.SFPro,
+                            fontFamily: StringConstants.SFPro,
                             color: Theme.of(context).textTheme.bodySmall!.color,
                           ),
                         ),
@@ -140,7 +150,7 @@ class _EditAccountBottomSheetState extends State<EditAccountBottomSheet> {
                           _phoneNumber,
                           style: TextStyle(
                             fontSize: 16,
-                             fontFamily: StringConstants.SFPro,
+                            fontFamily: StringConstants.SFPro,
                             fontWeight: FontWeight.w500,
                             color: Theme.of(context).textTheme.bodyLarge!.color,
                           ),
@@ -153,10 +163,10 @@ class _EditAccountBottomSheetState extends State<EditAccountBottomSheet> {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Name",
+                    "name".tr,
                     style: TextStyle(
                       fontSize: 13,
-                       fontFamily: StringConstants.SFPro,
+                      fontFamily: StringConstants.SFPro,
                       color: Theme.of(context).textTheme.bodySmall!.color,
                     ),
                   ),
@@ -177,7 +187,8 @@ class _EditAccountBottomSheetState extends State<EditAccountBottomSheet> {
                       fontSize: 16,
                     ),
                     decoration: const InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+                      contentPadding:
+                          EdgeInsets.symmetric(horizontal: 15, vertical: 12),
                       border: InputBorder.none,
                       isDense: true,
                     ),
@@ -185,27 +196,33 @@ class _EditAccountBottomSheetState extends State<EditAccountBottomSheet> {
                 ),
                 const SizedBox(height: 40),
                 GestureDetector(
-                  onTap: _isSaveButtonActive ? () {
-                    print("Saving name: ${_nameController.text}");
-                    FocusScope.of(context).unfocus(); // Dismiss keyboard
-                    Navigator.of(context).pop();
-                  } : null,
+                  onTap: _isSaveButtonActive
+                      ? () {
+                          print("Saving name: ${_nameController.text}");
+                          FocusScope.of(context).unfocus(); // Dismiss keyboard
+                          Navigator.of(context).pop();
+                        }
+                      : null,
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
                     width: double.infinity,
                     height: 50,
                     decoration: BoxDecoration(
-                      color: _isSaveButtonActive ? activeSaveButtonColor : inactiveSaveButtonColor,
+                      color: _isSaveButtonActive
+                          ? activeSaveButtonColor
+                          : inactiveSaveButtonColor,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Center(
                       child: Text(
-                        "Save",
+                        'save'.tr,
                         style: TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.w600,
-                           fontFamily: StringConstants.SFPro,
-                          color: _isSaveButtonActive ? activeSaveButtonTextColor : inactiveSaveButtonTextColor,
+                          fontFamily: StringConstants.SFPro,
+                          color: _isSaveButtonActive
+                              ? activeSaveButtonTextColor
+                              : inactiveSaveButtonTextColor,
                         ),
                       ),
                     ),
@@ -221,4 +238,3 @@ class _EditAccountBottomSheetState extends State<EditAccountBottomSheet> {
     );
   }
 }
-

@@ -31,174 +31,176 @@ class BookDetailView extends StatelessWidget {
           elevation: 0,
           automaticallyImplyLeading: false,
           flexibleSpace: Padding(
-            padding: const EdgeInsets.only(top: 60, left: 16, right: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // Close button
-                GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: Container(
-                    width: 34,
-                    height: 34,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).brightness == Brightness.dark
-                          ? Colors.grey[700]
-                          : Colors.grey[200],
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.close,
-                      size: 18,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 14,
-                  height: 14,
-                ),
-                // Center tabs
-                Obx(
-                  () => Container(
-                    height: 32,
-                    width: 126,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).brightness == Brightness.dark
-                          ? Colors.black.withOpacity(0.9)
-                          : Colors.white.withOpacity(0.9),
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: controller.toggleToText,
-                          child: Padding(
-                            padding: const EdgeInsets.all(1.5),
-                            child: Container(
-                              width: 60,
-                              decoration: BoxDecoration(
-                                color: !controller.isAudio.value
-                                    ? Theme.of(context).brightness ==
-                                            Brightness.dark
-                                        ? Colors.grey[700]
-                                        : Colors.grey[200]
-                                    : Colors.transparent,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "Text",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: StringConstants.SFPro,
-                                    fontWeight: !controller.isAudio.value
-                                        ? FontWeight.w500
-                                        : FontWeight.normal,
-                                    // color: !controller.isAudio.value
-                                    //     ? Colors.black
-                                    //     : Colors.black45,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: controller.toggleToAudio,
-                          child: Padding(
-                            padding: const EdgeInsets.all(1.5),
-                            child: Container(
-                              width: 60,
-                              decoration: BoxDecoration(
-                                color: controller.isAudio.value
-                                    ? Theme.of(context).brightness ==
-                                            Brightness.dark
-                                        ? Colors.grey[700]
-                                        : Colors.grey[200]
-                                    : Colors.transparent,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "Audio",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontFamily: StringConstants.SFPro,
-                                    fontWeight: controller.isAudio.value
-                                        ? FontWeight.w600
-                                        : FontWeight.normal,
-                                    // color: controller.isAudio.value
-                                    //     ? Colors.black
-                                    //     : Colors.black45,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-
-                // Right side buttons
-                Row(
-                  children: [
-                    Obx(() => GestureDetector(
-                          onTap: () {
-                            controller.toggleAddToWantToRead();
-                            DialogUtils.showAddedDialog(
-                                context, controller.isAddedToWantToRead.value);
-                          },
-                          child: Container(
-                            width: 34,
-                            height: 34,
-                            decoration: BoxDecoration(
-                              color: controller.isAddedToWantToRead.value
-                                  ? accent
-                                  : Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? Colors.grey[700]
-                                      : Colors.grey[200],
-                              shape: BoxShape.circle,
-                            ),
-                            child: Icon(
-                              controller.isAddedToWantToRead.value
-                                  ? Icons.check
-                                  : Icons.add,
-                              size: 18,
-                              color: controller.isAddedToWantToRead.value
-                                  ? Colors.white
-                                  : Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? Colors.white
-                                      : Colors.black54,
-                            ),
-                          ),
-                        )),
-                    const SizedBox(width: 8),
-                    GestureDetector(
-                      onTap: () =>
-                          DialogUtils.showOptionsPopupMenu(context, controller),
-                      child: Container(
-                        width: 34,
-                        height: 34,
-                        decoration: BoxDecoration(
-                          color: Theme.of(context).brightness == Brightness.dark
-                              ? Colors.grey[700]
-                              : Colors.grey[200],
-                          shape: BoxShape.circle,
-                        ),
-                        child: const Icon(
-                          size: 18,
-                          Icons.more_horiz,
-                        ),
+            padding: const EdgeInsets.only(top: 0, left: 16, right: 16),
+            child: SafeArea(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // Close button
+                  GestureDetector(
+                    onTap: () => Navigator.pop(context),
+                    child: Container(
+                      width: 34,
+                      height: 34,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.grey[700]
+                            : Colors.grey[200],
+                        shape: BoxShape.circle,
+                      ),
+                      child: const Icon(
+                        Icons.close,
+                        size: 18,
                       ),
                     ),
-                  ],
-                ),
-              ],
+                  ),
+                  SizedBox(
+                    width: 14,
+                    height: 14,
+                  ),
+                  // Center tabs
+                  Obx(
+                    () => Container(
+                      height: 32,
+                      width: 126,
+                      decoration: BoxDecoration(
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.black.withOpacity(0.9)
+                            : Colors.white.withOpacity(0.9),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: controller.toggleToText,
+                            child: Padding(
+                              padding: const EdgeInsets.all(1.5),
+                              child: Container(
+                                width: 60,
+                                decoration: BoxDecoration(
+                                  color: !controller.isAudio.value
+                                      ? Theme.of(context).brightness ==
+                                              Brightness.dark
+                                          ? Colors.grey[700]
+                                          : Colors.grey[200]
+                                      : Colors.transparent,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "Text",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontFamily: StringConstants.SFPro,
+                                      fontWeight: !controller.isAudio.value
+                                          ? FontWeight.w500
+                                          : FontWeight.normal,
+                                      // color: !controller.isAudio.value
+                                      //     ? Colors.black
+                                      //     : Colors.black45,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: controller.toggleToAudio,
+                            child: Padding(
+                              padding: const EdgeInsets.all(1.5),
+                              child: Container(
+                                width: 60,
+                                decoration: BoxDecoration(
+                                  color: controller.isAudio.value
+                                      ? Theme.of(context).brightness ==
+                                              Brightness.dark
+                                          ? Colors.grey[700]
+                                          : Colors.grey[200]
+                                      : Colors.transparent,
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "Audio",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontFamily: StringConstants.SFPro,
+                                      fontWeight: controller.isAudio.value
+                                          ? FontWeight.w600
+                                          : FontWeight.normal,
+                                      // color: controller.isAudio.value
+                                      //     ? Colors.black
+                                      //     : Colors.black45,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+              
+                  // Right side buttons
+                  Row(
+                    children: [
+                      Obx(() => GestureDetector(
+                            onTap: () {
+                              controller.toggleAddToWantToRead();
+                              DialogUtils.showAddedDialog(
+                                  context, controller.isAddedToWantToRead.value);
+                            },
+                            child: Container(
+                              width: 34,
+                              height: 34,
+                              decoration: BoxDecoration(
+                                color: controller.isAddedToWantToRead.value
+                                    ? accent
+                                    : Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? Colors.grey[700]
+                                        : Colors.grey[200],
+                                shape: BoxShape.circle,
+                              ),
+                              child: Icon(
+                                controller.isAddedToWantToRead.value
+                                    ? Icons.check
+                                    : Icons.add,
+                                size: 18,
+                                color: controller.isAddedToWantToRead.value
+                                    ? Colors.white
+                                    : Theme.of(context).brightness ==
+                                            Brightness.dark
+                                        ? Colors.white
+                                        : Colors.black54,
+                              ),
+                            ),
+                          )),
+                      const SizedBox(width: 8),
+                      GestureDetector(
+                        onTap: () =>
+                            DialogUtils.showOptionsPopupMenu(context, controller),
+                        child: Container(
+                          width: 34,
+                          height: 34,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).brightness == Brightness.dark
+                                ? Colors.grey[700]
+                                : Colors.grey[200],
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(
+                            size: 18,
+                            Icons.more_horiz,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),

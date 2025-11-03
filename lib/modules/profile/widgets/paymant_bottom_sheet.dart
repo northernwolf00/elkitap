@@ -1,5 +1,6 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 class PaymentHistoryBottomSheet extends StatelessWidget {
@@ -34,7 +35,7 @@ class PaymentHistoryBottomSheet extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 Text(
-                  "Profile", // Text for 'Profile'
+                   'profile'.tr, // Text for 'Profile'
                   style: TextStyle(
                     fontSize: 18,
                      fontFamily: StringConstants.SFPro,

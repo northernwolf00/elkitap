@@ -3,6 +3,7 @@ import 'package:elkitap/modules/profile/widgets/edit_account_bootomsheet.dart';
 import 'package:elkitap/modules/profile/widgets/no_subscribed_widget.dart';
 import 'package:elkitap/modules/profile/widgets/subscribed_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfileCardUser extends StatelessWidget {
   final bool isSubscribed;
@@ -57,8 +58,10 @@ class ProfileCardUser extends StatelessWidget {
                   SizedBox(height: 4),
                   Text(
                     "+993 61626406",
-                    style: TextStyle(fontSize: 13,
-                     fontFamily: StringConstants.SFPro,),
+                    style: TextStyle(
+                      fontSize: 13,
+                      fontFamily: StringConstants.SFPro,
+                    ),
                   ),
                 ],
               ),
@@ -69,10 +72,11 @@ class ProfileCardUser extends StatelessWidget {
                       _showEditAccountSheet(context);
                     },
                     child: Text(
-                      "Edit account",
-                      
-                      style: TextStyle(fontSize: 13,
-                       fontFamily: StringConstants.SFPro,),
+                      'edit_account'.tr,
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontFamily: StringConstants.SFPro,
+                      ),
                     ),
                   ),
                   SizedBox(

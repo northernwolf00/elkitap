@@ -1,5 +1,6 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/core/init/theme_controller.dart';
+import 'package:elkitap/core/init/translation_service.dart';
 import 'package:elkitap/global_widgets/bottom_nav_bar.dart';
 import 'package:elkitap/global_widgets/custom_bottom_sheet.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
@@ -20,7 +21,7 @@ class SettingsList extends StatefulWidget {
 }
 
 class _SettingsListState extends State<SettingsList> {
-  String selectedTheme = "Light";
+  String selectedTheme = 'light'.tr;
   String selectedLanguage = "Türkmençe";
   final _box = GetStorage();
   final _languageKey = 'selectedLanguage';
@@ -76,7 +77,7 @@ class _SettingsListState extends State<SettingsList> {
 
   void _initializeSelectedTheme(ThemeMode mode) {
     if (mode == ThemeMode.light) {
-      selectedTheme = 'Light';
+      selectedTheme = 'light'.tr;
     } else if (mode == ThemeMode.dark) {
       selectedTheme = 'Dark';
     } else {
@@ -88,20 +89,20 @@ class _SettingsListState extends State<SettingsList> {
   Widget build(BuildContext context) {
     final settings = [
       ("Payment History", null),
-      ("Theme", selectedTheme),
-      ("Language", selectedLanguage),
+      ('theme'.tr, selectedTheme),
+      ('language'.tr, selectedLanguage),
       ("Help & Support", null),
-      ("Legal Terms of Use", null),
-      ("Privacy and Policy", null),
-      ("Sign Out", null),
+      ('legal_terms_of_use'.tr, null),
+      ('privacy_and_policy'.tr, null),
+      ('sign_out'.tr, null),
     ];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
+        Padding(
           padding: EdgeInsets.symmetric(vertical: 10),
           child: Text(
-            "Settings",
+            'settings'.tr,
             style: TextStyle(
                 fontSize: 16,
                 fontFamily: StringConstants.SFPro,
@@ -116,16 +117,16 @@ class _SettingsListState extends State<SettingsList> {
 
             final title = item.$1;
 
-            final trailingText = title == "Theme" ? selectedTheme : item.$2;
+            final trailingText = title == 'theme'.tr ? selectedTheme : item.$2;
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
                   onTapDown: (TapDownDetails details) {
-                    if (title == "Theme") {
+                    if (title == 'theme'.tr) {
                       _showThemeMenu(context, details.globalPosition);
-                    } else if (title == "Language") {
+                    } else if (title == 'language'.tr) {
                       // Get.toNamed('/legal-terms');
                       _showLanguageMenu(context, details.globalPosition);
                     } else if (title == 'Sign Out') {
@@ -186,7 +187,8 @@ class _SettingsListState extends State<SettingsList> {
 
   void _showThemeMenu(BuildContext context, Offset position) async {
     final items = [
-      MenuItem(title: 'Light', value: 'Light', icon: Icons.wb_sunny_outlined),
+      MenuItem(
+          title: 'light'.tr, value: 'Light', icon: Icons.wb_sunny_outlined),
       MenuItem(title: 'Dark', value: 'Dark', icon: Icons.nightlight_round),
       MenuItem(title: 'Match Devices', value: 'System', icon: Icons.contrast),
     ];
@@ -262,6 +264,12 @@ class _SettingsListState extends State<SettingsList> {
       setState(() {
         selectedLanguage = result;
       });
+
+      final TranslationService translationService =
+          Get.find<TranslationService>();
+      translationService.changeLocale(result);
+
+      _box.write(_languageKey, result);
     }
   }
 
