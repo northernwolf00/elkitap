@@ -278,12 +278,6 @@ final Map<String, String> enUS = {
                          'Он расскажет о трёх книгах, которые научат договариваться, продавать и понимать...',
 
 
-
-
-
-
-
-
      'we_recommend_t': 'We recommend',
   'popular_by_genre_t': 'Popular by Genre',
   'top_of_the_week_t': 'Top of the week',
