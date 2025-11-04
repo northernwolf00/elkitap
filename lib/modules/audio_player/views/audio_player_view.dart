@@ -17,390 +17,407 @@ class AudiobookPlayerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(AudioPlayerController());
+
     final globalMiniCtrl = Get.find<GlobalMiniPlayerController>();
 
-    // final bluetoothController = Get.put(BluetoothController());
+    Future<bool> _onWillPop() async {
+      // final now = DateTime.now();
+      // if (lastPressed == null ||
+      //     now.difference(lastPressed!) > Duration(seconds: 2)) {
+      //   lastPressed = now;
+      //   ScaffoldMessenger.of(context).showSnackBar(
+      //     SnackBar(content: Text('Press back again to exit')),
+      //   );
+      //   return false;
+      // }
+      controller.isPlaying.value ? globalMiniCtrl.show() : null;
+      return true;
+    }
 
-    return Scaffold(
-        body: Stack(children: [
-      // Background Image
-      Positioned.fill(
-        child: Image.asset(
-          'assets/images/b6.png',
-          fit: BoxFit.cover,
-          errorBuilder: (context, error, stackTrace) {
-            return Container(
-              color: const Color(0xFF8B5A3C),
-            );
-          },
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+          body: Stack(children: [
+        // Background Image
+        Positioned.fill(
+          child: Image.asset(
+            'assets/images/b6.png',
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) {
+              return Container(
+                color: const Color(0xFF8B5A3C),
+              );
+            },
+          ),
         ),
-      ),
 
-      Positioned.fill(
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Colors.grey.shade900.withOpacity(0.7),
-                  Colors.grey.shade800.withOpacity(0.75),
-                  Colors.grey.shade900.withOpacity(0.8),
-                ],
+        Positioned.fill(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 50, sigmaY: 50),
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    Colors.grey.shade900.withOpacity(0.7),
+                    Colors.grey.shade800.withOpacity(0.75),
+                    Colors.grey.shade900.withOpacity(0.8),
+                  ],
+                ),
               ),
             ),
           ),
         ),
-      ),
-      // Content
-      SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              // Top Bar
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CircleAvatar(
-                    backgroundColor: Colors.grey.shade800,
-                    child: IconButton(
-                      icon: const Icon(Icons.arrow_back, color: Colors.white),
-                      onPressed: () {
-                        Get.back();
-                        controller.isPlaying.value
-                            ? globalMiniCtrl.show()
-                            : null;
-                      },
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      CustomIcon(
-                          title: 'assets/icons/a9.svg',
-                          height: 30,
-                          width: 30,
-                          color: Colors.white),
-                      const SizedBox(width: 10),
-                      CircleAvatar(
-                        backgroundColor: Colors.grey.shade800,
-                        child: IconButton(
-                          icon:
-                              const Icon(Icons.more_horiz, color: Colors.white),
-                          onPressed: () {
-                            DialogUtils.showAudioPopupMenu(context);
-                          },
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(height: 30),
-
-              // Book Cover
-              Container(
-                width: double.infinity,
-                height: MediaQuery.of(context).size.height / 2.5,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Stack(
-                    children: [
-                      Image.asset(
-                        'assets/images/b6.png',
-                        width: double.infinity,
-                        height: double.infinity,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Container(
-                            child: Padding(
-                              padding: const EdgeInsets.all(40.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [],
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 30),
-
-              // Chapter Info
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Chapter 1',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: StringConstants.NewYork,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(height: 4),
-                      Text(
-                        'The Subtle art of not giving - Mark Manson',
-                        style: TextStyle(
-                          color: Colors.white70,
-                          fontFamily: StringConstants.SFPro,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ],
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      showModalBottomSheet(
-                        context: context,
-                        isScrollControlled: true,
-                        backgroundColor: Colors.transparent,
-                        builder: (context) => const AudiobookBottomSheet(),
-                      );
-                    },
-                    child: CircleAvatar(
-                        backgroundColor: Colors.grey.shade800,
-                        child: Center(
-                          child: CustomIcon(
-                              title: 'assets/icons/a8.svg',
-                              height: 24,
-                              width: 24,
-                              color: Colors.white),
-                        )),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 20),
-
-              // Progress Bar
-              Obx(() {
-                final duration = controller.duration.value;
-                final position = controller.position.value;
-
-                // Prevent invalid slider value
-                final durationSeconds = duration.inSeconds.toDouble();
-                final positionSeconds = position.inSeconds
-                    .toDouble()
-                    .clamp(0.0, durationSeconds > 0 ? durationSeconds : 1.0);
-
-                return Column(
+        // Content
+        SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              children: [
+                // Top Bar
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SliderTheme(
-                      data: SliderThemeData(
-                        trackHeight: 4,
-                        thumbShape:
-                            const RoundSliderThumbShape(enabledThumbRadius: 8),
-                        overlayShape:
-                            const RoundSliderOverlayShape(overlayRadius: 16),
-                      ),
-                      child: Slider(
-                        value: positionSeconds, // ✅ always between 0 and max
-                        min: 0.0,
-                        max: durationSeconds > 0 ? durationSeconds : 1.0,
-                        activeColor: Colors.white,
-                        inactiveColor: Colors.white30,
-                        onChanged: (value) {
-                          controller.seek(Duration(seconds: value.toInt()));
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            controller.formatDuration(position),
-                            style: const TextStyle(
-                              color: Colors.white70,
-                              fontFamily: StringConstants.SFPro,
-                            ),
-                          ),
-                          Text(
-                            controller.formatDuration(duration),
-                            style: const TextStyle(
-                              color: Colors.white70,
-                              fontFamily: StringConstants.SFPro,
-                            ),
-                          ),
-                          Text(
-                            '-${controller.formatDuration(duration - position)}',
-                            style: const TextStyle(
-                              color: Colors.white70,
-                              fontFamily: StringConstants.SFPro,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                );
-              }),
-
-              const SizedBox(height: 20),
-
-              // Playback Controls
-              Obx(() {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: GestureDetector(
-                        onTap: () {
-                          controller.seekBackward();
-                        },
-                        child: CustomIcon(
-                            title: 'assets/icons/a1.svg',
-                            height: 40,
-                            width: 40,
-                            color: Colors.white),
-                      ),
-                    ),
-                    const SizedBox(width: 40),
                     CircleAvatar(
-                        radius: 40,
-                        backgroundColor: Colors.grey.shade900,
-                        child: GestureDetector(
-                          onTap: () {
-                            controller.playPause();
-                          },
-                          child: CustomIcon(
-                              title: controller.isPlaying.value
-                                  ? 'assets/icons/a4.svg'
-                                  : 'assets/icons/a3.svg',
-                              height: 40,
-                              width: 40,
-                              color: Colors.white),
-                        )),
-                    const SizedBox(width: 40),
-                    Center(
-                      child: GestureDetector(
-                        onTap: () {
-                          controller.seekForward();
+                      backgroundColor: Colors.grey.shade800,
+                      child: IconButton(
+                        icon: const Icon(Icons.arrow_back, color: Colors.white),
+                        onPressed: () {
+                          Get.back();
+                          controller.isPlaying.value
+                              ? globalMiniCtrl.show()
+                              : null;
                         },
-                        child: CustomIcon(
-                            title: 'assets/icons/a2.svg',
-                            height: 40,
-                            width: 40,
-                            color: Colors.white),
                       ),
+                    ),
+                    Row(
+                      children: [
+                        CustomIcon(
+                            title: 'assets/icons/a9.svg',
+                            height: 30,
+                            width: 30,
+                            color: Colors.white),
+                        const SizedBox(width: 10),
+                        CircleAvatar(
+                          backgroundColor: Colors.grey.shade800,
+                          child: IconButton(
+                            icon: const Icon(Icons.more_horiz,
+                                color: Colors.white),
+                            onPressed: () {
+                              DialogUtils.showAudioPopupMenu(context);
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                   ],
-                );
-              }),
-              SizedBox(height: 40),
+                ),
+                const SizedBox(height: 30),
 
-              // Bottom Controls
-              Obx(() {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                // Book Cover
+                Container(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height / 2.5,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Stack(
+                      children: [
+                        Image.asset(
+                          'assets/images/b6.png',
+                          width: double.infinity,
+                          height: double.infinity,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Container(
+                              child: Padding(
+                                padding: const EdgeInsets.all(40.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [],
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 30),
+
+                // Chapter Info
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    const Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Chapter 1',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: StringConstants.NewYork,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          'The Subtle art of not giving - Mark Manson',
+                          style: TextStyle(
+                            color: Colors.white70,
+                            fontFamily: StringConstants.SFPro,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    ),
                     GestureDetector(
-                      onTap: () => showSpeedPopup(context, controller),
-                      child: Text(
-                        '${controller.playbackSpeed.value}x',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'SFPro', // StringConstants.SFPro
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          backgroundColor: Colors.transparent,
+                          builder: (context) => const AudiobookBottomSheet(),
+                        );
+                      },
+                      child: CircleAvatar(
+                          backgroundColor: Colors.grey.shade800,
+                          child: Center(
+                            child: CustomIcon(
+                                title: 'assets/icons/a8.svg',
+                                height: 24,
+                                width: 24,
+                                color: Colors.white),
+                          )),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
+
+                // Progress Bar
+                Obx(() {
+                  final duration = controller.duration.value;
+                  final position = controller.position.value;
+
+                  // Prevent invalid slider value
+                  final durationSeconds = duration.inSeconds.toDouble();
+                  final positionSeconds = position.inSeconds
+                      .toDouble()
+                      .clamp(0.0, durationSeconds > 0 ? durationSeconds : 1.0);
+
+                  return Column(
+                    children: [
+                      SliderTheme(
+                        data: SliderThemeData(
+                          trackHeight: 4,
+                          thumbShape: const RoundSliderThumbShape(
+                              enabledThumbRadius: 8),
+                          overlayShape:
+                              const RoundSliderOverlayShape(overlayRadius: 16),
+                        ),
+                        child: Slider(
+                          value: positionSeconds, // ✅ always between 0 and max
+                          min: 0.0,
+                          max: durationSeconds > 0 ? durationSeconds : 1.0,
+                          activeColor: Colors.white,
+                          inactiveColor: Colors.white30,
+                          onChanged: (value) {
+                            controller.seek(Duration(seconds: value.toInt()));
+                          },
                         ),
                       ),
-                    ),
-                    Center(
-                      child: GestureDetector(
-                        onTap: () => showSleepTimerPopup(context, controller),
-                        child: Obx(() {
-                          final hasTimer =
-                              controller.sleepTimerEndTime.value != null;
-                          return Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Icon(
-                                Icons.bedtime_outlined,
-                                size: 32,
-                                color: Colors.white,
-                              ),
-                              if (hasTimer) ...[
-                                const SizedBox(width: 8),
-                                Text(
-                                  controller.getRemainingTime(),
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontFamily: 'SFPro',
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                ),
-                              ],
-                            ],
-                          );
-                        }),
-                      ),
-                    ),
-                    Center(
-                      child: GestureDetector(
-                        onTap: () {
-                          showBluetoothPopup(context);
-                        },
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Row(
-                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            CustomIcon(
-                              title: 'assets/icons/a6.svg',
-                              height: 32,
-                              width: 32,
-                              color: Colors.white,
+                            Text(
+                              controller.formatDuration(position),
+                              style: const TextStyle(
+                                color: Colors.white70,
+                                fontFamily: StringConstants.SFPro,
+                              ),
                             ),
-                            // if (hasConnection) ...[
-                            // const SizedBox(width: 8),
-                            // Icon(
-                            //   bluetoothController.getDeviceIcon(
-                            //       bluetoothController
-                            //           .connectedDevice.value!),
-                            //   size: 20,
-                            //   color: Colors.white70,
-                            // ),
-                            // ],
+                            Text(
+                              controller.formatDuration(duration),
+                              style: const TextStyle(
+                                color: Colors.white70,
+                                fontFamily: StringConstants.SFPro,
+                              ),
+                            ),
+                            Text(
+                              '-${controller.formatDuration(duration - position)}',
+                              style: const TextStyle(
+                                color: Colors.white70,
+                                fontFamily: StringConstants.SFPro,
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                    ),
-                    Center(
-                      child: GestureDetector(
-                        onTap: () {
-                          final controller = Get.find<AudioPlayerController>();
-                          controller.enableDriverMode();
-                          Get.to(() => const DriverModeScreen());
-                        },
-                        child: CustomIcon(
-                          title: 'assets/icons/a7.svg',
-                          height: 32,
-                          width: 32,
-                          color: Colors.white,
+                    ],
+                  );
+                }),
+
+                const SizedBox(height: 20),
+
+                // Playback Controls
+                Obx(() {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: GestureDetector(
+                          onTap: () {
+                            controller.seekBackward();
+                          },
+                          child: CustomIcon(
+                              title: 'assets/icons/a1.svg',
+                              height: 40,
+                              width: 40,
+                              color: Colors.white),
                         ),
                       ),
-                    ),
-                  ],
-                );
-              }),
-            ],
+                      const SizedBox(width: 40),
+                      CircleAvatar(
+                          radius: 40,
+                          backgroundColor: Colors.grey.shade900,
+                          child: GestureDetector(
+                            onTap: () {
+                              controller.playPause();
+                            },
+                            child: CustomIcon(
+                                title: controller.isPlaying.value
+                                    ? 'assets/icons/a4.svg'
+                                    : 'assets/icons/a3.svg',
+                                height: 40,
+                                width: 40,
+                                color: Colors.white),
+                          )),
+                      const SizedBox(width: 40),
+                      Center(
+                        child: GestureDetector(
+                          onTap: () {
+                            controller.seekForward();
+                          },
+                          child: CustomIcon(
+                              title: 'assets/icons/a2.svg',
+                              height: 40,
+                              width: 40,
+                              color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  );
+                }),
+                SizedBox(height: 40),
+
+                // Bottom Controls
+                Obx(() {
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      GestureDetector(
+                        onTap: () => showSpeedPopup(context, controller),
+                        child: Text(
+                          '${controller.playbackSpeed.value}x',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'SFPro', // StringConstants.SFPro
+                          ),
+                        ),
+                      ),
+                      Center(
+                        child: GestureDetector(
+                          onTap: () => showSleepTimerPopup(context, controller),
+                          child: Obx(() {
+                            final hasTimer =
+                                controller.sleepTimerEndTime.value != null;
+                            return Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.bedtime_outlined,
+                                  size: 32,
+                                  color: Colors.white,
+                                ),
+                                if (hasTimer) ...[
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    controller.getRemainingTime(),
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontFamily: 'SFPro',
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
+                              ],
+                            );
+                          }),
+                        ),
+                      ),
+                      Center(
+                        child: GestureDetector(
+                          onTap: () {
+                            showBluetoothPopup(context);
+                          },
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              CustomIcon(
+                                title: 'assets/icons/a6.svg',
+                                height: 32,
+                                width: 32,
+                                color: Colors.white,
+                              ),
+                              // if (hasConnection) ...[
+                              // const SizedBox(width: 8),
+                              // Icon(
+                              //   bluetoothController.getDeviceIcon(
+                              //       bluetoothController
+                              //           .connectedDevice.value!),
+                              //   size: 20,
+                              //   color: Colors.white70,
+                              // ),
+                              // ],
+                            ],
+                          ),
+                        ),
+                      ),
+                      Center(
+                        child: GestureDetector(
+                          onTap: () {
+                            final controller =
+                                Get.find<AudioPlayerController>();
+                            controller.enableDriverMode();
+                            Get.to(() => const DriverModeScreen());
+                          },
+                          child: CustomIcon(
+                            title: 'assets/icons/a7.svg',
+                            height: 32,
+                            width: 32,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                }),
+              ],
+            ),
           ),
         ),
-      ),
-    ]));
+      ])),
+    );
   }
 
   static void showSpeedPopup(
@@ -514,27 +531,26 @@ class AudiobookPlayerScreen extends StatelessWidget {
   static void showSleepTimerPopup(
       BuildContext context, AudioPlayerController controller) {
     final timers = [
-   {
-    'duration': const Duration(hours: 1),
-   
-    'label': '1 ${'hour_t'.tr}',
-  },
-  {
-    'duration': const Duration(minutes: 45),
-    'label': '45 ${'minute_t'.tr}',
-  },
-  {
-    'duration': const Duration(minutes: 15),
-    'label': '15 ${'minute_t'.tr}',
-  },
-  {
-    'duration': const Duration(minutes: 10),
-    'label': '10 ${'minute_t'.tr}',
-  },
-  {
-    'duration': const Duration(minutes: 5),
-    'label': '5 ${'minute_t'.tr}',
-  },
+      {
+        'duration': const Duration(hours: 1),
+        'label': '1 ${'hour_t'.tr}',
+      },
+      {
+        'duration': const Duration(minutes: 45),
+        'label': '45 ${'minute_t'.tr}',
+      },
+      {
+        'duration': const Duration(minutes: 15),
+        'label': '15 ${'minute_t'.tr}',
+      },
+      {
+        'duration': const Duration(minutes: 10),
+        'label': '10 ${'minute_t'.tr}',
+      },
+      {
+        'duration': const Duration(minutes: 5),
+        'label': '5 ${'minute_t'.tr}',
+      },
       {'duration': null, 'label': 'Off'},
     ];
 
@@ -572,7 +588,7 @@ class AudiobookPlayerScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(16),
                           child: Text(
-                           'chapter_end_t'.tr,
+                            'chapter_end_t'.tr,
                             style: const TextStyle(
                               fontSize: 17,
                               fontFamily: 'SF Pro',
@@ -695,7 +711,7 @@ class AudiobookPlayerScreen extends StatelessWidget {
                                 size: 24,
                               ),
                               const SizedBox(width: 12),
-                               Text(
+                              Text(
                                 'broadcasting_t'.tr,
                                 style: TextStyle(
                                   fontSize: 17,
@@ -714,174 +730,76 @@ class AudiobookPlayerScreen extends StatelessWidget {
                         ),
                         // Device list
                         Flexible(
-                          child:
-                              // if (!controller.isBluetoothEnabled.value) {
-                              //   return Padding(
-                              //     padding: const EdgeInsets.all(40),
-                              //     child: Column(
-                              //       mainAxisSize: MainAxisSize.min,
-                              //       children: [
-                              //         const Icon(
-                              //           Icons.bluetooth_disabled,
-                              //           color: Colors.white70,
-                              //           size: 48,
-                              //         ),
-                              //         const SizedBox(height: 16),
-                              //         const Text(
-                              //           'Bluetooth is disabled',
-                              //           style: TextStyle(
-                              //             fontSize: 15,
-                              //             fontFamily: 'SF Pro',
-                              //             color: Colors.white70,
-                              //           ),
-                              //         ),
-                              //         const SizedBox(height: 16),
-                              //         ElevatedButton(
-                              //           onPressed: () =>
-                              //               controller.enableBluetooth(),
-                              //           child: const Text('Enable Bluetooth'),
-                              //         ),
-                              //       ],
-                              //     ),
-                              //   );
-                              // }
+                          child: ListView.separated(
+                              shrinkWrap: true,
+                              itemCount: 2,
+                              separatorBuilder: (context, index) => Divider(
+                                    height: 1,
+                                    thickness: 0.5,
+                                    color: Colors.white.withOpacity(0.15),
+                                  ),
+                              itemBuilder: (context, index) {
+                                // final device = uniqueDevices[index];
+                                // final isConnected =
+                                //     controller.connectedDevice.value?.address ==
+                                //         device.address;
 
-                              // if (controller.isSearching.value) {
-                              //   return Padding(
-                              //     padding: const EdgeInsets.all(40),
-                              //     child: Column(
-                              //       mainAxisSize: MainAxisSize.min,
-                              //       children: [
-                              //         const CircularProgressIndicator(
-                              //           color: Colors.white,
-                              //           strokeWidth: 2,
-                              //         ),
-                              //         const SizedBox(height: 16),
-                              //         const Text(
-                              //           'Searching Devices',
-                              //           style: TextStyle(
-                              //             fontSize: 15,
-                              //             fontFamily: 'SF Pro',
-                              //             color: Colors.white70,
-                              //           ),
-                              //         ),
-                              //       ],
-                              //     ),
-                              //   );
-                              // }
-
-                              // final allDevices = [
-                              //   ...controller.pairedDevices,
-                              //   ...controller.discoveredDevices
-                              //       .map((r) => r.device),
-                              // ];
-
-                              // // Remove duplicates
-                              // final uniqueDevices = <BluetoothDevice>[];
-                              // final addresses = <String>{};
-                              // for (var device in allDevices) {
-                              //   if (!addresses.contains(device.address)) {
-                              //     addresses.add(device.address);
-                              //     uniqueDevices.add(device);
-                              //   }
-                              // }
-
-                              // if (uniqueDevices.isEmpty) {
-                              //   return Padding(
-                              //     padding: const EdgeInsets.all(40),
-                              //     child: Column(
-                              //       mainAxisSize: MainAxisSize.min,
-                              //       children: [
-                              //         const Text(
-                              //           'No devices found',
-                              //           style: TextStyle(
-                              //             fontSize: 15,
-                              //             fontFamily: 'SF Pro',
-                              //             color: Colors.white70,
-                              //           ),
-                              //         ),
-                              //         const SizedBox(height: 16),
-                              //         TextButton(
-                              //           onPressed: () =>
-                              //               controller.startDiscovery(),
-                              //           child: const Text('Scan Again'),
-                              //         ),
-                              //       ],
-                              //     ),
-                              //   );
-                              // }
-
-                              ListView.separated(
-                                  shrinkWrap: true,
-                                  itemCount: 2,
-                                  separatorBuilder: (context, index) => Divider(
-                                        height: 1,
-                                        thickness: 0.5,
-                                        color: Colors.white.withOpacity(0.15),
-                                      ),
-                                  itemBuilder: (context, index) {
-                                    // final device = uniqueDevices[index];
-                                    // final isConnected =
-                                    //     controller.connectedDevice.value?.address ==
-                                    //         device.address;
-
-                                    return InkWell(
-                                      onTap: () {
-                                        // controller.connectToDevice(device);
-                                        Navigator.pop(context);
-                                      },
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 20,
-                                          vertical: 16,
+                                return InkWell(
+                                  onTap: () {
+                                    // controller.connectToDevice(device);
+                                    Navigator.pop(context);
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                      vertical: 16,
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Icon(
+                                          Icons.phone_android,
+                                          color: Colors.white,
+                                          size: 24,
                                         ),
-                                        child: Row(
-                                          children: [
-                                            Icon(
-                                              Icons.phone_android,
-                                              color: Colors.white,
-                                              size: 24,
-                                            ),
-                                            const SizedBox(width: 16),
-                                            Expanded(
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                   'unknown_device_t'.tr,
-                                                    style: const TextStyle(
-                                                      fontSize: 17,
-                                                      fontFamily: 'SFPro',
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                  // if (device.name == null ||
-                                                  //     device.name!.isEmpty)
-                                                  //   Text(
-                                                  //     device.address,
-                                                  //     style: TextStyle(
-                                                  //       fontSize: 13,
-                                                  //       fontFamily: 'SF Pro',
-                                                  //       color: Colors.white70,
-                                                  //     ),
-                                                  //   ),
-                                                ],
+                                        const SizedBox(width: 16),
+                                        Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                'unknown_device_t'.tr,
+                                                style: const TextStyle(
+                                                  fontSize: 17,
+                                                  fontFamily: 'SFPro',
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Colors.white,
+                                                ),
                                               ),
-                                            ),
-                                            // if (isConnected)
-                                            //   const Icon(
-                                            //     Icons.check,
-                                            //     size: 24,
-                                            //     color: Colors.white,
-                                            //   ),
-                                          ],
+                                              // if (device.name == null ||
+                                              //     device.name!.isEmpty)
+                                              //   Text(
+                                              //     device.address,
+                                              //     style: TextStyle(
+                                              //       fontSize: 13,
+                                              //       fontFamily: 'SF Pro',
+                                              //       color: Colors.white70,
+                                              //     ),
+                                              //   ),
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    );
-                                  }),
+                                        // if (isConnected)
+                                        //   const Icon(
+                                        //     Icons.check,
+                                        //     size: 24,
+                                        //     color: Colors.white,
+                                        //   ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }),
                         ),
                       ],
                     ),

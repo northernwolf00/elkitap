@@ -28,6 +28,8 @@ class AudioPlayerController extends GetxController {
   final RxString audioSource = ''.obs;
   final RxBool isAssetAudio = true.obs;
 
+
+
   Future<void> _initAudio() async {
     try {
       if (audioSource.value.isEmpty) {
@@ -122,9 +124,13 @@ class AudioPlayerController extends GetxController {
       return '$m:$s';
     } else {
       if (minutes > 0) {
-        return '$hours'+ 'hour_t'.tr + '${hours > 1 ? 's' : ''}, $minutes'+'minute'.tr+'${minutes > 1 ? 's' : ''}';
+        return '$hours' +
+            'hour_t'.tr +
+            '${hours > 1 ? 's' : ''}, $minutes' +
+            'minute'.tr +
+            '${minutes > 1 ? 's' : ''}';
       } else {
-        return '$hours'+ 'hour_t'.tr + '${hours > 1 ? 's' : ''}';
+        return '$hours' + 'hour_t'.tr + '${hours > 1 ? 's' : ''}';
       }
     }
   }
@@ -213,7 +219,16 @@ class AudioPlayerController extends GetxController {
 class GlobalMiniPlayerController extends GetxController {
   final RxBool isVisible = false.obs;
 
+  // Track position dynamically
+  final RxDouble top = 0.0.obs;
+  final RxDouble left = 0.0.obs;
+
   void show() => isVisible.value = true;
   void hide() => isVisible.value = false;
   void toggle() => isVisible.value = !isVisible.value;
+
+  void setPosition(double newTop, double newLeft) {
+    top.value = newTop;
+    left.value = newLeft;
+  }
 }

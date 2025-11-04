@@ -35,12 +35,14 @@ class _NotesScreenState extends State<NotesScreen> {
                     ? Colors.black
                     : Colors.white),
             elevation: 0,
-            leadingWidth: 120,
+            leadingWidth: 140,
             leading: controller.isSelectionMode.value
                 ? TextButton(
                     onPressed: () => controller.toggleSelectAll(),
                     child: Obx(() => Text(
-                          controller.isAllSelected ? 'deselect'.tr : 'selectAll'.tr,
+                          controller.isAllSelected
+                              ? 'deselectAll'.tr
+                              : 'selectAll'.tr,
                           style: TextStyle(
                               fontFamily: StringConstants.SFPro,
                               color: Theme.of(context).brightness ==
@@ -209,7 +211,7 @@ class _NotesScreenState extends State<NotesScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                       Text(
+                      Text(
                         'notes'.tr,
                         style: TextStyle(
                           fontSize: 17,
@@ -256,7 +258,7 @@ class _NotesScreenState extends State<NotesScreen> {
                           child: TextField(
                             controller: textController,
                             maxLines: null,
-                            decoration:  InputDecoration(
+                            decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: 'notes'.tr,
                             ),

@@ -17,6 +17,11 @@ final class ApplicationInitialize {
 
   static Future<void> initialize() async {
     WidgetsFlutterBinding.ensureInitialized();
+    //    await JustAudioBackground.init(
+    //   androidNotificationChannelId: 'com.elkitap.audio.channel',
+    //   androidNotificationChannelName: 'Audiobook Playback',
+    //   androidNotificationOngoing: true,
+    // );
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
         statusBarColor: Colors.white,
@@ -36,8 +41,8 @@ final class ApplicationInitialize {
       Get.put(TranslationService());
       // await GetStorage.init();
       Get.put(ThemeController());
-       Get.put(AudioPlayerController());
-       Get.put(GlobalMiniPlayerController(), permanent: true);
+      Get.put(AudioPlayerController());
+      Get.put(GlobalMiniPlayerController(), permanent: true);
 
       // Get.put(HomeController());
       // Get.put(SearchControllerMine());
@@ -51,7 +56,7 @@ final class ApplicationInitialize {
       // Get.put(EditHouseController(), permanent: true);
       // Get.find<AddHouseController>().fetchInitialData();
       SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-     
+
       // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
       // final localNotificationsService = LocalNotificationsService.instance();
       // await localNotificationsService.init();
