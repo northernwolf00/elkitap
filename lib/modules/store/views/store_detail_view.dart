@@ -90,7 +90,7 @@ class BookDetailView extends StatelessWidget {
                                 ),
                                 child: Center(
                                   child: Text(
-                                    "Text",
+                                    "media_type_text_t".tr,
                                     style: TextStyle(
                                       fontSize: 12,
                                       fontFamily: StringConstants.SFPro,
@@ -123,7 +123,7 @@ class BookDetailView extends StatelessWidget {
                                 ),
                                 child: Center(
                                   child: Text(
-                                    "Audio",
+                                    "media_type_audio_t".tr,
                                     style: TextStyle(
                                       fontSize: 12,
                                       fontFamily: StringConstants.SFPro,
@@ -351,8 +351,8 @@ class BookDetailView extends StatelessWidget {
                           bottomLeft: Radius.circular(12),
                         ),
                       ),
-                      child: const Text(
-                        "Read",
+                      child:  Text(
+                        "read_button_action_t".tr,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,
@@ -380,8 +380,8 @@ class BookDetailView extends StatelessWidget {
                           bottomRight: Radius.circular(12),
                         ),
                       ),
-                      child: const Text(
-                        "Listen",
+                      child:  Text(
+                        "listen_button_t".tr,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.white,
@@ -419,7 +419,7 @@ class BookDetailView extends StatelessWidget {
                   // Icon(Icons.auto_awesome, color: Colors.white, size: 20),
                   SizedBox(width: 8),
                   Text(
-                    "AI mazmuny",
+                    "ai_content_t".tr,
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: StringConstants.SFPro,
@@ -433,10 +433,10 @@ class BookDetailView extends StatelessWidget {
             const SizedBox(height: 32),
 
             // --- About Section
-            const Align(
+             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                "About",
+                "about_t".tr,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontFamily: StringConstants.NewYork,
@@ -444,9 +444,8 @@ class BookDetailView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            const Text(
-              "Сегодня в рубрике «Профессии» наш гость — региональный директор Üйрекçi. "
-              "Он расскажет о трёх книгах, которые научат договариваться, продавать и понимать...",
+             Text(
+              'bio_russian_short_t'.tr,
               style: TextStyle(
                 fontSize: 15,
                 height: 1.5,
@@ -466,7 +465,7 @@ class BookDetailView extends StatelessWidget {
             const SizedBox(height: 20),
 
             // --- Similar Books Section
-            sectionTitle("Similar books"),
+            sectionTitle("similar_books_t".tr),
             const SizedBox(height: 12),
             horizontalBookList([
               'assets/images/b1.png',

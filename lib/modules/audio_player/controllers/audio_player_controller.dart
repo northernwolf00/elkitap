@@ -122,9 +122,9 @@ class AudioPlayerController extends GetxController {
       return '$m:$s';
     } else {
       if (minutes > 0) {
-        return '$hours hour${hours > 1 ? 's' : ''}, $minutes minute${minutes > 1 ? 's' : ''}';
+        return '$hours'+ 'hour_t'.tr + '${hours > 1 ? 's' : ''}, $minutes'+'minute'.tr+'${minutes > 1 ? 's' : ''}';
       } else {
-        return '$hours hour${hours > 1 ? 's' : ''}';
+        return '$hours'+ 'hour_t'.tr + '${hours > 1 ? 's' : ''}';
       }
     }
   }

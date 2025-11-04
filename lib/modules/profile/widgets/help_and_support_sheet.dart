@@ -80,7 +80,7 @@ class HelpAndSupportBottomSheet extends StatelessWidget {
                 _buildOptionTile(
                   context,
                   icon: 'assets/icons/p8.svg', // Phone icon
-                  title: "Call",
+                  title: "call_t".tr, // Localized
                   hasTrailingIcon: false, // No trailing icon for Call
                   onTap: () {
                     // Handle Call tap
@@ -90,7 +90,7 @@ class HelpAndSupportBottomSheet extends StatelessWidget {
                 _buildOptionTile(
                   context,
                   icon: 'assets/icons/p9.svg', // Email icon
-                  title: "Email",
+                  title: "email_t".tr, // Localized
                   hasTrailingIcon: false, // No trailing icon for Email
                   onTap: () {
                     // Handle Email tap
@@ -100,8 +100,7 @@ class HelpAndSupportBottomSheet extends StatelessWidget {
                 _buildOptionTile(
                   context,
                   icon: 'assets/icons/p10.svg', // Send icon (for Telegram)
-                  title:
-                      "Start", 
+                  title: "start_t".tr, // Localized
                   hasTrailingIcon: true, // Has trailing icon
                   onTap: () {
                     // Handle Start tap
@@ -111,7 +110,7 @@ class HelpAndSupportBottomSheet extends StatelessWidget {
                 _buildOptionTile(
                   context,
                   icon: 'assets/icons/p10.svg', // Send icon (for Telegram)
-                  title: "Telegram",
+                  title: "telegram_t".tr, // Localized
                   hasTrailingIcon: true, // Has trailing icon
                   showDivider: false, // Last item, no divider below it
                   onTap: () {

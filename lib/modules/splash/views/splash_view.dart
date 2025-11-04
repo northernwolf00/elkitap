@@ -2,7 +2,6 @@ import 'package:elkitap/global_widgets/bottom_nav_bar.dart';
 import 'package:elkitap/modules/splash/controllers/splash_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 import 'package:video_player/video_player.dart';
 
 // class SplashPageWidget extends StatelessWidget {

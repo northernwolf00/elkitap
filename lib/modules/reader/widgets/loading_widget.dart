@@ -1,5 +1,6 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
@@ -209,8 +210,8 @@ class _LoadingScreenState extends State<LoadingScreen>
                     const SizedBox(height: 20),
 
                     // Loading Text
-                    const Text(
-                      'Loading...',
+                     Text(
+                      'loading_t'.tr,
                       style: TextStyle(
                         fontSize: 18,
                          fontFamily: StringConstants.SFPro,

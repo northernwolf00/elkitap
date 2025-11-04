@@ -1,6 +1,7 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:get/get.dart';
 
 class AuthorProfileSection extends StatefulWidget {
   const AuthorProfileSection({super.key});
@@ -104,7 +105,7 @@ class _AuthorProfileSectionState extends State<AuthorProfileSection> {
                   children: [
                     TextSpan(text: isExpanded ? fullBio : shortBio),
                     TextSpan(
-                      text: isExpanded ? ' Show Less' : ' Show More',
+                      text: isExpanded ? 'show_less_t'.tr : 'show_more_t'.tr,
                       style: const TextStyle(
                         fontWeight: FontWeight.w600,
                         color: Colors.black,

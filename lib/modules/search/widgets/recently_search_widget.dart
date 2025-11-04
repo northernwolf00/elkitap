@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 
 class RecentlySearchedScreen extends StatelessWidget {
   final List<String> recentlySearched = [
-    'How to Unfolds',
-    'StopOverthing',
-    'Power',
-    'Rich dad poor dad',
+     'how_it_unfolds_t', // Assuming you meant 'How It Unfolds'
+  'stop_overthinking_t', // Assuming you meant 'Stop Overthinking'
+  'power_t',
+  'rich_dad_poor_dad_t', // New key
   ];
 
    RecentlySearchedScreen({super.key});
@@ -56,7 +56,7 @@ class RecentlySearchedScreen extends StatelessWidget {
                 ListTile(
                   leading: const Icon(Icons.search, color: Colors.grey),
                   title: Text(
-                    recentlySearched[index],
+                    recentlySearched[index].tr,
                     
                     style: const TextStyle(
                       

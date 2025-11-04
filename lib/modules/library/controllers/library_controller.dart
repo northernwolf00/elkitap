@@ -100,7 +100,6 @@ class ReadingListController extends GetxController {
   void showRemoveDialog(BuildContext context) {
     if (selectedBooks.isEmpty) return;
 
-
     final selected =
         books.where((book) => selectedBooks.contains(book.id)).take(4).toList();
 
@@ -208,22 +207,24 @@ class ReadingListController extends GetxController {
                       TextSpan(
                         children: [
                           TextSpan(
-                            text: "Do you want to ${selectedBooks.length}",
+                            text:
+                                "${'remove_dialog_part1_t'.tr}${selectedBooks.length}", // Dynamic text inserted here
                             style: TextStyle(fontSize: 16, color: Colors.black),
                           ),
                           TextSpan(
-                            text: " remove",
+                            text: 'remove_dialog_remove_t'.tr, // 'remove'
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               color: Colors.black,
                             ),
                           ),
-                          const TextSpan(
-                            text: " these books from\n",
+                          TextSpan(
+                            text: 'remove_dialog_part2_t'
+                                .tr, // ' these books from\n'
                             style: TextStyle(fontSize: 16, color: Colors.black),
                           ),
-                          const TextSpan(
-                            text: "Want to Read?",
+                          TextSpan(
+                            text: 'want_to_read_t'.tr, // 'Want to Read?'
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 17,
@@ -238,24 +239,26 @@ class ReadingListController extends GetxController {
 
                     const Divider(height: 1),
 
-                    // 🗑️ Remove
                     TextButton(
                       onPressed: () {
                         books.removeWhere(
                           (book) => selectedBooks.contains(book.id),
                         );
+
                         selectedBooks.clear();
+
                         Get.back();
                       },
                       style: TextButton.styleFrom(
                         minimumSize: const Size.fromHeight(50),
                       ),
-                      child: const Text(
-                        "Remove",
-                        style: TextStyle(
+                      child: Text(
+                        'remove_button_t'.tr,
+                        style: const TextStyle(
                           color: Colors.red,
                           fontSize: 18,
-                           fontFamily: StringConstants.SFPro,
+                          fontFamily: StringConstants
+                              .SFPro, // assuming StringConstants is available
                           fontWeight: FontWeight.w600,
                         ),
                       ),
@@ -267,12 +270,14 @@ class ReadingListController extends GetxController {
                       style: TextButton.styleFrom(
                         minimumSize: const Size.fromHeight(50),
                       ),
-                      child: const Text(
-                        "Cancel",
-                        style: TextStyle(
+                      child: Text(
+                       
+                        'cancel_button_t'.tr,
+                        style: const TextStyle(
                           color: Colors.black,
                           fontSize: 18,
-                           fontFamily: StringConstants.SFPro,
+                          fontFamily: StringConstants
+                              .SFPro, // assuming StringConstants is available
                           fontWeight: FontWeight.w500,
                         ),
                       ),

@@ -53,14 +53,9 @@ class _EditAccountBottomSheetState extends State<EditAccountBottomSheet> {
     final double screenHeight = MediaQuery.of(context).size.height;
     final double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
 
-    // Adjust the sheet height dynamically based on keyboard presence
-    // We want the sheet to be visible above the keyboard.
-    // A common approach is to make the sheet tall enough to show its content + button
-    // or set a fixed height that keyboard can push up.
-    // Let's make it fixed 70% of screen height, and the SingleChildScrollView will handle keyboard push.
     final double sheetHeight = screenHeight * 0.70; // 70% of screen height
 
-    // Define button colors based on state and theme
+
     final Color activeSaveButtonColor = Colors.deepOrange;
     final Color inactiveSaveButtonColor =
         Theme.of(context).brightness == Brightness.dark

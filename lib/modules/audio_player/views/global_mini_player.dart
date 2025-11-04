@@ -1,3 +1,4 @@
+import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:elkitap/modules/audio_player/controllers/audio_player_controller.dart';
@@ -121,7 +122,7 @@ class GlobalMiniPlayer extends StatelessWidget {
                         const SizedBox(height: 4),
                         Obx(() {
                           return Text(
-                            '${controller!.formatDuration(controller.position.value)} left',
+                            '${controller.formatDuration(controller.position.value)} left',
                             style: TextStyle(
                               color: Colors.grey.shade600,
                               fontSize: 12,
@@ -133,27 +134,31 @@ class GlobalMiniPlayer extends StatelessWidget {
                   ),
 
                   const SizedBox(width: 12),
-
-                  // Play/pause
-                  GestureDetector(
-                    onTap: controller.playPause,
-                    child: Container(
-                      width: 44,
-                      height: 44,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                      ),
-                      child: Center(
-                        child: Icon(
-                          controller.isPlaying.value
-                              ? Icons.pause
-                              : Icons.play_arrow,
-                          color: Colors.black,
-                          size: 24,
-                        ),
-                      ),
+                  Center(
+                    child: GestureDetector(
+                      onTap: () {
+                        controller.seekBackward();
+                      },
+                      child: CustomIcon(
+                          title: 'assets/icons/a1.svg',
+                          height: 40,
+                          width: 40,
+                          color: Colors.white),
                     ),
                   ),
+
+                  GestureDetector(
+                          onTap: () {
+                            controller.playPause();
+                          },
+                          child: CustomIcon(
+                              title: controller.isPlaying.value
+                                  ? 'assets/icons/a4.svg'
+                                  : 'assets/icons/a3.svg',
+                              height: 40,
+                              width: 40,
+                              color: Colors.white),
+                        ),
                   const SizedBox(width: 12),
                 ],
               ),

@@ -30,7 +30,7 @@ class SubscribedView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              "Subscription ends in 30 days",
+              "subscription_ends_in_t".tr,
               style: const TextStyle(fontSize: 14),
             ),
             Image.asset(

@@ -1,5 +1,6 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ResultSectionScreen extends StatelessWidget {
   final List<Map<String, String>> authors = [
@@ -40,8 +41,8 @@ class ResultSectionScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Authors',
+               Text(
+               'authors_title_t'.tr,
                 style: TextStyle(
                  fontFamily: StringConstants.NewYork,
                   fontSize: 28,
@@ -93,8 +94,8 @@ class ResultSectionScreen extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 30),
-              const Text(
-                'Books',
+               Text(
+                'books_t'.tr,
                 style: TextStyle(
                  fontFamily: StringConstants.SFPro,
                   fontSize: 28,

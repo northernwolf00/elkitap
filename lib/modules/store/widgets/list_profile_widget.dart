@@ -39,7 +39,7 @@ class _ListProfileWidgetState extends State<ListProfileWidget> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  'Professionals read',
+                  'professionals_read_t'.tr,
                   style: TextStyle(
                     fontSize: 20,
                     fontFamily: StringConstants.NewYork,

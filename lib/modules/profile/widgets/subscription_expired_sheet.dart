@@ -3,6 +3,7 @@ import 'package:elkitap/core/theme/app_colors.dart';
 import 'package:elkitap/modules/profile/widgets/promocode_sheet.dart';
 import 'package:elkitap/modules/profile/widgets/subscription_plans_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SubscriptionExpiredSheet extends StatelessWidget {
   const SubscriptionExpiredSheet({Key? key}) : super(key: key);
@@ -47,8 +48,8 @@ class SubscriptionExpiredSheet extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 24),
-          const Text(
-            'Subscription',
+           Text(
+            'subscription'.tr,
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
@@ -65,11 +66,11 @@ class SubscriptionExpiredSheet extends StatelessWidget {
                   ),
                   child: Image.asset('assets/images/a2.png')),
               const SizedBox(width: 16),
-              const Column(
+               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Account',
+                    'account'.tr,
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 13,
@@ -89,20 +90,20 @@ class SubscriptionExpiredSheet extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 24),
-          const Align(
+           Align(
             alignment: Alignment.centerLeft,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Expired date is 31st October',
+                  'expired_date_is_t'.tr,
                   style: TextStyle(
                     color: Colors.grey,
                     fontSize: 14,
                   ),
                 ),
                 Text(
-                  'Your subscription expired',
+                  'subscription_expired_status_t'.tr,
                   style: TextStyle(
                     color: Color(0xFFFF5722),
                     fontSize: 16,
@@ -125,8 +126,8 @@ class SubscriptionExpiredSheet extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: const Text(
-                    'Extend',
+                  child:  Text(
+                    'extend_button_t'.tr,
                     style: TextStyle(
                       fontSize: 18,
                       fontFamily: StringConstants.SFPro,
@@ -147,8 +148,8 @@ class SubscriptionExpiredSheet extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: const Text(
-                    'Promocode',
+                  child:  Text(
+                    'promocode'.tr,
                     style: TextStyle(
                       fontSize: 18,
                       color: Colors.black,

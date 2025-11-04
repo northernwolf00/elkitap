@@ -16,7 +16,7 @@ class NotSubscribedView extends StatelessWidget {
       children: [
         const SizedBox(height: 25),
         Text(
-          "Not subscribed",
+         "not_subscribed_t".tr,
           style: const TextStyle(
              fontFamily: StringConstants.SFPro,
             fontSize: 14,

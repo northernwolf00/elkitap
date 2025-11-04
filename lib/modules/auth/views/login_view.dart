@@ -1,4 +1,5 @@
 import 'package:elkitap/core/constants/string_constants.dart';
+import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:elkitap/global_widgets/language_sellector.dart';
 import 'package:elkitap/modules/auth/widget/otp_bottom_sheet.dart';
 import 'package:elkitap/modules/profile/widgets/help_and_support_sheet.dart';
@@ -15,6 +16,7 @@ class AuthViewScreen extends StatefulWidget {
 class _AuthViewScreenState extends State<AuthViewScreen> {
   final TextEditingController _phoneController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
+    String selectedLanguage = 'turkmen'.tr;
 
   bool _isFocused = false;
   bool _isValid = false;
@@ -130,13 +132,8 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                     child: Container(
                       width: 28,
                       height: 28,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.black, width: 1.5),
-                      ),
-                      child: Text(
-                        'questionMark'.tr,
-                    ),
+                     
+                      child: CustomIcon(title: '', height:28 , width: 28, color: Colors.black)
                   ),)
                 ],
               ),

@@ -21,9 +21,9 @@ class RecentlyViewedSection extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: const [
+          children:  [
             Text(
-              "Recently Viewed",
+              'recently_viewed_t'.tr,
               style: TextStyle(
                 fontSize: 20,
                 fontFamily: StringConstants.NewYork,
@@ -31,7 +31,7 @@ class RecentlyViewedSection extends StatelessWidget {
               ),
             ),
             Text(
-              "Clear",
+              "clear".tr,
               style: TextStyle(fontSize: 17, 
                fontFamily: StringConstants.SFPro,
               fontWeight: FontWeight.w500),

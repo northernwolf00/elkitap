@@ -514,11 +514,27 @@ class AudiobookPlayerScreen extends StatelessWidget {
   static void showSleepTimerPopup(
       BuildContext context, AudioPlayerController controller) {
     final timers = [
-      {'duration': const Duration(hours: 1), 'label': '1 hour'},
-      {'duration': const Duration(minutes: 45), 'label': '45 minutes'},
-      {'duration': const Duration(minutes: 15), 'label': '15 minutes'},
-      {'duration': const Duration(minutes: 10), 'label': '10 minutes'},
-      {'duration': const Duration(minutes: 5), 'label': '5 minutes'},
+   {
+    'duration': const Duration(hours: 1),
+   
+    'label': '1 ${'hour_t'.tr}',
+  },
+  {
+    'duration': const Duration(minutes: 45),
+    'label': '45 ${'minute_t'.tr}',
+  },
+  {
+    'duration': const Duration(minutes: 15),
+    'label': '15 ${'minute_t'.tr}',
+  },
+  {
+    'duration': const Duration(minutes: 10),
+    'label': '10 ${'minute_t'.tr}',
+  },
+  {
+    'duration': const Duration(minutes: 5),
+    'label': '5 ${'minute_t'.tr}',
+  },
       {'duration': null, 'label': 'Off'},
     ];
 
@@ -556,7 +572,7 @@ class AudiobookPlayerScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.all(16),
                           child: Text(
-                            'When Current chapter ends',
+                           'chapter_end_t'.tr,
                             style: const TextStyle(
                               fontSize: 17,
                               fontFamily: 'SF Pro',
@@ -597,7 +613,7 @@ class AudiobookPlayerScreen extends StatelessWidget {
                                               timerLabel,
                                               style: const TextStyle(
                                                 fontSize: 17,
-                                                fontFamily: 'SF Pro',
+                                                fontFamily: 'SFPro',
                                                 fontWeight: FontWeight.w400,
                                                 color: Colors.white,
                                               ),
@@ -679,11 +695,11 @@ class AudiobookPlayerScreen extends StatelessWidget {
                                 size: 24,
                               ),
                               const SizedBox(width: 12),
-                              const Text(
-                                'Broadcasting',
+                               Text(
+                                'broadcasting_t'.tr,
                                 style: TextStyle(
                                   fontSize: 17,
-                                  fontFamily: 'SF Pro',
+                                  fontFamily: 'SFPro',
                                   fontWeight: FontWeight.w600,
                                   color: Colors.white,
                                 ),
@@ -833,10 +849,10 @@ class AudiobookPlayerScreen extends StatelessWidget {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                    'Unknown Device',
+                                                   'unknown_device_t'.tr,
                                                     style: const TextStyle(
                                                       fontSize: 17,
-                                                      fontFamily: 'SF Pro',
+                                                      fontFamily: 'SFPro',
                                                       fontWeight:
                                                           FontWeight.w400,
                                                       color: Colors.white,

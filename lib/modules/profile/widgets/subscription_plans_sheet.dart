@@ -51,11 +51,11 @@ class _SubscriptionPlansSheetState extends State<SubscriptionPlansSheet> {
                   ),
                   child: Image.asset('assets/images/a2.png')),
               const SizedBox(width: 16),
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Account',
+                    'account'.tr,
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 13,
@@ -94,12 +94,12 @@ class _SubscriptionPlansSheetState extends State<SubscriptionPlansSheet> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Payment by credit card',
+                    Text(
+                      'payment_credit_card_t'.tr,
                       style: TextStyle(color: Colors.grey, fontSize: 12),
                     ),
-                    const Text(
-                      'Choose Bank',
+                    Text(
+                      'choose_bank_t'.tr,
                       style:
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
@@ -121,12 +121,39 @@ class _SubscriptionPlansSheetState extends State<SubscriptionPlansSheet> {
                 child: ListView(
                   children: [
                     _buildPlanOption(
-                        0, '12 months', '195 TMT', '420 TMT', 'Save 60 TMT'),
+                        0,
+                        'duration_12_months_t'.tr, // '12 months'
+                        '195 ${'currency_tmt_t'.tr}', // '195 TMT'
+                        '420 ${'currency_tmt_t'.tr}', // '420 TMT'
+                        'save_discount_t'
+                            .trParams({'amount': '60'}) // 'Save 60 TMT'
+                        ),
+
                     _buildPlanOption(
-                        1, '6 months', '195 TMT', '210 TMT', 'Save 15 TMT'),
+                        1,
+                        'duration_6_months_t'.tr,
+                        '195 ${'currency_tmt_t'.tr}',
+                        '210 ${'currency_tmt_t'.tr}',
+                        'save_discount_t'
+                            .trParams({'amount': '15'}) // 'Save 15 TMT'
+                        ),
+
                     _buildPlanOption(
-                        2, '3 months', '99 TMT', '99 TMT', 'Save 6 TMT'),
-                    _buildPlanOption(3, '1 months', '35 TMT', null, null),
+                        2,
+                        'duration_3_months_t'.tr,
+                        '99 ${'currency_tmt_t'.tr}',
+                        '99 ${'currency_tmt_t'.tr}',
+                        'save_discount_t'
+                            .trParams({'amount': '6'}) // 'Save 6 TMT'
+                        ),
+
+                    _buildPlanOption(
+                      3,
+                      'duration_1_months_t'.tr,
+                      '35 ${'currency_tmt_t'.tr}',
+                      null, // No old price
+                      null, // No save text
+                    ),
                   ],
                 ),
               ),
@@ -150,8 +177,8 @@ class _SubscriptionPlansSheetState extends State<SubscriptionPlansSheet> {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              child: const Text(
-                'Subscribe: 12months / 180 TMT',
+              child:  Text(
+                'subscribe_call_to_action_t'.tr,
                 style: TextStyle(
                     fontSize: 16,
                     color: Colors.white,

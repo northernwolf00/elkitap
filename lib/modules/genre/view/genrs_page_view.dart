@@ -114,8 +114,8 @@ class _Header extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: const Text(
-            "Health, Mind & Body",
+          child:  Text(
+            "health_mind_body_t".tr,
             style: TextStyle(
                 fontSize: 26,
                 fontFamily: StringConstants.NewYork,

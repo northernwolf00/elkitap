@@ -36,13 +36,18 @@ Widget horizontalBookList(List<String> covers) {
       scrollDirection: Axis.horizontal,
       itemCount: covers.length,
       separatorBuilder: (_, __) => const SizedBox(width: 10),
-      itemBuilder: (_, i) => Container(
-        width: 100,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          image: DecorationImage(
-            image: AssetImage(covers[i]),
-            fit: BoxFit.cover,
+      itemBuilder: (_, i) => GestureDetector(
+        onTap: (){
+          
+        },
+        child: Container(
+          width: 100,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            image: DecorationImage(
+              image: AssetImage(covers[i]),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
       ),
