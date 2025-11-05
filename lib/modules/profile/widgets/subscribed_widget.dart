@@ -1,6 +1,6 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/core/theme/app_colors.dart';
-import 'package:elkitap/modules/profile/widgets/subscription_expired_sheet.dart';
+import 'package:elkitap/modules/paymant/widget/subscription_expired_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

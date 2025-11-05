@@ -1,7 +1,7 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/core/theme/app_colors.dart';
-import 'package:elkitap/modules/profile/widgets/promocode_sheet.dart';
-import 'package:elkitap/modules/profile/widgets/subscription_plans_sheet.dart';
+import 'package:elkitap/modules/paymant/view/promocode_sheet.dart';
+import 'package:elkitap/modules/paymant/view/subscription_plans_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
