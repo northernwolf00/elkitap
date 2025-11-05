@@ -11,11 +11,11 @@ class CollectionsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final collections = [
-      {"icon": 'assets/icons/m1.svg', "title": "Want to Read", "count": 5},
-      {"icon": 'assets/icons/m2.svg', "title": "Want to Listen", "count": 5},
-      {"icon": 'assets/icons/m3.svg', "title": "Notes", "count": 2},
-      {"icon": 'assets/icons/m4.svg', "title": "Finished", "count": 1},
-      {"icon": 'assets/icons/m5.svg', "title": "Downloaded", "count": 2},
+      {"icon": 'assets/icons/m1.svg', "title": 'wantToRead'.tr, "count": 5},
+      {"icon": 'assets/icons/m2.svg', "title": 'wantToListen'.tr, "count": 5},
+      {"icon": 'assets/icons/m3.svg', "title": 'notes'.tr, "count": 2},
+      {"icon": 'assets/icons/m4.svg', "title": 'finished'.tr, "count": 1},
+      {"icon": 'assets/icons/m5.svg', "title": 'downloaded'.tr, "count": 2},
     ];
 
     return Padding(
@@ -23,8 +23,8 @@ class CollectionsSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "Collections",
+          Text(
+            'collections'.tr,
             style: TextStyle(fontSize: 18,
              fontFamily: StringConstants.NewYork,
              fontWeight: FontWeight.bold),

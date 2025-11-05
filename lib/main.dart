@@ -3,6 +3,7 @@ import 'package:elkitap/core/init/theme_controller.dart';
 import 'package:elkitap/core/init/translation_service.dart';
 import 'package:elkitap/core/theme/custom_dark_theme.dart';
 import 'package:elkitap/core/theme/custom_light_theme.dart';
+import 'package:elkitap/modules/audio_player/controllers/audio_player_controller.dart';
 import 'package:elkitap/modules/audio_player/views/global_mini_player.dart';
 
 import 'package:elkitap/modules/splash/views/splash_view.dart';
@@ -47,14 +48,19 @@ class MyApp extends StatelessWidget {
               child: Stack(
                 children: [
                   child ?? const SizedBox.shrink(),
-
-                  // Global mini player overlay
-                  const Positioned(
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    child: GlobalMiniPlayer(),
-                  ),
+                  Obx(() {
+                    final miniPlayerCtrl =
+                        Get.find<GlobalMiniPlayerController>();
+                    return Visibility(
+                      visible: miniPlayerCtrl.isVisible.value,
+                      child: const Positioned(
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        child: GlobalMiniPlayer(),
+                      ),
+                    );
+                  }),
                 ],
               ),
             );

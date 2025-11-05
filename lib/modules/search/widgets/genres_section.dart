@@ -8,31 +8,31 @@ class GenresSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final genres = [
-      "Biography & Memories",
-      "Business & Personal Finance",
-      "Comics & Graphic Novels",
-      "Cookbooks, Food & Wine",
-      "Education",
-      "Fiction & Literature",
-      "Health, Mind & Body",
-      "History",
-      "Kids",
-      "Mysteries & Thrillers",
-      "Nonfiction",
-      "Politics & Current Events",
-      "Religion & Spirituality",
-      "Romance",
-      "Sci-Fi & Fantasy",
-      "Sports & Outdoors",
-      "Young Adult",
+     final genres = const [
+      "genre_biography_t",
+      "genre_business_t",
+      "genre_comics_t",
+      "genre_cookbooks_t",
+      "genre_education_t",
+      "genre_fiction_t",
+      "genre_health_mind_body_t",
+      "genre_history_t",
+      "genre_kids_t",
+      "genre_mysteries_t",
+      "genre_nonfiction_t",
+      "genre_politics_t",
+      "genre_religion_t",
+      "genre_romance_t",
+      "genre_scifi_t",
+      "genre_sports_t",
+      "genre_young_adult_t",
     ];
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          "Genres",
+         Text(
+         "genres_title_t".tr,
           style: TextStyle(
             fontSize: 20,
             fontFamily: StringConstants.NewYork,
@@ -49,7 +49,7 @@ class GenresSection extends StatelessWidget {
           itemBuilder: (context, index) {
             return ListTile(
               contentPadding: EdgeInsets.zero,
-              title: Text(genres[index],
+              title: Text(genres[index].tr,
               style: TextStyle(
                  fontFamily: StringConstants.SFPro,
               ),),

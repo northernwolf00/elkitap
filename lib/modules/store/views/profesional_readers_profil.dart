@@ -16,35 +16,30 @@ class ProfesionalReadersProfil extends StatefulWidget {
 class _ProfesionalReadersProfilState extends State<ProfesionalReadersProfil> {
   bool isExpanded = false;
 
-  final String shortBio =
-      "Сегодня в рубрике «Профессии» у нас в гостях региональный директор Yüpekçi. Он поделится с вами тремя...";
-
-  final String fullBio =
-      "Сегодня в рубрике «Профессии» у нас в гостях региональный директор Yüpekçi. Он поделится с вами тремя замечательными книгами, которые помогут вам научиться договариваться, продавать и глубже понимать потребности клиентов. Эти произведения не только развивают навыки общения, но и значительно повышают вашу эффективность в бизнесе. Обязательно присоединяйтесь к нам!";
-  final List<Map<String, dynamic>> books = [
-    {
-      'title': 'The Subtle Art of Not Giving a F*ck',
-      'author': 'Mark Manson',
-      'description':
-          'Mark Manson\'s "The Subtle Art of Not Giving a F*ck" is a blunt, humorous guide to living by choosing your battles wisely.',
-      'imageUrl': 'assets/images/b1.png',
-      'buttonText': 'Continue',
-      'buttonColor': const Color(0xFFFF5722),
-      'buttonTextColor': Colors.white,
-    },
-    {
-      'title': 'Falling bodies',
-      'author': 'Rebecca Roanhorse',
-      'description':
-          'Book by Rebecca Roanhorse is a gripping sci-fi tale exploring identity and colonialism\'s impact in a universe under alien rule.',
-      'imageUrl': 'assets/images/b2.png',
-      'buttonText': 'Read',
-      'buttonColor': Colors.grey[200],
-      'buttonTextColor': Colors.black,
-    },
-  ];
+    final String shortBio = "bio_short_t";
+    final String fullBio = "bio_full_t";
   @override
   Widget build(BuildContext context) {
+     final List<Map<String, dynamic>> books = [
+      {
+        'title': 'book_subtle_art_title_t'.tr, // Localized Title
+        'author': 'Mark Manson', // Author names usually remain untranslated
+        'description': 'book_subtle_art_desc_t'.tr, // Localized Description
+        'imageUrl': 'assets/images/b1.png',
+        'buttonText': 'continue_button_t'.tr, // Using new key
+        'buttonColor': const Color(0xFFFF5722),
+        'buttonTextColor': Colors.white,
+      },
+      {
+        'title': 'falling_bodies_t'.tr, // Assuming this key already exists
+        'author': 'Rebecca Roanhorse', // Author names usually remain untranslated
+        'description': 'book_falling_bodies_desc_t'.tr, // Localized Description
+        'imageUrl': 'assets/images/b2.png',
+        'buttonText': 'read_button_t'.tr, // Using new key
+        'buttonColor': Colors.grey[200],
+        'buttonTextColor': Colors.black,
+      },
+    ];
     return Scaffold(
       appBar: CustomAppBar(title: '', leadingText: 'leading_text'.tr),
       body: SafeArea(
@@ -144,10 +139,10 @@ class _ProfesionalReadersProfilState extends State<ProfesionalReadersProfil> {
                                 height: 1.5,
                               ),
                               children: [
-                                TextSpan(text: isExpanded ? fullBio : shortBio),
+                                TextSpan(text: isExpanded ? fullBio.tr : shortBio.tr),
                                 TextSpan(
                                   text:
-                                      isExpanded ? ' Show Less' : ' Show More',
+                                      isExpanded ? 'show_less_t'.tr : 'show_more_t'.tr,
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontFamily: StringConstants.SFPro,

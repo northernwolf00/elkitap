@@ -12,11 +12,11 @@ class PopularByGenreSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final genres = [
-      "Fiction & Literature",
-      "Nonfiction",
-      "Science Fiction",
-      "Fantasy",
-      "Mystery & Thriller",
+      'genre_fiction_t',            // "Fiction & Literature"
+  'genre_nonfiction_t',         // "Nonfiction"
+  'genre_science_fiction_t',    // "Science Fiction"
+  'genre_fantasy_t',            // "Fantasy"
+  'genre_mystery_thriller_t',
     ];
 
     return Padding(
@@ -25,8 +25,8 @@ class PopularByGenreSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 22),
-          const Text(
-            "Popular by Genre",
+           Text(
+            "popular_by_genre_t".tr,
             style: TextStyle(
               fontSize: 20,
               fontFamily: StringConstants.NewYork,
@@ -46,13 +46,13 @@ class PopularByGenreSection extends StatelessWidget {
                     const SizedBox(height: 22),
                     GestureDetector(
                       onTap: () {
-                        Get.to(() => BooksGridScreen(title: genre));
+                        Get.to(() => BooksGridScreen(title: genre.tr));
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Text(
-                            genre,
+                            genre.tr,
                             style: const TextStyle(
                               fontSize: 18,
                               fontFamily: StringConstants.NewYork,

@@ -2,7 +2,6 @@ import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class PaymentHistoryBottomSheet extends StatelessWidget {
   const PaymentHistoryBottomSheet({super.key});
 
@@ -13,14 +12,15 @@ class PaymentHistoryBottomSheet extends StatelessWidget {
     return Container(
       height: sheetHeight,
       decoration: BoxDecoration(
-        color: Theme.of(context).scaffoldBackgroundColor, // Use theme background color
+        color: Theme.of(context)
+            .scaffoldBackgroundColor, // Use theme background color
         borderRadius: const BorderRadius.vertical(top: Radius.circular(20.0)),
       ),
       child: Column(
         children: [
-       
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
             child: Row(
               children: [
                 GestureDetector(
@@ -29,114 +29,133 @@ class PaymentHistoryBottomSheet extends StatelessWidget {
                   },
                   child: Icon(
                     Icons.arrow_back_ios, // Back icon
-                    color: Theme.of(context).iconTheme.color, // Theme-adaptive icon color
+                    color: Theme.of(context)
+                        .iconTheme
+                        .color, // Theme-adaptive icon color
                     size: 20,
                   ),
                 ),
                 const SizedBox(width: 10),
                 Text(
-                   'profile'.tr, // Text for 'Profile'
+                  'profile'.tr, // Text for 'Profile'
                   style: TextStyle(
                     fontSize: 18,
-                     fontFamily: StringConstants.SFPro,
+                    fontFamily: StringConstants.SFPro,
                     color: Theme.of(context).textTheme.bodyLarge!.color,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
                 Expanded(
                   child: Text(
-                    "Payment History", // Title of the bottom sheet
+                    "payment_history_title_t".tr, // Title of the bottom sheet
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 18,
-                       fontFamily: StringConstants.SFPro,
-                      fontWeight: FontWeight.bold, // Make it bold as in the image
+                      fontFamily: StringConstants.SFPro,
+                      fontWeight:
+                          FontWeight.bold, // Make it bold as in the image
                       color: Theme.of(context).textTheme.bodyLarge!.color,
                     ),
                   ),
                 ),
                 // An empty SizedBox to balance the row if there's no trailing widget
-                const SizedBox(width: 46), // Adjust to match combined width of back icon and "Profile" text
+                const SizedBox(
+                    width:
+                        46), // Adjust to match combined width of back icon and "Profile" text
               ],
             ),
           ),
-         
-          Expanded( // Use Expanded to allow the ListView to take available height
+          Expanded(
+            // Use Expanded to allow the ListView to take available height
             child: ListView(
               padding: EdgeInsets.zero, // Remove default ListView padding
               children: [
                 _buildPaymentItem(
                   context,
-                  status: "Successfully paid",
-                  bankService: "Rysgal Bank",
-                  date: "20 Apr 2025 17:34",
-                  amount: "50 man",
-                  duration: "6 months",
+                  status: "status_paid_t".tr,
+                  bankService: "bank_rysgal_t".tr,
+                  date:
+                      "20 Apr 2025 17:34", // Dates are usually formatted dynamically, but stored here as a placeholder
+                  amount:
+                      "50 ${'currency_man_t'.tr}", // Combining amount with localized currency unit
+                  duration: "duration_6_months_t".tr,
                   isPaid: true,
                 ),
                 _buildPaymentItem(
                   context,
-                  status: "Unpaid",
-                  bankService: "Rysgal Bank",
+                  status: "status_unpaid_t".tr,
+                  bankService: "bank_rysgal_t".tr,
                   date: "20 Apr 2025 17:34",
-                  amount: "10 man",
-                  duration: "1 months",
+                  amount: "10 ${'currency_man_t'.tr}",
+                  duration: "duration_1_month_t".tr,
                   isPaid: false,
                 ),
                 _buildPaymentItem(
                   context,
-                  status: "Unpaid",
-                  bankService: "Reedem",
+                  status: "status_unpaid_t".tr,
+                  bankService: "bank_reedem_t".tr,
                   date: "20 Apr 2025 17:34",
-                  amount: "10 man",
-                  duration: "1 months",
+                  amount: "10 ${'currency_man_t'.tr}",
+                  duration: "duration_1_month_t".tr,
                   isPaid: false,
                 ),
                 _buildPaymentItem(
                   context,
-                  status: "Successfully paid",
-                  bankService: "Altyn Asyr",
-                  date: "20 Apr 2025 17:34",
-                  amount: "10 man",
-                  duration: "1 months",
+                  status: "status_paid_t".tr,
+                  bankService: "bank_rysgal_t".tr,
+                  date:
+                      "20 Apr 2025 17:34", // Dates are usually formatted dynamically, but stored here as a placeholder
+                  amount:
+                      "50 ${'currency_man_t'.tr}", // Combining amount with localized currency unit
+                  duration: "duration_6_months_t".tr,
                   isPaid: true,
                 ),
                 _buildPaymentItem(
                   context,
-                  status: "Successfully paid",
-                  bankService: "Altyn Asyr",
-                  date: "30 Apr 2025 17:34",
-                  amount: "10 man",
-                  duration: "1 months",
+                  status: "status_unpaid_t".tr,
+                  bankService: "bank_rysgal_t".tr,
+                  date: "20 Apr 2025 17:34",
+                  amount: "10 ${'currency_man_t'.tr}",
+                  duration: "duration_1_month_t".tr,
+                  isPaid: false,
+                ),
+                _buildPaymentItem(
+                  context,
+                  status: "status_unpaid_t".tr,
+                  bankService: "bank_reedem_t".tr,
+                  date: "20 Apr 2025 17:34",
+                  amount: "10 ${'currency_man_t'.tr}",
+                  duration: "duration_1_month_t".tr,
+                  isPaid: false,
+                ),
+                _buildPaymentItem(
+                  context,
+                  status: "status_paid_t".tr,
+                  bankService: "bank_rysgal_t".tr,
+                  date:
+                      "20 Apr 2025 17:34", // Dates are usually formatted dynamically, but stored here as a placeholder
+                  amount:
+                      "50 ${'currency_man_t'.tr}", // Combining amount with localized currency unit
+                  duration: "duration_6_months_t".tr,
                   isPaid: true,
                 ),
-                 _buildPaymentItem(
+                _buildPaymentItem(
                   context,
-                  status: "Successfully paid",
-                  bankService: "Altyn Asyr",
+                  status: "status_unpaid_t".tr,
+                  bankService: "bank_rysgal_t".tr,
                   date: "20 Apr 2025 17:34",
-                  amount: "10 man",
-                  duration: "1 months",
-                  isPaid: true,
+                  amount: "10 ${'currency_man_t'.tr}",
+                  duration: "duration_1_month_t".tr,
+                  isPaid: false,
                 ),
-                 _buildPaymentItem(
+                _buildPaymentItem(
                   context,
-                  status: "Successfully paid",
-                  bankService: "Altyn Asyr",
+                  status: "status_unpaid_t".tr,
+                  bankService: "bank_reedem_t".tr,
                   date: "20 Apr 2025 17:34",
-                  amount: "10 man",
-                  duration: "1 months",
-                  isPaid: true,
-                ),
-                 _buildPaymentItem(
-                  context,
-                  status: "Successfully paid",
-                  bankService: "Altyn Asyr",
-                  date: "20 Apr 2025 17:34",
-                  amount: "10 man",
-                  duration: "1 months",
-                  isPaid: true,
-                  showDivider: false, // No divider for the last item
+                  amount: "10 ${'currency_man_t'.tr}",
+                  duration: "duration_1_month_t".tr,
+                  isPaid: false,
                 ),
                 // Add more _buildPaymentItem widgets for more history entries
               ],
@@ -160,10 +179,12 @@ class PaymentHistoryBottomSheet extends StatelessWidget {
     // Define colors based on theme and status
     final Color statusColor = isPaid
         ? Colors.green // Green for 'Successfully paid'
-        : Colors.red;   // Red for 'Unpaid'
+        : Colors.red; // Red for 'Unpaid'
 
-    final Color primaryTextColor = Theme.of(context).textTheme.bodyLarge!.color!;
-    final Color secondaryTextColor = Theme.of(context).textTheme.bodySmall!.color!;
+    final Color primaryTextColor =
+        Theme.of(context).textTheme.bodyLarge!.color!;
+    final Color secondaryTextColor =
+        Theme.of(context).textTheme.bodySmall!.color!;
 
     return Column(
       children: [
@@ -181,7 +202,7 @@ class PaymentHistoryBottomSheet extends StatelessWidget {
                       status,
                       style: TextStyle(
                         fontSize: 16,
-                         fontFamily: StringConstants.SFPro,
+                        fontFamily: StringConstants.SFPro,
                         fontWeight: FontWeight.w500, // Medium bold
                         color: statusColor,
                       ),
@@ -191,8 +212,9 @@ class PaymentHistoryBottomSheet extends StatelessWidget {
                       bankService,
                       style: TextStyle(
                         fontSize: 14,
-                         fontFamily: StringConstants.SFPro,
-                        color: primaryTextColor.withOpacity(0.8), // Slightly less opaque
+                        fontFamily: StringConstants.SFPro,
+                        color: primaryTextColor
+                            .withOpacity(0.8), // Slightly less opaque
                       ),
                     ),
                     const SizedBox(height: 2),
@@ -200,7 +222,7 @@ class PaymentHistoryBottomSheet extends StatelessWidget {
                       date,
                       style: TextStyle(
                         fontSize: 12,
-                         fontFamily: StringConstants.SFPro,
+                        fontFamily: StringConstants.SFPro,
                         color: secondaryTextColor,
                       ),
                     ),
@@ -215,7 +237,7 @@ class PaymentHistoryBottomSheet extends StatelessWidget {
                     amount,
                     style: TextStyle(
                       fontSize: 16,
-                       fontFamily: StringConstants.SFPro,
+                      fontFamily: StringConstants.SFPro,
                       fontWeight: FontWeight.w500, // Medium bold
                       color: primaryTextColor,
                     ),
@@ -225,7 +247,7 @@ class PaymentHistoryBottomSheet extends StatelessWidget {
                     duration,
                     style: TextStyle(
                       fontSize: 12,
-                       fontFamily: StringConstants.SFPro,
+                      fontFamily: StringConstants.SFPro,
                       color: secondaryTextColor,
                     ),
                   ),
@@ -247,4 +269,3 @@ class PaymentHistoryBottomSheet extends StatelessWidget {
     );
   }
 }
-

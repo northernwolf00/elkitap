@@ -1,4 +1,5 @@
 import 'package:elkitap/core/constants/string_constants.dart';
+import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:elkitap/global_widgets/language_sellector.dart';
 import 'package:elkitap/modules/auth/widget/otp_bottom_sheet.dart';
 import 'package:elkitap/modules/profile/widgets/help_and_support_sheet.dart';
@@ -15,6 +16,7 @@ class AuthViewScreen extends StatefulWidget {
 class _AuthViewScreenState extends State<AuthViewScreen> {
   final TextEditingController _phoneController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
+    String selectedLanguage = 'turkmen'.tr;
 
   bool _isFocused = false;
   bool _isValid = false;
@@ -130,28 +132,16 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                     child: Container(
                       width: 28,
                       height: 28,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.black, width: 1.5),
-                      ),
-                      child: const Center(
-                        child: Text(
-                          '?',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                     
+                      child: CustomIcon(title: '', height:28 , width: 28, color: Colors.black)
+                  ),)
                 ],
               ),
             ),
 
             const SizedBox(height: 40),
-            const Text(
-              'Phone Number',
+            Text(
+              'phoneNumber'.tr,
               style: TextStyle(
                 fontSize: 28,
                 fontFamily: StringConstants.SFPro,
@@ -159,8 +149,8 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Enter your number to login your account.',
+            Text(
+              'enterNumberToLogin'.tr,
               style: TextStyle(
                 fontSize: 15,
                 fontFamily: StringConstants.SFPro,
@@ -175,8 +165,8 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Phone number',
+                  Text(
+                    'phoneNumber'.tr,
                     style: TextStyle(
                       fontSize: 15,
                       fontFamily: StringConstants.SFPro,
@@ -194,8 +184,8 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                         horizontal: 16, vertical: 14),
                     child: Row(
                       children: [
-                        const Text(
-                          '+993',
+                        Text(
+                          'countryCode'.tr,
                           style: TextStyle(
                             fontSize: 17,
                             fontFamily: StringConstants.SFPro,
@@ -246,7 +236,7 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                   ),
                   child: Center(
                     child: Text(
-                      'Continue',
+                      'continue_text'.tr,
                       style: TextStyle(
                         fontSize: 17,
                         fontFamily: StringConstants.SFPro,
@@ -263,7 +253,7 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: RichText(
                 textAlign: TextAlign.center,
-                text: const TextSpan(
+                text:  TextSpan(
                   style: TextStyle(
                     fontSize: 13,
                     fontFamily: StringConstants.SFPro,
@@ -271,17 +261,17 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                     fontWeight: FontWeight.w400,
                   ),
                   children: [
-                    TextSpan(text: 'By pressing Continue, you agree to the '),
+                    TextSpan(text: 'byPressingContinue'.tr),
                     TextSpan(
-                      text: 'Terms of Use',
+                      text: 'termsOfUse'.tr,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    TextSpan(text: ' and\n'),
+                    TextSpan(text: 'andNewLine'.tr),
                     TextSpan(
-                      text: 'Privacy Policy',
+                      text: 'privacyPolicy'.tr,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,

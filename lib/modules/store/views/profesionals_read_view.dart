@@ -10,7 +10,7 @@ class ProfessionalsReadView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-          title: 'Professionals read', leadingText: 'leading_text'.tr),
+          title: 'professionals_read_t'.tr, leadingText: 'leading_text'.tr),
       body: ListView(
         children: const [
           ProfessionalCard(

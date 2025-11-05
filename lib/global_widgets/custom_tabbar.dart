@@ -1,6 +1,7 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomTabBar extends StatefulWidget {
   final Function(int) onTabChanged;
@@ -21,7 +22,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
       child: Row(
         children: [
           _TabItem(
-            text: "Books",
+            text: "books_t".tr,
             isSelected: selectedIndex == 0,
             onTap: () {
               setState(() {
@@ -30,9 +31,9 @@ class _CustomTabBarState extends State<CustomTabBar> {
               widget.onTabChanged(0);
             },
           ),
-          const SizedBox(width: 24),
+          const SizedBox(width: 14),
           _TabItem(
-            text: "Audiobooks",
+            text: "audio_book".tr,
             isSelected: selectedIndex == 1,
             onTap: () {
               setState(() {
@@ -81,7 +82,7 @@ class _TabItem extends StatelessWidget {
           const SizedBox(height: 4),
           Container(
             height: 1.5,
-            width: text.length * 18.0,
+            width: text.length * 15.0,
             decoration: BoxDecoration(
               color: isSelected ? Colors.grey[300] : Colors.transparent,
               borderRadius: BorderRadius.circular(2),

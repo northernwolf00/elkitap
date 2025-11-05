@@ -21,7 +21,7 @@ PreferredSizeWidget customAppBar(
                 Get.back();
               },
             ),
-             Text(
+            Text(
               'leading_text'.tr,
               style: TextStyle(
                   fontSize: 17,
@@ -35,8 +35,8 @@ PreferredSizeWidget customAppBar(
           onPressed: controller.selectAll,
           child: Text(
             controller.selectedBooks.length == controller.books.length
-                ? 'Deselect All'
-                : 'Select All',
+                ? 'deselectAll'.tr
+                : 'selectAll'.tr,
             style: TextStyle(
                 fontFamily: StringConstants.SFPro,
                 fontSize: 16,
@@ -89,8 +89,8 @@ PreferredSizeWidget customAppBar(
                           Text(
                               controller.selectedBooks.length ==
                                       controller.books.length
-                                  ? 'Deselect All'
-                                  : 'Select All',
+                                  ? 'deselectAll'.tr
+                                  : 'selectAll'.tr,
                               style: TextStyle()),
                           const Spacer(),
                           CustomIcon(
@@ -122,7 +122,7 @@ PreferredSizeWidget customAppBar(
                               size: 18,
                             ),
                           const SizedBox(width: 8),
-                          const Text('Grid View',
+                          Text('gridView'.tr,
                               style: TextStyle(
                                 fontFamily: StringConstants.SFPro,
                               )),
@@ -152,7 +152,7 @@ PreferredSizeWidget customAppBar(
                               size: 18,
                             ),
                           const SizedBox(width: 8),
-                          const Text('List View',
+                          Text('listView'.tr,
                               style: TextStyle(
                                 fontFamily: StringConstants.SFPro,
                               )),
@@ -187,8 +187,8 @@ PreferredSizeWidget customAppBar(
               children: [
                 TextButton(
                   onPressed: () => controller.showRemoveDialog(Get.context!),
-                  child: const Text(
-                    'Remove',
+                  child: Text(
+                    'remove'.tr,
                     style: TextStyle(
                       fontFamily: StringConstants.SFPro,
                       color: Colors.red,
@@ -200,7 +200,7 @@ PreferredSizeWidget customAppBar(
                 TextButton(
                   onPressed: () => controller.selectedBooks.clear(),
                   child: Text(
-                    'Done',
+                    'done'.tr,
                     style: TextStyle(
                       fontFamily: StringConstants.SFPro,
                       color: Theme.of(context).brightness == Brightness.dark

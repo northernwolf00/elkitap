@@ -1,5 +1,6 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomBottomSheet extends StatelessWidget {
   const CustomBottomSheet({super.key});
@@ -45,18 +46,22 @@ class CustomBottomSheet extends StatelessWidget {
                           Navigator.pop(context);
                         },
                         child: Icon(Icons.arrow_back_ios, size: 20)),
-                    const Text(
-                      'Profile',
-                      style: TextStyle(fontSize: 16,  fontFamily: StringConstants.SFPro,),
+                    Text(
+                      'profile'.tr,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontFamily: StringConstants.SFPro,
+                      ),
                     ),
-                    const Expanded(
+                     Expanded(
                       child: Center(
                         child: Text(
-                          'Legal Terms of Use',
+                          'legal_terms_of_use'.tr,
                           style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                               fontFamily: StringConstants.SFPro,),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            fontFamily: StringConstants.SFPro,
+                          ),
                         ),
                       ),
                     ),
@@ -71,8 +76,8 @@ class CustomBottomSheet extends StatelessWidget {
                   controller: scrollController,
                   padding: const EdgeInsets.all(24),
                   children: [
-                    const Text(
-                      'Legal Terms of Use',
+                     Text(
+                      'legal_terms_of_use'.tr,
                       style: TextStyle(
                         fontSize: 32,
                         fontFamily: StringConstants.NewYork,
@@ -81,7 +86,7 @@ class CustomBottomSheet extends StatelessWidget {
                     ),
 
                     Text(
-                      'Last updated on 1/12/2025',
+                      'last_updated_on'.tr,
                       style: TextStyle(
                         fontFamily: StringConstants.SFPro,
                         fontSize: 13,
@@ -110,8 +115,8 @@ class CustomBottomSheet extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'General Rules',
+         Text(
+          'general_rules'.tr,
           style: TextStyle(
             fontSize: 20,
             fontFamily: StringConstants.NewYork,
@@ -120,7 +125,7 @@ class CustomBottomSheet extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         Text(
-          'Welcome to our platform! By using our services, you agree to comply with our Terms of Use. These terms outline your rights and responsibilities while using our website, including acceptable behavior, intellectual property rights, and limitations of liability. Please read them carefully to ensure a smooth experience. If you have any questions, feel free to reach out!',
+          'welcome_message'.tr,
           style: TextStyle(
             fontSize: 15,
             fontFamily: StringConstants.SFPro,

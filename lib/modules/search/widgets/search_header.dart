@@ -12,8 +12,8 @@ class SearchHeader extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 26),
-        const Text(
-          "Search",
+        Text(
+          'search'.tr,
           style: TextStyle(
             fontSize: 34,
             fontFamily: StringConstants.NewYork,
@@ -60,8 +60,8 @@ class SearchHeader extends StatelessWidget {
                       maxLines: 1,
                       onTapAlwaysCalled: true,
                       style: const TextStyle(color: Colors.black, fontSize: 14),
-                      decoration: const InputDecoration(
-                        hintText: 'Search',
+                      decoration:  InputDecoration(
+                        hintText: 'search'.tr,
                         border: InputBorder.none,
                         focusedBorder: InputBorder.none,
                         enabledBorder: InputBorder.none,

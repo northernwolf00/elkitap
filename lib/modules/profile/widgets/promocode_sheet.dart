@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class PromocodeSheet extends StatefulWidget {
   const PromocodeSheet({Key? key}) : super(key: key);
@@ -41,10 +42,10 @@ class _PromocodeSheetState extends State<PromocodeSheet> {
                   icon: const Icon(Icons.arrow_back_ios),
                   onPressed: () => Navigator.pop(context),
                 ),
-                const Expanded(
+                 Expanded(
                   child: Center(
                     child: Text(
-                      'Promocode',
+                      'promocode'.tr,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -81,16 +82,16 @@ class _PromocodeSheetState extends State<PromocodeSheet> {
                     ),
                   ),
                   const SizedBox(height: 32),
-                  const Text(
-                    'Use Gift Card',
+                   Text(
+                    'use_gift_card_t'.tr,
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 8),
-                  const Text(
-                    'Enter a promo code to use for subscription',
+                   Text(
+                    'promo_code_prompt_t'.tr,
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 14,
@@ -112,7 +113,7 @@ class _PromocodeSheetState extends State<PromocodeSheet> {
                               fontWeight: FontWeight.w500,
                             ),
                             decoration: InputDecoration(
-                              hintText: 'Enter promo code',
+                              hintText: 'enter_promo_code_hint_t'.tr,
                               hintStyle: TextStyle(
                                 color: Colors.grey[500],
                                 fontSize: 16,
@@ -171,7 +172,7 @@ class _PromocodeSheetState extends State<PromocodeSheet> {
                   elevation: 0,
                 ),
                 child: Text(
-                  'Use Promo code',
+                  'use_promo_code_button_t'.tr,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,

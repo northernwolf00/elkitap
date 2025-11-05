@@ -22,10 +22,10 @@ class RecentlyOpenedSection extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () {
-            Get.to(() => BooksGridScreen(title: 'Recently Opened'));
+            Get.to(() => BooksGridScreen(title: 'recentlyOpened'.tr));
           },
-          child: const Text(
-            "Recently Opened",
+          child: Text(
+            'recentlyOpened'.tr,
             style: TextStyle(
               fontSize: 20,
               fontFamily: StringConstants.NewYork,

@@ -25,10 +25,10 @@ class FeaturedBooksSection extends StatelessWidget {
           const SizedBox(height: 4),
           GestureDetector(
             onTap: () {
-              Get.to(() => BooksGridScreen(title: "We recommend",));
+              Get.to(() => BooksGridScreen(title: "we_recommend_t".tr,));
             },
-            child: const Text(
-              "We recommend",
+            child:  Text(
+              "we_recommend_t".tr,
               style: TextStyle(fontSize: 18,
               fontFamily:StringConstants.NewYork ,
                fontWeight: FontWeight.bold),

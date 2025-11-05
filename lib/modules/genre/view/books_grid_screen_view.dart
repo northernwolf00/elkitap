@@ -7,34 +7,34 @@ import 'package:get/get.dart';
 // ignore: must_be_immutable
 class BooksGridScreen extends StatelessWidget {
   late String title;
-  final List<Map<String, String>> books = [
+ final List<Map<String, String>> books = [
     {
-      'title': '12 Rules for Life',
+      'title': 'twelve_rules_for_life_t', // Use the key
       'author': 'Rebecca Roanhorse',
       'image': 'assets/images/b3.png',
     },
     {
-      'title': 'Stop Overthinking',
+      'title': 'stop_overthinking_t', // Use the key
       'author': 'Rebecca Roanhorse',
       'image': 'assets/images/b2.png',
     },
     {
-      'title': 'Power',
+      'title': 'power_t', // Use the key
       'author': 'Rebecca Roanhorse',
       'image': 'assets/images/b3.png',
     },
     {
-      'title': 'Falling Bodies',
+      'title': 'falling_bodies_t', // Use the key (The title "Falling Bodies" appears twice)
       'author': 'Rebecca Roanhorse',
       'image': 'assets/images/b4.png',
     },
     {
-      'title': 'Falling Bodies',
+      'title': 'falling_bodies_t', // Use the key
       'author': 'Rebecca Roanhorse',
       'image': 'assets/images/b7.png',
     },
     {
-      'title': 'How It Unfolds',
+      'title': 'how_it_unfolds_t', // Use the key
       'author': 'Rebecca Roanhorse',
       'image': 'assets/images/b3.png',
     },
@@ -45,7 +45,7 @@ class BooksGridScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: title, leadingText: 'leading_text'.tr),
+      appBar: CustomAppBar(title: '$title'.tr, leadingText: 'leading_text'.tr),
       body: GridView.builder(
         padding: const EdgeInsets.only(
           top: 16,
@@ -65,7 +65,7 @@ class BooksGridScreen extends StatelessWidget {
           final book = books[index];
           return BookCardGridView(
             image: book['image']!,
-            title: book['title']!,
+            title: book['title']!.tr,
             author: book['author']!,
             onTap: () {
               Get.to(() => BookDetailView());

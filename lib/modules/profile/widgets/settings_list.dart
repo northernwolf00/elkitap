@@ -22,7 +22,7 @@ class SettingsList extends StatefulWidget {
 
 class _SettingsListState extends State<SettingsList> {
   String selectedTheme = 'light'.tr;
-  String selectedLanguage = "Türkmençe";
+  String selectedLanguage = 'Turkmen';
   final _box = GetStorage();
   final _languageKey = 'selectedLanguage';
   late final ThemeController _themeController;
@@ -79,23 +79,16 @@ class _SettingsListState extends State<SettingsList> {
     if (mode == ThemeMode.light) {
       selectedTheme = 'light'.tr;
     } else if (mode == ThemeMode.dark) {
-      selectedTheme = 'Dark';
+      selectedTheme = 'dark'.tr;
     } else {
-      selectedTheme = 'Match Devices';
+      selectedTheme = 'match_devices'.tr;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final settings = [
-      ("Payment History", null),
-      ('theme'.tr, selectedTheme),
-      ('language'.tr, selectedLanguage),
-      ("Help & Support", null),
-      ('legal_terms_of_use'.tr, null),
-      ('privacy_and_policy'.tr, null),
-      ('sign_out'.tr, null),
-    ];
+
+   
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -111,76 +104,144 @@ class _SettingsListState extends State<SettingsList> {
         ),
         Container(height: 1, color: Colors.grey[200]),
         Column(
-          children: settings.asMap().entries.map((entry) {
-            final index = entry.key;
-            final item = entry.value;
-
-            final title = item.$1;
-
-            final trailingText = title == 'theme'.tr ? selectedTheme : item.$2;
-
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
               children: [
-                GestureDetector(
-                  onTapDown: (TapDownDetails details) {
-                    if (title == 'theme'.tr) {
-                      _showThemeMenu(context, details.globalPosition);
-                    } else if (title == 'language'.tr) {
-                      // Get.toNamed('/legal-terms');
-                      _showLanguageMenu(context, details.globalPosition);
-                    } else if (title == 'Sign Out') {
-                      _showLogoutDialog(context);
-                    } else if (title == "Help & Support") {
-                      _showHelpBottomSheet(context);
-                    } else if (title == 'Payment History') {
-                      _showPaymantHistorySheet(context);
-                    } else {
-                      _showLegalTermsBottomSheet(context);
-                    }
-                  },
-                  child: ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: CustomIcon(
-                      title: 'assets/icons/p${index + 1}.svg',
-                      height: 24,
-                      width: 24,
-                      color: Theme.of(context).brightness == Brightness.dark
-                          ? Colors.white
-                          : Colors.black,
-                    ),
-                    title: Text(
-                      title,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontFamily: StringConstants.SFPro,
-                      ),
-                    ),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        if (trailingText != null)
-                          Text(
-                            trailingText,
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              fontSize: 15,
-                              fontFamily: StringConstants.SFPro,
-                            ),
-                          ),
-                        Icon(Icons.chevron_right, color: Colors.grey[350]),
-                      ],
+                // 1. Payment History
+                _buildSettingsItem(
+                  context,
+                  index: 0,
+                  title: 'paymentHistory'.tr,
+                  trailingText: null,
+                  onTapDown: (details) => _showPaymantHistorySheet(context),
+                  isLast: false,
+                ),
+
+                // 2. Theme
+                _buildSettingsItem(
+                  context,
+                  index: 1,
+                  title: 'theme'.tr,
+                  trailingText: selectedTheme,
+                  onTapDown: (details) =>
+                      _showThemeMenu(context, details.globalPosition),
+                  isLast: false,
+                ),
+
+                // 3. Language
+                _buildSettingsItem(
+                  context,
+                  index: 2,
+                  title: 'language'.tr,
+                  trailingText: selectedLanguage,
+                  onTapDown: (details) =>
+                      _showLanguageMenu(context, details.globalPosition),
+                  isLast: false,
+                ),
+
+                // 4. Help and Support
+                _buildSettingsItem(
+                  context,
+                  index: 3,
+                  title: 'help_and_support'.tr,
+                  trailingText: null,
+                  onTapDown: (details) => _showHelpBottomSheet(context),
+                  isLast: false,
+                ),
+
+                // 5. Legal Terms of Use
+                _buildSettingsItem(
+                  context,
+                  index: 4,
+                  title: 'legal_terms_of_use'.tr,
+                  trailingText: null,
+                  // Assuming this leads to the same bottom sheet as privacy policy in your original logic
+                  onTapDown: (details) => _showLegalTermsBottomSheet(context),
+                  isLast: false,
+                ),
+
+                // 6. Privacy and Policy
+                _buildSettingsItem(
+                  context,
+                  index: 5,
+                  title: 'privacy_and_policy'.tr,
+                  trailingText: null,
+                  // Assuming this leads to the same bottom sheet as legal terms in your original logic
+                  onTapDown: (details) => _showLegalTermsBottomSheet(context),
+                  isLast: false,
+                ),
+
+       
+                _buildSettingsItem(
+                  context,
+                  index: 6,
+                  title: 'sign_out'.tr,
+                  trailingText: null,
+                  onTapDown: (details) => _showLogoutDialog(context),
+                  isLast: true, 
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSettingsItem(
+    BuildContext context, {
+    required int index,
+    required String title,
+    required String? trailingText,
+    required Function(TapDownDetails) onTapDown,
+    required bool isLast,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        GestureDetector(
+          onTapDown: onTapDown,
+          child: ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: CustomIcon(
+           
+              title: 'assets/icons/p${index + 1}.svg',
+              height: 24,
+              width: 24,
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.white
+                  : Colors.black,
+            ),
+            title: Text(
+              title,
+              style: const TextStyle(
+                fontSize: 16,
+                fontFamily: StringConstants.SFPro,
+              ),
+            ),
+            trailing: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                if (trailingText != null)
+                  Text(
+                    trailingText,
+                    style: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 15,
+                      fontFamily: StringConstants.SFPro,
                     ),
                   ),
-                ),
-                index == 6
-                    ? SizedBox()
-                    : Container(height: 1, color: Colors.grey[200]),
+                Icon(Icons.chevron_right, color: Colors.grey[350]),
               ],
-            );
-          }).toList(),
+            ),
+          ),
         ),
+
+        isLast
+            ? const SizedBox.shrink()
+            : Container(height: 1, color: Colors.grey[200]),
       ],
     );
   }
@@ -189,8 +250,9 @@ class _SettingsListState extends State<SettingsList> {
     final items = [
       MenuItem(
           title: 'light'.tr, value: 'Light', icon: Icons.wb_sunny_outlined),
-      MenuItem(title: 'Dark', value: 'Dark', icon: Icons.nightlight_round),
-      MenuItem(title: 'Match Devices', value: 'System', icon: Icons.contrast),
+      MenuItem(title: 'dark'.tr, value: 'Dark', icon: Icons.nightlight_round),
+      MenuItem(
+          title: 'match_devices'.tr, value: 'System', icon: Icons.contrast),
     ];
 
     final result = await showUniversalMenu(
@@ -203,7 +265,7 @@ class _SettingsListState extends State<SettingsList> {
 
     if (result != null) {
       setState(() {
-        selectedTheme = result;
+        selectedTheme = result == 'Light' ? 'light'.tr : result == 'Dark' ? 'dark'.tr : 'match_devices'.tr  ;
       });
 
       final themeController = Get.find<ThemeController>();
@@ -223,27 +285,7 @@ class _SettingsListState extends State<SettingsList> {
     }
   }
 
-  // void _showThemeMenu(BuildContext context, Offset position) async {
-  //   final items = [
-  //     MenuItem(title: 'Light', value: 'Light', icon: Icons.wb_sunny_outlined),
-  //     MenuItem(title: 'Dark', value: 'Dark', icon: Icons.nightlight_round),
-  //     MenuItem(title: 'Match Devices', value: 'Match Devices', icon: Icons.contrast),
-  //   ];
 
-  //   final result = await showUniversalMenu(
-  //     context: context,
-  //     position: position,
-  //     items: items,
-  //     selectedValue: selectedTheme,
-  //     showIcons: true,
-  //   );
-
-  //   if (result != null) {
-  //     setState(() {
-  //       selectedTheme = result;
-  //     });
-  //   }
-  // }
 
   void _showLanguageMenu(BuildContext context, Offset position) async {
     final items = [
@@ -373,16 +415,16 @@ class _SettingsListState extends State<SettingsList> {
       context: context,
       builder: (BuildContext context) {
         return CupertinoAlertDialog(
-          title: const Text(
-            "Do you really want to log out?",
+          title: Text(
+            'do_you_really_want_to_log_out'.tr,
             style: TextStyle(
               fontFamily: StringConstants.SFPro,
               fontWeight: FontWeight.bold, // Make title bold
               fontSize: 17, // Adjust font size as needed
             ),
           ),
-          content: const Text(
-            "If you log out, you won't be able to read your favorite books.",
+          content: Text(
+            'log_out_warning'.tr,
             style: TextStyle(
               fontFamily: StringConstants.SFPro,
               fontSize: 13, // Adjust font size as needed
@@ -394,8 +436,8 @@ class _SettingsListState extends State<SettingsList> {
                 Navigator.of(context).pop(); // Close the dialog
                 // Add your 'No' logic here (e.g., stay logged in)
               },
-              child: const Text(
-                "No",
+              child: Text(
+                'no'.tr,
                 style: TextStyle(
                   fontFamily: StringConstants.SFPro,
                   color: CupertinoColors.activeBlue, // Default blue color
@@ -411,8 +453,8 @@ class _SettingsListState extends State<SettingsList> {
               },
               isDestructiveAction:
                   true, // This makes the text red on iOS-style alerts
-              child: const Text(
-                "Yes",
+              child: Text(
+                'yes'.tr,
                 style: TextStyle(
                   fontFamily: StringConstants.SFPro,
                   // The isDestructiveAction property handles the red color

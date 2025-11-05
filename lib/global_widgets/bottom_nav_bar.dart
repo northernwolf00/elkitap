@@ -1,4 +1,5 @@
 import 'package:elkitap/global_widgets/bottom_nav_button.dart';
+
 import 'package:elkitap/modules/library/views/library_view.dart';
 import 'package:elkitap/modules/search/views/search_view.dart';
 import 'package:elkitap/modules/store/views/store_view.dart';
@@ -20,7 +21,11 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     super.dispose();
   }
 
-  List page = [MyLibraryViewScreen(), StoreViewScreen(), SearchViewScreen()];
+  final List<Widget> page = [
+    MyLibraryViewScreen(),
+    StoreViewScreen(),
+    SearchViewScreen()
+  ];
 
   @override
   void initState() {
@@ -32,6 +37,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       bottomNavigationBar: Container(
         height: 70,
         child: Row(

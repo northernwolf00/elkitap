@@ -51,7 +51,7 @@ class DialogUtils {
                       children: [
                         _buildMenuOption(
                             icon: 'assets/icons/d1.svg',
-                            title: 'Share',
+                            title: 'share'.tr,
                             onTap: () {
                               Navigator.pop(context);
                               // Handle share
@@ -65,7 +65,7 @@ class DialogUtils {
                             icon: controller.isAddedToWantToRead.value
                                 ? 'assets/icons/d5.svg'
                                 : 'assets/icons/d2.svg',
-                            title: 'Add to Want to Read',
+                            title: 'add_to_want_to_read'.tr,
                             onTap: () {
                               Navigator.pop(context);
                               controller.toggleAddToWantToRead();
@@ -76,7 +76,7 @@ class DialogUtils {
                         Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
                         _buildMenuOption(
                             icon: 'assets/icons/d3.svg',
-                            title: 'Add to Collection',
+                            title: 'add_to_collection'.tr,
                             onTap: () {
                               Navigator.pop(context);
                               // Handle add to collection
@@ -85,7 +85,7 @@ class DialogUtils {
                         Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
                         _buildMenuOption(
                             icon: 'assets/icons/d5.svg',
-                            title: 'Mark as Finished',
+                            title: 'mark_as_finished'.tr,
                             onTap: () {
                               Navigator.pop(context);
                               // Handle mark as finished
@@ -97,7 +97,7 @@ class DialogUtils {
                         ),
                         _buildMenuOption(
                             icon: 'assets/icons/d6.svg',
-                            title: 'Remove...',
+                            title: 'remove'.tr,
                             titleColor: const Color(0xFFFF5A3C),
                             iconColor: const Color(0xFFFF5A3C),
                             onTap: () {
@@ -161,8 +161,9 @@ class DialogUtils {
                       children: [
                         _buildMenuOption(
                             icon: 'assets/icons/m1.svg',
-                            title: 'Switch to Book',
-                             titleColor: const Color.fromARGB(255, 255, 255, 255),
+                            title: 'switch_to_book'.tr,
+                            titleColor:
+                                const Color.fromARGB(255, 255, 255, 255),
                             onTap: () {
                               Navigator.pop(context);
                               // Handle share
@@ -171,8 +172,9 @@ class DialogUtils {
                         Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
                         _buildMenuOption(
                             icon: 'assets/icons/d11.svg',
-                            title: 'Book description',
-                             titleColor: const Color.fromARGB(255, 255, 255, 255),
+                            title: 'book_description'.tr,
+                            titleColor:
+                                const Color.fromARGB(255, 255, 255, 255),
                             onTap: () {
                               Navigator.pop(context);
                             },
@@ -180,8 +182,9 @@ class DialogUtils {
                         Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
                         _buildMenuOption(
                             icon: 'assets/icons/a10.svg',
-                            title: 'Download',
-                             titleColor: const Color.fromARGB(255, 255, 255, 255),
+                            title: 'download'.tr,
+                            titleColor:
+                                const Color.fromARGB(255, 255, 255, 255),
                             onTap: () {
                               Navigator.pop(context);
                               // Handle add to collection
@@ -190,8 +193,9 @@ class DialogUtils {
                         Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
                         _buildMenuOption(
                             icon: 'assets/icons/d11.svg',
-                            title: 'Transcript View',
-                             titleColor: const Color.fromARGB(255, 255, 255, 255),
+                            title: 'transcript_view'.tr,
+                            titleColor:
+                                const Color.fromARGB(255, 255, 255, 255),
                             onTap: () {
                               Navigator.pop(context);
                               // Handle mark as finished
@@ -200,8 +204,9 @@ class DialogUtils {
                         Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
                         _buildMenuOption(
                             icon: 'assets/icons/a11.svg',
-                            title: 'Add to Want to Listen',
-                             titleColor: const Color.fromARGB(255, 255, 255, 255),
+                            title: 'add_to_want_to_listen'.tr,
+                            titleColor:
+                                const Color.fromARGB(255, 255, 255, 255),
                             onTap: () {
                               Navigator.pop(context);
                               // Handle mark as finished
@@ -210,8 +215,9 @@ class DialogUtils {
                         Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
                         _buildMenuOption(
                             icon: 'assets/icons/d1.svg',
-                            title: 'Share',
-                            titleColor: const Color.fromARGB(255, 255, 255, 255),
+                            title: 'share'.tr,
+                            titleColor:
+                                const Color.fromARGB(255, 255, 255, 255),
                             onTap: () {
                               Navigator.pop(context);
                               // Handle mark as finished
@@ -220,7 +226,7 @@ class DialogUtils {
                         Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
                         _buildMenuOption(
                             icon: 'assets/icons/a12.svg',
-                            title: 'Report an Issue',
+                            title: 'report_an_issue'.tr,
                             titleColor: const Color(0xFFFF5A3C),
                             iconColor: const Color(0xFFFF5A3C),
                             onTap: () {
@@ -267,7 +273,7 @@ class DialogUtils {
               ),
               const SizedBox(height: 24),
               Text(
-                isAdded ? 'Added' : 'Removed',
+                isAdded ? 'added'.tr : 'removed'.tr,
                 style: const TextStyle(
                   fontSize: 28,
                   fontFamily: StringConstants.SFPro,
@@ -277,8 +283,8 @@ class DialogUtils {
               const SizedBox(height: 12),
               Text(
                 isAdded
-                    ? 'Your book was added to your\nWant to Read list in Home'
-                    : 'Your book was removed from your\nWant to Read',
+                    ? 'book_added_to_want_to_read_list'.tr
+                    : 'book_removed_from_want_to_read_list'.tr,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 16,
@@ -419,12 +425,14 @@ class DialogUtils {
               ),
             ),
             CustomIcon(
-                title: icon,
-                height: 24,
-                width: 24,
-                color: iconColor ??
-                     Colors.white
-                        )
+              title: icon,
+              height: 24,
+              width: 24,
+              color: iconColor ??
+                  (Theme.of(context).brightness == Brightness.dark
+                      ? Colors.black
+                      : Colors.white),
+            )
           ],
         ),
       ),
@@ -482,8 +490,8 @@ class DialogUtils {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            'The subtle art of not giving a f*ck',
+                          Text(
+                            'subtle_art_of_not_giving_a_f*ck'.tr,
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -494,7 +502,7 @@ class DialogUtils {
                           ),
                           const SizedBox(height: 8),
                           Text(
-                            'Mark Manson',
+                            'mark_manson'.tr,
                             style: TextStyle(
                               fontSize: 16,
                               fontFamily: StringConstants.SFPro,
@@ -534,8 +542,8 @@ class DialogUtils {
                   padding: const EdgeInsets.all(20),
                   children: [
                     // About section
-                    const Text(
-                      'About',
+                    Text(
+                      'about'.tr,
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -545,7 +553,7 @@ class DialogUtils {
                     ),
                     const SizedBox(height: 12),
                     Text(
-                      'Сегодня в рубрике «Профессии» наш гость — региональный директор Yüpekçi. В этом увлекательном интервью он поделится своими мыслями о трёх книгах, которые не только научат вас искусству ведения переговоров, но и помогут развить навыки продаж и глубже понять потребности клиентов.',
+                      'book_description_text'.tr,
                       style: TextStyle(
                         fontSize: 15,
                         color: Colors.grey[600],
@@ -555,8 +563,8 @@ class DialogUtils {
                     ),
                     const SizedBox(height: 32),
                     // Basic Info section
-                    const Text(
-                      'Basic Info',
+                    Text(
+                      'basic_info'.tr,
                       style: TextStyle(
                         fontSize: 20,
                         fontFamily: StringConstants.SFPro,
@@ -565,11 +573,11 @@ class DialogUtils {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    _buildInfoRow('Author', 'Mark Manson'),
-                    _buildInfoRow('Language', 'English'),
-                    _buildInfoRow('Genre', 'Health, Mind & Body'),
-                    _buildInfoRow('Age', '18+'),
-                    _buildInfoRow('Publication date', '28.10.2024',
+                    _buildInfoRow('author'.tr, 'mark_manson'.tr),
+                    _buildInfoRow('language'.tr, 'english'.tr),
+                    _buildInfoRow('genre'.tr, 'health_mind_body'.tr),
+                    _buildInfoRow('age'.tr, 'age_18_plus'.tr),
+                    _buildInfoRow('publication_date'.tr, '28.10.2024',
                         isLast: true),
                   ],
                 ),
@@ -669,7 +677,7 @@ class DialogUtils {
                         _buildIOSMenuOption(
                           context,
                           iconPath: 'assets/icons/d11.svg',
-                          title: 'Open book',
+                          title: 'open_book'.tr,
                           onTap: () => onShare(),
                         ),
                         Container(
@@ -679,7 +687,7 @@ class DialogUtils {
                         _buildIOSMenuOption(
                           context,
                           iconPath: 'assets/icons/d1.svg',
-                          title: 'Share',
+                          title: 'share'.tr,
                           onTap: () => onAddToCollection(),
                         ),
                         Divider(
@@ -693,14 +701,14 @@ class DialogUtils {
                         _buildIOSMenuOption(
                           context,
                           iconPath: 'assets/icons/d10.svg',
-                          title: 'Edit',
+                          title: 'edit'.tr,
                           onTap: () => onMarkFinished(),
                         ),
                         Divider(height: 1, color: Colors.grey.withOpacity(0.2)),
                         _buildIOSMenuOption(
                           context,
                           iconPath: 'assets/icons/d6.svg',
-                          title: 'Delete',
+                          title: 'delete'.tr,
                           iconColor: const Color(0xFFFF5A3C),
                           titleColor: const Color(0xFFFF5A3C),
                           onTap: () => onRemove(),

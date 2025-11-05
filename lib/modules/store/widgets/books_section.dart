@@ -37,8 +37,8 @@ class BooksSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SectionHeader(title: 'Books', onTap: () {
-          Get.to(() => BooksGridScreen(title: 'Books',));
+        SectionHeader(title: 'books_t'.tr, onTap: () {
+          Get.to(() => BooksGridScreen(title: 'books_t'.tr,));
         }),
         const SizedBox(height: 16),
         SizedBox(

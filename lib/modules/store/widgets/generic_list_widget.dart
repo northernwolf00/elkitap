@@ -10,12 +10,12 @@ class GenericListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<String> genres = [
-      'Biography & Memories',
-      'Business & Personal Finance',
-      'Education',
-      'Fiction & Literature',
-      'History',
-      'All Genres',
+      'genre_biography_t', // 'Biography & Memories'
+      'genre_business_t', // 'Business & Personal Finance'
+      'genre_education_t', // 'Education'
+      'genre_fiction_t', // 'Fiction & Literature'
+      'genre_history_t', // 'History'
+      'all_genres_t',
     ];
 
     return Padding(
@@ -23,15 +23,14 @@ class GenericListWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            "Genres",
-            style: TextStyle(fontSize: 18,
-             fontFamily: StringConstants.NewYork,
-             fontWeight: FontWeight.bold),
+          Text(
+            "genres_title_t".tr,
+            style: TextStyle(
+                fontSize: 18,
+                fontFamily: StringConstants.NewYork,
+                fontWeight: FontWeight.bold),
           ),
-
           const SizedBox(height: 16),
-
           ...genres.asMap().entries.map((entry) {
             final index = entry.key;
             final item = entry.value;
@@ -40,12 +39,12 @@ class GenericListWidget extends StatelessWidget {
               children: [
                 ListTile(
                   contentPadding: EdgeInsets.zero,
-
                   title: Text(
-                    item,
-                    style: const TextStyle(fontWeight: FontWeight.w500,
-                     
-                     fontFamily: StringConstants.SFPro,),
+                    item.tr,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontFamily: StringConstants.SFPro,
+                    ),
                   ),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
@@ -58,7 +57,7 @@ class GenericListWidget extends StatelessWidget {
                     ],
                   ),
                   onTap: () {
-                    if (item == 'All Genres') {
+                    if (item == 'all_genres_t') {
                       Get.to(AllGenresView());
                     } else {
                       Get.to(GenrsDetailViewScreen());

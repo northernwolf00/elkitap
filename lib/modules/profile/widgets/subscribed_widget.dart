@@ -2,6 +2,7 @@ import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/core/theme/app_colors.dart';
 import 'package:elkitap/modules/profile/widgets/subscription_expired_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SubscribedView extends StatelessWidget {
   final int daysLeft;
@@ -29,7 +30,7 @@ class SubscribedView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              "Subscription ends in 30 days",
+              "subscription_ends_in_t".tr,
               style: const TextStyle(fontSize: 14),
             ),
             Image.asset(
@@ -55,7 +56,7 @@ class SubscribedView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(40),
                   ),
                 ),
-                child: const Text("Extend",
+                child: Text("extend".tr,
                     style: TextStyle(
                         fontSize: 14,
                         fontFamily: StringConstants.SFPro,
@@ -72,7 +73,7 @@ class SubscribedView extends StatelessWidget {
                     borderRadius: BorderRadius.circular(40),
                   ),
                 ),
-                child: const Text("Promocode",
+                child: Text("promocode".tr,
                     style: TextStyle(
                         fontSize: 14,
                         fontFamily: StringConstants.SFPro,

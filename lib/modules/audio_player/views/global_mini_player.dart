@@ -1,64 +1,113 @@
-import 'package:elkitap/modules/audio_player/controllers/audio_player_controller.dart';
-import 'package:elkitap/modules/audio_player/views/audio_player_view.dart';
+import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:elkitap/modules/audio_player/controllers/audio_player_controller.dart';
+import 'package:elkitap/modules/audio_player/views/audio_player_view.dart';
 
-class GlobalMiniPlayer extends StatelessWidget {
+class GlobalMiniPlayer extends StatefulWidget {
   const GlobalMiniPlayer({Key? key}) : super(key: key);
 
+  @override
+  State<GlobalMiniPlayer> createState() => _GlobalMiniPlayerState();
+}
+
+class _GlobalMiniPlayerState extends State<GlobalMiniPlayer> {
+  late GlobalMiniPlayerController globalMiniCtrl;
+
+  @override
+  void initState() {
+    super.initState();
+    globalMiniCtrl = Get.find<GlobalMiniPlayerController>();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final size = MediaQuery.of(context).size;
+      final playerWidth = MediaQuery.of(context).size.width - 30;
+      const playerHeight = 70.0;
+
+      // 🟢 Start position: bottom center
+      final initialTop =
+          size.height - playerHeight - 100; // ~100px above bottom
+      final initialLeft = (size.width / 2) - (playerWidth / 2);
+      globalMiniCtrl.setPosition(initialTop, initialLeft);
+    });
+  }
+
   bool _shouldShowPlayer() {
-    // Get current route
     final currentRoute = Get.currentRoute;
-    
-    // Don't show on these screens
     final excludedRoutes = [
       '/audiobook-player',
       '/AudiobookPlayerScreen',
       '/driver-mode',
       '/DriverModeScreen',
     ];
-    
-    // Check if current route matches any excluded route
-    for (var route in excludedRoutes) {
-      if (currentRoute.contains(route)) {
-        return false;
-      }
-    }
-    
-    return true;
+    return !excludedRoutes.any((r) => currentRoute.contains(r));
   }
 
   @override
   Widget build(BuildContext context) {
-    // Check if we should show the player
-    if (!_shouldShowPlayer()) {
+    if (!_shouldShowPlayer()) return const SizedBox.shrink();
+
+    late AudioPlayerController controller;
+    try {
+      controller = Get.find<AudioPlayerController>();
+    } catch (e) {
       return const SizedBox.shrink();
     }
 
-    // Check if AudioPlayerController exists
-    try {
-      final controller = Get.find<AudioPlayerController>();
-      
-      return Obx(() {
-        // Only show if audio is loaded
-        if (controller.duration.value == Duration.zero) {
-          return const SizedBox.shrink();
-        }
+    return Obx(() {
+      if (!globalMiniCtrl.isVisible.value ||
+          controller.duration.value == Duration.zero) {
+        return const SizedBox.shrink();
+      }
 
-        return GestureDetector(
-          onTap: () {
-            // Navigate to full player screen
-            Get.to(() => const AudiobookPlayerScreen());
+      final screenSize = MediaQuery.of(context).size;
+      final playerWidth = 180;
+      const playerHeight = 70.0;
+
+      return Positioned(
+        top: globalMiniCtrl.top.value,
+        left: globalMiniCtrl.left.value,
+        child: GestureDetector(
+          onPanUpdate: (details) {
+            // 🟢 Move freely in all directions
+            final newTop = (globalMiniCtrl.top.value + details.delta.dy)
+                .clamp(0.0, screenSize.height - playerHeight - 20);
+            final newLeft = (globalMiniCtrl.left.value + details.delta.dx)
+                .clamp(0.0, screenSize.width - playerWidth - 10);
+            globalMiniCtrl.setPosition(newTop, newLeft);
           },
-          child: Container(
-            height: 70,
-            margin: const EdgeInsets.all(12),
+          onPanEnd: (details) {
+            double snapLeft = globalMiniCtrl.left.value;
+            double snapTop = globalMiniCtrl.top.value;
+
+            const snapDistance = 40.0;
+            if (snapLeft < snapDistance) snapLeft = 10;
+            if (snapLeft > screenSize.width - playerWidth - snapDistance) {
+              snapLeft = screenSize.width - playerWidth - 10;
+            }
+            if (snapTop < snapDistance) snapTop = 20;
+            if (snapTop > screenSize.height - playerHeight - snapDistance) {
+              snapTop = screenSize.height - playerHeight - 20;
+            }
+
+            globalMiniCtrl.setPosition(snapTop, snapLeft);
+          },
+          onTap: () {
+            Get.to(() => const AudiobookPlayerScreen());
+            globalMiniCtrl.hide();
+          },
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            height: playerHeight,
+            width: MediaQuery.of(context).size.width - 30,
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.black
+                  : Colors.white,
               borderRadius: BorderRadius.circular(16),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: Colors.black.withOpacity(0.15),
                   blurRadius: 10,
                   offset: const Offset(0, 4),
                 ),
@@ -66,136 +115,93 @@ class GlobalMiniPlayer extends StatelessWidget {
             ),
             child: Row(
               children: [
-                // Book Cover
-                Container(
-                  width: 70,
-                  height: 70,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
+                // Book cover
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(8),
                     child: Image.asset(
                       'assets/images/b6.png',
+                      width: 45,
+                      height: 45,
                       fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Container(
-                          color: const Color(0xFF8B5A3C),
-                          child: const Icon(
-                            Icons.book,
-                            color: Colors.white,
-                            size: 30,
-                          ),
-                        );
-                      },
+                      errorBuilder: (_, __, ___) => Container(
+                        color: const Color(0xFF8B5A3C),
+                        child: const Icon(Icons.book, color: Colors.white),
+                      ),
                     ),
                   ),
                 ),
-                
-                const SizedBox(width: 12),
-                
-                // Book Info
+                const SizedBox(width: 8),
+
+                // Info
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'The subtle art of not givin...',
+                      DefaultTextStyle(
                         style: TextStyle(
-                          color: Colors.black,
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.white
+                              : Colors.black,
                         ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                        child: Text(
+                          'The Subtle Art...',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                       const SizedBox(height: 4),
                       Obx(() {
-                        final remaining = controller.duration.value - 
-                                         controller.position.value;
-                        return Text(
-                          '${controller.formatDuration(remaining)} left',
+                        return DefaultTextStyle(
                           style: TextStyle(
                             color: Colors.grey.shade600,
                             fontSize: 12,
                           ),
-                        );
-                      }),
-                    ],
-                  ),
-                ),
-                
-                // Time Badge
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 6,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade100,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.access_time,
-                        size: 16,
-                        color: Colors.grey.shade700,
-                      ),
-                      const SizedBox(width: 4),
-                      Obx(() {
-                        final remaining = controller.duration.value - 
-                                         controller.position.value;
-                        return Text(
-                          controller.formatDuration(remaining),
-                          style: TextStyle(
-                            color: Colors.grey.shade700,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w600,
+                          child: Text(
+                            '${controller.formatDuration(controller.position.value)} left',
                           ),
                         );
                       }),
                     ],
                   ),
                 ),
-                
-                const SizedBox(width: 12),
-                
-                // Play/Pause Button
+
+                const SizedBox(width: 6),
                 GestureDetector(
-                  onTap: () => controller.playPause(),
-                  child: Container(
-                    width: 44,
-                    height: 44,
-                    decoration: const BoxDecoration(
-                      color: Colors.black,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Center(
-                      child: Obx(() {
-                        return Icon(
-                          controller.isPlaying.value
-                              ? Icons.pause
-                              : Icons.play_arrow,
-                          color: Colors.white,
-                          size: 24,
-                        );
-                      }),
-                    ),
+                  onTap: () => controller.seekBackward(),
+                  child: CustomIcon(
+                    title: 'assets/icons/a1.svg',
+                    height: 28,
+                    width: 28,
+                    color: Theme.of(context).brightness == Brightness.dark
+                        ? Colors.white
+                        : Colors.black,
                   ),
                 ),
-                
+                const SizedBox(width: 8),
+                GestureDetector(
+                  onTap: () => controller.playPause(),
+                  child: Obx(() => CustomIcon(
+                        title: controller.isPlaying.value
+                            ? 'assets/icons/a4.svg'
+                            : 'assets/icons/a3.svg',
+                        height: 28,
+                        width: 28,
+                        color: Theme.of(context).brightness == Brightness.dark
+                            ? Colors.white
+                            : Colors.black,
+                      )),
+                ),
                 const SizedBox(width: 12),
               ],
             ),
           ),
-        );
-      });
-    } catch (e) {
-      // AudioPlayerController not initialized yet
-      return const SizedBox.shrink();
-    }
+        ),
+      );
+    });
   }
 }

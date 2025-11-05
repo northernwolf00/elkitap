@@ -10,23 +10,23 @@ class AllGenresView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final genres = [
-      'Biography & Memories',
-      'Business & Personal Finance',
-      'Comics & Graphic Novels',
-      'Cookbooks, Food & Wine',
-      'Education',
-      'Fiction & Literature',
-      'Health, Mind & Body',
-      'History',
-      'Kids',
-      'Mysteries & Thrillers',
-      'Nonfiction',
-      'Politics & Current Events',
-      'Religion & Spirituality',
-      'Romance',
-      'Sci-Fi & Fantasy',
-      'Sports & Outdoors',
-      'Young Adult',
+      'genre_biography_memories'.tr,
+      'genre_business_personal_finance'.tr,
+      'genre_comics_graphic_novels'.tr,
+      'genre_cookbooks_food_wine'.tr,
+      'genre_education'.tr,
+      'genre_fiction_literature'.tr,
+      'genre_health_mind_body'.tr,
+      'genre_history'.tr,
+      'genre_kids'.tr,
+      'genre_mysteries_thrillers'.tr,
+      'genre_nonfiction'.tr,
+      'genre_politics_current_events'.tr,
+      'genre_religion_spirituality'.tr,
+      'genre_romance'.tr,
+      'genre_sci_fi_fantasy'.tr,
+      'genre_sports_outdoors'.tr,
+      'genre_young_adult'.tr,
     ];
 
     return Scaffold(
@@ -51,10 +51,10 @@ class AllGenresView extends StatelessWidget {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
+           Padding(
             padding: EdgeInsets.fromLTRB(16, 8, 16, 16),
             child: Text(
-              'Genres',
+              'genres'.tr,
               style: TextStyle(
                 fontSize: 34,
                 fontFamily: StringConstants.NewYork,

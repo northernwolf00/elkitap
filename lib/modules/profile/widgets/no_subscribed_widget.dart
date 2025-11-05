@@ -1,6 +1,7 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class NotSubscribedView extends StatelessWidget {
   final VoidCallback onSubscribe;
@@ -15,7 +16,7 @@ class NotSubscribedView extends StatelessWidget {
       children: [
         const SizedBox(height: 25),
         Text(
-          "Not subscribed",
+         "not_subscribed_t".tr,
           style: const TextStyle(
              fontFamily: StringConstants.SFPro,
             fontSize: 14,
@@ -35,7 +36,7 @@ class NotSubscribedView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(40),
               ),
             ),
-            child: const Text("Subscribe",
+            child: Text("subscribe".tr,
                 style: TextStyle(fontSize: 14,
                  fontFamily: StringConstants.SFPro,
                  color: Colors.white)),
