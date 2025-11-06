@@ -18,7 +18,10 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ApplicationInitialize.initialize();
   // SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual);
+  SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.manual,
+    overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom],
+  );
 
   await GetStorage.init();
   await Firebase.initializeApp();
@@ -49,16 +52,14 @@ class MyApp extends StatelessWidget {
                 children: [
                   child ?? const SizedBox.shrink(),
                   Obx(() {
-                    final miniPlayerCtrl =
-                        Get.find<GlobalMiniPlayerController>();
+                    final miniCtrl = Get.find<GlobalMiniPlayerController>();
                     return Visibility(
-                      visible: miniPlayerCtrl.isVisible.value,
-                      child: const Positioned(
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        child: GlobalMiniPlayer(),
-                      ),
+                      visible: miniCtrl.isVisible.value,
+                      child: Obx(() => Positioned(
+                            top: miniCtrl.top.value,
+                            left: miniCtrl.left.value,
+                            child: const GlobalMiniPlayer(),
+                          )),
                     );
                   }),
                 ],
