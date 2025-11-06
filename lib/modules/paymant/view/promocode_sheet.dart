@@ -1,3 +1,4 @@
+import 'package:elkitap/modules/paymant/widget/text_scanner_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,6 +29,21 @@ class _PromocodeSheetState extends State<PromocodeSheet> {
     super.dispose();
   }
 
+  void _openTextScanner() async {
+    // final result = await showModalBottomSheet<String>(
+    //   context: context,
+    //   isScrollControlled: true,
+    //   backgroundColor: Colors.transparent,
+    //   builder: (context) => const TextScannerSheet(),
+    // );
+
+    // if (result != null && result.isNotEmpty) {
+    //   setState(() {
+    //     _promoController.text = result;
+    //   });
+    // }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,7 +58,7 @@ class _PromocodeSheetState extends State<PromocodeSheet> {
                   icon: const Icon(Icons.arrow_back_ios),
                   onPressed: () => Navigator.pop(context),
                 ),
-                 Expanded(
+                Expanded(
                   child: Center(
                     child: Text(
                       'promocode'.tr,
@@ -82,7 +98,7 @@ class _PromocodeSheetState extends State<PromocodeSheet> {
                     ),
                   ),
                   const SizedBox(height: 32),
-                   Text(
+                  Text(
                     'use_gift_card_t'.tr,
                     style: TextStyle(
                       fontSize: 22,
@@ -90,7 +106,7 @@ class _PromocodeSheetState extends State<PromocodeSheet> {
                     ),
                   ),
                   const SizedBox(height: 8),
-                   Text(
+                  Text(
                     'promo_code_prompt_t'.tr,
                     style: TextStyle(
                       color: Colors.grey,
@@ -146,7 +162,7 @@ class _PromocodeSheetState extends State<PromocodeSheet> {
                             color: Colors.grey[700],
                             size: 28,
                           ),
-                          onPressed: () {},
+                          onPressed: _openTextScanner,
                         ),
                       ),
                     ],

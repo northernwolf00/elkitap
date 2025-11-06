@@ -42,7 +42,7 @@ final class ApplicationInitialize {
       // await GetStorage.init();
       Get.put(ThemeController());
       Get.put(AudioPlayerController());
-      Get.put(GlobalMiniPlayerController(), permanent: true);
+      Get.put(GlobalMiniPlayerController());
 
       // Get.put(HomeController());
       // Get.put(SearchControllerMine());

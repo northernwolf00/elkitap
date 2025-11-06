@@ -7,7 +7,7 @@ import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:elkitap/modules/auth/controllers/login_controller.dart';
 import 'package:elkitap/modules/profile/widgets/help_and_support_sheet.dart';
 import 'package:elkitap/modules/profile/widgets/model/menu_item.dart';
-import 'package:elkitap/modules/profile/widgets/paymant_bottom_sheet.dart';
+import 'package:elkitap/modules/paymant/widget/paymant_bottom_sheet.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

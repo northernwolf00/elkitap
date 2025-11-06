@@ -13,20 +13,22 @@ class GlobalMiniPlayer extends StatefulWidget {
 
 class _GlobalMiniPlayerState extends State<GlobalMiniPlayer> {
   late GlobalMiniPlayerController globalMiniCtrl;
+  late AudioPlayerController audioCtrl;
+  double _dragOffsetX = 0.0; // for swipe detection
+  double _opacity = 1.0;
 
   @override
   void initState() {
     super.initState();
     globalMiniCtrl = Get.find<GlobalMiniPlayerController>();
+    audioCtrl = Get.find<AudioPlayerController>();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final size = MediaQuery.of(context).size;
-      final playerWidth = MediaQuery.of(context).size.width - 30;
+      final playerWidth = size.width - 30;
       const playerHeight = 70.0;
 
-      // 🟢 Start position: bottom center
-      final initialTop =
-          size.height - playerHeight - 100; // ~100px above bottom
+      final initialTop = size.height - playerHeight - 100;
       final initialLeft = (size.width / 2) - (playerWidth / 2);
       globalMiniCtrl.setPosition(initialTop, initialLeft);
     });
@@ -50,7 +52,7 @@ class _GlobalMiniPlayerState extends State<GlobalMiniPlayer> {
     late AudioPlayerController controller;
     try {
       controller = Get.find<AudioPlayerController>();
-    } catch (e) {
+    } catch (_) {
       return const SizedBox.shrink();
     }
 
@@ -61,45 +63,61 @@ class _GlobalMiniPlayerState extends State<GlobalMiniPlayer> {
       }
 
       final screenSize = MediaQuery.of(context).size;
-      final playerWidth = 180;
+      final playerWidth = screenSize.width - 30;
       const playerHeight = 70.0;
 
-      return Positioned(
-        top: globalMiniCtrl.top.value,
-        left: globalMiniCtrl.left.value,
-        child: GestureDetector(
-          onPanUpdate: (details) {
-            // 🟢 Move freely in all directions
-            final newTop = (globalMiniCtrl.top.value + details.delta.dy)
-                .clamp(0.0, screenSize.height - playerHeight - 20);
-            final newLeft = (globalMiniCtrl.left.value + details.delta.dx)
-                .clamp(0.0, screenSize.width - playerWidth - 10);
-            globalMiniCtrl.setPosition(newTop, newLeft);
-          },
-          onPanEnd: (details) {
-            double snapLeft = globalMiniCtrl.left.value;
-            double snapTop = globalMiniCtrl.top.value;
+      return GestureDetector(
+        onPanUpdate: (details) {
+          // Horizontal swipe detection
+          _dragOffsetX += details.delta.dx;
 
-            const snapDistance = 40.0;
-            if (snapLeft < snapDistance) snapLeft = 10;
-            if (snapLeft > screenSize.width - playerWidth - snapDistance) {
-              snapLeft = screenSize.width - playerWidth - 10;
-            }
-            if (snapTop < snapDistance) snapTop = 20;
-            if (snapTop > screenSize.height - playerHeight - snapDistance) {
-              snapTop = screenSize.height - playerHeight - 20;
-            }
+          // If horizontal drag is strong enough → hide
+          if (_dragOffsetX.abs() > 100) {
+            setState(() => _opacity = 0.0);
+            Future.delayed(const Duration(milliseconds: 150), () {
+              globalMiniCtrl.hide();
+              audioCtrl.stopAudio();
+              _dragOffsetX = 0.0;
+              _opacity = 1.0;
+            });
+            return;
+          }
 
-            globalMiniCtrl.setPosition(snapTop, snapLeft);
-          },
-          onTap: () {
-            Get.to(() => const AudiobookPlayerScreen());
-            globalMiniCtrl.hide();
-          },
+          // Normal dragging
+          final newTop = (globalMiniCtrl.top.value + details.delta.dy)
+              .clamp(0.0, screenSize.height - playerHeight - 20);
+          final newLeft = (globalMiniCtrl.left.value + details.delta.dx)
+              .clamp(0.0, screenSize.width - playerWidth - 10);
+          globalMiniCtrl.setPosition(newTop, newLeft);
+        },
+        onPanEnd: (_) {
+          _dragOffsetX = 0.0;
+          double snapLeft = globalMiniCtrl.left.value;
+          double snapTop = globalMiniCtrl.top.value;
+          const snapDistance = 40.0;
+
+          if (snapLeft < snapDistance) snapLeft = 10;
+          if (snapLeft > screenSize.width - playerWidth - snapDistance) {
+            snapLeft = screenSize.width - playerWidth - 10;
+          }
+          if (snapTop < snapDistance) snapTop = 20;
+          if (snapTop > screenSize.height - playerHeight - snapDistance) {
+            snapTop = screenSize.height - playerHeight - 20;
+          }
+
+          globalMiniCtrl.setPosition(snapTop, snapLeft);
+        },
+        onTap: () {
+          Get.to(() => const AudiobookPlayerScreen());
+          globalMiniCtrl.hide();
+        },
+        child: AnimatedOpacity(
+          duration: const Duration(milliseconds: 200),
+          opacity: _opacity,
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
             height: playerHeight,
-            width: MediaQuery.of(context).size.width - 30,
+            width: playerWidth,
             decoration: BoxDecoration(
               color: Theme.of(context).brightness == Brightness.dark
                   ? Colors.black
@@ -115,7 +133,6 @@ class _GlobalMiniPlayerState extends State<GlobalMiniPlayer> {
             ),
             child: Row(
               children: [
-                // Book cover
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: ClipRRect(
@@ -133,8 +150,6 @@ class _GlobalMiniPlayerState extends State<GlobalMiniPlayer> {
                   ),
                 ),
                 const SizedBox(width: 8),
-
-                // Info
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -148,31 +163,28 @@ class _GlobalMiniPlayerState extends State<GlobalMiniPlayer> {
                               ? Colors.white
                               : Colors.black,
                         ),
-                        child: Text(
+                        child: const Text(
                           'The Subtle Art...',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
                       const SizedBox(height: 4),
-                      Obx(() {
-                        return DefaultTextStyle(
-                          style: TextStyle(
-                            color: Colors.grey.shade600,
-                            fontSize: 12,
-                          ),
-                          child: Text(
-                            '${controller.formatDuration(controller.position.value)} left',
-                          ),
-                        );
-                      }),
+                      Obx(() => DefaultTextStyle(
+                            style: TextStyle(
+                              color: Colors.grey.shade600,
+                              fontSize: 12,
+                            ),
+                            child: Text(
+                              '${controller.formatDuration(controller.position.value)} left',
+                            ),
+                          )),
                     ],
                   ),
                 ),
-
                 const SizedBox(width: 6),
                 GestureDetector(
-                  onTap: () => controller.seekBackward(),
+                  onTap: controller.seekBackward,
                   child: CustomIcon(
                     title: 'assets/icons/a1.svg',
                     height: 28,
@@ -184,7 +196,7 @@ class _GlobalMiniPlayerState extends State<GlobalMiniPlayer> {
                 ),
                 const SizedBox(width: 8),
                 GestureDetector(
-                  onTap: () => controller.playPause(),
+                  onTap: controller.playPause,
                   child: Obx(() => CustomIcon(
                         title: controller.isPlaying.value
                             ? 'assets/icons/a4.svg'
