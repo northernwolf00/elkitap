@@ -30,18 +30,18 @@ class _PromocodeSheetState extends State<PromocodeSheet> {
   }
 
   void _openTextScanner() async {
-    // final result = await showModalBottomSheet<String>(
-    //   context: context,
-    //   isScrollControlled: true,
-    //   backgroundColor: Colors.transparent,
-    //   builder: (context) => const TextScannerSheet(),
-    // );
+    final result = await showModalBottomSheet<String>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => const TextScannerSheet(),
+    );
 
-    // if (result != null && result.isNotEmpty) {
-    //   setState(() {
-    //     _promoController.text = result;
-    //   });
-    // }
+    if (result != null && result.isNotEmpty) {
+      setState(() {
+        _promoController.text = result;
+      });
+    }
   }
 
   @override
