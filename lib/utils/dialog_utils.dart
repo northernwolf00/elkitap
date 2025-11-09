@@ -430,8 +430,8 @@ class DialogUtils {
               width: 24,
               color: iconColor ??
                   (Theme.of(context).brightness == Brightness.dark
-                      ? Colors.black
-                      : Colors.white),
+                      ? Colors.white
+                      : Colors.black),
             )
           ],
         ),
