@@ -1,5 +1,6 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/core/theme/app_colors.dart';
+import 'package:elkitap/modules/paymant/view/promocode_sheet.dart';
 import 'package:elkitap/modules/paymant/widget/subscription_expired_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,6 +19,18 @@ class SubscribedView extends StatelessWidget {
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
         builder: (context) => const SubscriptionExpiredSheet(),
+      );
+    }
+
+    void _showPromocodeSheet(BuildContext context) {
+      Navigator.pop(context);
+      showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+        ),
+        builder: (context) => const PromocodeSheet(),
       );
     }
 
@@ -66,7 +79,9 @@ class SubscribedView extends StatelessWidget {
             const SizedBox(width: 12),
             Expanded(
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  _showPromocodeSheet(context);
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.buttonGreyColor,
                   shape: RoundedRectangleBorder(
