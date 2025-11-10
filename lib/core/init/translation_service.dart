@@ -1,3 +1,4 @@
+import 'package:cosmos_epub/cosmos_epub.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
@@ -27,6 +28,7 @@ class TranslationService extends Translations {
   void changeLocale(String lang) {
     final locale = _getLocaleFromLanguage(lang);
     Get.updateLocale(locale);
+    CosmosEpub.updateLocale(locale);
   }
 
   Locale _getLocaleFromLanguage(String lang) {

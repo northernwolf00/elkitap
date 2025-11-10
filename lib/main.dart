@@ -36,6 +36,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String _getLangCode(String langName) {
+      switch (langName) {
+        case 'English':
+          return 'en';
+        case 'Русский':
+          return 'ru';
+        case 'Türkmençe':
+        default:
+          return 'tr';
+      }
+    }
+
     return ScreenUtilInit(
       designSize: Size(360, 800),
       minTextAdapt: true,
@@ -68,11 +80,12 @@ class MyApp extends StatelessWidget {
           },
           translations: TranslationService(),
           defaultTransition: Transition.fade,
-          fallbackLocale: const Locale('tr'),
+          // fallbackLocale: const Locale('tr'),
           debugShowCheckedModeBanner: false,
-          locale: storage.read('langCode') != null
-              ? Locale(storage.read('langCode'))
-              : const Locale('tr'),
+          locale: Locale(
+            _getLangCode(storage.read('selectedLanguage') ?? 'Türkmençe'),
+          ),
+          fallbackLocale: const Locale('tr', 'TR'),
           theme: CustomLightTheme().themeData,
           darkTheme: CustomDarkTheme().themeData,
           themeMode: Get.find<ThemeController>().themeMode,
