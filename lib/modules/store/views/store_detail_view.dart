@@ -324,7 +324,7 @@ class BookDetailView extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 14,
                     fontFamily: StringConstants.SFPro,
-                    color: Colors.grey[200]),
+                    color: Colors.grey[400]),
               ),
             ),
             const SizedBox(height: 24),
@@ -351,7 +351,7 @@ class BookDetailView extends StatelessWidget {
                           bottomLeft: Radius.circular(12),
                         ),
                       ),
-                      child:  Text(
+                      child: Text(
                         "read_button_action_t".tr,
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -380,7 +380,7 @@ class BookDetailView extends StatelessWidget {
                           bottomRight: Radius.circular(12),
                         ),
                       ),
-                      child:  Text(
+                      child: Text(
                         "listen_button_t".tr,
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -433,7 +433,7 @@ class BookDetailView extends StatelessWidget {
             const SizedBox(height: 32),
 
             // --- About Section
-             Align(
+            Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 "about_t".tr,
@@ -444,7 +444,7 @@ class BookDetailView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-             Text(
+            Text(
               'bio_russian_short_t'.tr,
               style: TextStyle(
                 fontSize: 15,
