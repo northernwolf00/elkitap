@@ -40,9 +40,8 @@ class _EpubReaderScreenState extends State<EpubReaderScreen> {
       },
     );
     
-    // After book is closed, return to BookDetailView
     if (mounted) {
-      Get.back(); // This will return to BookDetailView
+      Get.back(); 
     }
   }
 

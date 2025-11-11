@@ -4,8 +4,8 @@ import 'package:elkitap/core/init/translation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 // Assuming you have this import for GetStorage/GetX for storage/translation
-import 'package:get_storage/get_storage.dart'; 
-// Assuming the following import for the .tr extension to work, though 'turkmen'.tr 
+import 'package:get_storage/get_storage.dart';
+// Assuming the following import for the .tr extension to work, though 'turkmen'.tr
 // is usually a placeholder and you'll likely store a string like 'Türkmençe'.
 
 class LanguageSelector extends StatefulWidget {
@@ -16,51 +16,47 @@ class LanguageSelector extends StatefulWidget {
 }
 
 class _LanguageSelectorState extends State<LanguageSelector> {
-
   final _box = GetStorage();
   final _languageKey = 'selectedLanguage';
-    String selectedLanguage = 'turkmen'.tr;
-
-
+  String selectedLanguage = 'turkmen'.tr;
 
   final List<String> _languages = ['Türkmençe', 'Русский', 'English'];
-
 
   @override
   void initState() {
     super.initState();
     _loadSelectedLanguage();
   }
-  
 
- void _loadSelectedLanguage() {
-    final storedLanguage = _box.read(_languageKey);
+  void _saveSelectedLanguage(String lang) {
+    _box.write('selectedLanguage', lang);
+  }
+
+  void _loadSelectedLanguage() {
+    final storedLanguage = _box.read('selectedLanguage');
     if (storedLanguage != null) {
- 
       setState(() {
         selectedLanguage = storedLanguage;
       });
+
+      // Apply locale immediately when app opens
+      final TranslationService translationService =
+          Get.find<TranslationService>();
+      translationService.changeLocale(storedLanguage);
     } else {
-  
-      _box.write(_languageKey, selectedLanguage);
+      _saveSelectedLanguage(selectedLanguage);
     }
-  }
-
-
-  void _saveSelectedLanguage(String lang) {
-    _box.write(_languageKey, lang);
-
   }
 
   void _showLanguageMenu(BuildContext context) async {
     final selected = await showDialog<String>(
       context: context,
-      barrierColor: Colors.transparent, 
+      barrierColor: Colors.transparent,
       builder: (context) {
         return Stack(
           children: [
             Positioned(
-              top: 60, 
+              top: 60,
               left: 0,
               right: 0,
               child: Center(
@@ -127,7 +123,7 @@ class _LanguageSelectorState extends State<LanguageSelector> {
       // Save the newly selected language
       _saveSelectedLanguage(selected);
 
-            // Find and call the TranslationService
+      // Find and call the TranslationService
       final TranslationService translationService =
           Get.find<TranslationService>();
       translationService.changeLocale(selected); // Change app locale

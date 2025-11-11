@@ -52,7 +52,7 @@ dependencies:
   
   # isar_flutter_libs: ^3.1.0+1
   cosmos_epub:
-    path: ./packages/cosmos_epub
+    path: ./packages/elkitap_epub
   # vocsy_epub_viewer: ^3.0.0
 
   #==================== MAPS & LOCATION ====================#

@@ -100,7 +100,7 @@ packages:
   cosmos_epub:
     dependency: "direct main"
     description:
-      path: "packages/cosmos_epub"
+      path: "packages/elkitap_epub"
       relative: true
     source: path
     version: "0.0.3"
@@ -176,6 +176,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.0"
+  equatable:
+    dependency: transitive
+    description:
+      name: equatable
+      sha256: "567c64b3cb4cf82397aac55f4f0cbd3ca20d77c6c03bedbc4ceaddc08904aef7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.7"
   fading_edge_scrollview:
     dependency: transitive
     description:
@@ -320,6 +328,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
+  float_column:
+    dependency: transitive
+    description:
+      name: float_column
+      sha256: "4da6247177d39c77cabaae536babf25c15e9fc574530aaba94a73ad9017341e0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.8"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -959,6 +975,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.1"
+  selectable:
+    dependency: transitive
+    description:
+      name: selectable
+      sha256: "6327ca78f28702cdcc240f14d8fbd4f4c149ac195f40ea756b47413aa16ab7d2"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.3"
   shared_preferences:
     dependency: transitive
     description:
