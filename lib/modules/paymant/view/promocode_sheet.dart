@@ -29,20 +29,20 @@ class _PromocodeSheetState extends State<PromocodeSheet> {
     super.dispose();
   }
 
-  void _openTextScanner() async {
-    final result = await showModalBottomSheet<String>(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (context) => const TextScannerSheet(),
-    );
+  // void _openTextScanner() async {
+  //   final result = await showModalBottomSheet<String>(
+  //     context: context,
+  //     isScrollControlled: true,
+  //     backgroundColor: Colors.transparent,
+  //     builder: (context) => const TextScannerSheet(),
+  //   );
 
-    if (result != null && result.isNotEmpty) {
-      setState(() {
-        _promoController.text = result;
-      });
-    }
-  }
+  //   if (result != null && result.isNotEmpty) {
+  //     setState(() {
+  //       _promoController.text = result;
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -162,7 +162,7 @@ class _PromocodeSheetState extends State<PromocodeSheet> {
                             color: Colors.grey[700],
                             size: 28,
                           ),
-                          onPressed: _openTextScanner,
+                          onPressed: () {},
                         ),
                       ),
                     ],
