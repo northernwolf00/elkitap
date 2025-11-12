@@ -39,7 +39,7 @@ class MyLibraryViewScreen extends StatelessWidget {
                         onTap: () {
                           Get.to(() => BookDetailView());
                         },
-                        child: CurrentBookSection(),
+                        child: CurrentBookSection(discountPercentage: '45',),
                       ),
                       Divider(
                         height: 32,
