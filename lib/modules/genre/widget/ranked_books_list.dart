@@ -1,5 +1,6 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/store/views/store_detail_view.dart';
+import 'package:elkitap/modules/store/widgets/book_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -48,19 +49,39 @@ class RankedBooksList extends StatelessWidget {
   }
 
   Widget _buildBookRankCard(Map<String, String> book, int rank) {
+    final int? discountPercentage = 12;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Book cover
-          ClipRRect(
-            borderRadius: BorderRadius.circular(6),
-            child: Image.asset(
-              'assets/images/b1.png', // replace with dynamic image if available
-              width: 80,
-              height: 110,
-              fit: BoxFit.cover,
+          SizedBox(
+            height: 90,
+            child: Stack(
+              children: [
+                if (discountPercentage! > 3)
+                  Positioned(
+                    right: 7,
+                    bottom: 0,
+                    child: DiscountBadgeMini(
+                      percentage: discountPercentage,
+                    ),
+                  ),
+                SizedBox(
+                  height: 80,
+                  width: 55,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(6),
+                    child: Image.asset(
+                      'assets/images/b2.png', // replace with dynamic image if available
+                      width: 80,
+                      height: 110,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           const SizedBox(width: 16),
@@ -75,7 +96,7 @@ class RankedBooksList extends StatelessWidget {
                   '$rank',
                   style: const TextStyle(
                     fontSize: 28,
-                     fontFamily: StringConstants.NewYork,
+                    fontFamily: StringConstants.NewYork,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -90,16 +111,17 @@ class RankedBooksList extends StatelessWidget {
                         book['title'] ?? '',
                         style: const TextStyle(
                           fontWeight: FontWeight.w600,
-                           fontFamily: StringConstants.SFPro,
+                          fontFamily: StringConstants.SFPro,
                           fontSize: 16,
                         ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         book['author'] ?? '',
-                        style: TextStyle(color: Colors.grey[600],
-                         fontFamily: StringConstants.SFPro,
-                         fontSize: 13),
+                        style: TextStyle(
+                            color: Colors.grey[600],
+                            fontFamily: StringConstants.SFPro,
+                            fontSize: 13),
                       ),
                     ],
                   ),

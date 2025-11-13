@@ -4,7 +4,7 @@ class BookItem {
   final String title;
   final String author;
   final Color color;
-  final String? discountPercentage;
+  final int? discountPercentage;
 
 
   BookItem({

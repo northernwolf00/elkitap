@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
-
-
 class BookCard extends StatelessWidget {
   final int index;
   final int tabIndex;
   final double width;
   final double borderRadius;
   final VoidCallback? onTap;
-  final String? discountPercentage;
+  final int? discountPercentage;
 
   const BookCard({
     super.key,
@@ -17,21 +15,20 @@ class BookCard extends StatelessWidget {
     this.width = 110,
     this.borderRadius = 8,
     this.onTap,
-    this.discountPercentage, 
+    this.discountPercentage,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-     
       child: SizedBox(
         width: 144,
-        height: 180,
+        height: 200,
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
-          if (discountPercentage != null)
+            if (discountPercentage! > 3)
               Positioned(
                 right: 30,
                 bottom: 0,
@@ -40,21 +37,18 @@ class BookCard extends StatelessWidget {
                 ),
               ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 8),
+              padding: const EdgeInsets.only(bottom: 18),
               child: SizedBox(
-                width: 134,
-                height: 160,
+                width: 144,
+                height: 184,
                 child: Image.asset(
                   tabIndex == 0
                       ? 'assets/images/b$index.png'
                       : 'assets/images/b${index + 2}.png',
-                  fit: BoxFit.fitHeight,
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
-        
-           
-            
           ],
         ),
       ),
@@ -62,10 +56,8 @@ class BookCard extends StatelessWidget {
   }
 }
 
-
-
 class DiscountBadge extends StatelessWidget {
-  final String percentage;
+  final int percentage;
 
   const DiscountBadge({
     super.key,
@@ -74,25 +66,59 @@ class DiscountBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
     return Container(
       width: 32,
-      height: 37, 
-      
+      height: 37,
       decoration: const BoxDecoration(
-        image: DecorationImage(image: AssetImage('assets/images/bg2.png',
-        ),
-        fit: BoxFit.cover), 
+        image: DecorationImage(
+            image: AssetImage(
+              'assets/images/bg2.png',
+            ),
+            fit: BoxFit.cover),
       ),
       child: Padding(
         padding: const EdgeInsets.only(top: 8),
         child: Text(
-          '$percentage%', 
+          '$percentage%',
           textAlign: TextAlign.center,
           style: const TextStyle(
-            
             fontWeight: FontWeight.bold,
             fontSize: 12,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class DiscountBadgeMini extends StatelessWidget {
+  final int percentage;
+
+  const DiscountBadgeMini({
+    super.key,
+    required this.percentage,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 18,
+      height: 20,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage(
+              'assets/images/bg2.png',
+            ),
+            fit: BoxFit.cover),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 4),
+        child: Text(
+          '$percentage%',
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 8,
           ),
         ),
       ),
