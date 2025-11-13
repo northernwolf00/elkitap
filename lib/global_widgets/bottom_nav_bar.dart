@@ -39,7 +39,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     return Scaffold(
       
       bottomNavigationBar: Container(
-        height: 70,
+        height: 90,
         child: Row(
           children: [
             Expanded(

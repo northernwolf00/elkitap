@@ -36,7 +36,7 @@ class FeaturedBooksSection extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           SizedBox(
-            height: 160,
+            height: 200,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: 5,
@@ -48,6 +48,7 @@ class FeaturedBooksSection extends StatelessWidget {
                   onTap: () {
                      Get.to(() => BookDetailView());
                   },
+                  discountPercentage: '14',
                 );
               },
             ),

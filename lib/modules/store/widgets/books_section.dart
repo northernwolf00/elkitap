@@ -12,21 +12,25 @@ class BooksSection extends StatelessWidget {
       title: 'The Subtle Art of Not Giving a F*ck',
       author: 'Mark Manson',
       color: Colors.orange,
+       discountPercentage: '4',
     ),
     BookItem(
       title: '12 Rules for Life',
       author: 'Jordan B. Peterson',
       color: Colors.white,
+       discountPercentage: '12',
     ),
     BookItem(
       title: 'Stop Overthinking',
       author: 'Nick Trenton',
       color: Colors.red,
+       discountPercentage: '23',
     ),
     BookItem(
       title: 'Atomic Habits',
       author: 'James Clear',
       color: Colors.white,
+       discountPercentage: '43',
     ),
   ];
 
@@ -54,6 +58,7 @@ class BooksSection extends StatelessWidget {
                 onTap: () {
                   Get.to(() => BookDetailView());
                 },
+                discountPercentage: '45',
               );
             },
           ),
