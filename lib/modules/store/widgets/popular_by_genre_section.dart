@@ -12,11 +12,11 @@ class PopularByGenreSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final genres = [
-      'genre_fiction_t',            // "Fiction & Literature"
-  'genre_nonfiction_t',         // "Nonfiction"
-  'genre_science_fiction_t',    // "Science Fiction"
-  'genre_fantasy_t',            // "Fantasy"
-  'genre_mystery_thriller_t',
+      'genre_fiction_t', // "Fiction & Literature"
+      'genre_nonfiction_t', // "Nonfiction"
+      'genre_science_fiction_t', // "Science Fiction"
+      'genre_fantasy_t', // "Fantasy"
+      'genre_mystery_thriller_t',
     ];
 
     return Padding(
@@ -25,7 +25,7 @@ class PopularByGenreSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 22),
-           Text(
+          Text(
             "popular_by_genre_t".tr,
             style: TextStyle(
               fontSize: 20,
@@ -82,6 +82,7 @@ class PopularByGenreSection extends StatelessWidget {
                             onTap: () {
                               Get.to(() => BookDetailView());
                             },
+                            discountPercentage: 23,
                           );
                         },
                       ),

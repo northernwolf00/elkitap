@@ -28,7 +28,7 @@ class BookCard extends StatelessWidget {
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
-            if (discountPercentage! > 3)
+            if (discountPercentage! > 3 && discountPercentage != null)
               Positioned(
                 right: 30,
                 bottom: 0,
