@@ -7,36 +7,37 @@ import 'package:get/get.dart';
 // ignore: must_be_immutable
 class BooksGridScreen extends StatelessWidget {
   late String title;
- final List<Map<String, String>> books = [
+  final List<Map<String, String>> books = [
     {
-      'title': 'twelve_rules_for_life_t', // Use the key
+      'title': 'twelve_rules_for_life_t', 
       'author': 'Rebecca Roanhorse',
       'image': 'assets/images/b3.png',
     },
     {
-      'title': 'stop_overthinking_t', // Use the key
+      'title': 'stop_overthinking_t', 
       'author': 'Rebecca Roanhorse',
       'image': 'assets/images/b2.png',
     },
     {
-      'title': 'power_t', // Use the key
+      'title': 'power_t', 
       'author': 'Rebecca Roanhorse',
       'image': 'assets/images/b3.png',
     },
     {
-      'title': 'falling_bodies_t', // Use the key (The title "Falling Bodies" appears twice)
+      'title':
+          'falling_bodies_t',
       'author': 'Rebecca Roanhorse',
-      'image': 'assets/images/b4.png',
+      'image': 'assets/images/b2.png',
     },
     {
-      'title': 'falling_bodies_t', // Use the key
-      'author': 'Rebecca Roanhorse',
-      'image': 'assets/images/b7.png',
-    },
-    {
-      'title': 'how_it_unfolds_t', // Use the key
+      'title': 'falling_bodies_t', 
       'author': 'Rebecca Roanhorse',
       'image': 'assets/images/b3.png',
+    },
+    {
+      'title': 'how_it_unfolds_t',
+      'author': 'Rebecca Roanhorse',
+      'image': 'assets/images/b2.png',
     },
   ];
 
@@ -47,19 +48,14 @@ class BooksGridScreen extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(title: '$title'.tr, leadingText: 'leading_text'.tr),
       body: GridView.builder(
-        padding: const EdgeInsets.only(
-          top: 16,
-          left: 16,
-          right: 16,
-          bottom: 40,
-        ),
+        padding: const EdgeInsets.all(16),
         shrinkWrap: true,
         itemCount: books.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
-          mainAxisSpacing: 10,
-          // crossAxisSpacing: 16,
-          childAspectRatio: 0.70,
+          mainAxisSpacing: 16,
+          crossAxisSpacing: 16,
+          childAspectRatio: 0.65, // Adjusted for better proportions
         ),
         itemBuilder: (context, index) {
           final book = books[index];
@@ -70,6 +66,7 @@ class BooksGridScreen extends StatelessWidget {
             onTap: () {
               Get.to(() => BookDetailView());
             },
+            discountPercentage: 43,
           );
         },
       ),

@@ -1,4 +1,5 @@
 import 'package:elkitap/core/constants/string_constants.dart';
+import 'package:elkitap/modules/store/widgets/book_card_widget.dart';
 import 'package:flutter/material.dart';
 
 class BookCardGridView extends StatelessWidget {
@@ -6,6 +7,7 @@ class BookCardGridView extends StatelessWidget {
   final String title;
   final String author;
   final VoidCallback? onTap;
+  final int? discountPercentage;
 
   const BookCardGridView({
     super.key,
@@ -13,6 +15,7 @@ class BookCardGridView extends StatelessWidget {
     required this.title,
     required this.author,
     this.onTap,
+    this.discountPercentage,
   });
 
   @override
@@ -23,12 +26,32 @@ class BookCardGridView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Book cover
-          AspectRatio(
-            aspectRatio: 0.9,
-            child: ClipRRect(child: Image.asset(image, fit: BoxFit.cover)),
+          Expanded(
+            child: Stack(
+              children: [
+                if (discountPercentage != null && discountPercentage! > 3)
+                  Positioned(
+                    right: 30,
+                    bottom: 0,
+                    child: DiscountBadge(
+                      percentage: discountPercentage!,
+                    ),
+                  ),
+                AspectRatio(
+                  aspectRatio: 0.9,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.asset(
+                      image,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
 
-          const SizedBox(height: 8),
+          const SizedBox(height: 3),
 
           // Title
           Text(
@@ -36,9 +59,11 @@ class BookCardGridView extends StatelessWidget {
             textAlign: TextAlign.center,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(fontWeight: FontWeight.w600, 
-             fontFamily: StringConstants.SFPro,
-            fontSize: 17),
+            style: const TextStyle(
+              fontWeight: FontWeight.w600,
+              fontFamily: StringConstants.SFPro,
+              fontSize: 17,
+            ),
           ),
 
           const SizedBox(height: 2),
@@ -47,10 +72,16 @@ class BookCardGridView extends StatelessWidget {
           Text(
             author,
             textAlign: TextAlign.center,
-            style: TextStyle(color: Colors.grey[600],
-             fontFamily: StringConstants.SFPro,
-             fontSize: 12),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: Colors.grey[600],
+              fontFamily: StringConstants.SFPro,
+              fontSize: 12,
+            ),
           ),
+
+          const SizedBox(height: 8),
         ],
       ),
     );

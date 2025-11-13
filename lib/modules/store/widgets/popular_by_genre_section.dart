@@ -1,7 +1,8 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/genre/view/books_grid_screen_view.dart';
 import 'package:elkitap/modules/store/views/store_detail_view.dart';
-import 'package:elkitap/modules/store/widgets/book_card_widget.dart';
+
+import 'package:elkitap/modules/store/widgets/popular_gerners_book_cart.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,11 +13,11 @@ class PopularByGenreSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final genres = [
-      'genre_fiction_t',            // "Fiction & Literature"
-  'genre_nonfiction_t',         // "Nonfiction"
-  'genre_science_fiction_t',    // "Science Fiction"
-  'genre_fantasy_t',            // "Fantasy"
-  'genre_mystery_thriller_t',
+      'genre_fiction_t',
+      'genre_nonfiction_t',
+      'genre_science_fiction_t',
+      'genre_fantasy_t',
+      'genre_mystery_thriller_t',
     ];
 
     return Padding(
@@ -25,7 +26,7 @@ class PopularByGenreSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 22),
-           Text(
+          Text(
             "popular_by_genre_t".tr,
             style: TextStyle(
               fontSize: 20,
@@ -70,18 +71,19 @@ class PopularByGenreSection extends StatelessWidget {
                     ),
                     const SizedBox(height: 12),
                     SizedBox(
-                      height: 150,
+                      height: 120,
                       child: ListView.separated(
                         scrollDirection: Axis.horizontal,
                         itemCount: 5,
                         separatorBuilder: (_, __) => const SizedBox(width: 12),
                         itemBuilder: (context, index) {
-                          return BookCard(
+                          return BookCardPopular(
                             index: index,
                             tabIndex: 0,
                             onTap: () {
                               Get.to(() => BookDetailView());
                             },
+                            discountPercentage: 23,
                           );
                         },
                       ),

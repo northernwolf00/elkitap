@@ -18,37 +18,41 @@ class FeaturedBooksSection extends StatelessWidget {
         children: [
           Text(
             tabIndex == 0 ? "FEATURED BOOKS" : 'FEATURED AUDIOBOOKS',
-            style: TextStyle(fontSize: 12,
-            fontFamily: StringConstants.SFPro,
-             color: Colors.grey),
+            style: TextStyle(
+                fontSize: 12,
+                fontFamily: StringConstants.SFPro,
+                color: Colors.grey),
           ),
           const SizedBox(height: 4),
           GestureDetector(
             onTap: () {
-              Get.to(() => BooksGridScreen(title: "we_recommend_t".tr,));
+              Get.to(() => BooksGridScreen(
+                    title: "we_recommend_t".tr,
+                  ));
             },
-            child:  Text(
+            child: Text(
               "we_recommend_t".tr,
-              style: TextStyle(fontSize: 18,
-              fontFamily:StringConstants.NewYork ,
-               fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 18,
+                  fontFamily: StringConstants.NewYork,
+                  fontWeight: FontWeight.bold),
             ),
           ),
           const SizedBox(height: 16),
           SizedBox(
-            height: 200,
+            height: 220,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: 5,
-              separatorBuilder: (_, __) => const SizedBox(width: 12),
+              separatorBuilder: (_, __) => const SizedBox(width: 1),
               itemBuilder: (context, index) {
                 return BookCard(
                   index: index,
                   tabIndex: 0,
                   onTap: () {
-                     Get.to(() => BookDetailView());
+                    Get.to(() => BookDetailView());
                   },
-                  discountPercentage: '14',
+                  discountPercentage: 14,
                 );
               },
             ),

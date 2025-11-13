@@ -35,7 +35,7 @@ class RecentlyOpenedSection extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         SizedBox(
-          height: 150,
+          height: 220,
           child: ListView.separated(
             scrollDirection: Axis.horizontal,
             itemCount: books.length,
@@ -47,6 +47,7 @@ class RecentlyOpenedSection extends StatelessWidget {
                 onTap: () {
                   Get.to(() => BookDetailView());
                 },
+                discountPercentage: 22,
               );
             },
           ),

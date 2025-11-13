@@ -12,25 +12,25 @@ class BooksSection extends StatelessWidget {
       title: 'The Subtle Art of Not Giving a F*ck',
       author: 'Mark Manson',
       color: Colors.orange,
-       discountPercentage: '4',
+      discountPercentage: 4,
     ),
     BookItem(
       title: '12 Rules for Life',
       author: 'Jordan B. Peterson',
       color: Colors.white,
-       discountPercentage: '12',
+      discountPercentage: 12,
     ),
     BookItem(
       title: 'Stop Overthinking',
       author: 'Nick Trenton',
       color: Colors.red,
-       discountPercentage: '23',
+      discountPercentage: 23,
     ),
     BookItem(
       title: 'Atomic Habits',
       author: 'James Clear',
       color: Colors.white,
-       discountPercentage: '43',
+      discountPercentage: 43,
     ),
   ];
 
@@ -41,9 +41,13 @@ class BooksSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SectionHeader(title: 'books_t'.tr, onTap: () {
-          Get.to(() => BooksGridScreen(title: 'books_t'.tr,));
-        }),
+        SectionHeader(
+            title: 'books_t'.tr,
+            onTap: () {
+              Get.to(() => BooksGridScreen(
+                    title: 'books_t'.tr,
+                  ));
+            }),
         const SizedBox(height: 16),
         SizedBox(
           height: 180,
@@ -58,7 +62,7 @@ class BooksSection extends StatelessWidget {
                 onTap: () {
                   Get.to(() => BookDetailView());
                 },
-                discountPercentage: '45',
+                discountPercentage: 45,
               );
             },
           ),
@@ -100,9 +104,13 @@ class AudiobooksSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SectionHeader(title: 'Audiobooks', onTap: () {
-           Get.to(() => BooksGridScreen(title: 'Audiobooks',));
-        }),
+        SectionHeader(
+            title: 'Audiobooks',
+            onTap: () {
+              Get.to(() => BooksGridScreen(
+                    title: 'Audiobooks',
+                  ));
+            }),
         const SizedBox(height: 16),
         SizedBox(
           height: 180,
@@ -136,8 +144,10 @@ class SectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        Get.to(BooksGridScreen(title: title,));
+      onTap: () {
+        Get.to(BooksGridScreen(
+          title: title,
+        ));
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -145,9 +155,10 @@ class SectionHeader extends StatelessWidget {
           children: [
             Text(
               title,
-              style: const TextStyle(fontSize: 24,
-               fontFamily: StringConstants.NewYork,
-               fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                  fontSize: 24,
+                  fontFamily: StringConstants.NewYork,
+                  fontWeight: FontWeight.bold),
             ),
             const SizedBox(width: 8),
             InkWell(

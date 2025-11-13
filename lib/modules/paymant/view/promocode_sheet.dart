@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class PromocodeSheet extends StatefulWidget {
-  const PromocodeSheet({Key? key}) : super(key: key);
+  const PromocodeSheet({super.key});
 
   @override
   State<PromocodeSheet> createState() => _PromocodeSheetState();
@@ -46,7 +46,7 @@ class _PromocodeSheetState extends State<PromocodeSheet> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height * 0.9,
       child: Column(
         children: [

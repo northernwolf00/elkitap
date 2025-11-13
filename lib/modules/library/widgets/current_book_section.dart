@@ -2,7 +2,7 @@ import 'package:elkitap/modules/store/widgets/book_card_widget.dart';
 import 'package:flutter/material.dart';
 
 class CurrentBookSection extends StatelessWidget {
-    final String? discountPercentage;
+    final int? discountPercentage;
   const CurrentBookSection({super.key,
   this.discountPercentage, });
 
@@ -12,7 +12,7 @@ class CurrentBookSection extends StatelessWidget {
       height: 190,
       child: Stack(
         children: [
-           if (discountPercentage != null)
+           if (discountPercentage! > 3)
            
             Positioned(
               bottom: 0,
