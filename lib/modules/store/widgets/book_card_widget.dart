@@ -37,7 +37,7 @@ class BookCard extends StatelessWidget {
                 ),
               ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 18),
+              padding: const EdgeInsets.only(bottom: 15),
               child: SizedBox(
                 width: 144,
                 height: 184,
@@ -118,7 +118,7 @@ class DiscountBadgeMini extends StatelessWidget {
           textAlign: TextAlign.center,
           style: const TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 8,
+            fontSize: 6,
           ),
         ),
       ),
