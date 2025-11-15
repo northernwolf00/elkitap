@@ -3,17 +3,21 @@ import 'package:elkitap/core/theme/app_colors.dart';
 import 'package:elkitap/modules/library/controllers/library_controller.dart';
 import 'package:elkitap/modules/library/model/book_moc.dart';
 import 'package:elkitap/modules/store/views/store_detail_view.dart';
+import 'package:elkitap/modules/store/widgets/book_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BookGridItem extends StatefulWidget {
   final Book book;
   final ReadingListController controller;
+  final int? discountPercentage;
+
 
   const BookGridItem({
     super.key,
     required this.book,
     required this.controller,
+    this.discountPercentage,
   });
 
   @override
@@ -26,20 +30,17 @@ class _BookGridItemState extends State<BookGridItem> {
     return GestureDetector(
       onTap: () {
         if (widget.controller.selectedBooks.isNotEmpty) {
-          // In selection mode: toggle selection
+         
           widget.controller.toggleSelection(widget.book.id);
-          setState(() {}); // refresh UI
+          setState(() {}); 
         } else {
-          // Not in selection mode: navigate to detail
+        
           Get.to(() => BookDetailView());
         }
-        // Only toggle selection if already in selection mode
-        // if (widget.controller.selectedBooks.isNotEmpty) {
-        //   widget.controller.toggleSelection(widget.book.id);
-        // }
+      
       },
       onLongPress: () {
-        // Long press enters selection mode and selects this book
+       
         widget.controller.toggleSelection(widget.book.id);
       },
       child: Obx(() {
@@ -48,15 +49,29 @@ class _BookGridItemState extends State<BookGridItem> {
 
         return Stack(
           children: [
-            // Book cover image
-            Container(
-              decoration: BoxDecoration(),
-              clipBehavior: Clip.antiAlias,
-              child: Image.asset(
-                widget.book.coverUrl,
-                fit: BoxFit.cover,
-                width: double.infinity,
-                height: double.infinity,
+             if (widget.discountPercentage! > 3 && widget.discountPercentage != null)
+              Positioned(
+                right: 30,
+                bottom: 60,
+                child: DiscountBadge(
+                  percentage: widget.discountPercentage!,
+                ),
+              ),
+  
+               Positioned(
+                right: 0,
+                left: 0,
+                bottom: 60,
+              child: Container(
+                height: 218,
+                width: 148,
+                decoration: BoxDecoration(),
+                clipBehavior: Clip.antiAlias,
+                child: Image.asset(
+                  widget.book.coverUrl,
+                  fit: BoxFit.fill,
+                 
+                ),
               ),
             ),
 
@@ -73,8 +88,8 @@ class _BookGridItemState extends State<BookGridItem> {
                     ),
                   ),
                   Positioned(
-                    right: 15,
-                    bottom: 45,
+                    right: 25,
+                    bottom: 90,
                     child: Container(
                       decoration: BoxDecoration(
                           color: Theme.of(context).brightness == Brightness.dark
@@ -101,8 +116,8 @@ class _BookGridItemState extends State<BookGridItem> {
 
             if (isSelected)
               Positioned(
-                right: 15,
-                bottom: 45,
+                right: 25,
+                bottom: 90,
                 child: Container(
                   decoration: BoxDecoration(
                       color: Theme.of(context).brightness == Brightness.dark
@@ -133,7 +148,7 @@ class _BookGridItemState extends State<BookGridItem> {
             Positioned(
               left: 0,
               right: 0,
-              bottom: -10,
+              bottom: 30,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                 decoration: BoxDecoration(),
