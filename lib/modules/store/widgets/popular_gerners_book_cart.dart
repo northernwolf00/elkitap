@@ -24,14 +24,14 @@ class BookCardPopular extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
-        width: 100,
-        height: 102,
+        width: 70,
+        height: 120,
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
             if (discountPercentage! > 3 && discountPercentage != null)
               Positioned(
-                right: 20,
+                right: 10,
                 bottom: 0,
                 child: DiscountBadgeMini(
                   percentage: discountPercentage!,
@@ -40,8 +40,8 @@ class BookCardPopular extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 18),
               child: SizedBox(
-                width: 82,
-                height: 83,
+                width: 70,
+                height: 103,
                 child: Image.asset(
                   tabIndex == 0
                       ? 'assets/images/b$index.png'

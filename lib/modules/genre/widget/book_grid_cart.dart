@@ -27,27 +27,29 @@ class BookCardGridView extends StatelessWidget {
         children: [
           // Book cover
           Expanded(
-            child: Stack(
-              children: [
-                if (discountPercentage != null && discountPercentage! > 3)
-                  Positioned(
-                    right: 30,
-                    bottom: 0,
-                    child: DiscountBadge(
-                      percentage: discountPercentage!,
+            child: SizedBox(
+              height: 170,
+              child: Stack(
+                children: [
+                  if (discountPercentage != null && discountPercentage! > 3)
+                    Positioned(
+                      right: 15,
+                      bottom: 0,
+                      child: DiscountBadge(
+                        percentage: discountPercentage!,
+                      ),
                     ),
-                  ),
-                AspectRatio(
-                  aspectRatio: 0.9,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8),
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 30),
                     child: Image.asset(
+                      height: 220,
+                      width: 148,
                       image,
                       fit: BoxFit.cover,
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
 
