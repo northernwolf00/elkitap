@@ -57,7 +57,7 @@ class RankedBooksList extends StatelessWidget {
         children: [
           // Book cover
           SizedBox(
-            height: 90,
+            height: 100,
             child: Stack(
               children: [
                 if (discountPercentage! > 3)
@@ -72,7 +72,6 @@ class RankedBooksList extends StatelessWidget {
                   height: 80,
                   width: 55,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(6),
                     child: Image.asset(
                       'assets/images/b2.png', // replace with dynamic image if available
                       width: 80,

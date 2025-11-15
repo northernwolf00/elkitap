@@ -24,20 +24,20 @@ class BookCard extends StatelessWidget {
       onTap: onTap,
       child: SizedBox(
         width: 144,
-        height: 200,
+        height: 204,
         child: Stack(
           alignment: Alignment.bottomCenter,
           children: [
             if (discountPercentage! > 3 && discountPercentage != null)
               Positioned(
-                right: 30,
+                right: 20,
                 bottom: 0,
                 child: DiscountBadge(
                   percentage: discountPercentage!,
                 ),
               ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 15),
+              padding: const EdgeInsets.only(bottom: 30),
               child: SizedBox(
                 width: 144,
                 height: 184,
