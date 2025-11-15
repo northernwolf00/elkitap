@@ -4,6 +4,7 @@ import 'package:elkitap/data/network/token_managet.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
+
 class NetworkManager extends GetxController {
   final TokenManager _tokenManager = Get.find<TokenManager>();
   
@@ -141,7 +142,8 @@ class NetworkManager extends GetxController {
         return {
           'success': true,
           'statusCode': statusCode,
-          'data': data,
+          'message': data['message'] ?? 'Success',
+          'data': data['data'],
         };
       } else {
         return {

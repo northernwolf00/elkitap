@@ -4,7 +4,6 @@ import 'package:elkitap/core/init/translation_service.dart';
 import 'package:elkitap/global_widgets/bottom_nav_bar.dart';
 import 'package:elkitap/global_widgets/custom_bottom_sheet.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
-import 'package:elkitap/modules/auth/controllers/login_controller.dart';
 import 'package:elkitap/modules/profile/widgets/help_and_support_sheet.dart';
 import 'package:elkitap/modules/profile/widgets/model/menu_item.dart';
 import 'package:elkitap/modules/paymant/widget/paymant_bottom_sheet.dart';
@@ -26,7 +25,7 @@ class _SettingsListState extends State<SettingsList> {
   final _box = GetStorage();
   final _languageKey = 'selectedLanguage';
   late final ThemeController _themeController;
-  final AuthController authController = Get.find<AuthController>();
+  // final AuthController authController = Get.find<AuthController>();
 
   void _showLegalTermsBottomSheet(BuildContext context) {
     showModalBottomSheet(
@@ -448,7 +447,7 @@ class _SettingsListState extends State<SettingsList> {
             CupertinoDialogAction(
               onPressed: () {
                 Navigator.of(context).pop();
-                authController.logout();
+                
                 Get.offAll(() => const BottomNavScreen());
               },
               isDestructiveAction:

@@ -61,12 +61,14 @@ dependencies:
 
   #==================== LOCAL STORAGE ====================#
   get_storage: ^2.1.1
+  shared_preferences: ^2.5.3
 
   #==================== UTILITIES ====================#
   
   intl: ^0.20.2
   url_launcher: ^6.2.1
   sms_autofill: ^2.4.1
+
 
   #==================== MEDIA ====================#
   photo_view: ^0.15.0

@@ -2,11 +2,12 @@ import 'dart:async';
 
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/bottom_nav_bar.dart';
-import 'package:elkitap/modules/auth/controllers/login_controller.dart';
+import 'package:elkitap/modules/auth/controllers/auth_controller.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pinput/pinput.dart';
+
 
 class OtpVerificationSheetContent extends StatefulWidget {
   const OtpVerificationSheetContent({super.key});
@@ -56,13 +57,57 @@ class _OtpVerificationSheetContentState
     });
   }
 
-  void _resendCode() {
-    // Implement actual resend logic here
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('resendingCode'.tr)),
-    );
-    _startTimer(); // Restart the timer
+  void _resendCode() async {
+  if (authController.isLoading.value) return;
+
+  authController.isLoading.value = true;
+
+  // Show loading
+  Get.dialog(
+    Center(
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: const CircularProgressIndicator(),
+      ),
+    ),
+    barrierDismissible: false,
+  );
+
+  // Call API
+  final success = await authController.sendCode(authController.currentPhone.value);
+
+  // Close dialog safely
+  if (Get.isDialogOpen == true) {
+    await Future.delayed(const Duration(milliseconds: 200));
+    Get.back();
   }
+
+  authController.isLoading.value = false;
+
+  if (success) {
+    _startTimer();
+    Get.snackbar(
+      'Success',
+      'Code resent successfully',
+      backgroundColor: Colors.green.withOpacity(0.8),
+      colorText: Colors.white,
+      snackPosition: SnackPosition.BOTTOM,
+    );
+  } else {
+    Get.snackbar(
+      'Error',
+      'Failed to resend code',
+      backgroundColor: Colors.red.withOpacity(0.8),
+      colorText: Colors.white,
+      snackPosition: SnackPosition.BOTTOM,
+    );
+  }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -82,12 +127,12 @@ class _OtpVerificationSheetContentState
       ),
     );
 
-    // Focused Pinput theme (when a digit is being entered)
+    // Focused Pinput theme
     final focusedPinTheme = defaultPinTheme.copyDecorationWith(
-      border: Border.all(color: Colors.red), // Red border as in the image
+      border: Border.all(color: const Color(0xFFFF6B35), width: 2),
     );
 
-    // Submitted Pinput theme (when a digit is already entered)
+    // Submitted Pinput theme
     final submittedPinTheme = defaultPinTheme.copyWith(
       decoration: defaultPinTheme.decoration?.copyWith(
         color: Colors.white,
@@ -112,10 +157,11 @@ class _OtpVerificationSheetContentState
                 ),
                 Text(
                   'leading_text'.tr,
-                  style: TextStyle(
-                      fontSize: 17,
-                      fontFamily: StringConstants.SFPro,
-                      fontWeight: FontWeight.w500),
+                  style: const TextStyle(
+                    fontSize: 17,
+                    fontFamily: StringConstants.SFPro,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
                 const Spacer(),
               ],
@@ -124,52 +170,25 @@ class _OtpVerificationSheetContentState
 
             Text(
               'phoneNumberCode'.tr,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
             ),
             const SizedBox(height: 8),
-            Text(
-              'receive5DigitCode'.tr,
-            ),
-            const SizedBox(height: 24),
-            // Align(
-            //   alignment: Alignment.centerLeft,
-            //   child: TextButton(
-            //     onPressed: () {
-            //       ScaffoldMessenger.of(context).showSnackBar(
-            //         const SnackBar(content: Text('Change Phone Number tapped')),
-            //       );
-            //     },
-            //     style: TextButton.styleFrom(
-            //       padding: EdgeInsets.zero,
-            //       alignment: Alignment.centerLeft,
-            //     ),
-            //     child: const Text(
-            //       'Change Phone Number',
-            //       style: TextStyle(
-            //         color: Colors.black,
-            //         fontSize: 16,
-            //         fontWeight: FontWeight.w500,
-            //       ),
-            //     ),
-            //   ),
-            // ),
+            Text('receive5DigitCode'.tr),
             const SizedBox(height: 24),
 
             Center(
               child: Pinput(
-                length: 5,
+                length: 4,
                 controller: _pinController,
                 focusNode: _focusNode,
                 defaultPinTheme: defaultPinTheme,
                 focusedPinTheme: focusedPinTheme,
                 submittedPinTheme: submittedPinTheme,
-                keyboardType: TextInputType.number, // Show native number pad
-                // Remove the custom keypad integration
-
+                keyboardType: TextInputType.number,
                 onCompleted: (pin) {
                   debugPrint('Completed: $pin');
                 },
@@ -194,51 +213,89 @@ class _OtpVerificationSheetContentState
             ),
             const SizedBox(height: 32),
 
+            // Continue Button with API Integration
             Center(
-              child: ElevatedButton(
-                onPressed: _pinController.text.length == 5
-                    ? () {
-                        String otp = _pinController.text;
-                        debugPrint('Verifying OTP: $otp');
-
-                        // Log in the user
-                        authController.login();
-
-                        // Navigate to ProfileScreen
-                        Get.offAll(() => const BottomNavScreen());
-                      }
-                    : null, // disabled if OTP not complete
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: _pinController.text.length == 5
-                      ? Colors.red
-                      : Colors.grey.shade200,
-                  foregroundColor: _pinController.text.length == 5
-                      ? Colors.white
-                      : Colors.grey.shade500,
-                  minimumSize: Size(MediaQuery.of(context).size.width, 50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+              child: Obx(() {
+                return ElevatedButton(
+                  onPressed: _pinController.text.length == 4 && !authController.isLoading.value
+                      ? () async {
+                          String otp = _pinController.text;
+                          debugPrint('Verifying OTP: $otp');
+                          
+                          // Show loading dialog
+                          Get.dialog(
+                            Center(
+                              child: Container(
+                                padding: const EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: const CircularProgressIndicator(),
+                              ),
+                            ),
+                            barrierDismissible: false,
+                          );
+                          
+                          // Verify code and login
+                          final success = await authController.verifyCodeAndLogin(otp);
+                          
+                          // Close loading dialog
+                          Get.back();
+                          
+                          if (success) {
+                            // Close OTP sheet
+                            Navigator.pop(context);
+                            
+                            // Navigate to home
+                            Get.offAll(() => const BottomNavScreen());
+                          }
+                        }
+                      : null,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: _pinController.text.length == 4
+                        ? const Color(0xFFFF6B35)
+                        : Colors.grey.shade200,
+                    foregroundColor: _pinController.text.length == 4
+                        ? Colors.white
+                        : Colors.grey.shade500,
+                    minimumSize: Size(MediaQuery.of(context).size.width, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
-                ),
-                child: Text(
-                  'continue_text'.tr,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                ),
-              ),
+                  child: authController.isLoading.value
+                      ? const SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                            color: Colors.white,
+                          ),
+                        )
+                      : Text(
+                          'continue_text'.tr,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                );
+              }),
             ),
 
             const SizedBox(height: 24),
 
-            // Recent Code Timer / Resend Button
+            // Resend Code Timer / Button
             Center(
               child: _canResend
                   ? TextButton(
                       onPressed: _resendCode,
                       child: Text(
                         'recentCode'.tr,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
-                          color: Colors.red,
+                          color: Color(0xFFFF6B35),
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -252,9 +309,7 @@ class _OtpVerificationSheetContentState
                       ),
                     ),
             ),
-            const SizedBox(
-                height:
-                    40), // Increased bottom padding for better spacing in the sheet
+            const SizedBox(height: 40),
           ],
         ),
       ),

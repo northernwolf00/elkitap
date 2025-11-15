@@ -1,6 +1,6 @@
 import 'package:elkitap/core/constants/string_constants.dart';
+import 'package:elkitap/data/network/token_managet.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
-import 'package:elkitap/modules/auth/controllers/login_controller.dart';
 import 'package:elkitap/modules/auth/views/login_view.dart';
 import 'package:elkitap/modules/profile/views/profile_view.dart';
 
@@ -12,23 +12,29 @@ class LibraryHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AuthController authController = Get.find<AuthController>();
+    // Get TokenManager instance
+    final TokenManager tokenManager = Get.find<TokenManager>();
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           'myLibrary'.tr,
-          style: TextStyle(
+          style: const TextStyle(
             fontFamily: StringConstants.NewYork,
             fontSize: 34,
             fontWeight: FontWeight.bold,
           ),
         ),
+        
         IconButton(
           onPressed: () {
-            if (authController.isAuthenticated.value) {
+            // Check if user is authenticated
+            if (tokenManager.isAuthenticated.value) {
+              // Navigate to Profile Screen
               Get.to(() => const ProfileScreen());
             } else {
+              // Navigate to Auth/Login Screen
               Get.to(() => const AuthViewScreen());
             }
           },

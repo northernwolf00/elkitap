@@ -1,9 +1,9 @@
 class ApiEndpoints {
-  static const String baseUrl = 'YOUR_BASE_URL_HERE'; // Replace with your actual base URL
+  static const String baseUrl = 'http://95.85.125.62:4000'; // Replace with your actual base URL
   
   // Auth endpoints
   static const String sendCode = '/users/send-code';
-  static const String verifyCode = '/users/verify-code';
+  static const String verifyCode = '/users/verify-login';
   static const String login = '/users/login';
   static const String register = '/users/register';
   

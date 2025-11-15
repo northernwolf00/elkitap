@@ -1,6 +1,8 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:elkitap/global_widgets/language_sellector.dart';
+import 'package:elkitap/modules/auth/controllers/auth_controller.dart';
+
 import 'package:elkitap/modules/auth/widget/otp_bottom_sheet.dart';
 import 'package:elkitap/modules/profile/widgets/help_and_support_sheet.dart';
 import 'package:flutter/material.dart';
@@ -52,12 +54,11 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
   void _showOtpBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      isScrollControlled: true, // Crucial for when the keyboard appears
+      isScrollControlled: true,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
       ),
       builder: (BuildContext context) {
-        // Use Padding to ensure content moves up when the keyboard is active
         return Padding(
           padding:
               EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
@@ -67,13 +68,42 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
     );
   }
 
-  void _onContinuePressed() {
-    if (_isValid) {
-      // 👇 navigate or verify number
-      print("Phone number: +993${_phoneController.text}");
-      _showOtpBottomSheet(context);
-    }
+void _onContinuePressed() async {
+  if (!_isValid) return;
+
+  final authController = Get.find<AuthController>();
+
+  // Show loading
+  Get.dialog(
+    Center(
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: const CircularProgressIndicator(),
+      ),
+    ),
+    barrierDismissible: false,
+  );
+
+  // Send code
+  final success = await authController.sendCode(_phoneController.text);
+
+  // Close ONLY the loading dialog
+  if (Get.isDialogOpen == true) {
+    Get.close(1);
   }
+
+  if (success) {
+    // Wait for dialog to close fully, then show OTP
+    Future.microtask(() {
+      _showOtpBottomSheet(context);
+    });
+  }
+}
+
 
   @override
   void dispose() {
@@ -106,11 +136,11 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                     onTap: () => Get.back(),
                     child: Row(
                       children: [
-                        Icon(Icons.arrow_back_ios, size: 20),
-                        SizedBox(width: 4),
+                        const Icon(Icons.arrow_back_ios, size: 20),
+                        const SizedBox(width: 4),
                         Text(
                           'leading_text'.tr,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 17,
                             fontFamily: StringConstants.SFPro,
                             fontWeight: FontWeight.w400,
@@ -122,21 +152,21 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                   const Spacer(),
                   const LanguageSelector(),
                   const Spacer(),
-                  SizedBox(
-                    width: 20,
-                  ),
+                  const SizedBox(width: 20),
                   GestureDetector(
                     onTap: () {
                       _showHelpBottomSheet(context);
                     },
-                    child: Container(
-                        width: 28,
+                    child:  SizedBox(
+                      width: 28,
+                      height: 28,
+                      child: CustomIcon(
+                        title: 'assets/icons/p4.svg',
                         height: 28,
-                        child: CustomIcon(
-                            title: 'assets/icons/p4.svg',
-                            height: 28,
-                            width: 28,
-                            color: Colors.black)),
+                        width: 28,
+                        color: Colors.black,
+                      ),
+                    ),
                   )
                 ],
               ),
@@ -145,7 +175,7 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
             const SizedBox(height: 40),
             Text(
               'phoneNumber'.tr,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 28,
                 fontFamily: StringConstants.SFPro,
                 fontWeight: FontWeight.w600,
@@ -154,7 +184,7 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
             const SizedBox(height: 8),
             Text(
               'enterNumberToLogin'.tr,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 15,
                 fontFamily: StringConstants.SFPro,
                 color: Colors.grey,
@@ -170,7 +200,7 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                 children: [
                   Text(
                     'phoneNumber'.tr,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 15,
                       fontFamily: StringConstants.SFPro,
                       fontWeight: FontWeight.w500,
@@ -189,7 +219,7 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                       children: [
                         Text(
                           'countryCode'.tr,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 17,
                             fontFamily: StringConstants.SFPro,
                             fontWeight: FontWeight.w400,
@@ -257,7 +287,7 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
               child: RichText(
                 textAlign: TextAlign.center,
                 text: TextSpan(
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 13,
                     fontFamily: StringConstants.SFPro,
                     color: Colors.grey,
@@ -267,7 +297,7 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                     TextSpan(text: 'byPressingContinue'.tr),
                     TextSpan(
                       text: 'termsOfUse'.tr,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
                       ),
@@ -275,7 +305,7 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                     TextSpan(text: 'andNewLine'.tr),
                     TextSpan(
                       text: 'privacyPolicy'.tr,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
                       ),
