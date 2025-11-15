@@ -26,6 +26,7 @@ class GridViewWidget extends StatelessWidget {
               return BookGridItem(
                 book: controller.books[index],
                 controller: controller,
+                discountPercentage: 30,
               );
             },
           )),
