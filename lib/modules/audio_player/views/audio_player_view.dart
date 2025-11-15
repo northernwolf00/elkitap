@@ -215,18 +215,26 @@ class AudiobookPlayerScreen extends StatelessWidget {
                       SliderTheme(
                         data: SliderThemeData(
                           trackHeight: 4,
+                          // 🔥 Increase thumb size for better iOS touch detection
                           thumbShape: const RoundSliderThumbShape(
-                              enabledThumbRadius: 8),
+                              enabledThumbRadius: 10),
                           overlayShape:
-                              const RoundSliderOverlayShape(overlayRadius: 16),
+                              const RoundSliderOverlayShape(overlayRadius: 20),
                         ),
                         child: Slider(
-                          value: positionSeconds, // ✅ always between 0 and max
+                          value: positionSeconds,
                           min: 0.0,
                           max: durationSeconds > 0 ? durationSeconds : 1.0,
                           activeColor: Colors.white,
                           inactiveColor: Colors.white30,
                           onChanged: (value) {
+                            controller.seek(Duration(seconds: value.toInt()));
+                          },
+                          // 🔥 Add onChangeStart and onChangeEnd for better iOS handling
+                          onChangeStart: (value) {
+                            // Optional: pause audio while seeking
+                          },
+                          onChangeEnd: (value) {
                             controller.seek(Duration(seconds: value.toInt()));
                           },
                         ),

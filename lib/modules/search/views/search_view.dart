@@ -9,16 +9,17 @@ class SearchViewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               SearchHeader(),
               SizedBox(height: 30),
-              RecentlyViewedSection(),
+              RecentlyViewedSection(
+                discountPercentage: 12,
+              ),
               SizedBox(height: 24),
               GenresSection(),
             ],

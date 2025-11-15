@@ -16,7 +16,7 @@ class AuthViewScreen extends StatefulWidget {
 class _AuthViewScreenState extends State<AuthViewScreen> {
   final TextEditingController _phoneController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
-    String selectedLanguage = 'turkmen'.tr;
+  String selectedLanguage = 'turkmen'.tr;
 
   bool _isFocused = false;
   bool _isValid = false;
@@ -105,7 +105,7 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                   GestureDetector(
                     onTap: () => Get.back(),
                     child: Row(
-                      children:  [
+                      children: [
                         Icon(Icons.arrow_back_ios, size: 20),
                         SizedBox(width: 4),
                         Text(
@@ -130,11 +130,14 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
                       _showHelpBottomSheet(context);
                     },
                     child: Container(
-                      width: 28,
-                      height: 28,
-                     
-                      child: CustomIcon(title: '', height:28 , width: 28, color: Colors.black)
-                  ),)
+                        width: 28,
+                        height: 28,
+                        child: CustomIcon(
+                            title: 'assets/icons/p4.svg',
+                            height: 28,
+                            width: 28,
+                            color: Colors.black)),
+                  )
                 ],
               ),
             ),
@@ -253,7 +256,7 @@ class _AuthViewScreenState extends State<AuthViewScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: RichText(
                 textAlign: TextAlign.center,
-                text:  TextSpan(
+                text: TextSpan(
                   style: TextStyle(
                     fontSize: 13,
                     fontFamily: StringConstants.SFPro,

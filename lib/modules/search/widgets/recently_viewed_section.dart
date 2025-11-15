@@ -1,10 +1,12 @@
 import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/modules/store/views/store_detail_view.dart';
+import 'package:elkitap/modules/store/widgets/book_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class RecentlyViewedSection extends StatelessWidget {
-  const RecentlyViewedSection({super.key});
+  final int? discountPercentage;
+  RecentlyViewedSection({required this.discountPercentage, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class RecentlyViewedSection extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children:  [
+          children: [
             Text(
               'recently_viewed_t'.tr,
               style: TextStyle(
@@ -32,9 +34,10 @@ class RecentlyViewedSection extends StatelessWidget {
             ),
             Text(
               "clear".tr,
-              style: TextStyle(fontSize: 17, 
-               fontFamily: StringConstants.SFPro,
-              fontWeight: FontWeight.w500),
+              style: TextStyle(
+                  fontSize: 17,
+                  fontFamily: StringConstants.SFPro,
+                  fontWeight: FontWeight.w500),
             ),
           ],
         ),
@@ -50,11 +53,29 @@ class RecentlyViewedSection extends StatelessWidget {
                 onTap: () {
                   Get.to(() => BookDetailView());
                 },
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: SizedBox(
-                    width: 110,
-                    child: Image.asset(books[index], fit: BoxFit.cover),
+                child: SizedBox(
+                  height: 175,
+                  child: Stack(
+                    children: [
+                      if (discountPercentage! > 3 && discountPercentage != null)
+                        Positioned(
+                          bottom: 0,
+                          right: 12,
+                          child: DiscountBadge(
+                            percentage: discountPercentage!,
+                          ),
+                        ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 30),
+                        child: ClipRRect(
+                          child: SizedBox(
+                            width: 100,
+                            height: 145,
+                            child: Image.asset(books[index], fit: BoxFit.cover),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               );

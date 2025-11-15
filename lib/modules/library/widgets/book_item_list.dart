@@ -3,17 +3,20 @@ import 'package:elkitap/core/theme/app_colors.dart';
 import 'package:elkitap/modules/library/controllers/library_controller.dart';
 import 'package:elkitap/modules/library/model/book_moc.dart';
 import 'package:elkitap/modules/store/views/store_detail_view.dart';
+import 'package:elkitap/modules/store/widgets/book_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class BookListItem extends StatefulWidget {
   final Book book;
   final ReadingListController controller;
+  final int? discountPercentage;
 
   const BookListItem({
     super.key,
     required this.book,
     required this.controller,
+    required this.discountPercentage,
   });
 
   @override
@@ -85,12 +88,30 @@ class _BookListItemState extends State<BookListItem> {
                   const SizedBox(width: 16),
 
                   // Book cover
-                  Container(
-                    width: 60,
-                    height: 90,
-                    decoration: BoxDecoration(),
-                    clipBehavior: Clip.antiAlias,
-                    child: Image.asset(widget.book.coverUrl, fit: BoxFit.cover),
+
+                  SizedBox(
+                    height: 130,
+                    child: Stack(
+                      children: [
+                        if (widget.discountPercentage! > 3 &&
+                            widget.discountPercentage != null)
+                          Positioned(
+                            right: 10,
+                            bottom: 0,
+                            child: DiscountBadgeMini(
+                              percentage: widget.discountPercentage!,
+                            ),
+                          ),
+                        Container(
+                          width: 75,
+                          height: 110,
+                          decoration: BoxDecoration(),
+                          clipBehavior: Clip.antiAlias,
+                          child: Image.asset(widget.book.coverUrl,
+                              fit: BoxFit.cover),
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(width: 16),
 

@@ -2,7 +2,7 @@ import 'package:elkitap/core/constants/string_constants.dart';
 import 'package:elkitap/global_widgets/custom_icon.dart';
 import 'package:elkitap/modules/audio_player/controllers/audio_player_controller.dart';
 import 'package:elkitap/modules/audio_player/views/audio_player_view.dart';
-import 'package:elkitap/modules/reader/controllers/reader_controller.dart';
+
 import 'package:elkitap/modules/reader/views/reader_view.dart';
 
 import 'package:elkitap/modules/store/controllers/store_controller.dart';
@@ -18,7 +18,7 @@ class BookDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final BookDetailController controller = Get.put(BookDetailController());
-    final epubCtrl = Get.find<EpubController>();
+    // final epubCtrl = Get.find<EpubController>();
 
     final Color accent = const Color(0xFFFF5A3C);
     final globalMiniCtrl = Get.find<GlobalMiniPlayerController>();
@@ -235,35 +235,35 @@ class BookDetailView extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            Obx(() {
-              double progress = 0;
+            // Obx(() {
+            //   double progress = 0;
 
-              if (epubCtrl.totalPages.value > 0) {
-                progress =
-                    epubCtrl.currentPage.value / epubCtrl.totalPages.value;
-              }
+            //   if (epubCtrl.totalPages.value > 0) {
+            //     progress =
+            //         epubCtrl.currentPage.value / epubCtrl.totalPages.value;
+            //   }
 
-              return Center(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 200,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: LinearProgressIndicator(
-                          value: progress,
-                          minHeight: 6,
-                          backgroundColor: Colors.grey.withOpacity(0.3),
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                              const Color.fromARGB(255, 22, 22, 21)),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            }),
+            //   return Center(
+            //     child: Column(
+            //       crossAxisAlignment: CrossAxisAlignment.center,
+            //       children: [
+            //         SizedBox(
+            //           width: 200,
+            //           child: ClipRRect(
+            //             borderRadius: BorderRadius.circular(12),
+            //             child: LinearProgressIndicator(
+            //               value: progress,
+            //               minHeight: 6,
+            //               backgroundColor: Colors.grey.withOpacity(0.3),
+            //               valueColor: AlwaysStoppedAnimation<Color>(
+            //                   const Color.fromARGB(255, 22, 22, 21)),
+            //             ),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //   );
+            // }),
             const SizedBox(height: 24),
             GestureDetector(
               onTap: () => DialogUtils.showLanguagePopup(context, controller),

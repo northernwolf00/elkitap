@@ -4,7 +4,6 @@ import 'package:elkitap/modules/library/widgets/book_item_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class GridViewWidget extends StatelessWidget {
   final ReadingListController controller;
 
@@ -34,7 +33,6 @@ class GridViewWidget extends StatelessWidget {
   }
 }
 
-
 class ListViewWidget extends StatelessWidget {
   final ReadingListController controller;
 
@@ -49,6 +47,7 @@ class ListViewWidget extends StatelessWidget {
             return BookListItem(
               book: controller.books[index],
               controller: controller,
+              discountPercentage: 30,
             );
           },
         ));

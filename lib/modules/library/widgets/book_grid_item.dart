@@ -12,7 +12,6 @@ class BookGridItem extends StatefulWidget {
   final ReadingListController controller;
   final int? discountPercentage;
 
-
   const BookGridItem({
     super.key,
     required this.book,
@@ -30,17 +29,13 @@ class _BookGridItemState extends State<BookGridItem> {
     return GestureDetector(
       onTap: () {
         if (widget.controller.selectedBooks.isNotEmpty) {
-         
           widget.controller.toggleSelection(widget.book.id);
-          setState(() {}); 
+          setState(() {});
         } else {
-        
           Get.to(() => BookDetailView());
         }
-      
       },
       onLongPress: () {
-       
         widget.controller.toggleSelection(widget.book.id);
       },
       child: Obx(() {
@@ -49,19 +44,20 @@ class _BookGridItemState extends State<BookGridItem> {
 
         return Stack(
           children: [
-             if (widget.discountPercentage! > 3 && widget.discountPercentage != null)
+            if (widget.discountPercentage! > 3 &&
+                widget.discountPercentage != null)
               Positioned(
-                right: 30,
-                bottom: 60,
+                right: 20,
+                bottom: 30,
                 child: DiscountBadge(
                   percentage: widget.discountPercentage!,
                 ),
               ),
-  
-               Positioned(
-                right: 0,
-                left: 0,
-                bottom: 60,
+
+            Positioned(
+              right: 0,
+              left: 0,
+              bottom: 60,
               child: Container(
                 height: 218,
                 width: 148,
@@ -70,7 +66,6 @@ class _BookGridItemState extends State<BookGridItem> {
                 child: Image.asset(
                   widget.book.coverUrl,
                   fit: BoxFit.fill,
-                 
                 ),
               ),
             ),
@@ -148,7 +143,7 @@ class _BookGridItemState extends State<BookGridItem> {
             Positioned(
               left: 0,
               right: 0,
-              bottom: 30,
+              bottom: 0,
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
                 decoration: BoxDecoration(),
