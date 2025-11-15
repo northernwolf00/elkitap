@@ -4,13 +4,14 @@ import 'dart:async';
 
 import 'package:elkitap/core/init/theme_controller.dart';
 import 'package:elkitap/core/init/translation_service.dart';
+import 'package:elkitap/data/network/network_manager.dart';
+import 'package:elkitap/data/network/token_managet.dart';
 import 'package:elkitap/modules/audio_player/controllers/audio_player_controller.dart';
 import 'package:elkitap/modules/auth/controllers/login_controller.dart';
 import 'package:elkitap/modules/reader/controllers/reader_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
 
 @immutable
 final class ApplicationInitialize {
@@ -45,6 +46,9 @@ final class ApplicationInitialize {
       Get.put(AudioPlayerController());
       Get.put(GlobalMiniPlayerController());
       Get.put(EpubController());
+      Get.put(TokenManager());
+      Get.put(NetworkManager());
+      Get.put(AuthController());
 
       // Get.put(HomeController());
       // Get.put(SearchControllerMine());
